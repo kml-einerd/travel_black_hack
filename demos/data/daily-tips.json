@@ -1,0 +1,202 @@
+{
+  "tips": [
+    {
+      "id": "tip-001",
+      "date": "2026-01-14",
+      "category": "earning",
+      "icon": "💡",
+      "title": "Grocery Store Gift Card Hack",
+      "tip": "Buy gift cards at grocery stores using a card with grocery bonus category (Amex Gold 4X). Turn everyday 1X purchases into 4X earning!",
+      "pro_tip": "Only buy gift cards you'll actually use - don't manufacture spend you can't liquidate easily.",
+      "difficulty": "easy",
+      "value": "high"
+    },
+    {
+      "id": "tip-002",
+      "date": "2026-01-15",
+      "category": "redeeming",
+      "icon": "✈️",
+      "title": "Book ANA Awards via Virgin Atlantic",
+      "tip": "Save 50% on ANA First Class by booking through Virgin Atlantic Flying Club instead of directly through ANA. Same seats, half the points!",
+      "pro_tip": "Wait for Amex 30-40% transfer bonuses to Virgin Atlantic for even more value.",
+      "difficulty": "medium",
+      "value": "insane"
+    },
+    {
+      "id": "tip-003",
+      "date": "2026-01-16",
+      "category": "strategy",
+      "icon": "🎯",
+      "title": "Always Chase 5/24 First",
+      "tip": "Chase cards are subject to 5/24 rule (denied if you've opened 5+ cards in 24 months). Get Chase cards BEFORE Amex, Citi, or Capital One.",
+      "pro_tip": "Business cards from Chase don't count toward 5/24, so you can stack them after hitting 5/24.",
+      "difficulty": "easy",
+      "value": "high"
+    },
+    {
+      "id": "tip-004",
+      "date": "2026-01-17",
+      "category": "status",
+      "icon": "👑",
+      "title": "Hilton Diamond Status via Credit Card",
+      "tip": "The Hilton Aspire Card ($450 AF) gives you instant Diamond status plus a free weekend night certificate. Diamond = breakfast, lounge, suite upgrades.",
+      "pro_tip": "Time your application in December so the free night posts in January and again in December of same year.",
+      "difficulty": "easy",
+      "value": "high"
+    },
+    {
+      "id": "tip-005",
+      "date": "2026-01-18",
+      "category": "booking",
+      "icon": "🔍",
+      "title": "Check Award Space 330 Days Out",
+      "tip": "Most airlines release award seats 330-365 days before departure. Set a calendar reminder to search exactly 330 days from your desired travel date.",
+      "pro_tip": "Search at midnight in the airline's home timezone for best results.",
+      "difficulty": "easy",
+      "value": "medium"
+    },
+    {
+      "id": "tip-006",
+      "date": "2026-01-19",
+      "category": "earning",
+      "icon": "💰",
+      "title": "Stack Amex Shop Small + Rakuten",
+      "tip": "During Shop Small promos, Amex gives extra points at small businesses. Stack this with Rakuten cashback at same merchants for double-dipping.",
+      "pro_tip": "Use Amex Gold (4X dining/grocery) at registered Shop Small businesses for insane multipliers.",
+      "difficulty": "medium",
+      "value": "high"
+    },
+    {
+      "id": "tip-007",
+      "date": "2026-01-20",
+      "category": "redemption",
+      "icon": "🏨",
+      "title": "Hyatt Has Best Hotel Redemption Value",
+      "tip": "Hyatt points consistently offer 1.5-2.5 cents per point value, while Marriott/Hilton hover around 0.5-0.7cpp. Chase transfers to Hyatt at 1:1.",
+      "pro_tip": "Target Category 1-4 Hyatt hotels for maximum value (8-15K points per night for $200+ hotels).",
+      "difficulty": "easy",
+      "value": "high"
+    },
+    {
+      "id": "tip-008",
+      "date": "2026-01-21",
+      "category": "strategy",
+      "icon": "📊",
+      "title": "Track Your CPP (Cents Per Point)",
+      "tip": "Always calculate cents per point (CPP) on redemptions: (Cash price ÷ Points required) × 100. Target 1.5+ CPP minimum, 2+ CPP for good value.",
+      "pro_tip": "Sometimes paying cash is better than 'wasting' points on low-value redemptions. Don't redeem just to redeem!",
+      "difficulty": "easy",
+      "value": "medium"
+    },
+    {
+      "id": "tip-009",
+      "date": "2026-01-22",
+      "category": "advanced",
+      "icon": "🥷",
+      "title": "Self-Refer with Player 2",
+      "tip": "Have a spouse/partner? Refer each other for credit cards to earn referral bonuses (10-20K points) on top of welcome bonuses.",
+      "pro_tip": "Space out apps 2-3 months apart and mix with organic cards to avoid velocity shutdowns.",
+      "difficulty": "medium",
+      "value": "high"
+    },
+    {
+      "id": "tip-010",
+      "date": "2026-01-23",
+      "category": "booking",
+      "icon": "🌍",
+      "title": "Use Google Flights for Award Research",
+      "tip": "Google Flights shows cash prices and dates with availability. Use it to find cheap dates, then search award space on those exact dates.",
+      "pro_tip": "Sort by price graph to visualize cheapest dates across entire months.",
+      "difficulty": "easy",
+      "value": "medium"
+    },
+    {
+      "id": "tip-011",
+      "date": "2026-01-24",
+      "category": "earning",
+      "icon": "💳",
+      "title": "Triple-Dip Welcome Bonuses",
+      "tip": "Time new card applications in January to triple-dip: SUB + annual credit Year 1 + annual credit Year 2 (Dec), then cancel before Year 2 AF hits.",
+      "pro_tip": "This works best with cards like Amex Plat ($200 airline credit), CSR ($300 travel credit).",
+      "difficulty": "medium",
+      "value": "high"
+    },
+    {
+      "id": "tip-012",
+      "date": "2026-01-25",
+      "category": "redemption",
+      "icon": "🎫",
+      "title": "Book Refundable Awards as Placeholders",
+      "tip": "Found OK award space but not great? Book it! Most airline awards are free to cancel. Hold the space while searching for better options.",
+      "pro_tip": "Set reminders to recheck availability weekly. Cancel and rebook if better space opens up.",
+      "difficulty": "medium",
+      "value": "medium"
+    },
+    {
+      "id": "tip-013",
+      "date": "2026-01-26",
+      "category": "status",
+      "icon": "🏆",
+      "title": "Marriott Platinum Challenge Worth It",
+      "tip": "Complete 16 nights in 90 days to earn Platinum status for rest of year + next full year. That's 15-21 months of status from just 16 nights!",
+      "pro_tip": "Do challenge in January-March to maximize duration. Platinum = breakfast, lounge, suite upgrades.",
+      "difficulty": "medium",
+      "value": "high"
+    },
+    {
+      "id": "tip-014",
+      "date": "2026-01-27",
+      "category": "earning",
+      "icon": "🎁",
+      "title": "Plastiq for Large Expenses",
+      "tip": "Use Plastiq to pay rent, mortgage, or tuition with credit cards. 2.5% fee, but worth it for SUBs or high-earning cards.",
+      "pro_tip": "Only use Plastiq when earning >3% back or hitting minimum spend for welcome bonus.",
+      "difficulty": "easy",
+      "value": "medium"
+    },
+    {
+      "id": "tip-015",
+      "date": "2026-01-28",
+      "category": "redemption",
+      "icon": "🌟",
+      "title": "Singapore Suites via Amex",
+      "tip": "Singapore Airlines Suites (A380) is bucket-list travel. Book using KrisFlyer miles transferred from Amex MR. ~180K miles round-trip USA-Asia.",
+      "pro_tip": "Space opens 330 days out. Set alerts and book immediately - it goes FAST.",
+      "difficulty": "hard",
+      "value": "insane"
+    },
+    {
+      "id": "tip-016",
+      "date": "2026-01-29",
+      "category": "strategy",
+      "icon": "📅",
+      "title": "Space Out Credit Card Applications",
+      "tip": "Don't apply for more than 1-2 cards per month. Issuers watch 'velocity' and may deny or shut down accounts if you apply too fast.",
+      "pro_tip": "Ideal pace: 1 card every 2-3 months for beginners, 2-3 cards per month for experienced churners.",
+      "difficulty": "easy",
+      "value": "high"
+    },
+    {
+      "id": "tip-017",
+      "date": "2026-01-30",
+      "category": "booking",
+      "icon": "🔄",
+      "title": "HUCA (Hang Up, Call Again)",
+      "tip": "If an airline agent says award space doesn't exist but you see it online, hang up and call again. Different agents have different knowledge levels.",
+      "pro_tip": "Be polite but persistent. Sometimes calling 3-4 times gets you a competent agent who can book what you need.",
+      "difficulty": "easy",
+      "value": "medium"
+    },
+    {
+      "id": "tip-018",
+      "date": "2026-01-31",
+      "category": "earning",
+      "icon": "💵",
+      "title": "Downgrade Instead of Canceling",
+      "tip": "Don't cancel premium cards after Year 1 - downgrade to no-AF versions to preserve credit history and relationship with issuer.",
+      "pro_tip": "Wait until after 12 months to downgrade (some issuers claw back bonuses if you cancel/downgrade early).",
+      "difficulty": "easy",
+      "value": "medium"
+    }
+  ]
+}

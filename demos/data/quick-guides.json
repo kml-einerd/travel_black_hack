@@ -1,0 +1,400 @@
+{
+  "guides": [
+    {
+      "id": "guide-001",
+      "title": "Complete Guide to Award Flight Booking",
+      "category": "redemption",
+      "icon": "✈️",
+      "difficulty": "beginner",
+      "read_time": "8 min",
+      "last_updated": "2026-01-14",
+      "summary": "Master the art of finding and booking award flights across all major airline programs",
+      "cover_image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800",
+      "sections": [
+        {
+          "title": "Understanding Award Availability",
+          "content": "Award availability is the number of seats airlines release for award bookings. This is DIFFERENT from cash availability - a flight can have 50 empty seats but zero award seats. Airlines control award inventory dynamically.",
+          "key_points": [
+            "Award seats are released 330-365 days before departure (varies by airline)",
+            "More seats released closer to departure (14-21 days) if flight isn't full",
+            "Premium cabins (business/first) have much less availability than economy",
+            "Partner awards often have better availability than direct bookings"
+          ]
+        },
+        {
+          "title": "Best Search Tools",
+          "content": "Use these tools to search for award availability across programs:",
+          "key_points": [
+            "United.com - Best for Star Alliance availability (free)",
+            "AwardFares.com - Cross-program search ($9.99/month)",
+            "ExpertFlyer.com - Detailed seat-level data ($9.99/month)",
+            "British Airways - Best for oneworld short-haul availability",
+            "Air Canada Aeroplan - Great for Star Alliance positioning flights"
+          ]
+        },
+        {
+          "title": "Booking Strategy",
+          "content": "Follow this process for the best results:",
+          "key_points": [
+            "Start search 330 days out for long-haul premium cabins",
+            "Be flexible with dates (+/- 3 days significantly improves odds)",
+            "Consider positioning flights (fly to gateway city first)",
+            "Book refundable awards early, cancel if better option appears",
+            "Set award alerts using ExpertFlyer or AwardFares"
+          ]
+        },
+        {
+          "title": "Common Mistakes to Avoid",
+          "content": "Don't make these rookie errors:",
+          "key_points": [
+            "Booking through wrong program (always compare partner options)",
+            "Not checking partner availability (United doesn't show all Star Alliance space)",
+            "Forgetting about fuel surcharges (can add $500+ to 'free' flights)",
+            "Booking one-way when round-trip is same price",
+            "Not considering positioning flights to better gateway cities"
+          ]
+        }
+      ],
+      "action_items": [
+        "Create accounts on United, British Airways, and Air Canada",
+        "Sign up for AwardFares free trial",
+        "Practice searching for award flights on your dream route",
+        "Set up award alerts for your target trips"
+      ],
+      "resources": [
+        {"name": "Award Booking Spreadsheet Template", "url": "#"},
+        {"name": "Airline Alliance Chart", "url": "#"},
+        {"name": "Award Calendar Tool", "url": "#"}
+      ]
+    },
+    {
+      "id": "guide-002",
+      "title": "Credit Card Application Strategy (5/24 Rule)",
+      "category": "earning",
+      "icon": "💳",
+      "difficulty": "beginner",
+      "read_time": "6 min",
+      "last_updated": "2026-01-14",
+      "summary": "Navigate Chase's 5/24 rule and optimize your credit card application timeline",
+      "cover_image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800",
+      "sections": [
+        {
+          "title": "What is 5/24?",
+          "content": "Chase's 5/24 rule automatically denies your application if you've opened 5+ personal credit cards (from ANY bank) in the past 24 months.",
+          "key_points": [
+            "Counts ALL personal credit cards, not just Chase",
+            "Business cards usually don't count toward 5/24 (but you still can't get Chase cards after 5/24)",
+            "Authorized user cards DO count (can be removed with recon)",
+            "Cards opened exactly 24 months ago still count until the STATEMENT date"
+          ]
+        },
+        {
+          "title": "Optimal Application Order",
+          "content": "Get Chase cards FIRST before other issuers:",
+          "key_points": [
+            "1. Chase Sapphire Preferred or Reserve (best transferable points)",
+            "2. Chase Freedom Flex/Unlimited (bonus categories + referrals)",
+            "3. Chase Ink Business Preferred (doesn't count toward 5/24!)",
+            "4. Chase World of Hyatt or Southwest (if you have hotel/airline loyalty)",
+            "5. Now move to Amex, Citi, Capital One, etc."
+          ]
+        },
+        {
+          "title": "Timing & Velocity",
+          "content": "Space applications strategically:",
+          "key_points": [
+            "Wait 3 months between Chase applications (2 months minimum)",
+            "Don't apply for more than 1 Chase card every 30 days",
+            "Build credit history: Wait 1 year after your first card",
+            "If denied, call recon line (800-432-3117) within 30 days"
+          ]
+        },
+        {
+          "title": "After 5/24: Other Issuers",
+          "content": "Once past 5/24, focus on these issuers:",
+          "key_points": [
+            "Amex: No hard limit, but watch 2/90 rule (2 credit cards per 90 days)",
+            "Citi: 1/8 rule (1 card per 8 days), 2/65 rule (2 cards per 65 days)",
+            "Capital One: 6-month inquiry sensitive, approve or deny quickly",
+            "US Bank: Strict 0/6 and 1/12 rules for premium cards"
+          ]
+        }
+      ],
+      "action_items": [
+        "Pull your credit report and count cards opened in last 24 months",
+        "Create a spreadsheet tracking application dates",
+        "Decide on your first Chase card based on spend categories",
+        "Set calendar reminders for future application dates"
+      ],
+      "resources": [
+        {"name": "5/24 Application Tracker Spreadsheet", "url": "#"},
+        {"name": "Credit Card Decision Flowchart", "url": "#"},
+        {"name": "Issuer Rules Cheat Sheet", "url": "#"}
+      ]
+    },
+    {
+      "id": "guide-003",
+      "title": "Transferable Points: Which Program to Choose",
+      "category": "redeeming",
+      "icon": "🎯",
+      "difficulty": "intermediate",
+      "read_time": "10 min",
+      "last_updated": "2026-01-14",
+      "summary": "Compare Chase UR, Amex MR, Citi TY, and Capital One to maximize your earning strategy",
+      "cover_image": "https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800",
+      "sections": [
+        {
+          "title": "The Four Major Programs",
+          "content": "Each transferable points currency has strengths and weaknesses:",
+          "key_points": [
+            "Chase UR: Best all-around, Hyatt is elite partner, 1.5X portal with Reserve",
+            "Amex MR: Most transfer partners (17), best for international business class",
+            "Citi TY: Transfer to Turkish (Star Alliance sweet spots)",
+            "Capital One: Transfers to all major programs, limited earning cards"
+          ]
+        },
+        {
+          "title": "Best Transfer Partners by Use Case",
+          "content": "Match your travel goals to the right program:",
+          "key_points": [
+            "Domestic economy: Southwest (Chase), JetBlue (Amex/Citi/Cap1)",
+            "International business: ANA via Virgin (Amex), Singapore KrisFlyer (Chase/Amex)",
+            "First class: ANA (Amex), Emirates (Citi via Turkish)",
+            "Hotels: Hyatt (Chase), Hilton (Amex), Marriott (Chase/Amex)"
+          ]
+        },
+        {
+          "title": "Earning Strategy",
+          "content": "How to accumulate points fast:",
+          "key_points": [
+            "Get welcome bonuses: 60K-150K points per card",
+            "Use bonus categories: 3X-5X on dining, travel, groceries",
+            "Refer friends: 10K-20K per successful referral",
+            "Watch for transfer bonuses: 20-40% extra when transferring",
+            "Pool points: Combine household points to one account"
+          ]
+        },
+        {
+          "title": "Decision Framework",
+          "content": "Choose your primary ecosystem:",
+          "key_points": [
+            "If you travel domestically + love Hyatt → Chase UR",
+            "If you want maximum flexibility + int'l travel → Amex MR",
+            "If you're targeting specific Star Alliance routes → Citi TY",
+            "If you're over 5/24 and want simple earning → Capital One",
+            "Best strategy: Get ALL four programs eventually!"
+          ]
+        }
+      ],
+      "action_items": [
+        "Identify your top 3 dream trips and research best programs",
+        "Calculate potential earnings across different card setups",
+        "Apply for your first transferable points card",
+        "Join online communities to learn redemption strategies"
+      ],
+      "resources": [
+        {"name": "Transfer Partner Comparison Chart", "url": "#"},
+        {"name": "Sweet Spot Redemption Guide", "url": "#"},
+        {"name": "Points Earning Calculator", "url": "#"}
+      ]
+    },
+    {
+      "id": "guide-004",
+      "title": "Hotel Elite Status: Fast Track Guide",
+      "category": "status",
+      "icon": "🏨",
+      "difficulty": "intermediate",
+      "read_time": "7 min",
+      "last_updated": "2026-01-14",
+      "summary": "Achieve hotel elite status through challenges, credit cards, and status matches",
+      "cover_image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+      "sections": [
+        {
+          "title": "Three Paths to Status",
+          "content": "You don't need 50 nights to get elite status:",
+          "key_points": [
+            "Credit Cards: Instant status with annual fee cards (Hilton Aspire = Diamond)",
+            "Status Challenges: Complete X nights in 90 days for full-year status",
+            "Status Matches: Leverage status with one chain to match at another",
+            "Promotions: Double-night credits, bonus points toward status"
+          ]
+        },
+        {
+          "title": "Best Credit Card Routes",
+          "content": "Get instant status with these cards:",
+          "key_points": [
+            "Hilton Aspire ($450): Instant Diamond + free weekend night",
+            "Marriott Brilliant ($650): Gold Elite (Platinum with 50 nights)",
+            "IHG One Rewards Premier ($99): Platinum Elite",
+            "World of Hyatt ($95): Instant Discoverist (+ path to Explorist)"
+          ]
+        },
+        {
+          "title": "Status Challenge Strategy",
+          "content": "Fast-track to top-tier status:",
+          "key_points": [
+            "Marriott Platinum Challenge: 16 nights in 3 months",
+            "Hyatt Globalist Challenge: 20 nights OR $5K spend in 90 days",
+            "Hilton Diamond Challenge: 6 stays or 16 nights in 90 days",
+            "Best approach: Do challenges in Q1 for maximum benefit duration"
+          ]
+        },
+        {
+          "title": "Status Match Opportunities",
+          "content": "Leverage existing status:",
+          "key_points": [
+            "Upload airline elite status → get hotel match (varies by chain)",
+            "Marriott Plat → Hilton Gold (via Hilton Match Portal)",
+            "Hyatt Globalist → best status in industry (breakfast, suite upgrades)",
+            "Note: Most matches are one-time only per person"
+          ]
+        }
+      ],
+      "action_items": [
+        "Identify which hotel chain you use most",
+        "Check if you're eligible for status challenges",
+        "Calculate if status credit card is worth the annual fee",
+        "Book stays strategically to hit challenge requirements"
+      ],
+      "resources": [
+        {"name": "Hotel Status Benefits Comparison", "url": "#"},
+        {"name": "Status Challenge Calculator", "url": "#"},
+        {"name": "Status Match Database", "url": "#"}
+      ]
+    },
+    {
+      "id": "guide-005",
+      "title": "Manufactured Spending 101 (Beginner Safe Methods)",
+      "category": "earning",
+      "icon": "💵",
+      "difficulty": "advanced",
+      "read_time": "12 min",
+      "last_updated": "2026-01-14",
+      "summary": "Safely meet minimum spend requirements and earn points beyond organic spending",
+      "cover_image": "https://images.unsplash.com/photo-1554224311-beee415c201f?w=800",
+      "sections": [
+        {
+          "title": "What is Manufactured Spending?",
+          "content": "MS is earning points on purchases that you can convert back to cash with minimal fees:",
+          "key_points": [
+            "Goal: Earn more points than you naturally spend",
+            "Beginner-safe: 0.5-2% cost, low risk",
+            "Advanced: <0.5% cost, higher complexity/risk",
+            "NOT for everyone: Requires time, organization, risk tolerance"
+          ]
+        },
+        {
+          "title": "Beginner-Safe Methods",
+          "content": "Start with these low-risk approaches:",
+          "key_points": [
+            "Gift cards at grocery (4X) → use normally (no liquidation needed)",
+            "Pay rent/mortgage via Plastiq (2.5% fee, good for SUB)",
+            "Prepay bills (utilities, insurance, taxes) on credit",
+            "Buy refundable hotel/flight → cancel → get refund",
+            "Venmo friends for shared expenses"
+          ]
+        },
+        {
+          "title": "Intermediate: Visa Gift Cards",
+          "content": "Classic MS method - proceed with caution:",
+          "key_points": [
+            "Buy Visa gift cards at grocery/office supply stores (get 4X-5X)",
+            "Liquidate via money orders at Walmart/grocery stores",
+            "Deposit money orders at bank",
+            "Fees: ~1-1.5% all-in",
+            "Risk: Banks may shut you down if suspicious activity detected"
+          ]
+        },
+        {
+          "title": "Safety Rules & Warnings",
+          "content": "Protect yourself from shutdowns:",
+          "key_points": [
+            "NEVER MS on business cards (higher scrutiny)",
+            "Start slow: $2-5K/month max for first 6 months",
+            "Mix organic and MS spend (80/20 rule)",
+            "Don't deposit large money orders ($3K+) at once",
+            "Have a legitimate explanation if bank asks",
+            "Some banks hate MS: Avoid Serve, Bluebird methods at WM"
+          ]
+        }
+      ],
+      "action_items": [
+        "Start with organic spend + gift cards at grocery only",
+        "Set up Plastiq for one recurring bill",
+        "Track all MS activity in a spreadsheet",
+        "Join MS communities AFTER mastering basics (r/churning)"
+      ],
+      "resources": [
+        {"name": "MS Tracking Spreadsheet", "url": "#"},
+        {"name": "Bank Shutdown Database", "url": "#"},
+        {"name": "Fee Calculator Tool", "url": "#"}
+      ]
+    },
+    {
+      "id": "guide-006",
+      "title": "Ultimate Guide to Stopover Routing",
+      "category": "redeeming",
+      "icon": "🌍",
+      "difficulty": "advanced",
+      "read_time": "9 min",
+      "last_updated": "2026-01-14",
+      "summary": "Visit multiple destinations for the price of one using stopover rules",
+      "cover_image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800",
+      "sections": [
+        {
+          "title": "What is a Stopover?",
+          "content": "A stopover lets you visit a connecting city for days/weeks as part of your itinerary:",
+          "key_points": [
+            "Layover (<24hrs) vs Stopover (>24hrs) - different rules",
+            "Some programs allow FREE stopovers (ANA, Singapore)",
+            "Others charge fees or don't allow them at all",
+            "Unlock multi-city trips for same points as direct"
+          ]
+        },
+        {
+          "title": "Best Programs for Stopovers",
+          "content": "These programs have generous stopover policies:",
+          "key_points": [
+            "ANA Round-the-World: 2 stopovers on RTW tickets",
+            "Singapore KrisFlyer: 1 free stopover in Singapore",
+            "Turkish Miles: 1 free stopover in Istanbul",
+            "United (old rules): Stopovers dead but excursionist perk useful",
+            "Air Canada Aeroplan: No stopovers but great connection flexibility"
+          ]
+        },
+        {
+          "title": "Sample Routing Strategies",
+          "content": "Examples of killer stopover itineraries:",
+          "key_points": [
+            "NYC → Tokyo (5 days) → Bali on ANA for 75K",
+            "LAX → Singapore (3 days) → Maldives on Singapore for 85K",
+            "USA → Istanbul (3 days) → Europe on Turkish for 45K",
+            "Add positioning flights at gateways for complex routings"
+          ]
+        },
+        {
+          "title": "Booking Tips",
+          "content": "How to successfully book stopovers:",
+          "key_points": [
+            "Most require phone booking (can't book online)",
+            "Search segments separately first to confirm availability",
+            "Be prepared with exact dates, flight numbers, cabin class",
+            "Some agents don't know stopover rules - HUCA if needed",
+            "Allow 2-7 days between flights for true stopover treatment"
+          ]
+        }
+      ],
+      "action_items": [
+        "Research stopover policies for your preferred programs",
+        "Plan dream multi-city itinerary",
+        "Search for award availability on each segment",
+        "Call airline to book stopover routing"
+      ],
+      "resources": [
+        {"name": "Stopover Policy Database", "url": "#"},
+        {"name": "Multi-City Route Planner", "url": "#"},
+        {"name": "Stopover Calculator", "url": "#"}
+      ]
+    }
+  ]
+}
