@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MilesAI - Your Operating System for Travel Hacking</title>
+  <meta name="description" content="Transform everyday spending into premium travel with less cost and less time. Your independent path to travel hacking mastery.">
+  <link rel="stylesheet" href="../design/design-system.css">
+  <style>
+    /* Page-specific styles */
+    .hero {
+      background: var(--gradient-hero);
+      padding: var(--space-20) var(--space-4);
+      text-align: center;
+    }
+
+    .hero__title {
+      font-size: var(--text-5xl);
+      font-weight: var(--font-bold);
+      margin-bottom: var(--space-4);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero__subtitle {
+      font-size: var(--text-xl);
+      color: var(--color-text-secondary);
+      max-width: 700px;
+      margin: 0 auto var(--space-8);
+    }
+
+    .hero__cta {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .features {
+      padding: var(--space-16) var(--space-4);
+    }
+
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-12);
+    }
+
+    .feature-card {
+      text-align: center;
+    }
+
+    .feature-card__icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gradient-primary-soft);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+      font-size: var(--text-4xl);
+    }
+
+    .feature-card__title {
+      font-size: var(--text-xl);
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-2);
+    }
+
+    .feature-card__description {
+      color: var(--color-text-secondary);
+    }
+
+    .social-proof {
+      background: var(--color-bg-secondary);
+      padding: var(--space-16) var(--space-4);
+      text-align: center;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-8);
+      max-width: 1000px;
+      margin: var(--space-12) auto 0;
+    }
+
+    .stat__value {
+      font-size: var(--text-4xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat__label {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-2);
+    }
+
+    .philosophy {
+      padding: var(--space-16) var(--space-4);
+    }
+
+    .philosophy__content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .philosophy__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+
+    .philosophy-card {
+      padding: var(--space-6);
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+
+    .philosophy-card__icon {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-3);
+    }
+
+    .philosophy-card__title {
+      font-size: var(--text-lg);
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-2);
+    }
+
+    .cta-section {
+      background: var(--gradient-primary);
+      color: var(--color-text-inverse);
+      padding: var(--space-20) var(--space-4);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: var(--color-text-inverse);
+    }
+
+    .cta-section p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: var(--text-lg);
+      max-width: 600px;
+      margin: 0 auto var(--space-8);
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--color-primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    @media (max-width: 768px) {
+      .hero__title {
+        font-size: var(--text-3xl);
+      }
+
+      .hero__subtitle {
+        font-size: var(--text-lg);
+      }
+
+      .features__grid,
+      .philosophy__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container container--lg">
+      <h1 class="hero__title">Your Operating System for Travel Hacking</h1>
+      <p class="hero__subtitle">
+        Transform everyday spending into premium travel with less cost and less time.
+        Independent. Transparent. Results-driven.
+      </p>
+      <div class="hero__cta">
+        <button class="btn btn-primary">Start Free Trial</button>
+        <button class="btn btn-secondary">See How It Works</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container container--lg">
+      <h2 style="text-align: center; font-size: var(--text-4xl);">What Makes Us Different</h2>
+      <p style="text-align: center; color: var(--color-text-secondary); max-width: 700px; margin: var(--space-4) auto 0;">
+        This isn't just another miles blog. MilesAI is a complete operating system that decides, executes, teaches, and proves results.
+      </p>
+
+      <div class="features__grid">
+        <div class="feature-card">
+          <div class="feature-card__icon">🎯</div>
+          <h3 class="feature-card__title">Smart Decisions</h3>
+          <p class="feature-card__description">
+            Real-time analysis of cash vs points. Always know the best way to book and which card to use.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">⚡</div>
+          <h3 class="feature-card__title">Instant Action</h3>
+          <p class="feature-card__description">
+            Step-by-step checklists and alerts. Never miss a bonus or sweet spot opportunity again.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📚</div>
+          <h3 class="feature-card__title">Expert Education</h3>
+          <p class="feature-card__description">
+            From beginner to expert in 90 days. Courses, ebooks, and AI coaching included.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📊</div>
+          <h3 class="feature-card__title">Proven Results</h3>
+          <p class="feature-card__description">
+            Track your progress with transparent metrics. See exactly how much you're saving.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section class="social-proof">
+    <div class="container container--lg">
+      <h2 style="font-size: var(--text-4xl);">Real Numbers. Real Impact.</h2>
+      <p style="color: var(--color-text-secondary); max-width: 600px; margin: var(--space-4) auto 0;">
+        Our community of travel hackers is transforming everyday spending into extraordinary experiences.
+      </p>
+
+      <div class="stats">
+        <div>
+          <div class="stat__value">$42K</div>
+          <div class="stat__label">Average Savings Per User</div>
+        </div>
+        <div>
+          <div class="stat__value">2.3M</div>
+          <div class="stat__label">Points Earned Monthly</div>
+        </div>
+        <div>
+          <div class="stat__value">156</div>
+          <div class="stat__label">Countries Visited</div>
+        </div>
+        <div>
+          <div class="stat__value">4.8★</div>
+          <div class="stat__label">User Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="philosophy">
+    <div class="container container--lg">
+      <div class="philosophy__content">
+        <h2 style="text-align: center; font-size: var(--text-4xl);">Our Core Philosophy</h2>
+        <p style="text-align: center; color: var(--color-text-secondary); max-width: 700px; margin: var(--space-4) auto var(--space-8);">
+          Alternative path to the system. Real gains. Total independence.
+        </p>
+
+        <div class="philosophy__grid">
+          <div class="philosophy-card">
+            <div class="philosophy-card__icon">✅</div>
+            <h3 class="philosophy-card__title">User First, Always</h3>
+            <p class="feature-card__description">
+              We're not bank affiliates. No conflicts of interest. Your success is our only metric.
+            </p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-card__icon">🔍</div>
+            <h3 class="philosophy-card__title">Transparent Calculations</h3>
+            <p class="feature-card__description">
+              See exactly how we calculate value. No hidden math. No exaggerated claims.
+            </p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-card__icon">💪</div>
+            <h3 class="philosophy-card__title">Honest & Direct</h3>
+            <p class="feature-card__description">
+              We admit when something isn't worth it. Straight talk, no hype, real strategies.
+            </p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-card__icon">🎓</div>
+            <h3 class="philosophy-card__title">Empowering Education</h3>
+            <p class="feature-card__description">
+              Make users feel intelligent. Teach the 'why' behind every strategy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container container--lg">
+      <h2>Ready to Transform Your Travel?</h2>
+      <p>
+        Join thousands of savvy travelers who are maximizing value from everyday spending.
+        Start your 90-day journey to travel hacking mastery.
+      </p>
+      <button class="btn btn-white">Get Started Free</button>
+    </div>
+  </section>
+
+  <script>
+    // Simple smooth scroll for CTA buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        // Add your navigation logic here
+        console.log('Button clicked:', e.target.textContent);
+      });
+    });
+
+    // Add subtle entrance animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-card, .philosophy-card, .stat').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
