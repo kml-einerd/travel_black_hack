@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transfer Bonus Calculator</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: 2rem; background: var(--color-bg-canvas); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .calc { max-width: 600px; width: 100%; background: white; padding: 2.5rem; border-radius: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    h1 { text-align: center; margin-bottom: 2rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+    input, select { width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; }
+    .result { background: #f0fdf4; border: 2px solid #059669; padding: 2rem; border-radius: 1rem; margin-top: 2rem; display: none; }
+  </style>
+</head>
+<body>
+  <div class="calc">
+    <h1>🎯 Transfer Bonus Calculator</h1>
+    <div class="form-group">
+      <label>Points to Transfer</label>
+      <input type="number" id="points" placeholder="e.g., 100000">
+    </div>
+    <div class="form-group">
+      <label>Bonus Percentage</label>
+      <select id="bonus">
+        <option value="0">No bonus</option>
+        <option value="15">15% bonus</option>
+        <option value="20">20% bonus</option>
+        <option value="25">25% bonus</option>
+        <option value="30" selected>30% bonus</option>
+        <option value="40">40% bonus</option>
+        <option value="50">50% bonus</option>
+      </select>
+    </div>
+    <button onclick="calc()" class="btn btn-primary" style="width: 100%; padding: 1rem;">Calculate →</button>
+    <div id="result" class="result"></div>
+  </div>
+  <script>
+    function calc() {
+      const pts = parseFloat(document.getElementById('points').value);
+      const bonus = parseFloat(document.getElementById('bonus').value);
+      if (!pts) return alert('Enter points amount');
+      const bonusPts = pts * (bonus/100);
+      const total = pts + bonusPts;
+      document.getElementById('result').innerHTML = `
+        <h3 style="margin-bottom: 1rem;">Transfer Summary</h3>
+        <div style="display: grid; gap: 1rem;">
+          <div><strong>Base Transfer:</strong> ${pts.toLocaleString()} points</div>
+          <div><strong>Bonus Points:</strong> +${bonusPts.toLocaleString()} points</div>
+          <div style="font-size: 1.5rem; font-weight: 700; color: #059669; padding-top: 1rem; border-top: 2px solid #d1fae5;">
+            Total: ${total.toLocaleString()} points
+          </div>
+        </div>
+      `;
+      document.getElementById('result').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

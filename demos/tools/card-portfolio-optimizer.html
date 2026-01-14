@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Portfolio Optimizer - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: 2rem; background: var(--color-bg-canvas); }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.875rem; }
+    .form-group input { width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; }
+    .result-card { background: white; padding: 2rem; border-radius: 1rem; margin-top: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: none; }
+    .recommendation { padding: 1rem; background: #f0fdf4; border-left: 4px solid #059669; margin-bottom: 1rem; border-radius: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">💳 Card Portfolio Optimizer</h1>
+      <p style="color: #64748b;">Get personalized card recommendations based on your spending</p>
+    </div>
+
+    <div class="input-grid">
+      <div class="form-group">
+        <label>Monthly Dining ($)</label>
+        <input type="number" id="dining" value="500">
+      </div>
+      <div class="form-group">
+        <label>Monthly Groceries ($)</label>
+        <input type="number" id="groceries" value="400">
+      </div>
+      <div class="form-group">
+        <label>Monthly Travel ($)</label>
+        <input type="number" id="travel" value="300">
+      </div>
+      <div class="form-group">
+        <label>Monthly Gas ($)</label>
+        <input type="number" id="gas" value="200">
+      </div>
+      <div class="form-group">
+        <label>Monthly Other ($)</label>
+        <input type="number" id="other" value="1000">
+      </div>
+    </div>
+
+    <button onclick="optimize()" class="btn btn-primary" style="width: 100%; padding: 1rem; margin-bottom: 2rem;">
+      Optimize My Portfolio →
+    </button>
+
+    <div id="results" class="result-card">
+      <h3 style="margin-bottom: 1.5rem;">📊 Your Optimized Portfolio</h3>
+      <div id="recommendations"></div>
+      <div style="background: linear-gradient(135deg, #4f46e5, #3730a3); color: white; padding: 1.5rem; border-radius: 0.75rem; margin-top: 1.5rem; text-align: center;">
+        <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: 0.5rem;">Estimated Annual Earning</div>
+        <div id="total-earning" style="font-size: 2.5rem; font-weight: 700;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function optimize() {
+      const dining = parseFloat(document.getElementById('dining').value) || 0;
+      const groceries = parseFloat(document.getElementById('groceries').value) || 0;
+      const travel = parseFloat(document.getElementById('travel').value) || 0;
+      const gas = parseFloat(document.getElementById('gas').value) || 0;
+      const other = parseFloat(document.getElementById('other').value) || 0;
+
+      let recs = [];
+      let totalPoints = 0;
+
+      if (dining >= 300) {
+        recs.push({name: 'Amex Gold', reason: '4X on dining', points: dining * 12 * 4});
+        totalPoints += dining * 12 * 4;
+      }
+
+      if (groceries >= 300) {
+        recs.push({name: 'Amex Gold', reason: '4X on groceries', points: groceries * 12 * 4});
+        totalPoints += groceries * 12 * 4;
+      }
+
+      if (travel >= 200) {
+        recs.push({name: 'Chase Sapphire Reserve', reason: '3X on travel', points: travel * 12 * 3});
+        totalPoints += travel * 12 * 3;
+      } else {
+        totalPoints += travel * 12 * 2;
+      }
+
+      if (gas >= 150) {
+        recs.push({name: 'Chase Freedom Flex', reason: '3X on gas (up to $1.5K/qtr)', points: gas * 12 * 3});
+        totalPoints += gas * 12 * 3;
+      } else {
+        totalPoints += gas * 12 * 2;
+      }
+
+      totalPoints += other * 12 * 2;
+
+      const recsDiv = document.getElementById('recommendations');
+      recsDiv.innerHTML = recs.map(r => `
+        <div class="recommendation">
+          <strong>${r.name}</strong>: ${r.reason}<br>
+          <small>${Math.round(r.points).toLocaleString()} points/year</small>
+        </div>
+      `).join('');
+
+      document.getElementById('total-earning').textContent = Math.round(totalPoints).toLocaleString() + ' points/year';
+      document.getElementById('results').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

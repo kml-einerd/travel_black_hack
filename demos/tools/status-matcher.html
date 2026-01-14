@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Match Finder</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: 2rem; background: var(--color-bg-canvas); }
+    .container { max-width: 800px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .selector { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    select { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; }
+    .matches { display: grid; gap: 1rem; }
+    .match-card { background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid #059669; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">👑 Status Match Finder</h1>
+      <p style="color: #64748b;">Find hotels that will match your existing elite status</p>
+    </div>
+
+    <div class="selector">
+      <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Your Current Status</label>
+      <select id="status" onchange="findMatches()">
+        <option value="">Select your status...</option>
+        <option value="hilton-diamond">Hilton Diamond</option>
+        <option value="marriott-plat">Marriott Platinum</option>
+        <option value="hyatt-globalist">Hyatt Globalist</option>
+        <option value="ihg-platinum">IHG Platinum</option>
+        <option value="airline-gold">Airline Gold/Platinum</option>
+      </select>
+    </div>
+
+    <div id="matches" class="matches"></div>
+  </div>
+
+  <script>
+    const matchData = {
+      'hilton-diamond': [
+        {to: 'Marriott Gold', method: 'Hilton Match Portal', success: 'High'},
+        {to: 'Hyatt Explorist', method: 'Upload proof via Hyatt', success: 'Medium'}
+      ],
+      'marriott-plat': [
+        {to: 'Hilton Gold', method: 'Hilton Match Portal', success: 'High'},
+        {to: 'IHG Platinum', method: 'Email IHG', success: 'Medium'}
+      ],
+      'hyatt-globalist': [
+        {to: 'Marriott Platinum', method: 'Status match challenge', success: 'Medium'},
+        {to: 'Hilton Diamond', method: 'Hilton Match Portal', success: 'High'}
+      ],
+      'airline-gold': [
+        {to: 'Marriott Gold', method: 'Upload airline card', success: 'High'},
+        {to: 'Hilton Gold', method: 'Hilton Match Portal', success: 'High'}
+      ]
+    };
+
+    function findMatches() {
+      const status = document.getElementById('status').value;
+      const matches = matchData[status] || [];
+      const matchesDiv = document.getElementById('matches');
+
+      if (matches.length === 0) {
+        matchesDiv.innerHTML = '<p style="text-align: center; color: #64748b;">Select a status to see match opportunities</p>';
+        return;
+      }
+
+      matchesDiv.innerHTML = matches.map(m => `
+        <div class="match-card">
+          <h3 style="margin-bottom: 0.5rem;">${m.to}</h3>
+          <div style="color: #64748b; font-size: 0.875rem; margin-bottom: 0.5rem;">Method: ${m.method}</div>
+          <div style="color: ${m.success === 'High' ? '#059669' : '#d97706'}; font-weight: 600; font-size: 0.875rem;">
+            ${m.success === 'High' ? '✅' : '⚠️'} ${m.success} Success Rate
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

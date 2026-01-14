@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Award Availability Checker</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: 2rem; background: var(--color-bg-canvas); }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .search-box { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    input { width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; }
+    .tools-list { display: grid; gap: 1rem; }
+    .tool-card { background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">🔍 Award Availability Checker</h1>
+      <p style="color: #64748b;">Quick access to all major award search tools</p>
+    </div>
+
+    <div class="search-box">
+      <div class="search-grid">
+        <input type="text" id="origin" placeholder="Origin (e.g., SFO)" maxlength="3">
+        <input type="text" id="dest" placeholder="Destination (e.g., NRT)" maxlength="3">
+        <input type="date" id="date">
+      </div>
+      <p style="font-size: 0.875rem; color: #64748b; margin-top: 1rem;">Enter your search criteria and click a tool below to search</p>
+    </div>
+
+    <div class="tools-list">
+      <div class="tool-card">
+        <div>
+          <strong>United.com</strong>
+          <div style="font-size: 0.875rem; color: #64748b;">Best for Star Alliance</div>
+        </div>
+        <a href="https://www.united.com/en/us/fsr/choose-flights" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+      </div>
+      <div class="tool-card">
+        <div>
+          <strong>British Airways</strong>
+          <div style="font-size: 0.875rem; color: #64748b;">Best for oneworld</div>
+        </div>
+        <a href="https://www.britishairways.com/travel/home/public/en_us" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+      </div>
+      <div class="tool-card">
+        <div>
+          <strong>AwardFares</strong>
+          <div style="font-size: 0.875rem; color: #64748b;">Premium cross-program search</div>
+        </div>
+        <a href="https://awardfares.com" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+      </div>
+      <div class="tool-card">
+        <div>
+          <strong>Point.me</strong>
+          <div style="font-size: 0.875rem; color: #64748b;">AI-powered award search</div>
+        </div>
+        <a href="https://point.me" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
