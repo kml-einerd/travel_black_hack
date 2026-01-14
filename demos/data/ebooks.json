@@ -1,0 +1,59 @@
+{
+  "ebooks": [
+    {
+      "id": "ebook-001",
+      "slug": "zero-to-100k",
+      "title": "Zero to 100K Points in 90 Days",
+      "subtitle": "The Aggressive Beginner's Blueprint",
+      "price": 39,
+      "pages": 100,
+      "audience": "Beginners who want rapid results",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600",
+      "highlights": ["Daily action plan", "Printable checklist", "90-day roadmap"]
+    },
+    {
+      "id": "ebook-002",
+      "slug": "churning-manifesto",
+      "title": "The Card Churning Manifesto",
+      "subtitle": "Advanced Tactics the Banks Don't Want You to Know",
+      "price": 67,
+      "pages": 150,
+      "audience": "Intermediate and advanced churners",
+      "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600",
+      "highlights": ["Velocity strategy", "Manufactured spend", "Exit plans"]
+    },
+    {
+      "id": "ebook-003",
+      "slug": "first-class-cheap",
+      "title": "First Class for Less Than Coach",
+      "subtitle": "The Premium Travel Hacker's Playbook",
+      "price": 49,
+      "pages": 120,
+      "audience": "Premium cabin dreamers",
+      "image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600",
+      "highlights": ["Side-by-side price comparisons", "Sweet spot routes", "CPP calculators"]
+    },
+    {
+      "id": "ebook-004",
+      "slug": "family-formula",
+      "title": "The Family Points Formula",
+      "subtitle": "How We Travel the World for Free With 3 Kids",
+      "price": 44,
+      "pages": 110,
+      "audience": "Families of 4-5",
+      "image": "https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600",
+      "highlights": ["Pooling strategies", "Companion pass hacks", "Theme park playbook"]
+    },
+    {
+      "id": "ebook-005",
+      "slug": "bank-bonus-blitz",
+      "title": "Bank Bonus Blitz",
+      "subtitle": "How I Made $8,000 Last Year Opening Bank Accounts",
+      "price": 37,
+      "pages": 80,
+      "audience": "Anyone with good credit",
+      "image": "https://images.unsplash.com/photo-1517400508447-f8dd518b86db?w=600",
+      "highlights": ["50+ bonus list", "Tracking templates", "ChexSystems tips"]
+    }
+  ]
+}

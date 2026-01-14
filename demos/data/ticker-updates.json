@@ -1,0 +1,49 @@
+{
+  "ticker_items": [
+    {
+      "id": "tick-001",
+      "type": "breaking",
+      "icon": "🔥",
+      "text": "Amex 40% transfer to Avianca JUST ANNOUNCED",
+      "priority": "critical",
+      "link": "/news/hot-deals",
+      "timestamp": "2026-01-14T14:30:00Z"
+    },
+    {
+      "id": "tick-002",
+      "type": "expiring",
+      "icon": "⚠️",
+      "text": "Chase British Airways 25% bonus ENDS IN 4 HOURS",
+      "priority": "urgent",
+      "link": "/news/transfer-bonus-tracker",
+      "expires_at": "2026-01-14T18:00:00Z"
+    },
+    {
+      "id": "tick-003",
+      "type": "availability",
+      "icon": "✈️",
+      "text": "2x ANA First Class SFO→TYO March 20 just opened",
+      "priority": "high",
+      "link": "/news/market-pulse",
+      "timestamp": "2026-01-14T14:25:00Z"
+    },
+    {
+      "id": "tick-004",
+      "type": "card_news",
+      "icon": "💳",
+      "text": "Amex Platinum adding new $200 entertainment credit",
+      "priority": "medium",
+      "link": "/news/card-universe-feed"
+    },
+    {
+      "id": "tick-005",
+      "type": "market",
+      "icon": "📊",
+      "text": "Hyatt points value UP 5% this week (now 2.2¢)",
+      "priority": "info",
+      "link": "/news/market-pulse"
+    }
+  ],
+  "ticker_speed": "medium",
+  "refresh_interval_seconds": 60
+}

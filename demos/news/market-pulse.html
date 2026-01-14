@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Market Pulse Weekly • MilesAI</title>
+  <meta name="description" content="Interactive weekly intelligence on points and travel markets." />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/market-pulse.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>Market Pulse</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../news/hot-deals-flash.html">Hot Deals</a>
+        <a class="page__link" href="../news/community-wins.html">Community Wins</a>
+        <a class="page__link" href="../tools/portfolio-analyzer.html">Portfolio Analyzer</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="page__hero">
+      <div>
+        <p class="badge badge--important">Weekly Intelligence</p>
+        <h1 class="page__hero-title">Market Pulse</h1>
+        <p class="page__hero-description">Track the points economy with curated trends, routes, and risk indicators.</p>
+      </div>
+      <div class="stat-grid" id="market-stats"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">Points Economy Index</h2>
+        <p class="section__subtitle">Program valuations and momentum changes.</p>
+      </div>
+      <div class="card">
+        <table class="table" id="economy-table"></table>
+      </div>
+    </section>
+
+    <section class="section market-pulse__split">
+      <article class="card">
+        <h3 class="card__title">Best Routes This Week</h3>
+        <div class="grid grid--2" id="best-routes"></div>
+      </article>
+      <article class="card">
+        <h3 class="card__title">Card Spotlight</h3>
+        <div id="card-spotlight"></div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">Devaluation Watch & Pro Tips</h2>
+      </div>
+      <div class="grid grid--2">
+        <article class="card">
+          <h3 class="card__title">Devaluation Watch</h3>
+          <div class="list" id="devaluation-list"></div>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Pro Tips</h3>
+          <div class="list" id="pro-tips"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">MilesAI • Market Pulse Weekly Demo</footer>
+
+  <script type="module" src="../js/pages/market-pulse.js"></script>
+</body>
+</html>

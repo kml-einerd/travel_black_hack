@@ -1,0 +1,20 @@
+.chat {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.chat__bubble {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-tertiary);
+}
+
+.chat__bubble--user {
+  background: var(--color-primary-light);
+  justify-self: end;
+}
+
+.chat__input {
+  display: flex;
+  gap: var(--space-3);
+}

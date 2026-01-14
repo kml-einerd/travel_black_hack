@@ -1,0 +1,10 @@
+.audio-player {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.audio-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

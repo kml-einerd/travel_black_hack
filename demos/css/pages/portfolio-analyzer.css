@@ -1,0 +1,4 @@
+.score-bar {
+  display: grid;
+  gap: var(--space-2);
+}

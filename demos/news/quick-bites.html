@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quick Bites Feed • MilesAI</title>
+  <meta name="description" content="Micro-updates in a rapid news feed format." />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/quick-bites.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>Quick Bites</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../news/live-ticker.html">Live Ticker</a>
+        <a class="page__link" href="../news/news-hub.html">News Hub</a>
+        <a class="page__link" href="../news/stories.html">Stories</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="page__hero">
+      <div>
+        <p class="badge badge--important">Micro Feed</p>
+        <h1 class="page__hero-title">Quick Bites</h1>
+        <p class="page__hero-description">Short, action-ready updates with engagement metrics.</p>
+      </div>
+      <div class="input-group">
+        <label for="bite-filter">Filter</label>
+        <select id="bite-filter" class="input">
+          <option value="all">All types</option>
+          <option value="card_update">Card update</option>
+          <option value="availability">Availability</option>
+          <option value="deal">Deal</option>
+          <option value="data_point">Data point</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section" id="quick-bites-feed"></section>
+  </main>
+
+  <footer class="footer">MilesAI • Quick Bites Demo</footer>
+
+  <script type="module" src="../js/pages/quick-bites.js"></script>
+</body>
+</html>

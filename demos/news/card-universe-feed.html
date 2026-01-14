@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card Universe Feed • MilesAI</title>
+  <meta name="description" content="Social-style feed of credit card launches, updates, and alerts." />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/card-universe-feed.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>Card Universe</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../news/hot-deals-flash.html">Hot Deals</a>
+        <a class="page__link" href="../news/market-pulse.html">Market Pulse</a>
+        <a class="page__link" href="../tools/card-scanner.html">Card Scanner</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="page__hero">
+      <div>
+        <p class="badge badge--important">Social Feed</p>
+        <h1 class="page__hero-title">Card Universe Feed</h1>
+        <p class="page__hero-description">Discover launches, updates, and alerts in a visual card-first feed.</p>
+      </div>
+      <div class="card-universe__filters">
+        <div class="input-group">
+          <label for="issuer-filter">Issuer</label>
+          <select id="issuer-filter" class="input">
+            <option value="all">All issuers</option>
+            <option value="Capital One">Capital One</option>
+            <option value="Chase">Chase</option>
+            <option value="American Express">American Express</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="type-filter">Post type</label>
+          <select id="type-filter" class="input">
+            <option value="all">All types</option>
+            <option value="card_launch">Card Launch</option>
+            <option value="benefit_update">Benefit Update</option>
+            <option value="downgrade_alert">Downgrade Alert</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">Latest card intel</h2>
+        <p class="section__subtitle">Swipe-worthy updates designed for quick decisions.</p>
+      </div>
+      <div class="grid grid--3" id="card-universe-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">MilesAI • Card Universe Feed Demo</footer>
+
+  <script type="module" src="../js/pages/card-universe-feed.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "courses": [
+    {
+      "id": "course-101",
+      "slug": "points-101",
+      "title": "Points 101 Crash Course",
+      "price": 0,
+      "duration_hours": 2,
+      "lessons": 10,
+      "format": "Email drip (1 lesson/day)",
+      "tagline": "Free starter course for beginners",
+      "modules": [
+        "What Are Points Really Worth?",
+        "The 4 Major Currencies Explained",
+        "Your First Credit Card Strategy",
+        "Understanding Transfer Partners",
+        "The CPP Calculation Made Simple"
+      ]
+    },
+    {
+      "id": "course-masterclass",
+      "slug": "masterclass",
+      "title": "The Complete Points Masterclass",
+      "price": 197,
+      "duration_hours": 12,
+      "lessons": 60,
+      "format": "Video + Workbooks + Community",
+      "tagline": "Premium deep dive for serious travelers",
+      "modules": [
+        "Foundations",
+        "Earning Mastery",
+        "Transfer Optimization",
+        "Redemption Mastery",
+        "Advanced Tactics"
+      ]
+    },
+    {
+      "id": "course-bootcamp",
+      "slug": "90-day-bootcamp",
+      "title": "90-Day Points Transformation Bootcamp",
+      "price": 297,
+      "duration_hours": 20,
+      "lessons": 90,
+      "format": "App + Daily missions + Weekly live",
+      "tagline": "Accountability-driven transformation",
+      "modules": [
+        "Daily Missions",
+        "Weekly Reviews",
+        "Gamified Challenges",
+        "Leaderboards",
+        "Monthly Rewards"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "calendar_events": [
+    {
+      "id": "cal-001",
+      "date": "2026-01-14",
+      "time": "18:00",
+      "timezone": "EST",
+      "type": "deadline",
+      "color": "red",
+      "title": "Chase BA 25% Bonus Expires",
+      "description": "Last chance to transfer Chase UR to British Airways with 25% bonus",
+      "action": {"text": "Transfer Now", "url": "/transfers/chase-ba"},
+      "reminder_set": true
+    },
+    {
+      "id": "cal-002",
+      "date": "2026-01-15",
+      "time": "03:00",
+      "timezone": "EST",
+      "type": "opportunity",
+      "color": "yellow",
+      "title": "Flying Blue Promo Awards Release",
+      "description": "Monthly promo awards with up to 50% off. Awards go fast!",
+      "tips": ["Set alarm for 3AM EST", "Have route ready", "Book immediately"]
+    },
+    {
+      "id": "cal-003",
+      "date": "2026-01-17",
+      "type": "personal",
+      "color": "orange",
+      "title": "Amex Platinum Annual Fee",
+      "description": "Your $695 annual fee hits today. Consider retention offer.",
+      "personal": true,
+      "action": {"text": "Call Retention", "phone": "1-800-452-3945"}
+    },
+    {
+      "id": "cal-004",
+      "date": "2026-01-25",
+      "type": "deadline",
+      "color": "red",
+      "title": "Amex Avianca 40% Bonus Ends",
+      "description": "Transfer bonus to LifeMiles ending. Best value for Star Alliance awards.",
+      "countdown": true
+    }
+  ]
+}

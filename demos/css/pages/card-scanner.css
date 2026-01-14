@@ -1,0 +1,4 @@
+.scanner-card__benefits {
+  display: grid;
+  gap: var(--space-2);
+}

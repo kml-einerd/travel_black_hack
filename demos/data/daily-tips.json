@@ -1,0 +1,30 @@
+{
+  "daily_tips": [
+    {
+      "date": "2026-01-14",
+      "tip": "Always check if your card has price protection before buying electronics — you might get refunded if the price drops!",
+      "category": "card_benefits",
+      "icon": "💳",
+      "action": {
+        "text": "Check your card benefits",
+        "link": "/card-benefits-lookup"
+      }
+    },
+    {
+      "date": "2026-01-15",
+      "tip": "Flying Blue releases Promo Awards on the 1st of every month — set a calendar reminder!",
+      "category": "redemption",
+      "icon": "✈️",
+      "action": {
+        "text": "Set reminder",
+        "link": "/alerts/create"
+      }
+    },
+    {
+      "date": "2026-01-16",
+      "tip": "Hyatt points are worth ~2¢ each on average — but can hit 4¢+ at all-inclusive resorts!",
+      "category": "valuation",
+      "icon": "🏨"
+    }
+  ]
+}

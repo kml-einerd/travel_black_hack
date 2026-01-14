@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {"from": "NYC", "to": "Paris", "points": 70000, "value": "good", "cabin": "business"},
+    {"from": "NYC", "to": "Tokyo", "points": 80000, "value": "great", "cabin": "business"},
+    {"from": "NYC", "to": "Sydney", "points": 120000, "value": "good", "cabin": "business"}
+  ],
+  "programs": ["Chase UR", "Amex MR", "Citi TYP", "Capital One"],
+  "cabins": ["economy", "business", "first"]
+}

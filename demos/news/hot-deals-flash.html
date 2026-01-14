@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hot Deals Flash Feed • MilesAI</title>
+  <meta name="description" content="Real-time flash deals with urgency, countdowns, and instant actions." />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/hot-deals-flash.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>Flash Feed</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../news/news-hub.html">News Hub</a>
+        <a class="page__link" href="../news/transfer-bonus-tracker.html">Transfer Tracker</a>
+        <a class="page__link" href="../learn/hacks-library.html">Hacks Library</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="page__hero">
+      <div>
+        <p class="badge badge--critical">Live Now</p>
+        <h1 class="page__hero-title">Hot Deals Flash Feed</h1>
+        <p class="page__hero-description">
+          Urgent, expiring opportunities updated in real time. Track countdowns, value estimates,
+          and jump to action in seconds.
+        </p>
+      </div>
+      <div class="hot-deals__filters">
+        <div class="input-group">
+          <label for="deal-filter">Filter by category</label>
+          <select id="deal-filter" class="input">
+            <option value="all">All categories</option>
+            <option value="transfer_bonus">Transfer bonuses</option>
+            <option value="card_bonus">Card offers</option>
+            <option value="award_availability">Award availability</option>
+            <option value="hotel_promo">Hotel promos</option>
+            <option value="mistake_fare">Mistake fares</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="urgency-filter">Urgency level</label>
+          <select id="urgency-filter" class="input">
+            <option value="all">All urgency</option>
+            <option value="critical">Critical</option>
+            <option value="urgent">Urgent</option>
+            <option value="important">Important</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Live deals</h2>
+          <p class="section__subtitle">Countdown timers refresh every second to keep urgency in view.</p>
+        </div>
+        <button class="btn btn-secondary" id="refresh-deals">Refresh feed</button>
+      </div>
+      <div class="grid grid--3" id="hot-deals-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">Launch Crew Simulation</h2>
+        <p class="section__subtitle">A multidisciplinary squad aligned for MilesAI expansion.</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="card">
+          <h3 class="card__title">Product Strategist</h3>
+          <p class="card__subtitle">Vision + prioritization</p>
+          <div class="card__body">
+            <p>Defines MVP scope, success metrics, and go-to-market sequencing.</p>
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Experience Designer</h3>
+          <p class="card__subtitle">Interaction + UX flows</p>
+          <div class="card__body">
+            <p>Builds frictionless journeys, micro-interactions, and accessibility guardrails.</p>
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Data Engineer</h3>
+          <p class="card__subtitle">Pipelines + insights</p>
+          <div class="card__body">
+            <p>Shapes data feeds, realtime refresh, and recommendation models.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">MilesAI • Light Mode Only • Flash Feed Demo</footer>
+
+  <script type="module" src="../js/pages/hot-deals-flash.js"></script>
+</body>
+</html>

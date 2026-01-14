@@ -1,0 +1,27 @@
+.news-hub__hero {
+  display: grid;
+}
+
+.news-hub__hero img {
+  width: 100%;
+  border-radius: var(--radius-2xl);
+}
+
+.news-hub__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.news-hub__list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.news-hub__list-item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}

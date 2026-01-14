@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transfer Bonus Tracker • MilesAI</title>
+  <meta name="description" content="Track active and predicted transfer bonuses across programs." />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/transfer-bonus-tracker.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>Transfer Tracker</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../news/hot-deals-flash.html">Hot Deals</a>
+        <a class="page__link" href="../news/market-pulse.html">Market Pulse</a>
+        <a class="page__link" href="../tools/trip-comparison.html">Trip Comparison</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="page__hero">
+      <div>
+        <p class="badge badge--success">Active Bonuses</p>
+        <h1 class="page__hero-title">Transfer Bonus Tracker</h1>
+        <p class="page__hero-description">Monitor every active bonus and predict what's next with confidence.</p>
+      </div>
+      <div class="notice">
+        Set alerts for your favorite programs and calculate transfer value instantly.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">Active Bonuses</h2>
+        <button class="btn btn-primary">Set Alert</button>
+      </div>
+      <div class="grid grid--2" id="bonus-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">Upcoming Predictions</h2>
+      </div>
+      <div class="grid grid--2" id="prediction-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">MilesAI • Transfer Bonus Tracker Demo</footer>
+
+  <script type="module" src="../js/pages/transfer-bonus-tracker.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.community__user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.community__user img {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+}

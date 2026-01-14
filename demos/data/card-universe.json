@@ -1,0 +1,47 @@
+{
+  "posts": [
+    {
+      "id": "card-post-001",
+      "type": "card_launch",
+      "title": "Capital One Venture X Business Launching",
+      "subtitle": "First look at the new business premium card",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600",
+      "card_name": "Venture X Business",
+      "issuer": "Capital One",
+      "welcome_bonus": "150,000 Miles",
+      "annual_fee": "$395",
+      "highlight": "Unlimited 2X + Capital One Lounges",
+      "our_take": "Game-changer for small business owners",
+      "rating": 4.8,
+      "posted_at": "2026-01-14T10:00:00Z"
+    },
+    {
+      "id": "card-post-002",
+      "type": "benefit_update",
+      "title": "Chase Sapphire Reserve: New $100 Credit",
+      "subtitle": "Annual statement credit expanded",
+      "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600",
+      "card_name": "Sapphire Reserve",
+      "issuer": "Chase",
+      "change_type": "positive",
+      "old_benefit": "$300 travel credit",
+      "new_benefit": "$300 travel + $100 dining credit",
+      "effective_date": "2026-02-01",
+      "impact": "+$100/year value"
+    },
+    {
+      "id": "card-post-003",
+      "type": "downgrade_alert",
+      "title": "⚠️ Amex Platinum Lounge Access Restricted",
+      "subtitle": "Centurion Lounge policy change coming",
+      "image": "https://images.unsplash.com/photo-1540339832862-474599807836?w=600",
+      "card_name": "Platinum Card",
+      "issuer": "American Express",
+      "change_type": "negative",
+      "old_benefit": "Unlimited Centurion access",
+      "new_benefit": "Limited to 2 visits/year unless $75K spend",
+      "effective_date": "2026-03-01",
+      "alternative": "Consider Priority Pass alternatives"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "user_alert_preferences": {
+    "favorite_routes": ["JFK-LHR", "SFO-NRT", "LAX-CDG"],
+    "preferred_cabins": ["business", "first"],
+    "programs_watching": ["Chase UR", "Amex MR", "United"],
+    "cards_interested": ["Amex Platinum", "Chase Sapphire Reserve"],
+    "alert_channels": ["push", "email"],
+    "quiet_hours": {"start": "22:00", "end": "08:00"}
+  },
+  "alert_types": [
+    "Award Drop Alert",
+    "Transfer Bonus Alert",
+    "Card Offer Alert",
+    "Expiration Alert",
+    "Price Drop Alert",
+    "Status Alert",
+    "Deal Alert"
+  ]
+}
