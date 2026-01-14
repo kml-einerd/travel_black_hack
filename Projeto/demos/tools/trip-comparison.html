@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Cost Comparison - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
+    <main class="container">
+        <h1 class="text-3xl">🧮 Trip Cost Comparison</h1>
+        <p class="text-lg text-muted">NYC → London Roundtrip</p>
+
+        <div class="card" style="margin-top: 20px;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align: left; border-bottom: 1px solid var(--color-border);">
+                        <th style="padding: 10px;">Option</th>
+                        <th style="padding: 10px;">Cost</th>
+                        <th style="padding: 10px;">Value</th>
+                        <th style="padding: 10px;">Verdict</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: 15px 10px;">💵 Cash</td>
+                        <td style="padding: 15px 10px;">,400</td>
+                        <td style="padding: 15px 10px;">-</td>
+                        <td style="padding: 15px 10px;">-</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: 15px 10px;">🎯 United Miles</td>
+                        <td style="padding: 15px 10px;">120K + 6</td>
+                        <td style="padding: 15px 10px;">1.9¢</td>
+                        <td style="padding: 15px 10px;"><span class="badge badge--info">GOOD</span></td>
+                    </tr>
+                    <tr style="background: var(--color-success-light);">
+                        <td style="padding: 15px 10px;">✈️ Virgin Atl. (Transfer)</td>
+                        <td style="padding: 15px 10px;">85K + 00</td>
+                        <td style="padding: 15px 10px;">2.6¢</td>
+                        <td style="padding: 15px 10px;"><span class="badge badge--success">BEST</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 20px; padding: 15px; background: var(--color-bg-tertiary); border-radius: 8px;">
+                <strong>Recommendation:</strong> Transfer to Virgin Atlantic. Savings: ,200 (92% off).
+            </div>
+        </div>
+    </main>
+</body>
+</html>

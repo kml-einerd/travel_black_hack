@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero to 100K Points - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .hero {
+            text-align: center;
+            padding: var(--space-12) 0;
+            background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+        }
+        .book-cover {
+            max-width: 300px;
+            height: 400px;
+            background: var(--color-bg-tertiary);
+            margin: 0 auto var(--space-8);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .toc-list li {
+            padding: var(--space-3);
+            border-bottom: 1px solid var(--color-divider);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="container header-nav">
+        <div class="header-nav__logo">MilesAI <span class="text-sm text-primary">Books</span></div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <span class="badge badge--accent" style="margin-bottom: var(--space-4)">BESTSELLER</span>
+                <h1 class="text-3xl" style="font-size: 3rem; margin-bottom: var(--space-4);">Zero to 100K Points in 90 Days</h1>
+                <p class="text-xl text-muted" style="margin-bottom: var(--space-8);">The Aggressive Beginner's Blueprint. How I Went From 0 to Free First Class in 3 Months.</p>
+
+                <div class="book-cover">📘</div>
+
+                <div style="margin-bottom: var(--space-8);">
+                    <span class="text-3xl" style="color: var(--color-primary);">$39</span>
+                    <span class="text-lg text-muted" style="text-decoration: line-through; margin-left: var(--space-2)">$99</span>
+                </div>
+
+                <button class="btn btn-primary" style="font-size: 1.25rem; padding: var(--space-4) var(--space-8);">Get Instant Access</button>
+                <p class="text-sm text-muted" style="margin-top: var(--space-4);">100% Money-Back Guarantee</p>
+            </div>
+        </section>
+
+        <section class="container" style="padding: var(--space-12) 0;">
+            <div class="card">
+                <h2 class="text-2xl" style="text-align: center; margin-bottom: var(--space-8);">What You'll Master</h2>
+                <ul class="toc-list">
+                    <li><span>PART 1: The Foundation</span> <span>Days 1-10</span></li>
+                    <li><span>PART 2: The Acceleration (Bonuses)</span> <span>Days 11-45</span></li>
+                    <li><span>PART 3: The Multiplication (Business Cards)</span> <span>Days 46-75</span></li>
+                    <li><span>PART 4: The Payoff (First Redemption)</span> <span>Days 76-90</span></li>
+                    <li><span>BONUS: 90-Day Daily Checklist</span> <span>FREE</span></li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

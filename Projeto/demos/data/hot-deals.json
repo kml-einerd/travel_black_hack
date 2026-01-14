@@ -1,0 +1,54 @@
+{
+  "hot_deals": [
+    {
+      "id": "deal-001",
+      "category": "transfer_bonus",
+      "title": "Amex 40% Transfer Bonus to Avianca LifeMiles",
+      "value": "00 extra on 100K transfer",
+      "expires": "2026-01-25T23:59:59Z",
+      "priority": "high",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400",
+      "cta": "Transfer Now"
+    },
+    {
+      "id": "deal-002",
+      "category": "card_bonus",
+      "title": "Chase Ink Preferred 100K — Highest Ever Public Offer",
+      "value": ",250 in travel",
+      "expires": "2026-02-15T23:59:59Z",
+      "priority": "high",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400",
+      "cta": "Apply Now"
+    },
+    {
+      "id": "deal-003",
+      "category": "award_availability",
+      "title": "ANA First Class Wide Open NYC-Tokyo March",
+      "value": "110K Virgin points, K+ value",
+      "expires": "2026-01-20T23:59:59Z",
+      "priority": "urgent",
+      "image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=400",
+      "cta": "Check Availability"
+    },
+    {
+      "id": "deal-004",
+      "category": "hotel_promo",
+      "title": "Hyatt Points + Cash: 50% Bonus Points Back",
+      "value": "Up to 15K points back",
+      "expires": "2026-03-31T23:59:59Z",
+      "priority": "medium",
+      "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400",
+      "cta": "Book Now"
+    },
+    {
+      "id": "deal-005",
+      "category": "mistake_fare",
+      "title": "⚡ MISTAKE FARE: LA to Bali 87 RT (Qatar)",
+      "value": "Normally ,200+",
+      "expires": "2026-01-14T18:00:00Z",
+      "priority": "urgent",
+      "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400",
+      "cta": "Book Immediately"
+    }
+  ]
+}

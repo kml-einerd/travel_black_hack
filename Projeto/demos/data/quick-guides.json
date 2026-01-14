@@ -1,0 +1,16 @@
+[
+  {
+    "id": "guide-001",
+    "title": "How to Transfer Chase UR to Hyatt",
+    "read_time": "3 min",
+    "difficulty": "Beginner",
+    "steps": [
+      { "title": "Log into Chase", "image": "login_screenshot.jpg" },
+      { "title": "Navigate to Ultimate Rewards", "image": "ur_menu.jpg" },
+      { "title": "Click 'Transfer Points'", "image": "transfer_btn.jpg" },
+      { "title": "Select Hyatt", "image": "hyatt_select.jpg" },
+      { "title": "Enter amount and confirm", "image": "confirm.jpg" }
+    ],
+    "tips": ["Transfer is instant", "Ratio is 1:1", "Transfers are irreversible"]
+  }
+]

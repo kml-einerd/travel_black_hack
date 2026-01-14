@@ -1,0 +1,192 @@
+/* === STANDARD COMPONENTS === */
+
+/* Cards */
+.card {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.card__header {
+  margin-bottom: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card__title {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.card__body {
+  flex: 1;
+  margin-bottom: var(--space-4);
+}
+
+.card__footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-divider);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card--featured {
+  border: 2px solid var(--color-primary);
+  background: var(--color-bg-secondary);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md); /* 12px requested for buttons in prompt? Prompt says 12px, config says radius-md=8px radius-lg=12px. Let's use radius-lg to match "12px para botoes" */
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary-light);
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.875rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem; /* 12px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  line-height: 1;
+}
+
+.badge--urgent { background: var(--color-danger-light); color: var(--color-danger); }
+.badge--success { background: var(--color-success-light); color: var(--color-success); }
+.badge--info { background: var(--color-info-light); color: var(--color-info); }
+.badge--accent { background: var(--color-warning-light); color: var(--color-warning); }
+
+/* Progress Bar */
+.progress-bar {
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-full);
+  height: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.progress-bar__fill {
+  background: var(--color-primary);
+  height: 100%;
+  transition: width var(--transition-normal);
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.countdown--urgent {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-bg-tertiary);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  min-width: 40px;
+}
+
+.countdown__value {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.countdown__label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Layouts */
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) 0;
+    margin-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-nav__logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.header-nav__menu {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.header-nav__link {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.header-nav__link:hover {
+    color: var(--color-primary);
+}

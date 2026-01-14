@@ -1,0 +1,47 @@
+{
+  "quick_bites": [
+    {
+      "id": "qb-001",
+      "type": "card_update",
+      "icon": "💳",
+      "title": "CARD UPDATE",
+      "content": "Amex Platinum now coding Uber Eats orders as \"dining\" for 4x points instead of 1x. Confirmed by multiple DPs.",
+      "timestamp": "2026-01-14T14:28:00Z",
+      "engagement": {"views": 2100, "comments": 89, "saves": 234},
+      "verified": true,
+      "source": "Community DPs"
+    },
+    {
+      "id": "qb-002",
+      "type": "availability",
+      "icon": "✈️",
+      "title": "AVAILABILITY",
+      "content": "4 seats just opened on Singapore Suites JFK→SIN for April 22. 86K KrisFlyer miles. Book via SQ website.",
+      "timestamp": "2026-01-14T14:15:00Z",
+      "action": {"text": "Check Availability", "url": "/awards/sq-suites-jfk-sin"},
+      "engagement": {"views": 890, "comments": 23},
+      "expires_at": "2026-01-14T20:00:00Z"
+    },
+    {
+      "id": "qb-003",
+      "type": "deal",
+      "icon": "🔥",
+      "title": "DEAL ALERT",
+      "content": "Mistake fare alert: Air France LAX→CDG 98 RT in Economy. Cash price, but can credit to Delta/FlyingBlue",
+      "timestamp": "2026-01-14T13:30:00Z",
+      "action": {"text": "Book Now", "url": "https://airfrance.com"},
+      "priority": "urgent",
+      "engagement": {"views": 5600, "comments": 234}
+    },
+    {
+      "id": "qb-004",
+      "type": "data_point",
+      "icon": "📊",
+      "title": "DATA POINT",
+      "content": "DP: Applied for 3rd Chase card in 30 days, auto-approved with 780 score. Chase velocity still flexible for now.",
+      "timestamp": "2026-01-14T11:30:00Z",
+      "submitted_by": "@TravelHacker2026",
+      "engagement": {"views": 1200, "comments": 56}
+    }
+  ]
+}

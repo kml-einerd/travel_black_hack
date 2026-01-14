@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Deals Flash Feed - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .deals-grid {
+            display: grid;
+            gap: var(--space-6);
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        }
+        .deal-card__image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+            background-color: var(--color-bg-tertiary);
+        }
+        .deal-card__meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2);
+        }
+        .urgency-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="container header-nav">
+        <div class="header-nav__logo">MilesAI <span class="text-sm text-primary">News</span></div>
+        <div class="header-nav__menu">
+            <a href="#" class="header-nav__link">Dashboard</a>
+            <a href="#" class="header-nav__link" style="color: var(--color-primary)">Hot Deals</a>
+            <a href="#" class="header-nav__link">Cards</a>
+            <a href="#" class="header-nav__link">Learn</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header style="margin-bottom: var(--space-8); text-align: center;">
+            <h1 class="text-3xl">🔥 Hot Deals Flash Feed</h1>
+            <p class="text-lg" style="color: var(--color-text-secondary)">Real-time urgent promotions expiring in 24-72h.</p>
+        </header>
+
+        <div id="deals-container" class="deals-grid">
+            <!-- Deals injected here -->
+        </div>
+    </main>
+
+    <script type="module">
+        import { initCountdowns } from '../js/components.js';
+        import { formatCurrency } from '../js/utils.js';
+
+        // Simulated Data (matching hot-deals.json)
+        const hotDeals = [
+            {
+                "id": "deal-001",
+                "category": "transfer_bonus",
+                "title": "Amex 40% Transfer Bonus to Avianca LifeMiles",
+                "value": "$600 extra on 100K transfer",
+                "expires": "2026-01-25T23:59:59Z",
+                "priority": "high",
+                "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400",
+                "cta": "Transfer Now"
+            },
+            {
+                "id": "deal-002",
+                "category": "card_bonus",
+                "title": "Chase Ink Preferred 100K — Highest Ever Public Offer",
+                "value": "$1,250 in travel",
+                "expires": "2026-02-15T23:59:59Z",
+                "priority": "high",
+                "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400",
+                "cta": "Apply Now"
+            },
+            {
+                "id": "deal-003",
+                "category": "award_availability",
+                "title": "ANA First Class Wide Open NYC-Tokyo March",
+                "value": "110K Virgin points, $6K+ value",
+                "expires": "2026-01-20T23:59:59Z",
+                "priority": "urgent",
+                "image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=400",
+                "cta": "Check Availability"
+            },
+            {
+                "id": "deal-005",
+                "category": "mistake_fare",
+                "title": "⚡ MISTAKE FARE: LA to Bali $287 RT (Qatar)",
+                "value": "Normally $1,200+",
+                "expires": "2026-01-14T18:00:00Z",
+                "priority": "critical",
+                "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400",
+                "cta": "Book Immediately"
+            }
+        ];
+
+        const getUrgencyBadge = (priority, expires) => {
+            if (priority === 'critical') return '<span class="badge badge--urgent">🔴 CRITICAL</span>';
+            if (priority === 'urgent') return '<span class="badge badge--accent">🟠 URGENT</span>';
+            return '<span class="badge badge--info">🔵 NEW</span>';
+        };
+
+        const renderDeals = () => {
+            const container = document.getElementById('deals-container');
+            container.innerHTML = hotDeals.map(deal => `
+                <article class="card ${deal.priority === 'critical' ? 'card--featured' : ''}">
+                    <div class="card__header">
+                        ${getUrgencyBadge(deal.priority)}
+                        <span class="text-xs text-muted">Expires in: <span class="js-countdown" data-expires="${deal.expires}"></span></span>
+                    </div>
+                    <div class="deal-card__image" style="background-image: url('${deal.image}'); background-size: cover; background-position: center;"></div>
+                    <div class="card__body">
+                        <h3 class="card__title" style="margin-bottom: var(--space-2)">${deal.title}</h3>
+                        <p class="text-sm text-primary" style="font-weight: 600;">${deal.value}</p>
+                    </div>
+                    <footer class="card__footer">
+                        <button class="btn btn-primary" style="width: 100%">${deal.cta}</button>
+                    </footer>
+                </article>
+            `).join('');
+
+            initCountdowns();
+        };
+
+        renderDeals();
+    </script>
+</body>
+</html>

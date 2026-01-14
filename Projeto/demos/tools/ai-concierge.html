@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Points Concierge - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            background: var(--color-bg-primary);
+        }
+        .chat-messages {
+            flex: 1;
+            padding: var(--space-4);
+            overflow-y: auto;
+            background: var(--color-bg-secondary);
+        }
+        .message {
+            margin-bottom: var(--space-4);
+            max-width: 80%;
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-lg);
+        }
+        .message--ai {
+            background: white;
+            border: 1px solid var(--color-border);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+        .message--user {
+            background: var(--color-primary);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        .chat-input-area {
+            padding: var(--space-4);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            gap: var(--space-2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
+    <main class="container">
+        <h1 class="text-3xl" style="text-align: center;">🤖 AI Points Concierge</h1>
+        <div class="chat-container">
+            <div class="chat-messages">
+                <div class="message message--ai">
+                    Hello! I'm your AI Points Concierge. Ask me anything about miles, points, or redemptions.
+                </div>
+                <div class="message message--user">
+                    I have 80K Chase UR. How can I get to Tokyo?
+                </div>
+                <div class="message message--ai">
+                    <p>Great question! Here are your best options:</p>
+                    <ul style="padding-left: 20px; margin: 10px 0;">
+                        <li><strong>Option 1:</strong> Transfer to United (1:1). 70k-88k miles via Star Alliance.</li>
+                        <li><strong>Option 2:</strong> Transfer to Virgin Atlantic (1:1). Book ANA First Class for 55k (one-way). <strong>Best Value!</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="input" style="flex: 1;" placeholder="Ask a question...">
+                <button class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

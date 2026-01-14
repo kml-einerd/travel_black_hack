@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Ticker - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .ticker-wrap {
+            width: 100%;
+            background: #0f172a;
+            color: white;
+            overflow: hidden;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 0.875rem;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        .ticker:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item">🔴 LIVE: Amex 30% Virgin bonus ENDING</span>
+            <span class="ticker-item">🔥 Chase Ink 100K confirmed</span>
+            <span class="ticker-item">✈️ ANA First JFK-NRT open Mar 15</span>
+            <span class="ticker-item">💳 Citi Premier new benefit</span>
+            <span class="ticker-item">⚠️ United deval rumor</span>
+            <span class="ticker-item">🏨 Hyatt 5th night promo extended</span>
+        </div>
+    </div>
+
+    <main class="container" style="margin-top: 40px;">
+        <h1 class="text-3xl">Live Ticker Component</h1>
+        <p>The ticker above runs continuously and pauses on hover.</p>
+    </main>
+</body>
+</html>

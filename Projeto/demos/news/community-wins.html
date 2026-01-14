@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Wins - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .story-card {
+            max-width: 600px;
+            margin: 0 auto var(--space-8);
+        }
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .story-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            margin: var(--space-4) 0;
+            background: var(--color-bg-tertiary);
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-2);
+            background: var(--color-bg-tertiary);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        .stat-value { font-weight: 700; color: var(--color-primary); }
+        .stat-label { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <nav class="container header-nav">
+        <div class="header-nav__logo">MilesAI <span class="text-sm text-primary">Community</span></div>
+    </nav>
+
+    <main class="container">
+        <header style="text-align: center; margin-bottom: var(--space-10)">
+            <h1 class="text-3xl">🏆 Community Wins</h1>
+            <p class="text-lg text-muted">Real stories, real redemptions, real savings.</p>
+        </header>
+
+        <div id="stories-feed"></div>
+
+    </main>
+
+    <script type="module">
+        import { formatCurrency } from '../js/utils.js';
+
+        const stories = [
+            {
+                "id": "story-001",
+                "user": "MilesHunter_Jake",
+                "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+                "title": "Tokyo in ANA First Class for $86",
+                "route": "SFO → NRT",
+                "points": "110,000",
+                "cash_paid": 86.20,
+                "real_value": 18500,
+                "image": "https://images.unsplash.com/photo-1540339832862-474599807836?w=600",
+                "text": "I waited 6 months for this. When the Amex 30% transfer bonus hit, I pulled the trigger. Found 2 First Class seats on Virgin's website and booked immediately."
+            },
+            {
+                "id": "story-002",
+                "user": "FamilyPointsMom",
+                "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
+                "title": "Disney World for 5 — $0 Flights, $0 Hotels",
+                "route": "Family Trip",
+                "points": "440,000 Total",
+                "cash_paid": 0,
+                "real_value": 6000,
+                "image": "https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600",
+                "text": "Took the whole family to Disney using only points. 160k Southwest + 280k Marriott. Saved over $6,000!"
+            }
+        ];
+
+        document.getElementById('stories-feed').innerHTML = stories.map(s => `
+            <article class="card story-card">
+                <div class="story-header">
+                    <img src="${s.avatar}" class="avatar">
+                    <div>
+                        <div style="font-weight: 700;">@${s.user}</div>
+                        <div class="text-xs text-muted">${s.route}</div>
+                    </div>
+                </div>
+
+                <h2 class="text-xl" style="margin-bottom: var(--space-2)">${s.title}</h2>
+                <p class="text-base">${s.text}</p>
+
+                <div class="stat-grid">
+                    <div>
+                        <div class="stat-value">${s.points}</div>
+                        <div class="stat-label">Points Used</div>
+                    </div>
+                    <div>
+                        <div class="stat-value text-success">${formatCurrency(s.cash_paid)}</div>
+                        <div class="stat-label">Cash Paid</div>
+                    </div>
+                    <div>
+                        <div class="stat-value text-primary">${formatCurrency(s.real_value)}</div>
+                        <div class="stat-label">Real Value</div>
+                    </div>
+                </div>
+
+                <img src="${s.image}" class="story-image">
+
+                <div style="display: flex; gap: var(--space-4); color: var(--color-text-muted);">
+                    <span>❤️ 2.4K</span>
+                    <span>💬 189</span>
+                </div>
+            </article>
+        `).join('');
+    </script>
+</body>
+</html>

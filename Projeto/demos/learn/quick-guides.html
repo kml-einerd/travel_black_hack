@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Guides - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+    <nav class="container header-nav">
+        <div class="header-nav__logo">MilesAI <span class="text-sm text-primary">Learn</span></div>
+    </nav>
+
+    <main class="container">
+        <header style="margin-bottom: var(--space-8)">
+            <h1 class="text-3xl">📖 Quick Guides</h1>
+            <p class="text-lg text-muted">Step-by-step micro-tutorials. 3 minutes or less.</p>
+        </header>
+
+        <div id="guides-list" style="display: grid; gap: var(--space-6);"></div>
+
+    </main>
+
+    <script type="module">
+        const guides = [
+            {
+                "title": "How to Transfer Chase UR to Hyatt",
+                "read_time": "3 min",
+                "level": "Beginner",
+                "steps": [
+                    "Log into Chase Ultimate Rewards",
+                    "Click 'Transfer Points'",
+                    "Select World of Hyatt",
+                    "Enter amount and confirm"
+                ]
+            },
+            {
+                "title": "Finding Award Availability on ANA",
+                "read_time": "5 min",
+                "level": "Intermediate",
+                "steps": [
+                    "Log into ANA Mileage Club",
+                    "Select 'Award Reservation'",
+                    "Search for Star Alliance Awards",
+                    "Look for 'Seats Available'"
+                ]
+            }
+        ];
+
+        document.getElementById('guides-list').innerHTML = guides.map(g => `
+            <div class="card" style="flex-direction: row; align-items: center; gap: var(--space-6);">
+                <div style="flex: 1;">
+                    <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-2);">
+                        <span class="badge badge--primary">${g.read_time}</span>
+                        <span class="badge badge--info">${g.level}</span>
+                    </div>
+                    <h2 class="text-xl" style="margin-bottom: var(--space-2)">${g.title}</h2>
+                    <ol style="padding-left: 20px; color: var(--color-text-secondary);">
+                        ${g.steps.map(s => `<li>${s}</li>`).join('')}
+                    </ol>
+                </div>
+                <div>
+                    <button class="btn btn-primary">Start Guide</button>
+                </div>
+            </div>
+        `).join('');
+    </script>
+</body>
+</html>

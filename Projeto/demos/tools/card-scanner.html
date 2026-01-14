@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Wallet Scanner - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .scanner-view {
+            max-width: 400px;
+            height: 600px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scanner-overlay {
+            width: 80%;
+            height: 200px;
+            border: 2px dashed rgba(255,255,255,0.5);
+            border-radius: var(--radius-lg);
+        }
+    </style>
+</head>
+<body>
+    <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
+    <main class="container" style="text-align: center;">
+        <h1 class="text-3xl">📱 Card Wallet Scanner</h1>
+        <p class="text-lg text-muted">Point your camera at your credit card to add it to your wallet.</p>
+
+        <div class="scanner-view">
+            <div class="scanner-overlay"></div>
+            <div style="position: absolute; bottom: 30px; width: 100%; color: white;">
+                Scanning...
+            </div>
+        </div>
+
+        <button class="btn btn-primary" style="margin-top: 20px;">Or Enter Manually</button>
+    </main>
+</body>
+</html>

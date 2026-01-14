@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Hub - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
+    <main class="container">
+        <div class="grid-cards" style="grid-template-columns: 2fr 1fr; gap: var(--space-8);">
+
+            <!-- Featured -->
+            <section class="card" style="padding: 0; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200" style="width: 100%; height: 300px; object-fit: cover;">
+                <div style="padding: var(--space-6);">
+                    <span class="badge badge--urgent">BREAKING</span>
+                    <h2 class="text-3xl" style="margin-top: 10px;">Chase Announces Major Changes to Sapphire Product Line</h2>
+                    <p class="text-lg text-muted">New benefits, higher bonus, fee increase coming February 2026.</p>
+                    <button class="btn btn-primary">Read Full Story</button>
+                </div>
+            </section>
+
+            <!-- Trending -->
+            <section class="card">
+                <h3 class="text-xl">Trending Now</h3>
+                <ol style="padding-left: 20px; line-height: 2;">
+                    <li>Amex 40% Avianca</li>
+                    <li>Chase 5/24 update</li>
+                    <li>ANA First avail</li>
+                    <li>Hyatt promo ext.</li>
+                    <li>United devaluation</li>
+                </ol>
+                <a href="#" class="text-sm">View all trending →</a>
+            </section>
+
+        </div>
+
+        <!-- Hot Deals Section -->
+        <section style="margin-top: var(--space-12);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                <h2 class="text-2xl">🔥 Hot Deals</h2>
+                <a href="hot-deals-flash.html">View All</a>
+            </div>
+            <div class="grid-cards" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="card"><h4 class="text-lg">Amex 40% Avianca</h4><span class="badge badge--urgent">3d left</span></div>
+                <div class="card"><h4 class="text-lg">Ink 100K Bonus</h4><span class="badge badge--info">2w left</span></div>
+                <div class="card"><h4 class="text-lg">Mistake Fare 9</h4><span class="badge badge--urgent">2h left!</span></div>
+                <div class="card"><h4 class="text-lg">Hyatt 5N Free</h4><span class="badge badge--success">Ongoing</span></div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Bonus Tracker - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .tracker-grid {
+            display: grid;
+            gap: var(--space-4);
+        }
+        .bonus-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: var(--space-4);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-fast);
+        }
+        .bonus-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .partner-logo {
+            width: 40px;
+            height: 40px;
+            background: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .transfer-arrow {
+            color: var(--color-text-muted);
+            margin: 0 var(--space-2);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="container header-nav">
+        <div class="header-nav__logo">MilesAI <span class="text-sm text-primary">Tools</span></div>
+    </nav>
+
+    <main class="container">
+        <header style="margin-bottom: var(--space-8)">
+            <h1 class="text-3xl">🎯 Transfer Bonus Tracker</h1>
+            <p class="text-lg text-muted">Current active transfer bonuses. Don't transfer until you check this list.</p>
+        </header>
+
+        <section class="card" style="margin-bottom: var(--space-8)">
+            <h2 class="text-xl" style="margin-bottom: var(--space-6)">Active Bonuses (2)</h2>
+            <div id="active-bonuses" class="tracker-grid"></div>
+        </section>
+
+        <section class="card">
+            <h2 class="text-xl" style="margin-bottom: var(--space-6)">Upcoming Predictions</h2>
+            <div id="predictions" class="tracker-grid"></div>
+        </section>
+
+    </main>
+
+    <script type="module">
+        import { initCountdowns } from '../js/components.js';
+
+        const data = {
+            "active_bonuses": [
+                {
+                    "from_program": "Chase Ultimate Rewards",
+                    "from_icon": "🔵",
+                    "to_program": "British Airways Avios",
+                    "to_icon": "🇬🇧",
+                    "bonus_percent": 25,
+                    "expires_at": "2026-01-31T23:59:59Z",
+                    "best_use": "Europe short-haul awards"
+                },
+                {
+                    "from_program": "Amex Membership Rewards",
+                    "from_icon": "🟢",
+                    "to_program": "Virgin Atlantic Flying Club",
+                    "to_icon": "✈️",
+                    "bonus_percent": 30,
+                    "expires_at": "2026-02-15T23:59:59Z",
+                    "best_use": "ANA business class to Japan"
+                }
+            ],
+            "upcoming_predictions": [
+                {
+                    "from": "Chase UR",
+                    "to": "Hyatt",
+                    "predicted_bonus": 15,
+                    "confidence": 75,
+                    "expected_date": "March 2026"
+                }
+            ]
+        };
+
+        const activeContainer = document.getElementById('active-bonuses');
+        activeContainer.innerHTML = data.active_bonuses.map(b => `
+            <div class="bonus-card">
+                <div style="display: flex; align-items: center; gap: var(--space-4); flex: 1;">
+                    <div style="display: flex; align-items: center;">
+                        <div class="partner-logo">${b.from_icon}</div>
+                        <span class="transfer-arrow">→</span>
+                        <div class="partner-logo">${b.to_icon}</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">${b.from_program} to ${b.to_program}</div>
+                        <div class="text-xs text-muted">Best for: ${b.best_use}</div>
+                    </div>
+                </div>
+
+                <div style="text-align: right;">
+                    <div class="badge badge--success" style="font-size: 1rem;">+${b.bonus_percent}% BONUS</div>
+                    <div class="text-xs text-danger" style="margin-top: 5px; font-weight: 500;">
+                        Ends in <span class="js-countdown" data-expires="${b.expires_at}"></span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        const predContainer = document.getElementById('predictions');
+        predContainer.innerHTML = data.upcoming_predictions.map(p => `
+            <div class="bonus-card" style="opacity: 0.8; background: var(--color-bg-secondary);">
+                <div style="font-weight: 600;">${p.from} → ${p.to}</div>
+                <div>
+                    <span class="badge badge--info">${p.confidence}% Confidence</span>
+                    <span class="text-sm text-muted">Exp: ${p.expected_date}</span>
+                </div>
+            </div>
+        `).join('');
+
+        initCountdowns();
+    </script>
+</body>
+</html>

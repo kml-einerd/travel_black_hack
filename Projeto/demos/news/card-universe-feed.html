@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Universe Feed - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .feed-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .feed-card {
+            margin-bottom: var(--space-8);
+        }
+        .feed-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin: var(--space-4) 0;
+            background-color: var(--color-bg-tertiary);
+        }
+        .interaction-bar {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+            color: var(--color-text-secondary);
+        }
+        .interaction-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="container header-nav">
+        <div class="header-nav__logo">MilesAI <span class="text-sm text-primary">Card Universe</span></div>
+        <div class="header-nav__menu">
+            <a href="hot-deals-flash.html" class="header-nav__link">Hot Deals</a>
+            <a href="#" class="header-nav__link" style="color: var(--color-primary)">Feed</a>
+        </div>
+    </nav>
+
+    <main class="container feed-container">
+
+        <div class="card" style="margin-bottom: var(--space-8); padding: var(--space-4); background: var(--color-primary-light); border-color: var(--color-primary);">
+            <div style="display: flex; gap: var(--space-4); align-items: center;">
+                <div style="font-size: 2rem;">💳</div>
+                <div>
+                    <h2 class="text-xl" style="margin-bottom: var(--space-1)">Card Universe</h2>
+                    <p class="text-sm" style="margin: 0">Social feed of the latest credit card news, launches, and hidden gems.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="feed-posts">
+            <!-- Posts injected here -->
+        </div>
+
+    </main>
+
+    <script type="module">
+        // Simulated Data
+        const feedPosts = [
+            {
+                "id": "card-post-001",
+                "type": "card_launch",
+                "title": "Capital One Venture X Business LAUNCHING",
+                "subtitle": "First look at the new business premium card",
+                "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800",
+                "card_name": "Venture X Business",
+                "highlight": "Unlimited 2X + Capital One Lounges",
+                "posted_at": "2h ago"
+            },
+            {
+                "id": "card-post-002",
+                "type": "benefit_update",
+                "title": "Chase Sapphire Reserve: NEW $100 Credit",
+                "subtitle": "Annual statement credit expanded",
+                "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800",
+                "highlight": "+$100/year value (Dining)",
+                "posted_at": "5h ago"
+            },
+            {
+                "id": "card-post-003",
+                "type": "downgrade_alert",
+                "title": "⚠️ Amex Platinum Lounge Access Restricted",
+                "subtitle": "Centurion Lounge policy change coming",
+                "image": "https://images.unsplash.com/photo-1540339832862-474599807836?w=800",
+                "highlight": "Limited to 2 visits/year unless $75K spend",
+                "posted_at": "1d ago"
+            }
+        ];
+
+        const getBadge = (type) => {
+            if (type === 'card_launch') return '<span class="badge badge--success">NEW LAUNCH</span>';
+            if (type === 'benefit_update') return '<span class="badge badge--info">UPDATE</span>';
+            if (type === 'downgrade_alert') return '<span class="badge badge--urgent">ALERT</span>';
+            return '';
+        };
+
+        const container = document.getElementById('feed-posts');
+        container.innerHTML = feedPosts.map(post => `
+            <article class="card feed-card">
+                <header style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: var(--space-3);">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: #e0e7ff; display: flex; align-items: center; justify-content: center;">💳</div>
+                        <div>
+                            <div class="text-sm" style="font-weight: 700;">MilesAIBot</div>
+                            <div class="text-xs text-muted">${post.posted_at}</div>
+                        </div>
+                    </div>
+                    ${getBadge(post.type)}
+                </header>
+
+                <div style="margin-top: var(--space-4);">
+                    <h3 class="text-xl" style="margin-bottom: var(--space-2)">${post.title}</h3>
+                    <p class="text-base" style="margin-bottom: var(--space-2)">${post.subtitle}</p>
+                    <p class="text-sm badge--accent" style="display: inline-block; padding: 2px 8px; border-radius: 4px;">✨ ${post.highlight}</p>
+                </div>
+
+                <div class="feed-image" style="background-image: url('${post.image}'); background-size: cover; background-position: center;"></div>
+
+                <footer class="interaction-bar">
+                    <div class="interaction-item">❤️ 245</div>
+                    <div class="interaction-item">💬 42</div>
+                    <div class="interaction-item">🔗 Share</div>
+                </footer>
+            </article>
+        `).join('');
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "issue_number": 47,
+  "week_start": "2026-01-13",
+  "week_end": "2026-01-19",
+  "points_economy_index": {
+    "overall_change": "+2.3%",
+    "programs": [
+      {"name": "Chase UR", "value": 1.92, "change": +0.05, "trend": "up"},
+      {"name": "Amex MR", "value": 1.78, "change": +0.12, "trend": "up"},
+      {"name": "United Miles", "value": 1.34, "change": 0, "trend": "stable"},
+      {"name": "Hyatt Points", "value": 2.21, "change": -0.08, "trend": "down"}
+    ]
+  },
+  "best_routes": [
+    {
+      "route": "JFK → NRT",
+      "airline": "ANA",
+      "cabin": "Business",
+      "points": 85000,
+      "cpp": 3.2,
+      "rating": "excellent",
+      "image": "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=300"
+    },
+    {
+      "route": "LAX → LHR",
+      "airline": "Virgin Atlantic",
+      "cabin": "Upper Class",
+      "points": 47500,
+      "cpp": 4.1,
+      "rating": "insane",
+      "image": "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=300"
+    }
+  ],
+  "card_spotlight": {
+    "card": "Citi Strata Premier",
+    "verdict": "Best everyday travel card of 2026",
+    "score": 9.2,
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400"
+  }
+}

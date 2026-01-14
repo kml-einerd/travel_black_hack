@@ -1,0 +1,63 @@
+{
+  "changelogs": [
+    {
+      "program": "Chase Ultimate Rewards",
+      "program_icon": "🔵",
+      "version": "2026.01",
+      "date": "2026-01-14",
+      "changes": {
+        "added": [
+          "New transfer partner: Iberia Plus (1:1 ratio)",
+          "Increased bonus on Lyft: 10x → 15x through March"
+        ],
+        "changed": [
+          "Pay Yourself Back categories updated for Q1",
+          "Instacart coding now counts as Grocery (was Other)"
+        ],
+        "deprecated": [
+          "Peloton 10x bonus ending February 28"
+        ],
+        "removed": []
+      },
+      "impact_score": "medium",
+      "engagement": {"views": 12300, "comments": 245}
+    },
+    {
+      "program": "American Express Membership Rewards",
+      "program_icon": "🟢",
+      "version": "2026.01",
+      "date": "2026-01-10",
+      "changes": {
+        "added": [
+          "Transfer bonus: 40% to Avianca LifeMiles (ends Jan 25)",
+          "New Amex Offer: 00 off 000 at Dell"
+        ],
+        "changed": [
+          "Point value for Pay With Points: 0.7¢ → 0.6¢",
+          "Centurion Lounge guest policy updated"
+        ],
+        "removed": [
+          "Marriott as transfer partner (use Bonvoy direct)"
+        ]
+      },
+      "impact_score": "high"
+    },
+    {
+      "program": "Hyatt World of Hyatt",
+      "program_icon": "🟡",
+      "version": "2026.01",
+      "date": "2026-01-08",
+      "changes": {
+        "added": [
+          "5th Night Free now applies to Points + Cash bookings",
+          "New milestone reward at 30 nights: suite upgrade choice"
+        ],
+        "changed": [
+          "Category 8 hotels: 40K → 45K per night",
+          "Globalist breakfast benefit expanded to all guests"
+        ]
+      },
+      "impact_score": "medium"
+    }
+  ]
+}

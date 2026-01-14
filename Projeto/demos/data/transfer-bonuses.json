@@ -1,0 +1,41 @@
+{
+  "active_bonuses": [
+    {
+      "id": "tb-001",
+      "from_program": "Chase Ultimate Rewards",
+      "from_logo": "https://logo.clearbit.com/chase.com",
+      "to_program": "British Airways Avios",
+      "to_logo": "https://logo.clearbit.com/britishairways.com",
+      "bonus_percent": 25,
+      "expires_at": "2026-01-31T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": "First transfer in 90 days",
+      "best_use": "Europe short-haul awards",
+      "value_rating": "excellent"
+    },
+    {
+      "id": "tb-002",
+      "from_program": "Amex Membership Rewards",
+      "from_logo": "https://logo.clearbit.com/americanexpress.com",
+      "to_program": "Virgin Atlantic Flying Club",
+      "to_logo": "https://logo.clearbit.com/virginatlantic.com",
+      "bonus_percent": 30,
+      "expires_at": "2026-02-15T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": 100000,
+      "best_use": "ANA business class to Japan",
+      "value_rating": "insane"
+    }
+  ],
+  "upcoming_predictions": [
+    {
+      "from": "Chase UR",
+      "to": "Hyatt",
+      "predicted_bonus": 15,
+      "confidence": 75,
+      "expected_date": "March 2026",
+      "basis": "Historical pattern (every 6 months)"
+    }
+  ]
+}

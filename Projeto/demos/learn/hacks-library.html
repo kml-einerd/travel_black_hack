@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacks Library - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+    <nav class="container header-nav">
+        <div class="header-nav__logo">MilesAI <span class="text-sm text-primary">Learn</span></div>
+    </nav>
+
+    <main class="container">
+        <header style="text-align: center; margin-bottom: var(--space-8)">
+            <h1 class="text-3xl">📚 Hacks Library</h1>
+            <p class="text-lg text-muted">Evergreen tips, tricks, and strategies to maximize your travel.</p>
+        </header>
+
+        <div style="margin-bottom: var(--space-8); display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: center;">
+            <button class="btn btn-primary btn-sm">All</button>
+            <button class="btn btn-secondary btn-sm">Hotel Hacks</button>
+            <button class="btn btn-secondary btn-sm">Flight Hacks</button>
+            <button class="btn btn-secondary btn-sm">Earning</button>
+        </div>
+
+        <div id="hacks-grid" class="grid-cards"></div>
+
+    </main>
+
+    <script type="module">
+        const hacks = [
+            {
+                "title": "The Mattress Run Strategy",
+                "category": "Hotel Hacks",
+                "difficulty": 3,
+                "summary": "Book cheap hotel nights just for elite night credits — without actually staying.",
+                "value": "$500-2000/year"
+            },
+            {
+                "title": "Southwest Companion Pass Shortcut",
+                "category": "Earning Hacks",
+                "difficulty": 2,
+                "summary": "Earn a Companion Pass (BOGO flights for 2 years) in under 3 months via cards.",
+                "value": "$3000+"
+            },
+            {
+                "title": "Fifth Night Free Stacking",
+                "category": "Hotel Hacks",
+                "difficulty": 1,
+                "summary": "Get 20% off any 5+ night hotel stay automatically with points.",
+                "value": "20% Savings"
+            }
+        ];
+
+        const getStars = (diff) => '⭐'.repeat(diff);
+
+        document.getElementById('hacks-grid').innerHTML = hacks.map(h => `
+            <article class="card">
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2);">
+                    <span class="badge badge--info">${h.category}</span>
+                    <span class="text-xs text-muted">Diff: ${getStars(h.difficulty)}</span>
+                </div>
+                <h3 class="text-xl" style="margin-bottom: var(--space-2)">${h.title}</h3>
+                <p class="text-sm text-muted" style="margin-bottom: var(--space-4)">${h.summary}</p>
+                <div class="badge badge--success">Value: ${h.value}</div>
+            </article>
+        `).join('');
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "ebooks": [
+    {
+      "id": "ebook-001",
+      "title": "Zero to 100K Points in 90 Days",
+      "subtitle": "The Aggressive Beginner's Blueprint",
+      "price": 39,
+      "pages": 100,
+      "audience": "Beginners"
+    },
+    {
+      "id": "ebook-002",
+      "title": "The Card Churning Manifesto",
+      "subtitle": "Advanced Tactics the Banks Don't Want You to Know",
+      "price": 67,
+      "pages": 150,
+      "audience": "Advanced"
+    },
+    {
+      "id": "ebook-003",
+      "title": "First Class for Less Than Coach",
+      "subtitle": "The Premium Travel Hacker's Playbook",
+      "price": 49,
+      "pages": 120,
+      "audience": "Everyone"
+    },
+    {
+      "id": "ebook-004",
+      "title": "The Family Points Formula",
+      "subtitle": "How We Travel the World for Free With 3 Kids",
+      "price": 44,
+      "audience": "Families"
+    },
+    {
+      "id": "ebook-005",
+      "title": "Bank Bonus Blitz",
+      "subtitle": "How I Made ,000 Last Year Opening Bank Accounts",
+      "price": 37,
+      "pages": 80,
+      "audience": "Everyone"
+    }
+  ]
+}

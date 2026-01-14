@@ -1,0 +1,74 @@
+{
+  "calendar_events": [
+    {
+      "id": "cal-001",
+      "date": "2026-01-14",
+      "time": "18:00",
+      "timezone": "EST",
+      "type": "deadline",
+      "color": "red",
+      "title": "Chase BA 25% Bonus Expires",
+      "description": "Last chance to transfer Chase UR to British Airways with 25% bonus",
+      "action": {"text": "Transfer Now", "url": "/transfers/chase-ba"},
+      "reminder_set": true,
+      "personal": false
+    },
+    {
+      "id": "cal-002",
+      "date": "2026-01-15",
+      "time": "03:00",
+      "timezone": "EST",
+      "type": "opportunity",
+      "color": "yellow",
+      "title": "Flying Blue Promo Awards Release",
+      "description": "Monthly promo awards with up to 50% off. Awards go fast!",
+      "tips": ["Set alarm for 3AM EST", "Have route ready", "Book immediately"],
+      "recurrence": "monthly_1st"
+    },
+    {
+      "id": "cal-003",
+      "date": "2026-01-17",
+      "type": "personal",
+      "color": "orange",
+      "title": "Amex Platinum Annual Fee",
+      "description": "Your 95 annual fee hits today. Consider retention offer.",
+      "personal": true,
+      "user_specific": true,
+      "action": {"text": "Call Retention", "phone": "1-800-452-3945"}
+    },
+    {
+      "id": "cal-004",
+      "date": "2026-01-25",
+      "type": "deadline",
+      "color": "red",
+      "title": "Amex Avianca 40% Bonus Ends",
+      "description": "Transfer bonus to LifeMiles ending. Best value for Star Alliance awards.",
+      "countdown": true
+    },
+    {
+      "id": "cal-005",
+      "date": "2026-01-31",
+      "type": "deadline",
+      "color": "red",
+      "title": "Chase British Airways Bonus Ends",
+      "description": "25% transfer bonus to Avios expiring end of month."
+    }
+  ],
+  "recurring_events": [
+    {
+      "name": "Flying Blue Promo Awards",
+      "recurrence": "1st of month",
+      "time": "03:00 EST"
+    },
+    {
+      "name": "Amex Offer Refresh",
+      "recurrence": "Wednesdays",
+      "time": "varies"
+    },
+    {
+      "name": "IHG Pointbreaks Release",
+      "recurrence": "quarterly",
+      "months": [1, 4, 7, 10]
+    }
+  ]
+}

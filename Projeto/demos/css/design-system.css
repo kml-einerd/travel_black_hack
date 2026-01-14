@@ -1,0 +1,132 @@
+:root {
+  /* === LIGHT MODE EXCLUSIVE === */
+
+  /* Primary Colors */
+  --color-primary: #4f46e5;           /* Indigo - actions */
+  --color-primary-hover: #4338ca;     /* Deeper hover */
+  --color-primary-light: #eef2ff;     /* Subtle backgrounds */
+
+  /* State Colors */
+  --color-success: #059669;           /* Green */
+  --color-success-light: #d1fae5;
+  --color-warning: #d97706;           /* Amber */
+  --color-warning-light: #fef3c7;
+  --color-danger: #dc2626;            /* Red */
+  --color-danger-light: #fee2e2;
+  --color-info: #0284c7;              /* Blue */
+  --color-info-light: #e0f2fe;
+
+  /* Backgrounds */
+  --color-bg-primary: #ffffff;        /* Pure white */
+  --color-bg-secondary: #f8fafc;      /* Off-white (cards) */
+  --color-bg-tertiary: #f1f5f9;       /* Highlights */
+
+  /* Text */
+  --color-text-primary: #0f172a;      /* Headings */
+  --color-text-secondary: #475569;    /* Body */
+  --color-text-muted: #94a3b8;        /* Muted */
+
+  /* Borders */
+  --color-border: #e2e8f0;
+  --color-divider: #f1f5f9;
+
+  /* Typography */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing (8px Grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 10px 40px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --shadow-primary: 0 4px 14px rgba(79, 70, 229, 0.25);
+  --shadow-success: 0 4px 14px rgba(5, 150, 105, 0.25);
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Utility Classes */
+.text-3xl { font-size: 30px; font-weight: 700; }
+.text-xl { font-size: 20px; font-weight: 600; }
+.text-base { font-size: 16px; font-weight: 400; }
+.text-sm { font-size: 14px; font-weight: 500; }
+.text-xs { font-size: 12px; font-weight: 500; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.grid-cards {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

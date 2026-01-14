@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Analyzer - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
+    <main class="container">
+        <h1 class="text-3xl">📊 Points Portfolio Analyzer</h1>
+
+        <div class="grid-cards" style="margin-bottom: 40px;">
+            <div class="card metric-card">
+                <span class="metric-card__value text-primary">8,432</span>
+                <span class="metric-card__label">Total Portfolio Value</span>
+            </div>
+            <div class="card metric-card">
+                <span class="metric-card__value text-success">2.1¢</span>
+                <span class="metric-card__label">Avg Earning Rate</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="text-xl">Health Scores</h2>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Diversification</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-bar__fill" style="width: 80%;"></div></div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Expiration Risk</span>
+                    <span class="text-danger">30% ⚠️</span>
+                </div>
+                <div class="progress-bar"><div class="progress-bar__fill" style="width: 30%; background: var(--color-danger);"></div></div>
+            </div>
+
+            <div class="badge badge--urgent" style="display: block; text-align: center; margin-top: 20px; font-size: 1rem; padding: 10px;">
+                ⚠️ 15,000 Hilton points expiring in 45 days
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Award Map Explorer - MilesAI</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .map-container {
+            width: 100%;
+            height: 500px;
+            background: #e0f2fe;
+            border-radius: var(--radius-xl);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-pin {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+        }
+        .pin-green { background: var(--color-success); box-shadow: 0 0 0 5px rgba(5, 150, 105, 0.2); }
+        .pin-blue { background: var(--color-info); }
+    </style>
+</head>
+<body>
+    <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
+    <main class="container">
+        <h1 class="text-3xl">🗺️ Award Map Explorer</h1>
+
+        <div class="card" style="margin-bottom: 20px;">
+            <div style="display: flex; gap: 10px;">
+                <select class="input" style="width: auto;"><option>Chase UR</option></select>
+                <select class="input" style="width: auto;"><option>Business Class</option></select>
+                <select class="input" style="width: auto;"><option>From: NYC</option></select>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <span class="text-muted" style="font-size: 2rem; opacity: 0.5;">[Interactive World Map Placeholder]</span>
+
+            <!-- Simulated Pins -->
+            <div class="map-pin pin-green" style="top: 40%; left: 30%;" title="NYC (Origin)"></div>
+            <div class="map-pin pin-green" style="top: 35%; left: 85%;" title="Tokyo - 80k (Sweet Spot)"></div>
+            <div class="map-pin pin-blue" style="top: 38%; left: 52%;" title="Paris - 70k"></div>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; gap: 20px;">
+            <div style="display: flex; align-items: center; gap: 5px;"><div class="map-pin pin-green" style="position:static"></div> Great Value</div>
+            <div style="display: flex; align-items: center; gap: 5px;"><div class="map-pin pin-blue" style="position:static"></div> Good Value</div>
+        </div>
+    </main>
+</body>
+</html>

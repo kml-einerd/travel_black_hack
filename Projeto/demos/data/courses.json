@@ -1,0 +1,28 @@
+{
+  "courses": [
+    {
+      "id": "course-001",
+      "title": "Points 101 Crash Course",
+      "duration": "2 hours",
+      "price": 0,
+      "modules": 10,
+      "format": "Email drip + Video"
+    },
+    {
+      "id": "course-002",
+      "title": "The Complete Points Masterclass",
+      "duration": "12 hours",
+      "price": 197,
+      "modules": 5,
+      "format": "Video + Workbooks"
+    },
+    {
+      "id": "course-003",
+      "title": "90-Day Points Transformation Bootcamp",
+      "duration": "90 days",
+      "price": 297,
+      "format": "App + Daily Missions + Weekly Lives",
+      "gamification": true
+    }
+  ]
+}
