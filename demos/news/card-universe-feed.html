@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Universe Feed - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: var(--space-8); background: var(--color-bg-canvas); }
+    .page-header { text-align: center; margin-bottom: var(--space-8); }
+    .feed-container { max-width: 800px; margin: 0 auto; }
+
+    .post-card {
+      background: white;
+      border-radius: var(--radius-2xl);
+      margin-bottom: var(--space-6);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: all var(--transition-normal);
+    }
+
+    .post-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+
+    .post-card__header {
+      padding: var(--space-4) var(--space-5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-divider);
+    }
+
+    .post-card__meta { display: flex; align-items: center; gap: var(--space-3); }
+    .post-card__issuer {
+      font-weight: var(--font-semibold);
+      color: var(--color-text-primary);
+    }
+
+    .post-card__time {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    .post-card__image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .post-card__content {
+      padding: var(--space-5);
+    }
+
+    .post-card__title {
+      font-size: var(--text-xl);
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-2);
+    }
+
+    .post-card__subtitle {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-4);
+    }
+
+    .post-card__details {
+      background: var(--color-bg-secondary);
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-4);
+    }
+
+    .post-card__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-item__label {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      margin-bottom: var(--space-1);
+    }
+    .stat-item__value {
+      font-size: var(--text-lg);
+      font-weight: var(--font-semibold);
+      color: var(--color-primary);
+    }
+
+    .post-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-divider);
+    }
+
+    .engagement { display: flex; gap: var(--space-6); color: var(--color-text-muted); font-size: var(--text-sm); }
+    .engagement__item { display: flex; align-items: center; gap: var(--space-1); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>💳 Card Universe Feed</h1>
+      <p style="color: var(--color-text-secondary);">Latest credit card news, launches, and updates</p>
+    </header>
+
+    <div class="feed-container" id="feed">
+      <!-- Posts loaded dynamically -->
+    </div>
+  </div>
+
+  <script>
+    async function loadFeed() {
+      try {
+        const response = await fetch('../data/card-universe.json');
+        const data = await response.json();
+        renderPosts(data.card_posts);
+      } catch (error) {
+        console.error('Error loading feed:', error);
+      }
+    }
+
+    function renderPosts(posts) {
+      const feed = document.getElementById('feed');
+
+      feed.innerHTML = posts.map(post => {
+        const typeConfig = {
+          'card_launch': { badge: 'NEW', color: 'success' },
+          'benefit_update': { badge: 'UPDATE', color: 'info' },
+          'downgrade_alert': { badge: 'ALERT', color: 'danger' },
+          'limited_offer': { badge: 'LIMITED', color: 'warning' },
+          'hidden_gem': { badge: 'HIDDEN GEM', color: 'accent' }
+        };
+
+        const config = typeConfig[post.type] || typeConfig['card_launch'];
+
+        return `
+          <article class="post-card">
+            <div class="post-card__header">
+              <div class="post-card__meta">
+                <span class="post-card__issuer">${post.issuer}</span>
+                <span class="badge badge--${config.color}">${config.badge}</span>
+              </div>
+              <span class="post-card__time">${formatTime(post.timestamp)}</span>
+            </div>
+
+            <img src="${post.image}" alt="${post.card_name}" class="post-card__image">
+
+            <div class="post-card__content">
+              <h2 class="post-card__title">${post.title}</h2>
+              <p class="post-card__subtitle">${post.subtitle}</p>
+
+              <div class="post-card__details">
+                ${post.welcome_bonus ? `
+                  <div class="post-card__stats">
+                    <div class="stat-item">
+                      <span class="stat-item__label">Welcome Bonus</span>
+                      <span class="stat-item__value">${post.welcome_bonus}</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-item__label">Annual Fee</span>
+                      <span class="stat-item__value">${post.annual_fee}</span>
+                    </div>
+                  </div>
+                ` : ''}
+
+                ${post.change_type ? `
+                  <div style="margin-bottom: var(--space-3);">
+                    <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-1);">CHANGE</div>
+                    <div style="text-decoration: line-through; color: var(--color-text-muted);">${post.old_benefit}</div>
+                    <div style="font-weight: var(--font-semibold); color: ${post.change_type === 'positive' ? 'var(--color-success)' : 'var(--color-danger)'};">
+                      → ${post.new_benefit}
+                    </div>
+                  </div>
+                ` : ''}
+
+                <div style="font-weight: var(--font-semibold); color: var(--color-text-primary);">
+                  ${post.highlight || post.our_take}
+                </div>
+              </div>
+
+              <div class="post-card__footer">
+                <div class="engagement">
+                  <span class="engagement__item">👁 ${Math.floor(Math.random() * 10000 + 1000)}</span>
+                  <span class="engagement__item">💬 ${Math.floor(Math.random() * 200 + 50)}</span>
+                </div>
+                <button class="btn btn-primary btn--sm">Learn More</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function formatTime(timestamp) {
+      const date = new Date(timestamp);
+      const now = new Date();
+      const diff = Math.floor((now - date) / 1000);
+
+      if (diff < 60) return 'Just now';
+      if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+      if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+      return `${Math.floor(diff / 86400)}d ago`;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadFeed);
+  </script>
+</body>
+</html>

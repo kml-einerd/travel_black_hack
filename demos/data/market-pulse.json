@@ -1,0 +1,178 @@
+{
+  "current_week": {
+    "week_number": 2,
+    "year": 2026,
+    "date_range": "January 8-14, 2026",
+    "published_at": "2026-01-14T09:00:00Z",
+    "headline": "Transfer Bonuses Explode, Amex Lounge Restrictions Incoming",
+    "summary": "This week saw a surge in transfer bonuses across all major programs, but the big story is American Express's lounge access changes that will impact millions of cardholders starting March 1st."
+  },
+  "top_stories": [
+    {
+      "id": "story-001",
+      "category": "breaking",
+      "icon": "🔥",
+      "title": "Amex Platinum Lounge Access Restricted",
+      "summary": "American Express announces major changes to Centurion Lounge access for Platinum cardholders starting March 1, 2026.",
+      "details": [
+        "Platinum cardholders limited to 2 Centurion Lounge visits per year",
+        "Exception: Members with $75K+ annual spend retain unlimited access",
+        "Guest policy unchanged (2 guests when visiting)",
+        "Priority Pass access unaffected"
+      ],
+      "impact": "HIGH",
+      "action": "Consider Delta Reserve or other premium cards if lounges are critical",
+      "source": "Official Amex announcement"
+    },
+    {
+      "id": "story-002",
+      "category": "transfer_bonuses",
+      "icon": "🎯",
+      "title": "Capital One 40% Avianca Bonus - Best of 2026",
+      "summary": "Capital One's 40% transfer bonus to Avianca LifeMiles is the highest we've seen this year.",
+      "details": [
+        "40% bonus on transfers to Avianca LifeMiles",
+        "Valid through January 25, 2026",
+        "No minimum or maximum transfer amount",
+        "Avianca is a Star Alliance partner"
+      ],
+      "impact": "INSANE",
+      "action": "Transfer NOW if you have planned Star Alliance redemptions",
+      "sweet_spots": [
+        "USA to Europe business: 63K (normally 87K)",
+        "USA to Asia business: 87.5K (normally 115K)",
+        "Europe short-haul: 5.25K (normally 7K)"
+      ]
+    },
+    {
+      "id": "story-003",
+      "category": "card_news",
+      "icon": "💳",
+      "title": "Capital One Venture X Business Launches",
+      "summary": "Capital One enters the premium business card market with a compelling new offering.",
+      "details": [
+        "150,000 mile welcome bonus after $15K spend",
+        "$395 annual fee",
+        "Unlimited 2X on all purchases",
+        "10X on hotels and rental cars through Capital One Travel",
+        "$300 annual travel credit",
+        "Plaza Premium lounge access"
+      ],
+      "impact": "HIGH",
+      "action": "Strong SUB for business owners with high spend",
+      "comparison": "More generous than Chase Ink Preferred for travel-focused businesses"
+    }
+  ],
+  "market_trends": {
+    "title": "What's Moving the Market",
+    "trends": [
+      {
+        "trend": "Transfer Bonuses at All-Time High",
+        "direction": "up",
+        "description": "7 active transfer bonuses across major programs - highest count in 18 months",
+        "confidence": "Very High"
+      },
+      {
+        "trend": "Premium Card Benefits Being Restricted",
+        "direction": "down",
+        "description": "Following Amex's lounge restrictions, expect other issuers to follow suit",
+        "confidence": "High"
+      },
+      {
+        "trend": "Business Cards Getting More Competitive",
+        "direction": "up",
+        "description": "New launches from Capital One and rumored Chase updates coming Q2",
+        "confidence": "Medium"
+      },
+      {
+        "trend": "Award Availability Improving",
+        "direction": "up",
+        "description": "Post-pandemic capacity increases = more award seats on key routes",
+        "confidence": "High"
+      }
+    ]
+  },
+  "program_watch": {
+    "title": "Program Health Check",
+    "programs": [
+      {
+        "name": "United MileagePlus",
+        "status": "healthy",
+        "rating": 4.2,
+        "note": "Dynamic pricing stabilizing, good Saver availability to Europe"
+      },
+      {
+        "name": "American AAdvantage",
+        "status": "caution",
+        "rating": 3.5,
+        "note": "Web Specials still strong, but off-peak awards eliminated"
+      },
+      {
+        "name": "Chase Ultimate Rewards",
+        "status": "healthy",
+        "rating": 4.7,
+        "note": "1.5X PYB categories expanded, transfer partners stable"
+      },
+      {
+        "name": "Marriott Bonvoy",
+        "status": "declining",
+        "rating": 3.0,
+        "note": "Category inflation continues, but peak/off-peak helps"
+      },
+      {
+        "name": "Avianca LifeMiles",
+        "status": "hot",
+        "rating": 4.9,
+        "note": "With 40% transfer bonuses, incredible Star Alliance value right now"
+      }
+    ]
+  },
+  "week_in_numbers": [
+    {
+      "stat": "7",
+      "label": "Active Transfer Bonuses",
+      "change": "+3 from last week"
+    },
+    {
+      "stat": "40%",
+      "label": "Highest Bonus This Week",
+      "change": "Capital One → Avianca"
+    },
+    {
+      "stat": "150K",
+      "label": "Best Welcome Bonus",
+      "change": "Venture X Business"
+    },
+    {
+      "stat": "$75K",
+      "label": "Amex Spend Threshold",
+      "change": "For unlimited lounge access"
+    }
+  ],
+  "looking_ahead": {
+    "title": "Next Week's Watch List",
+    "items": [
+      "Potential Chase Sapphire Preferred increased SUB (rumored for late January)",
+      "Hilton Honors devaluation announcement expected",
+      "IHG Point Breaks list refresh (usually mid-month)",
+      "Southwest Companion Pass promotion possibility"
+    ]
+  },
+  "community_highlights": [
+    {
+      "username": "MilesHunter_Jake",
+      "achievement": "Booked ANA First Class for $86 in taxes",
+      "engagement": 2400
+    },
+    {
+      "username": "FamilyPointsMom",
+      "achievement": "Disney World for 5 people - $0 out of pocket",
+      "engagement": 1890
+    },
+    {
+      "username": "PointsNinja",
+      "achievement": "Shared 'Double Dip' strategy earning 6X everywhere",
+      "engagement": 890
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "active_bonuses": [
+    {
+      "id": "tb-001",
+      "from_program": "Chase Ultimate Rewards",
+      "from_logo": "🔵",
+      "to_program": "British Airways Avios",
+      "to_logo": "✈️",
+      "bonus_percent": 25,
+      "expires_at": "2026-01-31T23:59:59Z",
+      "min_transfer": 1000,
+      "terms": "First transfer in 90 days",
+      "best_use": "Europe short-haul awards",
+      "value_rating": "excellent"
+    },
+    {
+      "id": "tb-002",
+      "from_program": "Amex Membership Rewards",
+      "from_logo": "🟢",
+      "to_program": "Virgin Atlantic Flying Club",
+      "to_logo": "✈️",
+      "bonus_percent": 30,
+      "expires_at": "2026-02-15T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": 100000,
+      "best_use": "ANA business/first class to Japan",
+      "value_rating": "insane"
+    },
+    {
+      "id": "tb-003",
+      "from_program": "Citi ThankYou Points",
+      "from_logo": "🔴",
+      "to_program": "Turkish Airlines Miles&Smiles",
+      "to_logo": "✈️",
+      "bonus_percent": 20,
+      "expires_at": "2026-01-20T23:59:59Z",
+      "best_use": "Star Alliance business class",
+      "value_rating": "good"
+    },
+    {
+      "id": "tb-004",
+      "from_program": "Amex Membership Rewards",
+      "from_logo": "🟢",
+      "to_program": "Air France-KLM Flying Blue",
+      "to_logo": "✈️",
+      "bonus_percent": 25,
+      "expires_at": "2026-02-28T23:59:59Z",
+      "best_use": "Promo Awards monthly deals",
+      "value_rating": "excellent"
+    },
+    {
+      "id": "tb-005",
+      "from_program": "Capital One Miles",
+      "from_logo": "🟠",
+      "to_program": "Avianca LifeMiles",
+      "to_logo": "✈️",
+      "bonus_percent": 40,
+      "expires_at": "2026-01-25T23:59:59Z",
+      "best_use": "Star Alliance awards",
+      "value_rating": "insane"
+    },
+    {
+      "id": "tb-006",
+      "from_program": "Chase Ultimate Rewards",
+      "from_logo": "🔵",
+      "to_program": "IHG Rewards",
+      "to_logo": "🏨",
+      "bonus_percent": 50,
+      "expires_at": "2026-02-10T23:59:59Z",
+      "best_use": "Point Breaks hotels",
+      "value_rating": "good"
+    },
+    {
+      "id": "tb-007",
+      "from_program": "Marriott Bonvoy",
+      "from_logo": "🏨",
+      "to_program": "United MileagePlus",
+      "to_logo": "✈️",
+      "bonus_percent": 10,
+      "expires_at": "2026-12-31T23:59:59Z",
+      "ongoing": true,
+      "best_use": "Topping off United miles",
+      "value_rating": "fair"
+    }
+  ]
+}

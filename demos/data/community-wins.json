@@ -1,0 +1,62 @@
+{
+  "stories": [
+    {
+      "id": "story-001",
+      "type": "epic_redemption",
+      "user": {
+        "username": "MilesHunter_Jake",
+        "avatar": "👤",
+        "member_since": "2024-06",
+        "total_value_redeemed": 89500
+      },
+      "title": "Tokyo in ANA First Class for $86",
+      "route": {"origin": "SFO", "destination": "NRT"},
+      "redemption": {
+        "airline": "ANA",
+        "cabin": "First Class",
+        "program_used": "Virgin Atlantic",
+        "points_used": 110000,
+        "taxes_paid": 86.20,
+        "cash_value": 18500,
+        "cpp": 4.2
+      },
+      "story": "I waited 6 months for this. When the Amex 30% transfer bonus hit, I pulled the trigger. Found 2 First Class seats and booked immediately. The Suite was unreal!",
+      "tips": ["Book via Virgin for ANA First", "Watch for Amex bonuses", "Set alerts 330 days out"],
+      "image": "https://images.unsplash.com/photo-1540339832862-474599807836?w=800",
+      "engagement": {"likes": 2400, "comments": 189, "saves": 567},
+      "posted_at": "2026-01-12T14:30:00Z"
+    },
+    {
+      "id": "story-002",
+      "type": "budget_win",
+      "user": {"username": "FamilyPointsMom", "avatar": "👩"},
+      "title": "Disney World for 5 — $0 Flights, $0 Hotels",
+      "summary": "Took the whole family to Disney using only points",
+      "details": {
+        "people": 5,
+        "flights_value": 3200,
+        "flights_points": "160,000 Southwest RR",
+        "hotel_nights": 7,
+        "hotel_value": 2800,
+        "hotel_points": "280,000 Marriott",
+        "total_cash_saved": 6000
+      },
+      "story": "Started planning 9 months out. Got the Southwest Companion Pass, booked Category 5 Marriott. Kids had no idea we paid $0!",
+      "image": "https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=800",
+      "engagement": {"likes": 1890, "comments": 234},
+      "posted_at": "2026-01-10T09:15:00Z"
+    },
+    {
+      "id": "story-003",
+      "type": "hack_discovery",
+      "user": {"username": "PointsNinja", "avatar": "🥷"},
+      "title": "The 'Double Dip' Strategy",
+      "summary": "Earning points on BOTH sides of a transaction",
+      "hack": "Buy gift cards at grocery store (4X) → Use to buy Visa gift cards at another store (2X) → Liquidate via bill pay. Net: 6X on everything!",
+      "warning": "Gray area - do at your own risk",
+      "value": "Turned $10K/month into 60K points monthly",
+      "engagement": {"likes": 890, "comments": 156},
+      "posted_at": "2026-01-08T16:00:00Z"
+    }
+  ]
+}
