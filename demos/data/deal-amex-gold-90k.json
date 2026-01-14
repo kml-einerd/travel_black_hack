@@ -1,0 +1,41 @@
+{
+  "id": "deal-2026-01-001",
+  "type": "card_bonus",
+  "card_id": "amex-gold",
+  "title": "Amex Gold 90K Limited Time Offer",
+  "description": "Increased welcome bonus of 90,000 Membership Rewards points. Best public offer we've seen for this card.",
+  "value_estimate": 1800,
+  "original_value": 1200,
+  "savings_percent": 50,
+  "requirements": "Spend $6,000 in first 6 months",
+  "additional_details": {
+    "annual_fee": 325,
+    "first_year_net_value": 1475,
+    "earning_rates": {
+      "dining": 4,
+      "groceries": 4,
+      "other": 1
+    },
+    "credits": [
+      "$120 Uber Cash ($10/month)",
+      "$120 Dining Credit ($10/month with select merchants)"
+    ]
+  },
+  "expires_at": "2026-02-28T23:59:59Z",
+  "source_url": "https://example.com/amex-gold-offer",
+  "tags": [
+    "amex",
+    "gold",
+    "welcome-bonus",
+    "membership-rewards"
+  ],
+  "is_targeted": false,
+  "priority": "high",
+  "cpp_calculation": {
+    "conservative": 2.0,
+    "typical": 2.0,
+    "optimized": 2.5
+  },
+  "created_at": "2026-01-10T00:00:00Z",
+  "updated_at": "2026-01-14T00:00:00Z"
+}

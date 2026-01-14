@@ -1,0 +1,59 @@
+{
+  "id": "chase-sapphire-preferred",
+  "name": "Chase Sapphire Preferred",
+  "issuer": "chase",
+  "network": "visa",
+  "program": "chase-ultimate-rewards",
+  "annual_fee": 95,
+  "welcome_bonus": {
+    "points": 75000,
+    "spend_requirement": 4000,
+    "time_limit_months": 3,
+    "value_estimate": 1500
+  },
+  "earning_rates": [
+    {
+      "category": "travel",
+      "rate": 5,
+      "note": "via Chase Travel portal"
+    },
+    {
+      "category": "dining",
+      "rate": 3
+    },
+    {
+      "category": "streaming",
+      "rate": 3
+    },
+    {
+      "category": "online_grocery",
+      "rate": 3
+    },
+    {
+      "category": "other",
+      "rate": 1
+    }
+  ],
+  "benefits": [
+    "Primary rental car insurance",
+    "Trip cancellation/interruption insurance",
+    "$50 annual hotel credit via Chase Travel",
+    "No foreign transaction fees",
+    "Purchase protection",
+    "Extended warranty protection",
+    "Trip delay reimbursement"
+  ],
+  "credit_score_required": "good",
+  "best_for": [
+    "Travel enthusiasts",
+    "Dining out frequently",
+    "Flexible redemption options",
+    "First premium travel card"
+  ],
+  "restrictions": [
+    "5/24 rule applies",
+    "One Sapphire bonus per 48 months"
+  ],
+  "affiliate_link": "",
+  "updated_at": "2026-01-14T00:00:00Z"
+}
