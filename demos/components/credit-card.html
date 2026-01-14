@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Credit Card Component - MilesAI</title>
-  <link rel="stylesheet" href="../../design/design-system.css">
+  <title>Credit Card Catalog - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
+      background: var(--color-bg-canvas);
       padding: var(--space-8);
     }
 
@@ -17,6 +20,23 @@
 
     .page-header {
       margin-bottom: var(--space-12);
+      text-align: center;
+    }
+
+    .page-header__title {
+      font-size: var(--text-5xl);
+      font-weight: var(--font-black);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .page-header__subtitle {
+      color: var(--color-text-secondary);
+      font-size: var(--text-lg);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: var(--leading-relaxed);
     }
 
     .cards-grid {
@@ -25,10 +45,10 @@
       gap: var(--space-8);
     }
 
-    /* Card Product Enhanced Styles */
+    /* Card Product - No Gradients */
     .card-product {
-      background: var(--color-bg-primary);
-      border: 1px solid var(--color-border);
+      background: white;
+      border: 2px solid var(--color-border);
       border-radius: var(--radius-2xl);
       padding: var(--space-6);
       box-shadow: var(--shadow-card);
@@ -38,10 +58,12 @@
     }
 
     .card-product:hover {
-      box-shadow: var(--shadow-card-hover);
+      box-shadow: var(--shadow-elevated);
       transform: translateY(-4px);
+      border-color: var(--color-primary);
     }
 
+    /* Solid accent stripe instead of gradient */
     .card-product::before {
       content: '';
       position: absolute;
@@ -49,7 +71,7 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: var(--gradient-primary);
+      background: var(--color-secondary);
       opacity: 0;
       transition: opacity var(--transition-normal);
     }
@@ -66,10 +88,11 @@
       align-items: flex-start;
     }
 
+    /* Solid navy card visual instead of gradient */
     .card-product__card-visual {
       width: 100%;
       height: 140px;
-      background: var(--gradient-primary);
+      background: var(--color-primary);
       border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
@@ -79,6 +102,17 @@
       font-weight: var(--font-bold);
       margin-bottom: var(--space-5);
       box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .card-product__card-visual::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-accent);
     }
 
     .card-product__info {
@@ -87,7 +121,7 @@
 
     .card-product__name {
       font-size: var(--text-xl);
-      font-weight: var(--font-semibold);
+      font-weight: var(--font-bold);
       color: var(--color-text-primary);
       margin: 0 0 var(--space-1);
     }
@@ -99,43 +133,66 @@
     }
 
     .card-product__network {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
       font-size: var(--text-xs);
-      padding: var(--space-1) var(--space-2);
-      background: var(--color-bg-tertiary);
-      border-radius: var(--radius-sm);
-      color: var(--color-text-muted);
+      padding: var(--space-1) var(--space-3);
+      background: var(--neutral-100);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      color: var(--color-text-secondary);
       text-transform: uppercase;
-      font-weight: var(--font-medium);
+      font-weight: var(--font-semibold);
+      letter-spacing: var(--tracking-wide);
     }
 
+    /* Bonus section - Solid border instead of gradient bg */
     .card-product__bonus {
-      background: var(--gradient-primary-soft);
+      background: white;
+      border: 2px solid var(--color-accent);
       border-radius: var(--radius-lg);
       padding: var(--space-5);
       text-align: center;
       margin-bottom: var(--space-5);
-      border: 1px solid var(--color-primary-light);
+      position: relative;
+    }
+
+    .card-product__bonus::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--color-accent);
     }
 
     .card-product__bonus .value {
       display: block;
-      font-size: var(--text-3xl);
-      font-weight: var(--font-bold);
+      font-family: var(--font-mono);
+      font-size: var(--text-4xl);
+      font-weight: var(--font-black);
       color: var(--color-primary);
       font-variant-numeric: tabular-nums;
+      line-height: 1;
     }
 
     .card-product__bonus .label {
       font-size: var(--text-sm);
       color: var(--color-text-secondary);
-      margin-top: var(--space-1);
+      margin-top: var(--space-2);
+      font-weight: var(--font-semibold);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
     }
 
     .card-product__bonus .requirement {
       font-size: var(--text-xs);
       color: var(--color-text-muted);
-      margin-top: var(--space-2);
+      margin-top: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--color-divider);
     }
 
     .card-product__section {
@@ -144,11 +201,14 @@
 
     .card-product__section-title {
       font-size: var(--text-sm);
-      font-weight: var(--font-semibold);
+      font-weight: var(--font-bold);
       color: var(--color-text-primary);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: var(--tracking-wide);
       margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
     }
 
     .card-product__rates {
@@ -171,13 +231,16 @@
     }
 
     .card-product__rates .rate {
-      font-weight: var(--font-semibold);
+      font-family: var(--font-mono);
+      font-weight: var(--font-bold);
       color: var(--color-success);
-      font-size: var(--text-base);
+      font-size: var(--text-lg);
+      font-variant-numeric: tabular-nums;
     }
 
     .card-product__rates .category {
       color: var(--color-text-secondary);
+      font-weight: var(--font-medium);
     }
 
     .card-product__rates .note {
@@ -194,18 +257,24 @@
 
     .card-product__benefits li {
       padding: var(--space-2) 0;
-      padding-left: var(--space-6);
+      padding-left: var(--space-7);
       position: relative;
       font-size: var(--text-sm);
       color: var(--color-text-secondary);
+      line-height: var(--leading-relaxed);
     }
 
+    /* Lucide icon instead of emoji */
     .card-product__benefits li::before {
-      content: '✓';
+      content: '';
       position: absolute;
       left: 0;
-      color: var(--color-success);
-      font-weight: var(--font-bold);
+      top: var(--space-2);
+      width: 20px;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2315803d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
     }
 
     .card-product__tags {
@@ -220,7 +289,7 @@
       justify-content: space-between;
       align-items: center;
       padding-top: var(--space-5);
-      border-top: 1px solid var(--color-divider);
+      border-top: 2px solid var(--color-divider);
       margin-top: var(--space-5);
     }
 
@@ -230,14 +299,20 @@
     }
 
     .annual-fee__value {
-      font-size: var(--text-xl);
-      font-weight: var(--font-semibold);
+      font-family: var(--font-mono);
+      font-size: var(--text-2xl);
+      font-weight: var(--font-black);
       color: var(--color-text-primary);
+      font-variant-numeric: tabular-nums;
     }
 
     .annual-fee__label {
       font-size: var(--text-xs);
       color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      font-weight: var(--font-semibold);
+      margin-top: var(--space-1);
     }
 
     .loading {
@@ -257,21 +332,24 @@
 
   <div class="demo-container">
     <header class="page-header">
-      <h1>Credit Card Catalog</h1>
-      <p style="color: var(--color-text-secondary); font-size: var(--text-lg);">
-        Find the best credit card for your spending patterns. All data updated regularly with transparent analysis.
+      <h1 class="page-header__title">Credit Card Catalog</h1>
+      <p class="page-header__subtitle">
+        Find optimal credit cards for your spending patterns. All data updated regularly with transparent analysis.
       </p>
     </header>
 
     <div id="cards-container" class="cards-grid">
       <div class="loading">
-        <div class="spinner" style="width: 40px; height: 40px; margin: 0 auto var(--space-4);"></div>
-        <p>Loading card data...</p>
+        <i data-lucide="loader-2" class="icon icon--lg" style="animation: spin 1s linear infinite;"></i>
+        <p style="margin-top: var(--space-3);">Loading card data...</p>
       </div>
     </div>
   </div>
 
   <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
     // Fetch and display credit card data
     async function loadCreditCards() {
       const cardsContainer = document.getElementById('cards-container');
@@ -295,9 +373,12 @@
           cardsContainer.appendChild(cardElement);
         });
 
+        // Reinitialize Lucide icons for dynamically added content
+        lucide.createIcons();
+
       } catch (error) {
         console.error('Error loading card data:', error);
-        cardsContainer.innerHTML = '<p style="color: var(--color-danger); text-align: center;">Error loading card data. Please try again later.</p>';
+        cardsContainer.innerHTML = '<p style="color: var(--color-error); text-align: center;">Error loading card data. Please try again later.</p>';
       }
     }
 
@@ -335,7 +416,10 @@
           <div class="card-product__info">
             <h3 class="card-product__name">${card.name}</h3>
             <p class="card-product__issuer">${formatIssuer(card.issuer)}</p>
-            <span class="card-product__network">${card.network}</span>
+            <span class="card-product__network">
+              <i data-lucide="credit-card" class="icon icon--xs"></i>
+              ${card.network}
+            </span>
           </div>
         </div>
 
@@ -348,14 +432,20 @@
         </div>
 
         <div class="card-product__section">
-          <h4 class="card-product__section-title">Earning Rates</h4>
+          <h4 class="card-product__section-title">
+            <i data-lucide="trending-up" class="icon icon--xs"></i>
+            <span>Earning Rates</span>
+          </h4>
           <ul class="card-product__rates">
             ${ratesHTML}
           </ul>
         </div>
 
         <div class="card-product__section">
-          <h4 class="card-product__section-title">Key Benefits</h4>
+          <h4 class="card-product__section-title">
+            <i data-lucide="star" class="icon icon--xs"></i>
+            <span>Key Benefits</span>
+          </h4>
           <ul class="card-product__benefits">
             ${benefitsHTML}
           </ul>
@@ -370,7 +460,10 @@
             <span class="annual-fee__value">$${card.annual_fee}</span>
             <span class="annual-fee__label">Annual Fee</span>
           </div>
-          <button class="btn btn-primary">Learn More</button>
+          <button class="btn btn-accent">
+            <i data-lucide="arrow-right" class="icon icon--sm"></i>
+            <span>View Full Details</span>
+          </button>
         </footer>
       `;
 
@@ -393,6 +486,16 @@
       };
       return issuers[issuer] || issuer;
     }
+
+    // Animation for loader
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
 
     // Load cards when page loads
     document.addEventListener('DOMContentLoaded', loadCreditCards);
