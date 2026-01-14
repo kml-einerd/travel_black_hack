@@ -1,0 +1,27 @@
+{
+  "id": "chase-ultimate-rewards",
+  "name": "Chase Ultimate Rewards",
+  "type": "bank",
+  "cpp_values": {
+    "cashback": 1.0,
+    "travel_portal": 1.25,
+    "transfer_average": 1.8,
+    "transfer_best": 2.5
+  },
+  "transfer_partners": [
+    {
+      "program": "United MileagePlus",
+      "ratio": "1:1",
+      "transfer_time": "instant",
+      "sweet_spots": ["Polaris to Europe 70K"]
+    },
+    {
+      "program": "Hyatt World of Hyatt",
+      "ratio": "1:1",
+      "transfer_time": "instant",
+      "sweet_spots": ["Category 1-4 hotels 5K-15K"]
+    }
+  ],
+  "expiration_policy": "No expiration while account active",
+  "updated_at": "2026-01-14T00:00:00Z"
+}
