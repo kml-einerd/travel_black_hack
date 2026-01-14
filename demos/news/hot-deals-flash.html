@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hot Deals Flash Feed - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: var(--space-8); }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: var(--space-12);
+    }
+
+    .page-header h1 {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      justify-content: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .filter-btn {
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-btn:hover {
+      background: var(--color-bg-tertiary);
+    }
+
+    .filter-btn.active {
+      background: var(--gradient-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: var(--space-6);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .deal-card {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .deal-card:hover {
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-4px);
+    }
+
+    .deal-card--critical {
+      border-color: var(--color-danger);
+      background: linear-gradient(to bottom, var(--color-danger-light) 0%, white 30%);
+    }
+
+    .deal-card--urgent {
+      border-color: var(--color-warning);
+    }
+
+    .deal-card__image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .deal-card__content {
+      padding: var(--space-5);
+    }
+
+    .deal-card__badge {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      z-index: 1;
+    }
+
+    .deal-card__title {
+      font-size: var(--text-lg);
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-2);
+      line-height: 1.3;
+    }
+
+    .deal-card__subtitle {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-4);
+    }
+
+    .deal-card__value {
+      background: var(--color-success-light);
+      color: var(--color-success-dark);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      font-weight: var(--font-semibold);
+      display: inline-block;
+      margin-bottom: var(--space-4);
+    }
+
+    .deal-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-divider);
+    }
+
+    @media (max-width: 768px) {
+      .deals-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container container--lg">
+    <header class="page-header">
+      <h1>🔥 Hot Deals Flash Feed</h1>
+      <p style="color: var(--color-text-secondary); font-size: var(--text-lg);">
+        Time-sensitive opportunities that expire in 24-72 hours
+      </p>
+    </header>
+
+    <div class="filters" id="filters">
+      <!-- Filters loaded dynamically -->
+    </div>
+
+    <div class="deals-grid" id="deals-grid">
+      <!-- Deals loaded dynamically -->
+    </div>
+  </div>
+
+  <script>
+    let allDeals = [];
+    let activeFilter = 'all';
+
+    async function loadDeals() {
+      try {
+        const response = await fetch('../data/hot-deals.json');
+        const data = await response.json();
+        allDeals = data.hot_deals;
+
+        renderFilters(data.filters);
+        renderDeals(allDeals);
+        startCountdowns();
+      } catch (error) {
+        console.error('Error loading deals:', error);
+      }
+    }
+
+    function renderFilters(filters) {
+      const filtersContainer = document.getElementById('filters');
+      filtersContainer.innerHTML = filters.map(filter => `
+        <button class="filter-btn ${filter.id === 'all' ? 'active' : ''}"
+                data-filter="${filter.id}">
+          ${filter.label} (${filter.count})
+        </button>
+      `).join('');
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          activeFilter = e.target.dataset.filter;
+          filterDeals();
+        });
+      });
+    }
+
+    function filterDeals() {
+      const filtered = activeFilter === 'all'
+        ? allDeals
+        : allDeals.filter(deal => deal.category === activeFilter);
+      renderDeals(filtered);
+      startCountdowns();
+    }
+
+    function renderDeals(deals) {
+      const grid = document.getElementById('deals-grid');
+
+      grid.innerHTML = deals.map(deal => `
+        <article class="deal-card deal-card--${deal.urgency}">
+          <span class="deal-card__badge badge badge--${deal.urgency === 'critical' ? 'danger' : deal.urgency === 'urgent' ? 'warning' : 'info'}">
+            ${deal.urgency === 'critical' ? '🔴 ENDING SOON' : deal.urgency === 'urgent' ? '🟠 ACT NOW' : '🔵 IMPORTANT'}
+          </span>
+
+          <img src="${deal.image}" alt="${deal.title}" class="deal-card__image">
+
+          <div class="deal-card__content">
+            <h3 class="deal-card__title">${deal.title}</h3>
+            <p class="deal-card__subtitle">${deal.subtitle}</p>
+
+            <div class="deal-card__value">
+              💰 ${deal.value_estimate}
+            </div>
+
+            <div class="countdown countdown--${deal.urgency === 'critical' ? 'urgent' : ''}"
+                 data-expires="${deal.expires_at}">
+              <div class="countdown__unit">
+                <span class="countdown__value hours">00</span>
+                <span class="countdown__label">hrs</span>
+              </div>
+              <span class="countdown__separator">:</span>
+              <div class="countdown__unit">
+                <span class="countdown__value minutes">00</span>
+                <span class="countdown__label">min</span>
+              </div>
+              <span class="countdown__separator">:</span>
+              <div class="countdown__unit">
+                <span class="countdown__value seconds">00</span>
+                <span class="countdown__label">sec</span>
+              </div>
+            </div>
+
+            <div class="deal-card__footer">
+              <div>
+                <small style="color: var(--color-text-muted); font-size: var(--text-xs);">
+                  ${deal.requirements}
+                </small>
+              </div>
+              <button class="btn btn-primary btn--sm" onclick="window.open('${deal.cta_url}', '_blank')">
+                ${deal.cta_text}
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function startCountdowns() {
+      const countdowns = document.querySelectorAll('.countdown');
+
+      countdowns.forEach(countdown => {
+        const expiresAt = new Date(countdown.dataset.expires).getTime();
+
+        const interval = setInterval(() => {
+          const now = new Date().getTime();
+          const distance = expiresAt - now;
+
+          if (distance < 0) {
+            clearInterval(interval);
+            countdown.innerHTML = '<span style="color: var(--color-danger); font-weight: bold;">EXPIRED</span>';
+            return;
+          }
+
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          countdown.querySelector('.hours').textContent = String(hours).padStart(2, '0');
+          countdown.querySelector('.minutes').textContent = String(minutes).padStart(2, '0');
+          countdown.querySelector('.seconds').textContent = String(seconds).padStart(2, '0');
+        }, 1000);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDeals);
+  </script>
+
+</body>
+</html>

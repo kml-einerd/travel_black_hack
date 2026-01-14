@@ -1,0 +1,144 @@
+{
+  "hot_deals": [
+    {
+      "id": "deal-001",
+      "category": "transfer_bonus",
+      "urgency": "critical",
+      "title": "Amex 40% Transfer Bonus to Avianca LifeMiles",
+      "subtitle": "Ends in 3 days - Best transfer bonus of 2026",
+      "value_estimate": "$600 extra on 100K transfer",
+      "expires_at": "2026-01-25T23:59:59Z",
+      "expires_in_hours": 72,
+      "priority": "high",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600",
+      "requirements": "Existing Amex MR cardholder",
+      "best_for": ["Star Alliance awards", "South America travel"],
+      "cta_text": "Transfer Now",
+      "cta_url": "https://americanexpress.com/rewards",
+      "details": {
+        "transfer_ratio": "1:1.4",
+        "min_transfer": 1000,
+        "sweet_spots": [
+          "Star Alliance Business 63K one-way",
+          "USA-Europe Business from 45K",
+          "Free stopover in Colombia"
+        ]
+      },
+      "created_at": "2026-01-22T10:00:00Z"
+    },
+    {
+      "id": "deal-002",
+      "category": "card_bonus",
+      "urgency": "urgent",
+      "title": "Chase Ink Preferred 100K — Highest Ever Public Offer",
+      "subtitle": "Business card with no revenue verification",
+      "value_estimate": "$1,250 in travel value",
+      "expires_at": "2026-02-15T23:59:59Z",
+      "expires_in_hours": 456,
+      "priority": "high",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600",
+      "requirements": "Good credit (700+), business entity (sole proprietor OK)",
+      "best_for": ["Small business owners", "Freelancers", "Side hustlers"],
+      "cta_text": "Apply Now",
+      "cta_url": "#",
+      "details": {
+        "annual_fee": "$95",
+        "spend_requirement": "$8,000 in 3 months",
+        "earning_rates": {
+          "travel": "3x",
+          "shipping": "3x",
+          "internet": "3x",
+          "other": "1x"
+        },
+        "note": "Subject to Chase 5/24 rule"
+      },
+      "created_at": "2026-01-20T14:00:00Z"
+    },
+    {
+      "id": "deal-003",
+      "category": "award_availability",
+      "urgency": "urgent",
+      "title": "ANA First Class JFK-NRT Wide Open for March",
+      "subtitle": "2-4 seats available on multiple dates",
+      "value_estimate": "$18,000 cash value per ticket",
+      "expires_at": "2026-01-20T18:00:00Z",
+      "expires_in_hours": 6,
+      "priority": "urgent",
+      "image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600",
+      "requirements": "110K Virgin Atlantic miles + $86 taxes",
+      "best_for": ["Luxury travelers", "Honeymoons", "Special occasions"],
+      "cta_text": "Check Availability",
+      "cta_url": "#",
+      "details": {
+        "route": "JFK → NRT",
+        "airline": "ANA (All Nippon Airways)",
+        "cabin": "First Class (The Suite)",
+        "dates_available": ["Mar 15", "Mar 17", "Mar 20", "Mar 22"],
+        "cpp_value": "16.3¢",
+        "amenities": ["Private suite", "Kaiseki dining", "Pajamas", "Amenity kit"]
+      },
+      "created_at": "2026-01-14T12:00:00Z"
+    },
+    {
+      "id": "deal-004",
+      "category": "hotel_promo",
+      "urgency": "medium",
+      "title": "Hyatt Points + Cash: 50% Bonus Points Back",
+      "subtitle": "Book with points and cash, get half your points refunded",
+      "value_estimate": "Up to 15K points back per stay",
+      "expires_at": "2026-03-31T23:59:59Z",
+      "expires_in_hours": 1368,
+      "priority": "medium",
+      "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600",
+      "requirements": "World of Hyatt member (free to join)",
+      "best_for": ["Category 5-7 hotels", "Flexible booking", "Point stretching"],
+      "cta_text": "Book Now",
+      "cta_url": "https://hyatt.com",
+      "details": {
+        "promotion_type": "Points back",
+        "max_refund": "15,000 points per stay",
+        "eligible_properties": "All Hyatt brands",
+        "booking_window": "Now through March 31"
+      },
+      "created_at": "2026-01-10T09:00:00Z"
+    },
+    {
+      "id": "deal-005",
+      "category": "mistake_fare",
+      "urgency": "critical",
+      "title": "⚡ MISTAKE FARE: LA to Bali $287 RT (Qatar Airways)",
+      "subtitle": "Book NOW before it's killed - normally $1,200+",
+      "value_estimate": "$913 savings per ticket",
+      "expires_at": "2026-01-14T18:00:00Z",
+      "expires_in_hours": 2,
+      "priority": "urgent",
+      "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600",
+      "requirements": "None - cash fare, anyone can book",
+      "best_for": ["Flexible travelers", "Quick decision makers"],
+      "cta_text": "Book Immediately",
+      "cta_url": "https://qatarairways.com",
+      "details": {
+        "route": "LAX → DPS (via DOH)",
+        "airline": "Qatar Airways",
+        "cabin": "Economy",
+        "dates_available": ["Feb 15-Mar 15 departures"],
+        "ticket_class": "Q class (earns miles)",
+        "warning": "May not be honored - book at your own risk"
+      },
+      "created_at": "2026-01-14T14:30:00Z"
+    }
+  ],
+  "filters": [
+    {"id": "all", "label": "All Deals", "count": 5},
+    {"id": "transfer_bonus", "label": "Transfer Bonuses", "count": 1},
+    {"id": "card_bonus", "label": "Card Offers", "count": 1},
+    {"id": "award_availability", "label": "Award Availability", "count": 1},
+    {"id": "hotel_promo", "label": "Hotel Promos", "count": 1},
+    {"id": "mistake_fare", "label": "Mistake Fares", "count": 1}
+  ],
+  "urgency_levels": {
+    "critical": {"color": "#dc2626", "label": "ENDING SOON", "icon": "🔴"},
+    "urgent": {"color": "#d97706", "label": "ACT NOW", "icon": "🟠"},
+    "medium": {"color": "#0284c7", "label": "IMPORTANT", "icon": "🔵"}
+  }
+}
