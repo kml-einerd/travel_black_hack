@@ -3,66 +3,243 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Award Availability Checker</title>
+  <title>Award Availability Checker - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    body { padding: 2rem; background: var(--color-bg-canvas); }
-    .container { max-width: 900px; margin: 0 auto; }
-    .header { text-align: center; margin-bottom: 3rem; }
-    .search-box { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-    .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
-    input { width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; }
-    .tools-list { display: grid; gap: 1rem; }
-    .tool-card { background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+    body {
+      padding: var(--space-8);
+      background: var(--color-bg-canvas);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: var(--space-12);
+    }
+
+    .header__title {
+      font-size: var(--text-5xl);
+      font-weight: var(--font-black);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+      letter-spacing: var(--tracking-tight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+
+    .header__subtitle {
+      color: var(--color-text-secondary);
+      font-size: var(--text-lg);
+    }
+
+    .search-box {
+      background: white;
+      padding: var(--space-8);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-card);
+      margin-bottom: var(--space-8);
+    }
+
+    .search-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .search-help {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-divider);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .tools-list {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .tool-card {
+      background: white;
+      padding: var(--space-6);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--transition-normal);
+    }
+
+    .tool-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-2px);
+    }
+
+    .tool-card__icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--neutral-100);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      color: var(--color-secondary);
+      flex-shrink: 0;
+      margin-right: var(--space-4);
+    }
+
+    .tool-card__content {
+      flex: 1;
+    }
+
+    .tool-card__name {
+      font-size: var(--text-lg);
+      font-weight: var(--font-bold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    .tool-card__description {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .tool-card__main {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    @media (max-width: 640px) {
+      .tool-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-4);
+      }
+
+      .tool-card__main {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">🔍 Award Availability Checker</h1>
-      <p style="color: #64748b;">Quick access to all major award search tools</p>
+      <h1 class="header__title">
+        <i data-lucide="search" class="icon icon--xl"></i>
+        <span>Award Availability Checker</span>
+      </h1>
+      <p class="header__subtitle">Quick access to all major award search tools</p>
     </div>
 
     <div class="search-box">
       <div class="search-grid">
-        <input type="text" id="origin" placeholder="Origin (e.g., SFO)" maxlength="3">
-        <input type="text" id="dest" placeholder="Destination (e.g., NRT)" maxlength="3">
-        <input type="date" id="date">
+        <div class="input-group">
+          <label for="origin">Origin</label>
+          <input type="text" id="origin" class="input" placeholder="SFO" maxlength="3">
+        </div>
+        <div class="input-group">
+          <label for="dest">Destination</label>
+          <input type="text" id="dest" class="input" placeholder="NRT" maxlength="3">
+        </div>
+        <div class="input-group">
+          <label for="date">Travel Date</label>
+          <input type="date" id="date" class="input">
+        </div>
       </div>
-      <p style="font-size: 0.875rem; color: #64748b; margin-top: 1rem;">Enter your search criteria and click a tool below to search</p>
+      <div class="search-help">
+        <i data-lucide="info" class="icon icon--xs"></i>
+        <span>Enter your search criteria and click a tool below to search</span>
+      </div>
     </div>
 
     <div class="tools-list">
       <div class="tool-card">
-        <div>
-          <strong>United.com</strong>
-          <div style="font-size: 0.875rem; color: #64748b;">Best for Star Alliance</div>
+        <div class="tool-card__main">
+          <div class="tool-card__icon">
+            <i data-lucide="plane" class="icon icon--lg"></i>
+          </div>
+          <div class="tool-card__content">
+            <div class="tool-card__name">United.com</div>
+            <div class="tool-card__description">Best for Star Alliance award space</div>
+          </div>
         </div>
-        <a href="https://www.united.com/en/us/fsr/choose-flights" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+        <a href="https://www.united.com/en/us/fsr/choose-flights" target="_blank" class="btn btn-secondary">
+          <span>Search United</span>
+          <i data-lucide="arrow-right" class="icon icon--sm"></i>
+        </a>
       </div>
+
       <div class="tool-card">
-        <div>
-          <strong>British Airways</strong>
-          <div style="font-size: 0.875rem; color: #64748b;">Best for oneworld</div>
+        <div class="tool-card__main">
+          <div class="tool-card__icon">
+            <i data-lucide="globe" class="icon icon--lg"></i>
+          </div>
+          <div class="tool-card__content">
+            <div class="tool-card__name">British Airways</div>
+            <div class="tool-card__description">Best for oneworld partner awards</div>
+          </div>
         </div>
-        <a href="https://www.britishairways.com/travel/home/public/en_us" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+        <a href="https://www.britishairways.com/travel/home/public/en_us" target="_blank" class="btn btn-secondary">
+          <span>Search BA</span>
+          <i data-lucide="arrow-right" class="icon icon--sm"></i>
+        </a>
       </div>
+
       <div class="tool-card">
-        <div>
-          <strong>AwardFares</strong>
-          <div style="font-size: 0.875rem; color: #64748b;">Premium cross-program search</div>
+        <div class="tool-card__main">
+          <div class="tool-card__icon">
+            <i data-lucide="zap" class="icon icon--lg"></i>
+          </div>
+          <div class="tool-card__content">
+            <div class="tool-card__name">AwardFares</div>
+            <div class="tool-card__description">Premium cross-program search engine</div>
+          </div>
         </div>
-        <a href="https://awardfares.com" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+        <a href="https://awardfares.com" target="_blank" class="btn btn-accent">
+          <span>Search AwardFares</span>
+          <i data-lucide="external-link" class="icon icon--sm"></i>
+        </a>
       </div>
+
       <div class="tool-card">
-        <div>
-          <strong>Point.me</strong>
-          <div style="font-size: 0.875rem; color: #64748b;">AI-powered award search</div>
+        <div class="tool-card__main">
+          <div class="tool-card__icon">
+            <i data-lucide="sparkles" class="icon icon--lg"></i>
+          </div>
+          <div class="tool-card__content">
+            <div class="tool-card__name">Point.me</div>
+            <div class="tool-card__description">AI-powered award search assistant</div>
+          </div>
         </div>
-        <a href="https://point.me" target="_blank" class="btn btn-primary btn--sm">Search →</a>
+        <a href="https://point.me" target="_blank" class="btn btn-accent">
+          <span>Search Point.me</span>
+          <i data-lucide="external-link" class="icon icon--sm"></i>
+        </a>
       </div>
     </div>
   </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
 </body>
 </html>
