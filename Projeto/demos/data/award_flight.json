@@ -1,0 +1,29 @@
+{
+  "id": "flight-jfk-cdg-ua-001",
+  "origin": {
+    "code": "JFK",
+    "city": "New York",
+    "country": "US"
+  },
+  "destination": {
+    "code": "CDG",
+    "city": "Paris",
+    "country": "FR"
+  },
+  "airline": "United Airlines",
+  "flight_number": "UA57",
+  "cabin_class": "business",
+  "program": "United MileagePlus",
+  "points_required": 70000,
+  "taxes_usd": 150,
+  "cash_price_usd": 4500,
+  "cpp_value": 6.21,
+  "cpp_rating": "excellent",
+  "availability": {
+    "dates_available": ["2026-03-15", "2026-03-17", "2026-03-22"],
+    "seats_typical": 2
+  },
+  "route_type": "direct",
+  "duration_hours": 7.5,
+  "updated_at": "2026-01-14T00:00:00Z"
+}

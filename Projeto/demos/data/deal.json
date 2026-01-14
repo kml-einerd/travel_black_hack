@@ -1,0 +1,16 @@
+{
+  "id": "deal-2026-01-001",
+  "type": "card_bonus",
+  "title": "Amex Gold 90K Limited Time",
+  "description": "Increased welcome bonus of 90K MR points",
+  "value_estimate": 1800,
+  "original_value": 1200,
+  "savings_percent": 50,
+  "requirements": "Spend $6K in 6 months",
+  "expires_at": "2026-02-28T23:59:59Z",
+  "source_url": "https://...",
+  "tags": ["amex", "gold", "welcome-bonus"],
+  "is_targeted": false,
+  "priority": "high",
+  "created_at": "2026-01-10T00:00:00Z"
+}
