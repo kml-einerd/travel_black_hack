@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Ticker - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: 2rem; background: var(--color-bg-canvas); }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .ticker-container { background: white; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
+    .ticker-header { background: linear-gradient(135deg, #dc2626, #991b1b); color: white; padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .live-badge { background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem; }
+    .pulse { width: 8px; height: 8px; background: #fef2f2; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .ticker-item { padding: 1.5rem; border-bottom: 1px solid #e5e7eb; transition: background 0.2s; }
+    .ticker-item:hover { background: #f8fafc; }
+    .ticker-item:last-child { border-bottom: none; }
+    .ticker-time { font-size: 0.875rem; color: #64748b; margin-bottom: 0.5rem; }
+    .ticker-content { font-size: 1rem; color: #1e293b; line-height: 1.6; }
+    .ticker-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; margin-left: 0.5rem; }
+    .ticker-badge--bonus { background: #dcfce7; color: #166534; }
+    .ticker-badge--alert { background: #fee2e2; color: #991b1b; }
+    .ticker-badge--news { background: #dbeafe; color: #1e40af; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">📡 Live Ticker</h1>
+      <p style="color: #64748b;">Real-time updates on bonuses, deals, and breaking news</p>
+    </div>
+
+    <div class="ticker-container">
+      <div class="ticker-header">
+        <h2 style="font-size: 1.5rem; font-weight: 700; margin: 0;">Latest Updates</h2>
+        <div class="live-badge">
+          <div class="pulse"></div>
+          <span>LIVE</span>
+        </div>
+      </div>
+
+      <div id="ticker-feed">
+        <div class="ticker-item">
+          <div class="ticker-time">2 minutes ago</div>
+          <div class="ticker-content">
+            <strong>New Transfer Bonus:</strong> Capital One 40% to Avianca LifeMiles extended through Jan 31st
+            <span class="ticker-badge ticker-badge--bonus">BONUS</span>
+          </div>
+        </div>
+
+        <div class="ticker-item">
+          <div class="ticker-time">15 minutes ago</div>
+          <div class="ticker-content">
+            <strong>Award Space Alert:</strong> ANA First Class availability SFO-NRT opens up for March 15-22
+            <span class="ticker-badge ticker-badge--alert">ALERT</span>
+          </div>
+        </div>
+
+        <div class="ticker-item">
+          <div class="ticker-time">1 hour ago</div>
+          <div class="ticker-content">
+            <strong>Breaking:</strong> Chase Sapphire Preferred SUB increased to 80K points (in-branch only)
+            <span class="ticker-badge ticker-badge--news">NEWS</span>
+          </div>
+        </div>
+
+        <div class="ticker-item">
+          <div class="ticker-time">2 hours ago</div>
+          <div class="ticker-content">
+            <strong>Devaluation Warning:</strong> United MileagePlus removing Saver awards to Europe starting Feb 1st
+            <span class="ticker-badge ticker-badge--alert">ALERT</span>
+          </div>
+        </div>
+
+        <div class="ticker-item">
+          <div class="ticker-time">3 hours ago</div>
+          <div class="ticker-content">
+            <strong>Hotel Promo:</strong> Hilton 2X points on all stays through February
+            <span class="ticker-badge ticker-badge--bonus">BONUS</span>
+          </div>
+        </div>
+
+        <div class="ticker-item">
+          <div class="ticker-time">4 hours ago</div>
+          <div class="ticker-content">
+            <strong>Card Launch:</strong> Capital One Venture X Business now available for applications
+            <span class="ticker-badge ticker-badge--news">NEWS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simulate live updates
+    function addUpdate() {
+      const updates = [
+        {type: 'bonus', text: 'Amex offers 25% transfer bonus to British Airways Avios - limited time'},
+        {type: 'alert', text: 'Emirates First Class space opening on popular routes'},
+        {type: 'news', text: 'Marriott announces new elite night credit promotion'},
+        {type: 'bonus', text: 'Southwest Companion Pass bonus: 30K qualifying points promotion'}
+      ];
+
+      const feed = document.getElementById('ticker-feed');
+      const random = updates[Math.floor(Math.random() * updates.length)];
+      const badgeClass = random.type === 'bonus' ? 'ticker-badge--bonus' : 
+                        random.type === 'alert' ? 'ticker-badge--alert' : 'ticker-badge--news';
+      const badgeText = random.type.toUpperCase();
+
+      const newItem = document.createElement('div');
+      newItem.className = 'ticker-item';
+      newItem.innerHTML = `
+        <div class="ticker-time">Just now</div>
+        <div class="ticker-content">
+          ${random.text}
+          <span class="ticker-badge ${badgeClass}">${badgeText}</span>
+        </div>
+      `;
+
+      feed.insertBefore(newItem, feed.firstChild);
+      
+      // Remove oldest if more than 10
+      if (feed.children.length > 10) {
+        feed.removeChild(feed.lastChild);
+      }
+    }
+
+    // Add new update every 30 seconds
+    setInterval(addUpdate, 30000);
+  </script>
+</body>
+</html>

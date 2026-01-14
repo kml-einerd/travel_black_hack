@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Alerts - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: 2rem; background: var(--color-bg-canvas); }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .deal-card { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 1.5rem; border-left: 4px solid #dc2626; }
+    .deal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+    .deal-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .deal-urgency { background: #dc2626; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; }
+    .deal-details { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">🚨 Deal Alerts</h1>
+      <p style="color: #64748b;">Time-sensitive deals and opportunities</p>
+    </div>
+
+    <div class="deal-card">
+      <div class="deal-header">
+        <div style="flex: 1;">
+          <div class="deal-title">🔥 Amex Gold 90K Welcome Bonus</div>
+          <div style="color: #64748b; font-size: 0.875rem;">Public offer • Expires Jan 31st</div>
+        </div>
+        <div class="deal-urgency">⏰ 17 days left</div>
+      </div>
+      <p style="color: #64748b; margin-bottom: 1rem;">
+        Highest public offer ever for Amex Gold. Usually 60K, now 90K after $6K spend in 6 months.
+      </p>
+      <div class="deal-details">
+        <div style="margin-bottom: 0.5rem;"><strong>Welcome Bonus:</strong> 90,000 Membership Rewards points</div>
+        <div style="margin-bottom: 0.5rem;"><strong>Minimum Spend:</strong> $6,000 in 6 months</div>
+        <div style="margin-bottom: 0.5rem;"><strong>Annual Fee:</strong> $250</div>
+        <div><strong>Bonus Categories:</strong> 4X dining, 4X groceries (up to $25K/year)</div>
+      </div>
+      <a href="#" class="btn btn-primary" style="width: 100%; padding: 1rem;">Apply Now →</a>
+    </div>
+
+    <div class="deal-card" style="border-left-color: #d97706;">
+      <div class="deal-header">
+        <div style="flex: 1;">
+          <div class="deal-title">✈️ Error Fare: US to Europe $250 RT</div>
+          <div style="color: #64748b; font-size: 0.875rem;">Mistake fare • May be cancelled</div>
+        </div>
+        <div class="deal-urgency" style="background: #d97706;">⚡ ACT FAST</div>
+      </div>
+      <p style="color: #64748b; margin-bottom: 1rem;">
+        United showing $250 round-trip fares from East Coast to multiple European cities. Likely error - book now, pay later if it tickets!
+      </p>
+      <div class="deal-details">
+        <div style="margin-bottom: 0.5rem;"><strong>Routes:</strong> NYC, BOS, PHL → LON, PAR, ROM</div>
+        <div style="margin-bottom: 0.5rem;"><strong>Travel Dates:</strong> March - May 2026</div>
+        <div style="margin-bottom: 0.5rem;"><strong>Normal Price:</strong> $800-1,200</div>
+        <div><strong>Savings:</strong> Up to $950 per ticket</div>
+      </div>
+      <a href="#" class="btn btn-primary" style="width: 100%; padding: 1rem;">Search Flights →</a>
+    </div>
+  </div>
+</body>
+</html>

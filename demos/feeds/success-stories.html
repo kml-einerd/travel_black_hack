@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success Stories Feed - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { padding: 2rem; background: var(--color-bg-canvas); }
+    .container { max-width: 800px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .story-card { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    .story-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px solid #f1f5f9; }
+    .story-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #4f46e5, #3730a3); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .story-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .story-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; margin: 1rem 0; }
+    .stat { text-align: center; }
+    .stat-value { font-size: 1.5rem; font-weight: 700; color: #059669; }
+    .stat-label { font-size: 0.875rem; color: #64748b; margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">🏆 Success Stories</h1>
+      <p style="color: #64748b;">Real redemptions from real people in our community</p>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header">
+        <div class="story-avatar">👨</div>
+        <div style="flex: 1;">
+          <div style="font-weight: 600;">@TravelHacker_Mike</div>
+          <div style="font-size: 0.875rem; color: #64748b;">Posted 2 hours ago</div>
+        </div>
+      </div>
+      <h3 class="story-title">Tokyo in ANA First Class for $86 in Taxes</h3>
+      <p style="color: #64748b; line-height: 1.6; margin-bottom: 1rem;">
+        Finally used those Virgin Atlantic miles! Booked 2 seats in ANA First Class from SFO to NRT. Transferred 220K Amex points during the 30% bonus. The Suite was absolutely incredible - private cabin, amazing food, and impeccable service.
+      </p>
+      <div class="story-stats">
+        <div class="stat">
+          <div class="stat-value">110K</div>
+          <div class="stat-label">Points Used</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$18,500</div>
+          <div class="stat-label">Cash Value</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4.2¢</div>
+          <div class="stat-label">CPP</div>
+        </div>
+      </div>
+      <div style="color: #059669; font-weight: 600; background: #dcfce7; padding: 1rem; border-radius: 0.5rem;">
+        💡 Pro Tip: Book ANA through Virgin Atlantic to save 55K points vs booking direct!
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header">
+        <div class="story-avatar">👩</div>
+        <div style="flex: 1;">
+          <div style="font-weight: 600;">@FamilyPoints_Sarah</div>
+          <div style="font-size: 0.875rem; color: #64748b;">Posted 1 day ago</div>
+        </div>
+      </div>
+      <h3 class="story-title">Disney World for Family of 5 — $0 Out of Pocket</h3>
+      <p style="color: #64748b; line-height: 1.6; margin-bottom: 1rem;">
+        Used Southwest Companion Pass + 160K points for flights (5 people). Marriott points for 7 nights at Swan Reserve (280K points). Kids had the time of their lives and we didn't spend a cent on flights or hotels!
+      </p>
+      <div class="story-stats">
+        <div class="stat">
+          <div class="stat-value">440K</div>
+          <div class="stat-label">Total Points</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$6,000</div>
+          <div class="stat-label">Cash Saved</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Nights</div>
+        </div>
+      </div>
+      <div style="color: #059669; font-weight: 600; background: #dcfce7; padding: 1rem; border-radius: 0.5rem;">
+        💡 Pro Tip: Southwest Companion Pass = best deal for families. One person flies free on every flight!
+      </div>
+    </div>
+  </div>
+</body>
+</html>
