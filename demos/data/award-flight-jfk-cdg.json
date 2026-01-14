@@ -1,0 +1,73 @@
+{
+  "id": "flight-jfk-cdg-ua-001",
+  "origin": {
+    "code": "JFK",
+    "city": "New York",
+    "airport": "John F. Kennedy International",
+    "country": "US"
+  },
+  "destination": {
+    "code": "CDG",
+    "city": "Paris",
+    "airport": "Charles de Gaulle",
+    "country": "FR"
+  },
+  "airline": "United Airlines",
+  "flight_number": "UA57",
+  "aircraft": "Boeing 767-300ER",
+  "cabin_class": "business",
+  "cabin_name": "Polaris Business Class",
+  "program": "United MileagePlus",
+  "points_required": 70000,
+  "taxes_usd": 150,
+  "cash_price_usd": 4500,
+  "cpp_value": 6.21,
+  "cpp_rating": "excellent",
+  "value_analysis": {
+    "cash_equivalent": 4350,
+    "points_cost_dollars": 700,
+    "net_savings": 3650,
+    "savings_percent": 81.2
+  },
+  "availability": {
+    "dates_available": [
+      "2026-03-15",
+      "2026-03-17",
+      "2026-03-22",
+      "2026-03-24",
+      "2026-04-05"
+    ],
+    "seats_typical": 2,
+    "last_checked": "2026-01-14T08:00:00Z"
+  },
+  "route_type": "direct",
+  "duration_hours": 7.5,
+  "departure_time": "18:00",
+  "arrival_time": "08:30+1",
+  "amenities": [
+    "Lie-flat seat",
+    "Direct aisle access",
+    "Premium dining",
+    "Amenity kit",
+    "Priority boarding",
+    "Lounge access"
+  ],
+  "booking_notes": [
+    "Book at least 21 days in advance for best availability",
+    "Consider positioning to EWR for more options",
+    "Check Air Canada and Lufthansa for same route"
+  ],
+  "alternative_programs": [
+    {
+      "program": "Aeroplan",
+      "points_required": 60000,
+      "note": "Lower cost but higher fees"
+    },
+    {
+      "program": "Chase Ultimate Rewards",
+      "points_required": 70000,
+      "note": "Transfer 1:1 to United"
+    }
+  ],
+  "updated_at": "2026-01-14T00:00:00Z"
+}
