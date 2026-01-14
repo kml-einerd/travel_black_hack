@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Award Flight Mastery - MilesAI</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body { margin: 0; background: var(--color-bg-canvas); }
+    .hero { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: clamp(4rem, 10vw, 8rem) 2rem; text-align: center; }
+    .hero__title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; }
+    .hero__subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); opacity: 0.95; max-width: 700px; margin: 0 auto 2rem; }
+    .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section--alt { background: white; }
+    .section__title { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 3rem; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .benefit-card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .benefit-card__icon { font-size: 3rem; margin-bottom: 1rem; }
+    .benefit-card__title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .cta-section { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 4rem 2rem; text-align: center; color: white; }
+    .price-box { background: white; color: #1e293b; padding: 2rem; border-radius: 1rem; max-width: 400px; margin: 0 auto 2rem; }
+    .price-box__current { font-size: 3rem; font-weight: 700; color: #059669; }
+    @media (max-width: 768px) { .section { padding: 2rem 1rem; } }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1 class="hero__title">✈️ Award Flight Mastery</h1>
+    <p class="hero__subtitle">
+      The definitive guide to finding and booking award flights in first and business class for pennies on the dollar
+    </p>
+  </section>
+
+  <section class="section">
+    <h2 class="section__title">What You'll Learn</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-card__icon">🔍</div>
+        <h3 class="benefit-card__title">Search Tools Mastery</h3>
+        <p>Master United, British Airways, Air Canada, and premium tools like ExpertFlyer and AwardFares</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">🎯</div>
+        <h3 class="benefit-card__title">Sweet Spot Awards</h3>
+        <p>Discover the 50+ best redemptions across all airline programs and transfer partners</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">📅</div>
+        <h3 class="benefit-card__title">Timing Strategies</h3>
+        <p>When to book, when to wait, and how to maximize your chances of finding space</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">🌍</div>
+        <h3 class="benefit-card__title">Complex Routing</h3>
+        <p>Book stopovers, open-jaws, and multi-city itineraries to visit 3+ destinations for one award</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">💎</div>
+        <h3 class="benefit-card__title">Premium Cabin Secrets</h3>
+        <p>ANA First, Singapore Suites, Emirates - how to actually find and book these unicorn awards</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">🔧</div>
+        <h3 class="benefit-card__title">Booking Hacks</h3>
+        <p>Phone tricks, agent scripts, and workarounds when online booking fails</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Master Award Flight Booking</h2>
+    <div class="price-box">
+      <div class="price-box__current">$37</div>
+      <p style="margin-bottom: 1.5rem;">145 pages • 30+ case studies • Lifetime updates</p>
+      <a href="#" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Get Instant Access →</a>
+    </div>
+    <p style="font-size: 0.9rem; opacity: 0.9;">30-day money-back guarantee</p>
+  </section>
+</body>
+</html>
