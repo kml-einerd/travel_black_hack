@@ -6,6 +6,7 @@
   <title>Hacks Library - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { padding: var(--space-8); background: var(--color-bg-canvas); }
     .page-header {
@@ -299,13 +300,15 @@
     }
 
     .hack-section__list--warnings li::before {
-      content: '⚠️';
+      content: '!';
       position: absolute;
       left: 0;
+      color: var(--color-warning);
+      font-weight: var(--font-bold);
     }
 
     .hack-card__value-highlight {
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
       text-align: center;
@@ -352,7 +355,10 @@
 <body>
   <div class="library-container">
     <header class="page-header">
-      <h1 class="page-header__title">🔧 Hacks Library</h1>
+      <h1 class="page-header__title">
+        <i data-lucide="wrench" class="icon icon--lg"></i>
+        <span>Hacks Library</span>
+      </h1>
       <p class="page-header__subtitle">
         Battle-tested strategies to maximize points, miles, and travel value
       </p>
@@ -380,7 +386,7 @@
         </div>
       </div>
       <div class="search-bar">
-        <span class="search-icon">🔍</span>
+        <i data-lucide="search" class="search-icon icon icon--sm"></i>
         <input type="text" class="search-input" id="search-input" placeholder="Search hacks...">
       </div>
     </div>
@@ -430,16 +436,17 @@
       const nav = document.getElementById('categories-nav');
       nav.innerHTML = `
         <div class="category-chip category-chip--active" data-category="all">
-          <span>🎯</span>
+          <i data-lucide="target" class="icon icon--xs"></i>
           <span>All Hacks</span>
         </div>
         ${allCategories.map(cat => `
           <div class="category-chip" data-category="${cat.id}">
-            <span>${cat.icon}</span>
+            <i data-lucide="${cat.icon}" class="icon icon--xs"></i>
             <span>${cat.name}</span>
           </div>
         `).join('')}
       `;
+      lucide.createIcons();
     }
 
     function populateFilters(filters) {
@@ -501,22 +508,25 @@
 
           <div class="hack-card__meta">
             <div class="hack-card__meta-item">
-              <span>⏱️</span>
+              <i data-lucide="clock" class="icon icon--xs"></i>
               <span>Time: ${hack.time_investment}</span>
             </div>
             <div class="hack-card__meta-item">
-              <span>✅</span>
+              <i data-lucide="check-circle" class="icon icon--xs"></i>
               <span>Success Rate: ${hack.success_rate}</span>
             </div>
             <div class="hack-card__meta-item">
-              <span>📅</span>
+              <i data-lucide="calendar" class="icon icon--xs"></i>
               <span>Last verified: ${formatDate(hack.last_verified)}</span>
             </div>
           </div>
 
           <div class="hack-card__details" id="details-${hack.id}">
             <div class="hack-section">
-              <h4 class="hack-section__title">📋 Step-by-Step Guide</h4>
+              <h4 class="hack-section__title">
+                <i data-lucide="clipboard-list" class="icon icon--xs"></i>
+                Step-by-Step Guide
+              </h4>
               <ul class="hack-section__list hack-section__list--steps">
                 ${hack.detailed_steps.map((step, i) => `
                   <li data-step="${i + 1}">${step}</li>
@@ -525,7 +535,10 @@
             </div>
 
             <div class="hack-section">
-              <h4 class="hack-section__title">✓ Requirements</h4>
+              <h4 class="hack-section__title">
+                <i data-lucide="check" class="icon icon--xs"></i>
+                Requirements
+              </h4>
               <ul class="hack-section__list hack-section__list--requirements">
                 ${hack.requirements.map(req => `<li>${req}</li>`).join('')}
               </ul>
@@ -533,7 +546,10 @@
 
             ${hack.warnings.length > 0 ? `
               <div class="hack-section">
-                <h4 class="hack-section__title">⚠️ Warnings & Risks</h4>
+                <h4 class="hack-section__title">
+                  <i data-lucide="alert-triangle" class="icon icon--xs"></i>
+                  Warnings & Risks
+                </h4>
                 <ul class="hack-section__list hack-section__list--warnings">
                   ${hack.warnings.map(warning => `<li>${warning}</li>`).join('')}
                 </ul>
@@ -547,6 +563,7 @@
           </div>
         </article>
       `).join('');
+      lucide.createIcons();
     }
 
     function filterHacks() {
@@ -648,6 +665,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadLibrary);
+  </script>
+
+  <script>
+    lucide.createIcons();
   </script>
 </body>
 </html>

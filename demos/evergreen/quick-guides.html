@@ -6,6 +6,7 @@
   <title>Quick Guides - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { padding: var(--space-8); background: var(--color-bg-canvas); }
 
@@ -273,7 +274,7 @@
     }
 
     .action-items {
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
       padding: var(--space-6);
       border-radius: var(--radius-xl);
       margin-bottom: var(--space-6);
@@ -358,7 +359,10 @@
 <body>
   <div class="guides-container">
     <header class="page-header">
-      <h1 class="page-header__title">📚 Quick Guides</h1>
+      <h1 class="page-header__title">
+        <i data-lucide="book-open" class="icon icon--lg"></i>
+        <span>Quick Guides</span>
+      </h1>
       <p class="page-header__subtitle">
         Focused, actionable guides to master travel hacking fundamentals
       </p>
@@ -400,11 +404,11 @@
             <h3 class="guide-card__title">${guide.title}</h3>
             <div class="guide-card__meta">
               <span class="guide-card__meta-item">
-                <span>📖</span>
+                <i data-lucide="book-open" class="icon icon--xs"></i>
                 <span>${guide.read_time} read</span>
               </span>
               <span class="guide-card__meta-item">
-                <span>📅</span>
+                <i data-lucide="calendar" class="icon icon--xs"></i>
                 <span>${formatDate(guide.last_updated)}</span>
               </span>
             </div>
@@ -415,6 +419,7 @@
           </div>
         </article>
       `).join('');
+      lucide.createIcons();
     }
 
     function openGuide(guideId) {
@@ -429,7 +434,7 @@
             <div class="modal__icon">${guide.icon}</div>
             <h2 class="modal__title">${guide.title}</h2>
             <div class="modal__meta">
-              <span>📖 ${guide.read_time} read</span>
+              <span><i data-lucide="book-open" class="icon icon--xs"></i> ${guide.read_time} read</span>
               <span>•</span>
               <span>${guide.difficulty.toUpperCase()}</span>
               <span>•</span>
@@ -451,7 +456,7 @@
 
           <div class="action-items">
             <h4 class="action-items__title">
-              <span>✅</span>
+              <i data-lucide="check-square" class="icon icon--sm"></i>
               <span>Action Items</span>
             </h4>
             <ul class="action-items__list">
@@ -460,7 +465,10 @@
           </div>
 
           <div class="resources">
-            <h4 class="resources__title">📎 Helpful Resources</h4>
+            <h4 class="resources__title">
+              <i data-lucide="link" class="icon icon--xs"></i>
+              Helpful Resources
+            </h4>
             <ul class="resources__list">
               ${guide.resources.map(resource => `
                 <li>
@@ -477,6 +485,7 @@
 
       document.getElementById('modal-overlay').classList.add('modal-overlay--active');
       document.body.style.overflow = 'hidden';
+      lucide.createIcons();
     }
 
     function closeModal() {
@@ -504,6 +513,10 @@
     });
 
     document.addEventListener('DOMContentLoaded', loadGuides);
+  </script>
+
+  <script>
+    lucide.createIcons();
   </script>
 </body>
 </html>
