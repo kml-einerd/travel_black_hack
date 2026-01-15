@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
   <style>
+  <script>
+    lucide.createIcons();
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
     body { padding: var(--space-8); background: var(--color-bg-canvas); }
     .newsletter-container { max-width: 900px; margin: 0 auto; }
 
@@ -95,7 +99,7 @@
 
     .story-card--transfer_bonuses {
       border-color: var(--color-success);
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
     }
 
     .story-card--card_news {
@@ -176,7 +180,7 @@
     }
 
     .story-card__action {
-      background: var(--gradient-accent-soft);
+      background: var(--color-accent-light);
       padding: var(--space-3);
       border-radius: var(--radius-lg);
       font-weight: var(--font-semibold);
@@ -192,7 +196,7 @@
     }
 
     .sweet-spots {
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
       margin-top: var(--space-3);
@@ -222,7 +226,7 @@
     }
 
     .sweet-spots__list li::before {
-      content: '🎯';
+      content: '→';
     }
 
     .trend-item {
@@ -328,7 +332,7 @@
     }
 
     .stat-box {
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
       padding: var(--space-5);
       border-radius: var(--radius-xl);
       text-align: center;
@@ -370,7 +374,7 @@
     .lookahead-list li:last-child { border-bottom: none; }
 
     .lookahead-list li::before {
-      content: '👀';
+      content: '→';
       position: absolute;
       left: var(--space-3);
       top: var(--space-3);
@@ -449,10 +453,11 @@
       const header = document.getElementById('newsletter-header');
       header.innerHTML = `
         <div class="newsletter-header__badge">Week ${week.week_number} • ${week.year}</div>
-        <h1 class="newsletter-header__title">📊 Market Pulse Weekly</h1>
+        <h1 class="newsletter-header__title"><i data-lucide="trending-up" class="icon icon--lg"></i><span>Market Pulse Weekly</span></h1>
         <div class="newsletter-header__date">${week.date_range}</div>
         <p class="newsletter-header__headline">${week.summary}</p>
       `;
+      lucide.createIcons();
     }
 
     function renderContent(data) {
@@ -465,13 +470,14 @@
         ${renderLookingAhead(data.looking_ahead)}
         ${renderCommunityHighlights(data.community_highlights)}
       `;
+      lucide.createIcons();
     }
 
     function renderTopStories(stories) {
       return `
         <section class="section">
           <div class="section__header">
-            <span class="section__icon">📰</span>
+            <i data-lucide="newspaper" class="icon icon--md section__icon"></i>
             <h2 class="section__title">Top Stories</h2>
           </div>
           ${stories.map(story => `
@@ -508,7 +514,7 @@
       return `
         <section class="section">
           <div class="section__header">
-            <span class="section__icon">📈</span>
+            <i data-lucide="bar-chart" class="icon icon--md section__icon"></i>
             <h2 class="section__title">Week in Numbers</h2>
           </div>
           <div class="stats-grid">
@@ -528,7 +534,7 @@
       return `
         <section class="section">
           <div class="section__header">
-            <span class="section__icon">📊</span>
+            <i data-lucide="trending-up" class="icon icon--md section__icon"></i>
             <h2 class="section__title">${trendsData.title}</h2>
           </div>
           ${trendsData.trends.map(trend => `
@@ -549,7 +555,7 @@
       return `
         <section class="section">
           <div class="section__header">
-            <span class="section__icon">🏆</span>
+            <i data-lucide="trophy" class="icon icon--md section__icon"></i>
             <h2 class="section__title">${programData.title}</h2>
           </div>
           ${programData.programs.map(program => `
@@ -570,7 +576,7 @@
       return `
         <section class="section">
           <div class="section__header">
-            <span class="section__icon">🔮</span>
+            <i data-lucide="eye" class="icon icon--md section__icon"></i>
             <h2 class="section__title">${lookingAhead.title}</h2>
           </div>
           <ul class="lookahead-list">
@@ -584,7 +590,7 @@
       return `
         <section class="section">
           <div class="section__header">
-            <span class="section__icon">⭐</span>
+            <i data-lucide="star" class="icon icon--md section__icon"></i>
             <h2 class="section__title">Community Highlights</h2>
           </div>
           <div class="community-grid">
@@ -593,7 +599,7 @@
                 <div class="community-highlight__user">@${highlight.username}</div>
                 <div class="community-highlight__achievement">${highlight.achievement}</div>
                 <div class="community-highlight__engagement">
-                  ❤️ ${formatNumber(highlight.engagement)}
+                  <i data-lucide="heart" class="icon icon--xs"></i> ${formatNumber(highlight.engagement)}
                 </div>
               </div>
             `).join('')}
@@ -607,6 +613,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadNewsletter);
+  <script>
+    lucide.createIcons();
+  </script>
   </script>
 </body>
 </html>

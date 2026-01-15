@@ -6,6 +6,7 @@
   <title>Transfer Bonus Tracker - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { padding: var(--space-8); }
     .page-header { text-align: center; margin-bottom: var(--space-12); }
@@ -20,7 +21,7 @@
     }
 
     .tracker-table__header {
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
       padding: var(--space-5);
       border-bottom: 2px solid var(--color-primary);
     }
@@ -118,7 +119,10 @@
 <body>
   <div class="container">
     <header class="page-header">
-      <h1>🎯 Transfer Bonus Tracker</h1>
+      <h1>
+        <i data-lucide="repeat" class="icon icon--lg"></i>
+        <span>Transfer Bonus Tracker</span>
+      </h1>
       <p style="color: var(--color-text-secondary); font-size: var(--text-lg);">
         Active transfer bonuses across all major programs
       </p>
@@ -194,6 +198,7 @@
           </td>
         </tr>
       `).join('');
+      lucide.createIcons();
     }
 
     function formatExpiry(dateStr) {
@@ -209,6 +214,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadBonuses);
+  </script>
+
+  <script>
+    lucide.createIcons();
   </script>
 </body>
 </html>

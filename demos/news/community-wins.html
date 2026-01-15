@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
   <style>
+  <script src="https://unpkg.com/lucide@latest"></script>
     body { padding: var(--space-8); background: var(--color-bg-canvas); }
     .page-header { text-align: center; margin-bottom: var(--space-8); }
     .page-header__subtitle {
@@ -70,7 +71,7 @@
     }
 
     .win-card__type-badge--epic_redemption {
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
       color: var(--color-primary-dark);
     }
 
@@ -115,7 +116,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: var(--space-4);
-      background: var(--gradient-primary-soft);
+      background: var(--color-primary-light);
       padding: var(--space-5);
       border-radius: var(--radius-xl);
       margin-bottom: var(--space-5);
@@ -195,7 +196,7 @@
     }
 
     .win-card__hack {
-      background: var(--gradient-accent-soft);
+      background: var(--color-accent-light);
       padding: var(--space-5);
       border-radius: var(--radius-xl);
       margin-bottom: var(--space-4);
@@ -254,7 +255,7 @@
     }
 
     .tips-list__item::before {
-      content: '💡';
+      content: '';
       font-size: var(--text-base);
     }
 
@@ -299,7 +300,10 @@
 <body>
   <div class="container">
     <header class="page-header">
-      <h1>🏆 Community Wins</h1>
+      <h1>
+        <i data-lucide="trophy" class="icon icon--lg"></i>
+        <span>Community Wins</span>
+      </h1>
       <p class="page-header__subtitle">
         Real redemptions, real savings, real people crushing the travel hacking game
       </p>
@@ -333,6 +337,7 @@
           return renderHackDiscovery(story);
         }
       }).join('');
+      lucide.createIcons();
     }
 
     function renderEpicRedemption(story) {
@@ -359,7 +364,7 @@
 
             ${story.route ? `
               <div class="win-card__route">
-                <span>✈️ ${story.route.origin} → ${story.route.destination}</span>
+                <i data-lucide="plane" class="icon icon--xs"></i> ${story.route.origin} → ${story.route.destination}</span>
               </div>
             ` : ''}
 
@@ -412,16 +417,16 @@
             <div class="win-card__footer">
               <div class="engagement">
                 <div class="engagement__item">
-                  <span>❤️</span>
+                  <i data-lucide="heart" class="icon icon--xs"></i>
                   <span class="engagement__count">${formatNumber(story.engagement.likes)}</span>
                 </div>
                 <div class="engagement__item">
-                  <span>💬</span>
+                  <i data-lucide="message-circle" class="icon icon--xs"></i>
                   <span class="engagement__count">${formatNumber(story.engagement.comments)}</span>
                 </div>
                 ${story.engagement.saves ? `
                   <div class="engagement__item">
-                    <span>🔖</span>
+                    <i data-lucide="bookmark" class="icon icon--xs"></i>
                     <span class="engagement__count">${formatNumber(story.engagement.saves)}</span>
                   </div>
                 ` : ''}
@@ -492,11 +497,11 @@
             <div class="win-card__footer">
               <div class="engagement">
                 <div class="engagement__item">
-                  <span>❤️</span>
+                  <i data-lucide="heart" class="icon icon--xs"></i>
                   <span class="engagement__count">${formatNumber(story.engagement.likes)}</span>
                 </div>
                 <div class="engagement__item">
-                  <span>💬</span>
+                  <i data-lucide="message-circle" class="icon icon--xs"></i>
                   <span class="engagement__count">${formatNumber(story.engagement.comments)}</span>
                 </div>
               </div>
@@ -532,13 +537,13 @@
               </div>
               ${story.warning ? `
                 <div class="win-card__warning">
-                  <span>⚠️</span>
+                  <i data-lucide="alert-triangle" class="icon icon--xs"></i>
                   <span>${story.warning}</span>
                 </div>
               ` : ''}
             </div>
 
-            <div style="background: var(--gradient-primary-soft); padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">
+            <div style="background: var(--color-primary-light); padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">
               <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-1);">POTENTIAL VALUE</div>
               <div style="font-size: var(--text-lg); font-weight: var(--font-bold); color: var(--color-primary);">${story.value}</div>
             </div>
@@ -546,11 +551,11 @@
             <div class="win-card__footer">
               <div class="engagement">
                 <div class="engagement__item">
-                  <span>❤️</span>
+                  <i data-lucide="heart" class="icon icon--xs"></i>
                   <span class="engagement__count">${formatNumber(story.engagement.likes)}</span>
                 </div>
                 <div class="engagement__item">
-                  <span>💬</span>
+                  <i data-lucide="message-circle" class="icon icon--xs"></i>
                   <span class="engagement__count">${formatNumber(story.engagement.comments)}</span>
                 </div>
               </div>
