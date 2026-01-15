@@ -1,31 +1,467 @@
 <!DOCTYPE html>
-<html lang="en" data-course="points-101">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Points 101 Crash Course • MilesAI</title>
-  <meta name="description" content="Free Points 101 Crash Course landing page." />
-<link rel="stylesheet" href="../css/design-tokens.css" />
-<link rel="stylesheet" href="../css/components.css" />
-<link rel="stylesheet" href="../css/layouts.css" />
-<link rel="stylesheet" href="../css/utilities.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Points 101 - Curso Gratuito - MilesAI</title>
+  <meta name="description" content="Aprenda os fundamentos de pontos e milhas gratuitamente. Curso completo para iniciantes dominarem o mundo do travel hacking." />
+  <link rel="stylesheet" href="../css/design-tokens.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .course-hero {
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+      padding: 80px 24px;
+    }
+    
+    .course-hero__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    
+    .course-hero__content {
+      color: white;
+    }
+    
+    .course-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    
+    .course-hero__title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    
+    .course-hero__subtitle {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    
+    .course-hero__meta {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    
+    .course-hero__meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .course-hero__meta-item svg {
+      color: var(--color-orange);
+    }
+    
+    .course-hero__cta {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .course-hero__card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    }
+    
+    .course-hero__card-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--neutral-900);
+    }
+    
+    .course-hero__modules {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .course-module {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--neutral-50);
+      border-radius: 12px;
+    }
+    
+    .course-module__number {
+      width: 28px;
+      height: 28px;
+      background: var(--color-orange);
+      color: white;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .course-module__title {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--neutral-900);
+    }
+    
+    .course-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    
+    .course-section {
+      margin-bottom: 48px;
+    }
+    
+    .course-section__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .course-section__title svg {
+      color: var(--color-orange);
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    .benefit-card {
+      background: white;
+      border: 1px solid var(--neutral-200);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+    
+    .benefit-card__icon {
+      width: 56px;
+      height: 56px;
+      background: var(--color-orange-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-orange);
+      margin: 0 auto 16px;
+    }
+    
+    .benefit-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .benefit-card__text {
+      font-size: 0.875rem;
+      color: var(--neutral-600);
+    }
+    
+    .testimonial-card {
+      background: var(--neutral-100);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .testimonial-card__text {
+      font-size: 1.125rem;
+      font-style: italic;
+      color: var(--neutral-700);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    
+    .testimonial-card__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .testimonial-card__avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--color-teal);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .testimonial-card__info {
+      font-size: 0.9375rem;
+    }
+    
+    .testimonial-card__name {
+      font-weight: 600;
+    }
+    
+    .testimonial-card__role {
+      color: var(--neutral-500);
+      font-size: 0.875rem;
+    }
+    
+    .cta-box {
+      background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-hover) 100%);
+      padding: 48px;
+      border-radius: 24px;
+      text-align: center;
+      color: white;
+    }
+    
+    .cta-box__title {
+      font-size: 1.75rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    
+    .cta-box__text {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 24px;
+    }
+    
+    @media (max-width: 768px) {
+      .course-hero__inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body class="page">
-  <header class="page__header">
-    <nav class="page__nav">
-      <div class="page__brand">MilesAI <span>Courses</span></div>
-      <div class="page__links">
-        <a class="page__link" href="../courses/masterclass.html">Masterclass</a>
-        <a class="page__link" href="../learn/quick-guides.html">Quick Guides</a>
-        <a class="page__link" href="../ebooks/zero-to-100k.html">Ebooks</a>
-      </div>
-    </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__top">
+      <a href="../index.html" class="header__brand">
+        <i data-lucide="compass" class="header__brand-icon"></i>
+        Miles<span>AI</span>
+      </a>
+      <nav class="header__nav">
+        <a href="../news/news-hub.html" class="header__link">
+          <i data-lucide="newspaper" style="width: 18px; height: 18px;"></i>
+          Notícias
+        </a>
+        <a href="../calculators/cash-vs-points.html" class="header__link">
+          <i data-lucide="calculator" style="width: 18px; height: 18px;"></i>
+          Calculadora
+        </a>
+        <a href="../learn/hacks-library.html" class="header__link header__link--active">
+          <i data-lucide="book-open" style="width: 18px; height: 18px;"></i>
+          Aprender
+        </a>
+        <a href="../dashboard/index.html" class="header__cta">
+          <i data-lucide="layout-dashboard" style="width: 16px; height: 16px;"></i>
+          Dashboard
+        </a>
+      </nav>
+    </div>
   </header>
 
-  <main class="page__main" id="course-detail"></main>
+  <!-- Course Hero -->
+  <section class="course-hero">
+    <div class="course-hero__inner">
+      <div class="course-hero__content">
+        <div class="course-hero__badge">
+          <i data-lucide="gift" style="width: 16px; height: 16px;"></i>
+          Curso 100% Gratuito
+        </div>
+        <h1 class="course-hero__title">Points 101:<br>Fundamentos</h1>
+        <p class="course-hero__subtitle">
+          Aprenda do zero como funcionam pontos e milhas, qual cartão usar e como fazer seu primeiro resgate inteligente.
+        </p>
+        
+        <div class="course-hero__meta">
+          <div class="course-hero__meta-item">
+            <i data-lucide="clock" style="width: 20px; height: 20px;"></i>
+            4 horas
+          </div>
+          <div class="course-hero__meta-item">
+            <i data-lucide="play-circle" style="width: 20px; height: 20px;"></i>
+            10 aulas
+          </div>
+          <div class="course-hero__meta-item">
+            <i data-lucide="users" style="width: 20px; height: 20px;"></i>
+            12.500+ alunos
+          </div>
+        </div>
+        
+        <div class="course-hero__cta">
+          <a href="#signup" class="btn btn-primary btn--lg">
+            <i data-lucide="play" style="width: 20px; height: 20px;"></i>
+            Começar Agora - Grátis
+          </a>
+        </div>
+      </div>
+      
+      <div class="course-hero__card">
+        <h3 class="course-hero__card-title">O que você vai aprender</h3>
+        <div class="course-hero__modules">
+          <div class="course-module">
+            <span class="course-module__number">1</span>
+            <span class="course-module__title">O que são pontos e quanto valem?</span>
+          </div>
+          <div class="course-module">
+            <span class="course-module__number">2</span>
+            <span class="course-module__title">As 4 principais moedas explicadas</span>
+          </div>
+          <div class="course-module">
+            <span class="course-module__number">3</span>
+            <span class="course-module__title">Sua primeira estratégia de cartão</span>
+          </div>
+          <div class="course-module">
+            <span class="course-module__number">4</span>
+            <span class="course-module__title">Entendendo parceiros de transferência</span>
+          </div>
+          <div class="course-module">
+            <span class="course-module__number">5</span>
+            <span class="course-module__title">Calculando CPP simplificado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer class="footer">MilesAI • Course Landing Demo</footer>
+  <!-- Course Content -->
+  <main class="course-content">
+    <!-- Benefits -->
+    <section class="course-section">
+      <h2 class="course-section__title">
+        <i data-lucide="check-circle" style="width: 28px; height: 28px;"></i>
+        Por que fazer este curso?
+      </h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-card__icon">
+            <i data-lucide="rocket" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="benefit-card__title">Início Rápido</h3>
+          <p class="benefit-card__text">Em menos de 1 hora você já entende a lógica por trás dos pontos</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-card__icon" style="background: var(--color-teal-light); color: var(--color-teal);">
+            <i data-lucide="target" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="benefit-card__title">Prático</h3>
+          <p class="benefit-card__text">Exercícios reais para aplicar o conhecimento imediatamente</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-card__icon" style="background: var(--color-secondary-subtle); color: var(--color-navy);">
+            <i data-lucide="award" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="benefit-card__title">Certificado</h3>
+          <p class="benefit-card__text">Receba certificado de conclusão para seu LinkedIn</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Testimonial -->
+    <section class="course-section">
+      <h2 class="course-section__title">
+        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+        O que dizem os alunos
+      </h2>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-card__text">
+          "Sempre achei que milhas eram complicadas demais. Esse curso mudou minha visão completamente. 
+          Em 3 meses já tinha acumulado 80.000 pontos e fiz minha primeira viagem usando apenas milhas!"
+        </p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">MF</div>
+          <div class="testimonial-card__info">
+            <div class="testimonial-card__name">Mariana Fernandes</div>
+            <div class="testimonial-card__role">Designer, São Paulo</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-card__text">
+          "Conteúdo direto ao ponto, sem enrolação. Aprendi mais em 4 horas do que em meses pesquisando sozinho."
+        </p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" style="background: var(--color-orange);">RC</div>
+          <div class="testimonial-card__info">
+            <div class="testimonial-card__name">Ricardo Costa</div>
+            <div class="testimonial-card__role">Empresário, Rio de Janeiro</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="course-section" id="signup">
+      <div class="cta-box">
+        <h2 class="cta-box__title">Comece sua jornada agora</h2>
+        <p class="cta-box__text">
+          Junte-se a mais de 12.500 alunos que já transformaram sua forma de viajar
+        </p>
+        <a href="#" class="btn btn-primary btn--lg" style="background: white; color: var(--color-teal);">
+          <i data-lucide="play" style="width: 20px; height: 20px;"></i>
+          Acessar Curso Gratuito
+        </a>
+      </div>
+    </section>
+  </main>
 
-  <script type="module" src="../js/feeds.js"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer__copyright">
+          &copy; 2026 MilesAI. Plataforma independente de otimização de viagens.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,23 +1,420 @@
-.text-muted { color: var(--neutral-500); }
-.text-secondary { color: var(--neutral-600); }
-.text-primary { color: var(--neutral-900); }
-.text-accent { color: var(--color-accent); }
-.text-success { color: var(--success); }
+/**
+ * MilesAI Utilities
+ * Versão: 4.0.0
+ */
 
-.stack-sm { display: grid; gap: var(--space-2); }
-.stack-md { display: grid; gap: var(--space-4); }
-.stack-lg { display: grid; gap: var(--space-6); }
+/* ============================================
+   FLEXBOX UTILITIES
+   ============================================ */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
 
-.inline-center { display: inline-flex; align-items: center; gap: var(--space-2); }
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+/* ============================================
+   GAP UTILITIES
+   ============================================ */
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-5 { gap: var(--space-5); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+.gap-10 { gap: var(--space-10); }
+.gap-12 { gap: var(--space-12); }
+
+/* ============================================
+   WIDTH & HEIGHT
+   ============================================ */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+.w-fit { width: fit-content; }
+.h-full { height: 100%; }
+.h-auto { height: auto; }
+.h-screen { height: 100vh; }
+.min-h-screen { min-height: 100vh; }
+
+/* ============================================
+   POSITION
+   ============================================ */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.top-0 { top: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0 { left: 0; }
+
+/* ============================================
+   OVERFLOW
+   ============================================ */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-x-auto { overflow-x: auto; }
+.overflow-y-auto { overflow-y: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
+
+/* ============================================
+   BORDER
+   ============================================ */
+.border { border: 1px solid var(--neutral-200); }
+.border-t { border-top: 1px solid var(--neutral-200); }
+.border-b { border-bottom: 1px solid var(--neutral-200); }
+.border-l { border-left: 1px solid var(--neutral-200); }
+.border-r { border-right: 1px solid var(--neutral-200); }
+.border-0 { border: 0; }
+
+.border-primary { border-color: var(--color-primary); }
+.border-secondary { border-color: var(--color-secondary); }
+.border-accent { border-color: var(--color-accent); }
+
+.rounded { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-2xl { border-radius: var(--radius-2xl); }
+.rounded-3xl { border-radius: var(--radius-3xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* ============================================
+   SHADOWS
+   ============================================ */
+.shadow-none { box-shadow: none; }
+.shadow-xs { box-shadow: var(--shadow-xs); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+/* ============================================
+   OPACITY
+   ============================================ */
+.opacity-0 { opacity: 0; }
+.opacity-25 { opacity: 0.25; }
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+.opacity-100 { opacity: 1; }
+
+/* ============================================
+   CURSOR
+   ============================================ */
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+/* ============================================
+   POINTER EVENTS
+   ============================================ */
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+
+/* ============================================
+   USER SELECT
+   ============================================ */
+.select-none { user-select: none; }
+.select-text { user-select: text; }
+.select-all { user-select: all; }
+
+/* ============================================
+   TRUNCATE
+   ============================================ */
+.truncate {
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  text-overflow: ellipsis;
   white-space: nowrap;
-  border-width: 0;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================
+   WHITESPACE
+   ============================================ */
+.whitespace-nowrap { white-space: nowrap; }
+.whitespace-normal { white-space: normal; }
+.whitespace-pre { white-space: pre; }
+.whitespace-pre-wrap { white-space: pre-wrap; }
+
+/* ============================================
+   ASPECT RATIO
+   ============================================ */
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-4-3 { aspect-ratio: 4 / 3; }
+
+/* ============================================
+   OBJECT FIT
+   ============================================ */
+.object-cover { object-fit: cover; }
+.object-contain { object-fit: contain; }
+.object-fill { object-fit: fill; }
+.object-center { object-position: center; }
+
+/* ============================================
+   TRANSITIONS
+   ============================================ */
+.transition { transition: all var(--transition-normal); }
+.transition-fast { transition: all var(--transition-fast); }
+.transition-slow { transition: all var(--transition-slow); }
+.transition-none { transition: none; }
+
+/* ============================================
+   TRANSFORM
+   ============================================ */
+.hover\:scale-105:hover { transform: scale(1.05); }
+.hover\:translate-y-1:hover { transform: translateY(-4px); }
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+.animate-slide-up { animation: slideUp 0.4s ease-out; }
+.animate-slide-down { animation: slideDown 0.4s ease-out; }
+.animate-pulse { animation: pulse 2s infinite; }
+.animate-spin { animation: spin 1s linear infinite; }
+
+/* ============================================
+   SKELETON LOADING
+   ============================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--neutral-200) 25%,
+    var(--neutral-100) 50%,
+    var(--neutral-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.5em;
+}
+
+.skeleton-text:last-child {
+  width: 60%;
+}
+
+.skeleton-title {
+  height: 1.5em;
+  width: 80%;
+  margin-bottom: 0.75em;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+.divider {
+  border: 0;
+  height: 1px;
+  background: var(--neutral-200);
+  margin: var(--space-6) 0;
+}
+
+.divider--dark {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   ICONS UTILITIES
+   ============================================ */
+.icon-xs { width: 14px; height: 14px; }
+.icon-sm { width: 16px; height: 16px; }
+.icon-md { width: 20px; height: 20px; }
+.icon-lg { width: 24px; height: 24px; }
+.icon-xl { width: 32px; height: 32px; }
+.icon-2xl { width: 48px; height: 48px; }
+
+/* ============================================
+   SCROLLBAR HIDE
+   ============================================ */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   FOCUS RING
+   ============================================ */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   GRADIENT OVERLAYS
+   ============================================ */
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  pointer-events: none;
+}
+
+.gradient-overlay--light {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
+}
+
+/* ============================================
+   HOVER EFFECTS
+   ============================================ */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+/* ============================================
+   GROUP HOVER
+   ============================================ */
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:visible {
+  visibility: visible;
+}
+
+.group:hover .group-hover\:scale-105 {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+  .no-print { display: none !important; }
+  
+  .print-break-before { break-before: page; }
+  .print-break-after { break-after: page; }
+  .print-break-inside-avoid { break-inside: avoid; }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+.focus-within\:ring:focus-within {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce\:animate-none {
+    animation: none !important;
+  }
+  
+  .motion-reduce\:transition-none {
+    transition: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+  
+  .btn {
+    border-width: 2px;
+  }
 }

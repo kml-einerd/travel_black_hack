@@ -47,7 +47,7 @@ const renderHotDeals = async () => {
           </div>
           <span class="badge badge--neutral">${deal.category.replace('_', ' ')}</span>
         </header>
-        <img class="card__image" src="${deal.image}" alt="${deal.title}" loading="lazy" />
+        <img class="card__image" src="${deal.image}" alt="${deal.title}" loading="lazy" onerror="this.src='../imagens/aircraft.svg'" />
         <div class="card__body">
           <p><strong>${deal.value}</strong></p>
           <p class="card__meta">Requirements: ${deal.requirements}</p>

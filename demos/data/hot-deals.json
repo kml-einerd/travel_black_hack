@@ -7,7 +7,7 @@
       "value": "$600 extra on 100K transfer",
       "expires": "2026-01-25T23:59:59Z",
       "priority": "critical",
-      "image": "../imagens/aircraft.svg",
+      "image": "../imagens/avianca-deal.jpg",
       "cta": "Transfer Now",
       "requirements": "Amex Membership Rewards account",
       "best_for": [
@@ -18,11 +18,11 @@
     {
       "id": "deal-002",
       "category": "card_bonus",
-      "title": "Chase Ink Preferred 100K \u2014 Highest Ever Public Offer",
+      "title": "Chase Ink Preferred 100K — Highest Ever Public Offer",
       "value": "$1,250 in travel",
       "expires": "2026-02-15T23:59:59Z",
       "priority": "urgent",
-      "image": "../imagens/aircraft.svg",
+      "image": "../imagens/chase-ink.png",
       "cta": "Apply Now",
       "requirements": "Business owners, 5/24 eligible",
       "best_for": [
@@ -33,11 +33,11 @@
     {
       "id": "deal-003",
       "category": "award_availability",
-      "title": "ANA First Class Wide Open NYC \u2192 Tokyo (March)",
+      "title": "ANA First Class Wide Open NYC → Tokyo (March)",
       "value": "110K Virgin points, $6K+ value",
       "expires": "2026-01-20T23:59:59Z",
       "priority": "critical",
-      "image": "../imagens/aircraft.svg",
+      "image": "../imagens/business-cabin.webp",
       "cta": "Check Availability",
       "requirements": "Virgin Atlantic miles",
       "best_for": [
@@ -52,7 +52,7 @@
       "value": "Up to 15K points back",
       "expires": "2026-03-31T23:59:59Z",
       "priority": "important",
-      "image": "../imagens/aircraft.svg",
+      "image": "../imagens/hotel-luxury.webp",
       "cta": "Book Now",
       "requirements": "World of Hyatt members",
       "best_for": [
@@ -63,11 +63,11 @@
     {
       "id": "deal-005",
       "category": "mistake_fare",
-      "title": "Mistake Fare: LA \u2192 Bali $287 RT (Qatar)",
+      "title": "Mistake Fare: LA → Bali $287 RT (Qatar)",
       "value": "Normally $1,200+",
       "expires": "2026-01-14T18:00:00Z",
       "priority": "critical",
-      "image": "../imagens/aircraft.svg",
+      "image": "../imagens/mistake-fare.webp",
       "cta": "Book Immediately",
       "requirements": "Flexible travel dates",
       "best_for": [

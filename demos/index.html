@@ -1,82 +1,591 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MilesAI - Travel Hacking Intelligence</title>
-  <meta name="description" content="MilesAI helps you compare cash vs points with clear data, transparent calculations, and real outcomes." />
+  <title>MilesAI - Inteligência em Pontos e Milhas</title>
+  <meta name="description"
+    content="MilesAI ajuda você a maximizar o valor dos seus pontos e milhas com ferramentas profissionais, calculadoras precisas e análises de mercado em tempo real." />
   <link rel="stylesheet" href="css/design-tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/layouts.css">
   <link rel="stylesheet" href="css/utilities.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="page">
-  <header class="page__header">
-    <nav class="page__nav">
-      <div class="page__brand">MilesAI <span>Travel Intelligence</span></div>
-      <div class="page__links">
-        <a class="page__link" href="news/news-hub.html">News Hub</a>
-        <a class="page__link" href="learn/hacks-library.html">Learn</a>
-        <a class="page__link" href="tools/trip-comparison.html">Tools</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__top">
+      <a href="index.html" class="header__brand">
+        <i data-lucide="compass" class="header__brand-icon"></i>
+        Miles<span>AI</span>
+      </a>
+      <nav class="header__nav">
+        <a href="news/news-hub.html" class="header__link">
+          <i data-lucide="newspaper" style="width: 18px; height: 18px;"></i>
+          Notícias
+        </a>
+        <a href="calculators/cash-vs-points.html" class="header__link">
+          <i data-lucide="calculator" style="width: 18px; height: 18px;"></i>
+          Calculadora
+        </a>
+        <a href="learn/hacks-library.html" class="header__link">
+          <i data-lucide="book-open" style="width: 18px; height: 18px;"></i>
+          Aprender
+        </a>
+        <a href="tools/portfolio-analyzer.html" class="header__link">
+          <i data-lucide="wallet" style="width: 18px; height: 18px;"></i>
+          Ferramentas
+        </a>
+        <a href="dashboard/index.html" class="header__cta">
+          <i data-lucide="layout-dashboard" style="width: 16px; height: 16px;"></i>
+          Dashboard
+        </a>
+      </nav>
+      <button class="header__menu-btn hidden-desktop">
+        <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+      </button>
       </div>
-    </nav>
   </header>
 
   <main class="page__main">
-    <section class="page__hero">
-      <div class="stack-md">
-        <span class="badge badge--accent">$8,540 average annual value tracked</span>
-        <h1 class="page__hero-title">Clear points decisions backed by real outcomes.</h1>
-        <p class="page__hero-description">
-          MilesAI shows when to book with cash, when to transfer, and how to protect your upside.
-          Every recommendation includes the math behind it.
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero__container">
+        <span class="hero__badge">
+          <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
+          R$ 12.540 de economia média anual por usuário
+        </span>
+        <h1 class="hero__title">Decisões inteligentes sobre<br>pontos e milhas</h1>
+        <p class="hero__subtitle">
+          MilesAI mostra quando usar pontos, quando pagar em dinheiro e como maximizar cada resgate.
+          Cada recomendação inclui os cálculos transparentes por trás dela.
         </p>
-        <div class="inline-center">
-          <button class="btn btn-primary">Review member results</button>
-          <button class="btn btn-secondary">Explore the demo suite</button>
+        <div class="hero__actions">
+          <a href="calculators/cash-vs-points.html" class="btn btn-primary btn--lg">
+            <i data-lucide="calculator" style="width: 20px; height: 20px;"></i>
+            Calcular Valor dos Pontos
+          </a>
+          <a href="dashboard/index.html" class="btn btn-outline btn--lg"
+            style="border-color: rgba(255,255,255,0.3); color: white;">
+            <i data-lucide="play-circle" style="width: 20px; height: 20px;"></i>
+            Ver Demonstração
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section__header">
-        <div>
-          <h2 class="section__title">Built for premium travelers</h2>
-          <p class="section__subtitle">Designed for professionals who want clarity, not hype.</p>
+    <!-- Stats Section -->
+    <section class="section--compact"
+      style="background: var(--neutral-0); margin-top: -60px; position: relative; z-index: 10;">
+      <div class="container">
+        <div class="stats-grid" style="transform: translateY(-30px);">
+          <div class="stat">
+            <div class="stat__value">2.05¢</div>
+            <div class="stat__label">Valor médio Chase UR</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">2.20¢</div>
+            <div class="stat__label">Valor médio Amex MR</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">3.00¢</div>
+            <div class="stat__label">CPP em Business Class</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">1.65¢</div>
+            <div class="stat__label">CPP em Economy</div>
+          </div>
         </div>
       </div>
-      <div class="grid grid--3">
-        <article class="card">
-          <h3 class="card__title">Transparent calculations</h3>
-          <p class="card__subtitle">Every CPP, fee, and opportunity cost is shown upfront.</p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Decision-ready alerts</h3>
-          <p class="card__subtitle">Quiet, relevant notifications when value shifts.</p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Portfolio-grade insights</h3>
-          <p class="card__subtitle">Understand earning velocity and redemption timing.</p>
-        </article>
+    </section>
+    
+    <!-- Latest News Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header">
+          <div>
+            <h2 class="section__title">Últimas notícias</h2>
+            <p class="section__subtitle">Atualizações do mercado de pontos e milhas</p>
+            </div>
+          <a href="news/news-hub.html" class="section__link">
+            Ver todas
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </div>
+        <!-- Featured + Sidebar -->
+        <div class="news-grid--featured">
+          <article class="news-featured">
+            <img src="imagens/aircraft-premium.jpg" onerror="this.src='imagens/aircraft.svg'" alt="Aviação"
+              class="news-featured__image">
+            <div class="news-featured__content">
+              <span class="news-featured__category">Destaque</span>
+              <h3 class="news-featured__title">
+                <a href="news/stories.html">LATAM anuncia 30% de bônus em transferências do Livelo até março</a>
+              </h3>
+              <p class="news-featured__excerpt">
+                A promoção permite acumular até 1.3 ponto LATAM Pass por real gasto, tornando voos em classe executiva
+                significativamente mais acessíveis para a América do Sul.
+              </p>
+              <span class="news-featured__meta">15 Jan 2026 • 4 min de leitura</span>
+            </div>
+          </article>
+        
+          <div class="stack-lg">
+            <article class="card card--news" style="padding: 0;">
+              <div class="card__content">
+                <span class="card__category">Cartões</span>
+                <h4 class="card__title" style="font-size: 1rem;">
+                  <a href="news/card-universe-feed.html">Novo Amex Platinum: análise completa dos benefícios</a>
+                </h4>
+                <span class="card__meta">14 Jan 2026 • 6 min</span>
+              </div>
+            </article>
+        
+            <article class="card card--news" style="padding: 0;">
+              <div class="card__content">
+                <span class="card__category">Hotéis</span>
+                <h4 class="card__title" style="font-size: 1rem;">
+                  <a href="news/hot-deals-flash.html">Marriott Bonvoy: noites gratuitas em resorts premium</a>
+                </h4>
+                <span class="card__meta">13 Jan 2026 • 3 min</span>
+              </div>
+            </article>
+        
+            <article class="card card--news" style="padding: 0;">
+              <div class="card__content">
+                <span class="card__category">Companhias</span>
+                <h4 class="card__title" style="font-size: 1rem;">
+                  <a href="news/transfer-bonus-tracker.html">United MileagePlus: nova tabela de resgates</a>
+                </h4>
+                <span class="card__meta">12 Jan 2026 • 5 min</span>
+              </div>
+            </article>
+          </div>
+        </div>
+        </div>
+        </section>
+        
+        <!-- Newsletter Section (TPG Style) -->
+        <div class="newsletter">
+          <div class="newsletter__container">
+            <div class="newsletter__content">
+              <span class="newsletter__badge">
+                <i data-lucide="mail" style="width: 14px; height: 14px;"></i>
+                Newsletter Diária
+              </span>
+              <h3 class="newsletter__title">Abasteça sua aventura com<br>as melhores oportunidades</h3>
+              <p class="newsletter__description">
+                Receba as melhores ofertas de pontos, bônus de transferência e oportunidades de viagem
+                diretamente no seu email. Mais de 50.000 viajantes já assinam.
+              </p>
+              <form class="newsletter__form">
+                <input type="email" class="newsletter__input" placeholder="Seu melhor email">
+                <button type="submit" class="newsletter__submit">Assinar</button>
+              </form>
+            </div>
+            <div class="newsletter__image">
+              <img src="imagens/executive-interior.jpg" onerror="this.src='imagens/aircraft.svg'" alt="Viagem"
+                style="border-radius: 16px; object-fit: cover; width: 100%; max-height: 300px;">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Features Section -->
+        <section class="section" style="background: var(--neutral-0);">
+          <div class="container">
+            <div class="section__header" style="text-align: center; display: block;">
+              <h2 class="section__title">Feito para viajantes exigentes</h2>
+              <p class="section__subtitle">Ferramentas profissionais para maximizar cada ponto</p>
+            </div>
+        
+            <div class="grid grid--3" style="margin-top: var(--space-10);">
+              <article class="card">
+            <div class="card__icon">
+              <i data-lucide="calculator" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Cálculos transparentes</h3>
+            <p class="card__subtitle">Cada CPP, taxa e custo de oportunidade mostrado de forma clara.</p>
+            </article>
+          
+          <article class="card">
+            <div class="card__icon card__icon--teal">
+              <i data-lucide="bell-ring" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Alertas inteligentes</h3>
+            <p class="card__subtitle">Notificações relevantes quando o valor dos pontos muda significativamente.</p>
+            </article>
+          
+          <article class="card">
+            <div class="card__icon card__icon--navy">
+              <i data-lucide="bar-chart-3" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Insights de portfólio</h3>
+            <p class="card__subtitle">Entenda velocidade de acúmulo e timing ideal para resgates.</p>
+            </article>
+            </div>
       </div>
     </section>
 
+    <!-- Tools Section -->
     <section class="section">
-      <div class="grid grid--2">
-        <article class="card card--featured">
-          <h3 class="card__title">Cash vs Points Calculator</h3>
-          <p>Run a decision in under 30 seconds with a full CPP breakdown.</p>
-          <button class="btn btn-primary">Open calculator</button>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Market Pulse</h3>
-          <p>Weekly snapshot of valuation shifts and redemption sweet spots.</p>
-          <button class="btn btn-secondary">Read latest pulse</button>
-        </article>
+      <div class="container">
+        <div class="section__header">
+          <div>
+            <h2 class="section__title">Ferramentas principais</h2>
+            <p class="section__subtitle">Tudo que você precisa para otimizar seus pontos</p>
+          </div>
+          <a href="tools/portfolio-analyzer.html" class="section__link">
+            Ver todas
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </div>
+        <div class="grid grid--2">
+          <article class="card card--featured">
+            <div class="card__icon">
+              <i data-lucide="calculator" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Calculadora Cash vs Points</h3>
+            <p class="card__description">Compare o valor em centavos por ponto (CPP) e descubra a melhor opção para seu próximo
+              resgate em menos de 30 segundos.</p>
+            <div class="card__footer">
+              <a href="calculators/cash-vs-points.html" class="btn btn-primary">
+                <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                Analisar Resgate
+              </a>
+            </div>
+            </article>
+          
+          <article class="card">
+            <div class="card__icon card__icon--teal">
+              <i data-lucide="activity" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Market Pulse</h3>
+            <p class="card__description">Snapshot semanal de mudanças de valorização e sweet spots para resgates. Dados atualizados
+              toda segunda-feira.</p>
+            <div class="card__footer">
+              <a href="news/market-pulse.html" class="btn btn-secondary">
+                <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
+                Ver Dados Atuais
+              </a>
+            </div>
+            </article>
+            </div>
+            
+            <div class="grid grid--3" style="margin-top: var(--space-6);">
+              <article class="card card--subtle">
+                <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="radar" style="width: 20px; height: 20px; color: var(--color-orange);"></i>
+                  <h4 class="card__title" style="font-size: 1rem; margin: 0;">Deal Radar</h4>
+                </div>
+                <p class="card__subtitle">Ofertas de bônus de transferência ativas</p>
+                <a href="news/hot-deals-flash.html" class="section__link"
+                  style="margin-top: var(--space-3); font-size: var(--text-xs);">
+                  Ver ofertas <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i>
+                </a>
+              </article>
+            
+              <article class="card card--subtle">
+                <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="map" style="width: 20px; height: 20px; color: var(--color-teal);"></i>
+                  <h4 class="card__title" style="font-size: 1rem; margin: 0;">Award Map</h4>
+                </div>
+                <p class="card__subtitle">Mapa interativo de rotas award</p>
+                <a href="tools/award-map.html" class="section__link" style="margin-top: var(--space-3); font-size: var(--text-xs);">
+                  Explorar <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i>
+                </a>
+              </article>
+            
+              <article class="card card--subtle">
+                <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="brain" style="width: 20px; height: 20px; color: var(--color-navy);"></i>
+                  <h4 class="card__title" style="font-size: 1rem; margin: 0;">AI Concierge</h4>
+                </div>
+                <p class="card__subtitle">Assistente inteligente para resgates</p>
+                <a href="tools/ai-concierge.html" class="section__link"
+                  style="margin-top: var(--space-3); font-size: var(--text-xs);">
+                  Consultar <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i>
+                </a>
+              </article>
+            </div>
+            </div>
+            </section>
+            
+            <!-- Learn Section -->
+            <section class="section" style="background: var(--neutral-100);">
+              <div class="container">
+                <div class="section__header" style="text-align: center; display: block;">
+                  <h2 class="section__title">Aprenda com especialistas</h2>
+                  <p class="section__subtitle">Cursos e guias para dominar o mundo dos pontos</p>
+                </div>
+            
+                <div class="grid grid--3" style="margin-top: var(--space-10);">
+                  <article class="card card--news">
+                    <img src="imagens/course-points101.avif" onerror="this.src='imagens/course.svg'" alt="Curso Points 101"
+                      class="card__image">
+                    <div class="card__content">
+                      <span class="card__category">Curso</span>
+                      <h4 class="card__title">
+                        <a href="courses/points-101.html">Points 101: Fundamentos</a>
+                      </h4>
+                      <p class="card__subtitle">Aprenda do zero como acumular e resgatar pontos de forma inteligente.</p>
+                      <div class="card__meta">
+                        <span class="card__meta-item">
+                          <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                          4 horas
+                        </span>
+                        <span class="card__meta-item">
+                          <i data-lucide="users" style="width: 14px; height: 14px;"></i>
+                          12.5k alunos
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+            
+                  <article class="card card--news">
+                    <img src="imagens/ebook-zero100k.webp" onerror="this.src='imagens/ebook.svg'" alt="E-book Zero to 100K"
+                      class="card__image">
+                    <div class="card__content">
+                      <span class="card__category">E-book</span>
+                      <h4 class="card__title">
+                        <a href="ebooks/zero-to-100k.html">Zero to 100K: O Guia Completo</a>
+                      </h4>
+                      <p class="card__subtitle">Estratégias comprovadas para acumular 100.000 pontos no primeiro ano.</p>
+                      <div class="card__meta">
+                        <span class="card__meta-item">
+                          <i data-lucide="file-text" style="width: 14px; height: 14px;"></i>
+                          85 páginas
+                        </span>
+                        <span class="card__meta-item">
+                          <i data-lucide="download" style="width: 14px; height: 14px;"></i>
+                          8.2k downloads
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+            
+                  <article class="card card--news">
+                    <img src="imagens/vip-lounge.webp" onerror="this.src='imagens/lounge.svg'" alt="Business Class Masterclass"
+                      class="card__image">
+                    <div class="card__content">
+                      <span class="card__category">Masterclass</span>
+                      <h4 class="card__title">
+                        <a href="courses/masterclass.html">Business Class por Menos</a>
+                      </h4>
+                      <p class="card__subtitle">Técnicas avançadas para voar classe executiva gastando menos pontos.</p>
+                      <div class="card__meta">
+                        <span class="card__meta-item">
+                          <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                          8 horas
+                        </span>
+                        <span class="card__meta-item">
+                          <i data-lucide="star" style="width: 14px; height: 14px;"></i>
+                          4.9 (2.1k)
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+            
+                <div class="text-center" style="margin-top: var(--space-8);">
+                  <a href="learn/hacks-library.html" class="btn btn-secondary">
+                    Ver todos os cursos
+                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                  </a>
+                </div>
+              </div>
+            </section>
+            
+            <!-- App Download Section -->
+            <section class="app-download">
+              <div class="app-download__container">
+                <div class="app-download__content">
+                  <span class="app-download__badge">
+                    <i data-lucide="smartphone" style="width: 14px; height: 14px;"></i>
+                    Aplicativo
+                  </span>
+                  <h3 class="app-download__title">Baixe o App MilesAI</h3>
+                  <div class="app-download__features">
+                    <div class="app-download__feature">
+                      <i data-lucide="check-circle-2" class="app-download__feature-icon"></i>
+                      <span>Alertas de ofertas em tempo real</span>
+                    </div>
+                    <div class="app-download__feature">
+                      <i data-lucide="check-circle-2" class="app-download__feature-icon"></i>
+                      <span>Calculadora offline sempre disponível</span>
+                    </div>
+                    <div class="app-download__feature">
+                      <i data-lucide="check-circle-2" class="app-download__feature-icon"></i>
+                      <span>Sincronização de carteira de pontos</span>
+                    </div>
+                    <div class="app-download__feature">
+                      <i data-lucide="check-circle-2" class="app-download__feature-icon"></i>
+                      <span>Widget com valores atualizados</span>
+                    </div>
+                  </div>
+                  <div class="app-download__buttons">
+                    <a href="#" class="app-download__button">
+                      <i data-lucide="apple" style="width: 20px; height: 20px;"></i>
+                      App Store
+                    </a>
+                    <a href="#" class="app-download__button">
+                      <i data-lucide="play" style="width: 20px; height: 20px;"></i>
+                      Google Play
+                    </a>
+                  </div>
+                </div>
+                <div class="app-download__image">
+                  <img src="imagens/passport-travel.jpg" onerror="this.src='imagens/wallet.svg'" alt="App MilesAI"
+                    style="border-radius: 24px; object-fit: cover; width: 100%; max-height: 320px;">
+                </div>
+              </div>
+            </section>
+            
+            <!-- Related Stories Section (TPG Style) -->
+            <section class="related-stories">
+              <div class="related-stories__container">
+                <h3 class="related-stories__title">Histórias populares</h3>
+                <div class="related-stories__grid">
+                  <article class="related-stories__card">
+                    <img src="imagens/vip-lounge.webp" onerror="this.src='imagens/airport.svg'" alt="Priority Pass Lounges"
+                      class="related-stories__image">
+                    <div class="related-stories__content">
+                      <span class="related-stories__category">Guias</span>
+                      <h4 class="related-stories__headline">10 melhores lounges para acessar com Priority Pass</h4>
+                      <span class="related-stories__meta">12 Jan 2026 • 7 min</span>
+                    </div>
+                  </article>
+            
+                  <article class="related-stories__card">
+                    <img src="imagens/cards-collection.jpg" onerror="this.src='imagens/cards.svg'" alt="Churning Strategy"
+                      class="related-stories__image">
+                    <div class="related-stories__content">
+                      <span class="related-stories__category">Cartões</span>
+                      <h4 class="related-stories__headline">Melhor estratégia de churning para 2026</h4>
+                      <span class="related-stories__meta">11 Jan 2026 • 12 min</span>
+                    </div>
+                  </article>
+            
+                  <article class="related-stories__card">
+                    <img src="imagens/hotel-luxury.webp" onerror="this.src='imagens/hotel.svg'" alt="Hyatt vs Marriott"
+                      class="related-stories__image">
+                    <div class="related-stories__content">
+                      <span class="related-stories__category">Hotéis</span>
+                      <h4 class="related-stories__headline">Hyatt vs Marriott: qual programa escolher</h4>
+                      <span class="related-stories__meta">10 Jan 2026 • 9 min</span>
+                    </div>
+                  </article>
+            
+                  <article class="related-stories__card">
+                    <img src="imagens/aircraft-premium.jpg" onerror="this.src='imagens/aircraft.svg'"
+                      alt="Star Alliance vs Oneworld" class="related-stories__image">
+                    <div class="related-stories__content">
+                      <span class="related-stories__category">Análise</span>
+                      <h4 class="related-stories__headline">Star Alliance vs Oneworld: comparativo completo</h4>
+                      <span class="related-stories__meta">09 Jan 2026 • 15 min</span>
+                    </div>
+                  </article>
+            
+                  <article class="related-stories__card">
+                    <img src="imagens/resort-luxury.webp" onerror="this.src='imagens/family.svg'" alt="Family Travel"
+                      class="related-stories__image">
+                    <div class="related-stories__content">
+                      <span class="related-stories__category">Dicas</span>
+                      <h4 class="related-stories__headline">Viagem em família: maximize pontos para 4+</h4>
+                      <span class="related-stories__meta">08 Jan 2026 • 8 min</span>
+                    </div>
+                  </article>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">MilesAI • Fintech-grade travel intelligence</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <a href="index.html" class="footer__brand">
+            <i data-lucide="compass" class="footer__brand-icon" style="width: 28px; height: 28px;"></i>
+            MilesAI
+          </a>
+          <p class="footer__about">
+            Plataforma de inteligência em pontos e milhas para viajantes que querem maximizar cada oportunidade de resgate
+            com dados transparentes e análises profissionais.
+          </p>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Ferramentas</h4>
+          <nav class="footer__links">
+            <a href="calculators/cash-vs-points.html" class="footer__link">Calculadora</a>
+            <a href="tools/portfolio-analyzer.html" class="footer__link">Portfólio</a>
+            <a href="tools/award-map.html" class="footer__link">Mapa de Rotas</a>
+            <a href="tools/ai-concierge.html" class="footer__link">AI Concierge</a>
+          </nav>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Aprender</h4>
+          <nav class="footer__links">
+            <a href="courses/points-101.html" class="footer__link">Points 101</a>
+            <a href="courses/masterclass.html" class="footer__link">Masterclass</a>
+            <a href="ebooks/zero-to-100k.html" class="footer__link">E-books</a>
+            <a href="learn/hacks-library.html" class="footer__link">Biblioteca</a>
+          </nav>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Notícias</h4>
+          <nav class="footer__links">
+            <a href="news/news-hub.html" class="footer__link">News Hub</a>
+            <a href="news/market-pulse.html" class="footer__link">Market Pulse</a>
+            <a href="news/hot-deals-flash.html" class="footer__link">Ofertas</a>
+            <a href="news/transfer-bonus-tracker.html" class="footer__link">Bônus</a>
+          </nav>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Empresa</h4>
+          <nav class="footer__links">
+            <a href="#" class="footer__link">Sobre</a>
+            <a href="#" class="footer__link">Contato</a>
+            <a href="#" class="footer__link">Privacidade</a>
+            <a href="#" class="footer__link">Termos</a>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; 2026 MilesAI. Plataforma independente de otimização de viagens. Não somos afiliados a nenhum programa de
+          fidelidade.
+        </p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Twitter">
+            <i data-lucide="twitter" style="width: 18px; height: 18px;"></i>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <i data-lucide="instagram" style="width: 18px; height: 18px;"></i>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">
+            <i data-lucide="youtube" style="width: 18px; height: 18px;"></i>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn">
+            <i data-lucide="linkedin" style="width: 18px; height: 18px;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Initialize Lucide icons
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
 </body>
 </html>

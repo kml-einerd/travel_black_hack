@@ -8,7 +8,7 @@
       "price": 39,
       "pages": 100,
       "audience": "Beginners who want rapid results",
-      "image": "../imagens/ebook.svg",
+      "image": "../imagens/ebook-zero100k.webp",
       "highlights": [
         "Daily action plan",
         "Printable checklist",
@@ -23,7 +23,7 @@
       "price": 67,
       "pages": 150,
       "audience": "Intermediate and advanced churners",
-      "image": "../imagens/ebook.svg",
+      "image": "../imagens/cards-collection.jpg",
       "highlights": [
         "Velocity strategy",
         "Manufactured spend",
@@ -38,7 +38,7 @@
       "price": 49,
       "pages": 120,
       "audience": "Premium cabin dreamers",
-      "image": "../imagens/ebook.svg",
+      "image": "../imagens/business-cabin.webp",
       "highlights": [
         "Side-by-side price comparisons",
         "Sweet spot routes",
@@ -53,7 +53,7 @@
       "price": 44,
       "pages": 110,
       "audience": "Families of 4-5",
-      "image": "../imagens/ebook.svg",
+      "image": "../imagens/resort-luxury.webp",
       "highlights": [
         "Pooling strategies",
         "Companion pass hacks",
@@ -68,7 +68,7 @@
       "price": 37,
       "pages": 80,
       "audience": "Anyone with good credit",
-      "image": "../imagens/ebook.svg",
+      "image": "../imagens/chase-sapphire.png",
       "highlights": [
         "50+ bonus list",
         "Tracking templates",

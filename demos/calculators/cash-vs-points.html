@@ -1,121 +1,504 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cash vs Points Calculator - MilesAI</title>
+  <title>Calculadora Cash vs Pontos - MilesAI</title>
+  <meta name="description" content="Compare o valor de pagar em dinheiro versus usar pontos. Descubra o CPP (centavos por ponto) e tome a melhor decisão." />
   <link rel="stylesheet" href="../css/design-tokens.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/layouts.css">
   <link rel="stylesheet" href="../css/utilities.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .calculator-hero {
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+      padding: var(--space-12) var(--space-6);
+      text-align: center;
+    }
+    
+    .calculator-hero__icon {
+      width: 64px;
+      height: 64px;
+      background: var(--color-orange);
+      color: var(--neutral-0);
+      border-radius: var(--radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-6);
+    }
+    
+    .calculator-hero__title {
+      font-size: var(--text-display);
+      font-weight: var(--font-black);
+      color: var(--neutral-0);
+      margin-bottom: var(--space-4);
+    }
+    
+    .calculator-hero__subtitle {
+      font-size: var(--text-body-lg);
+      color: var(--neutral-300);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .calculator-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: var(--space-12) var(--space-6);
+    }
+    
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+    
+    .calculator-form {
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+    }
+    
+    .calculator-form__title {
+      font-size: var(--text-h3);
+      font-weight: var(--font-bold);
+      margin-bottom: var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    
+    .calculator-form__title-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--color-orange-light);
+      color: var(--color-orange);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .form-group {
+      margin-bottom: var(--space-5);
+    }
+    
+    .form-group__label {
+      display: block;
+      font-size: var(--text-small);
+      font-weight: var(--font-medium);
+      color: var(--neutral-700);
+      margin-bottom: var(--space-2);
+    }
+    
+    .form-group__hint {
+      font-size: var(--text-xs);
+      color: var(--neutral-500);
+      margin-top: var(--space-1);
+    }
+    
+    .calculator-results {
+      background: var(--color-navy);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      color: var(--neutral-0);
+    }
+    
+    .calculator-results__title {
+      font-size: var(--text-h3);
+      font-weight: var(--font-bold);
+      margin-bottom: var(--space-6);
+      color: var(--neutral-0);
+    }
+    
+    .result-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5);
+      margin-bottom: var(--space-4);
+    }
+    
+    .result-card--winner {
+      background: var(--color-orange);
+      position: relative;
+    }
+    
+    .result-card--winner::after {
+      content: 'MELHOR OPÇÃO';
+      position: absolute;
+      top: -10px;
+      right: var(--space-4);
+      background: var(--color-teal);
+      color: var(--neutral-0);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xxs);
+      font-weight: var(--font-bold);
+    }
+    
+    .result-card__label {
+      font-size: var(--text-small);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: var(--space-2);
+    }
+    
+    .result-card__value {
+      font-family: var(--font-mono);
+      font-size: var(--text-h1);
+      font-weight: var(--font-bold);
+    }
+    
+    .result-card__detail {
+      font-size: var(--text-xs);
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: var(--space-1);
+    }
+    
+    .cpp-breakdown {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5);
+      margin-top: var(--space-6);
+    }
+    
+    .cpp-breakdown__title {
+      font-size: var(--text-small);
+      font-weight: var(--font-bold);
+      margin-bottom: var(--space-4);
+      color: var(--neutral-0);
+    }
+    
+    .cpp-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .cpp-item:last-child {
+      border-bottom: none;
+    }
+    
+    .cpp-item__label {
+      font-size: var(--text-small);
+      color: var(--neutral-300);
+    }
+    
+    .cpp-item__value {
+      font-family: var(--font-mono);
+      font-weight: var(--font-bold);
+    }
+    
+    .cpp-item__value--good {
+      color: var(--color-teal-muted);
+    }
+    
+    .cpp-item__value--bad {
+      color: var(--error);
+    }
+    
+    .recommendation-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid var(--color-orange);
+      border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+      padding: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    
+    .recommendation-box__title {
+      font-weight: var(--font-bold);
+      margin-bottom: var(--space-2);
+    }
+    
+    .recommendation-box__text {
+      font-size: var(--text-small);
+      color: var(--neutral-300);
+      line-height: var(--leading-relaxed);
+    }
+    
+    @media (max-width: 768px) {
+      .calculator-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body class="page">
-  <header class="page__header">
-    <nav class="page__nav">
-      <div class="page__brand">MilesAI <span>Calculator</span></div>
-      <div class="page__links">
-        <a class="page__link" href="../dashboard/index.html">Dashboard</a>
-        <a class="page__link" href="../tools/trip-comparison.html">Trip Comparison</a>
-        <a class="page__link" href="../news/market-pulse.html">Market Pulse</a>
-      </div>
-    </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__top">
+      <a href="../index.html" class="header__brand">
+        <i data-lucide="compass" class="header__brand-icon"></i>
+        Miles<span>AI</span>
+      </a>
+      <nav class="header__nav">
+        <a href="../news/news-hub.html" class="header__link">
+          <i data-lucide="newspaper" style="width: 18px; height: 18px;"></i>
+          Notícias
+        </a>
+        <a href="cash-vs-points.html" class="header__link header__link--active">
+          <i data-lucide="calculator" style="width: 18px; height: 18px;"></i>
+          Calculadora
+        </a>
+        <a href="../learn/hacks-library.html" class="header__link">
+          <i data-lucide="book-open" style="width: 18px; height: 18px;"></i>
+          Aprender
+        </a>
+        <a href="../tools/portfolio-analyzer.html" class="header__link">
+          <i data-lucide="wallet" style="width: 18px; height: 18px;"></i>
+          Ferramentas
+        </a>
+        <a href="../dashboard/index.html" class="header__cta">
+          <i data-lucide="layout-dashboard" style="width: 16px; height: 16px;"></i>
+          Dashboard
+        </a>
+      </nav>
+      <button class="header__menu-btn hidden-desktop">
+        <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+      </button>
+    </div>
   </header>
 
+  <!-- Hero -->
+  <section class="calculator-hero">
+    <div class="calculator-hero__icon">
+      <i data-lucide="calculator" style="width: 32px; height: 32px;"></i>
+    </div>
+    <h1 class="calculator-hero__title">Calculadora Cash vs Pontos</h1>
+    <p class="calculator-hero__subtitle">
+      Compare o custo real de pagar em dinheiro versus usar seus pontos e descubra o melhor negócio em segundos.
+    </p>
+  </section>
+
   <main class="calculator-container">
-    <header class="stack-md" style="text-align:center;">
-      <h1 class="page__hero-title">Cash vs Points Calculator</h1>
-      <p class="page__hero-description">Compare real cash costs with your points value threshold in seconds.</p>
-    </header>
-
-    <div class="card">
-      <form id="calculator-form" class="form-grid">
-        <div class="form-row">
-          <div class="input-group">
-            <label for="cash-price">Cash Price</label>
-            <input type="number" id="cash-price" class="input" placeholder="450" value="450" min="0" step="0.01" required>
-            <span class="card__meta">Total cost if paying with cash</span>
+    <div class="calculator-grid">
+      <!-- Form -->
+      <div class="calculator-form">
+        <h2 class="calculator-form__title">
+          <span class="calculator-form__title-icon">
+            <i data-lucide="edit-3" style="width: 18px; height: 18px;"></i>
+          </span>
+          Dados da Reserva
+        </h2>
+        
+        <form id="calculator-form">
+          <div class="form-group">
+            <label class="form-group__label" for="cash-price">Preço em Dinheiro (R$)</label>
+            <input type="number" id="cash-price" class="input" placeholder="2.500" value="2500" min="0" step="0.01" required>
+            <span class="form-group__hint">Custo total se pagar em dinheiro</span>
           </div>
-
-          <div class="input-group">
-            <label for="points-required">Points Required</label>
-            <input type="number" id="points-required" class="input" placeholder="25000" value="25000" min="0" step="100" required>
-            <span class="card__meta">Points needed for redemption</span>
+          
+          <div class="form-group">
+            <label class="form-group__label" for="points-required">Pontos Necessários</label>
+            <input type="number" id="points-required" class="input" placeholder="125000" value="125000" min="0" step="1000" required>
+            <span class="form-group__hint">Quantidade de pontos para o resgate</span>
           </div>
-        </div>
-
-        <div class="form-row">
-          <div class="input-group">
-            <label for="taxes-fees">Taxes & Fees (Points Booking)</label>
-            <input type="number" id="taxes-fees" class="input" placeholder="45" value="45" min="0" step="0.01">
-            <span class="card__meta">Additional fees when using points</span>
+          
+          <div class="form-group">
+            <label class="form-group__label" for="taxes-fees">Taxas Adicionais (R$)</label>
+            <input type="number" id="taxes-fees" class="input" placeholder="350" value="350" min="0" step="0.01">
+            <span class="form-group__hint">Taxas ao usar pontos (embarque, etc)</span>
           </div>
-
-          <div class="input-group">
-            <label for="points-program">Points Program</label>
-            <select id="points-program" class="input">
-              <option value="chase-ur">Chase Ultimate Rewards</option>
+          
+          <div class="form-group">
+            <label class="form-group__label" for="points-program">Programa de Pontos</label>
+            <select id="points-program" class="select">
+              <option value="livelo">Livelo</option>
+              <option value="latam">LATAM Pass</option>
+              <option value="smiles">Smiles</option>
+              <option value="tudoazul">TudoAzul</option>
+              <option value="chase-ur" selected>Chase Ultimate Rewards</option>
               <option value="amex-mr">Amex Membership Rewards</option>
-              <option value="citi-typ">Citi ThankYou Points</option>
-              <option value="capital-one">Capital One Miles</option>
             </select>
-            <span class="card__meta">Select your points program</span>
+            <span class="form-group__hint">Programa de origem dos pontos</span>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn--full btn--lg">
+            <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+            Calcular Valor
+          </button>
+        </form>
+      </div>
+      
+      <!-- Results -->
+      <div class="calculator-results" id="results">
+        <h2 class="calculator-results__title">Análise do Resgate</h2>
+        
+        <div class="result-card" id="cash-result">
+          <div class="result-card__label">Pagar em Dinheiro</div>
+          <div class="result-card__value" id="cash-total">R$ 2.500</div>
+          <div class="result-card__detail">Valor direto, sem uso de pontos</div>
+        </div>
+        
+        <div class="result-card result-card--winner" id="points-result">
+          <div class="result-card__label">Pagar com Pontos</div>
+          <div class="result-card__value" id="points-total">125.000 pts</div>
+          <div class="result-card__detail">+ R$ 350 em taxas</div>
+        </div>
+        
+        <div class="cpp-breakdown">
+          <div class="cpp-breakdown__title">Comparativo de Valor (CPP)</div>
+          
+          <div class="cpp-item">
+            <span class="cpp-item__label">Seu Resgate</span>
+            <span class="cpp-item__value cpp-item__value--good" id="cpp-actual">1.72¢</span>
+          </div>
+          <div class="cpp-item">
+            <span class="cpp-item__label">Cashback Mínimo</span>
+            <span class="cpp-item__value">1.00¢</span>
+          </div>
+          <div class="cpp-item">
+            <span class="cpp-item__label">Portal de Viagens</span>
+            <span class="cpp-item__value">1.25¢</span>
+          </div>
+          <div class="cpp-item">
+            <span class="cpp-item__label">Média Transferências</span>
+            <span class="cpp-item__value">1.80¢</span>
           </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Calculate this booking</button>
-      </form>
-
-      <div id="results" class="stack-lg" style="display:none; margin-top: var(--space-8);">
-        <h2 class="section__title" style="text-align:center;">Decision Summary</h2>
-
-        <div class="results-grid">
-          <div id="cash-result" class="card result-card">
-            <div class="card__title">Pay with Cash</div>
-            <div class="card__body">
-              <div class="page__hero-title" id="cash-total">$0</div>
-              <p class="card__meta" id="cash-details"></p>
-            </div>
-          </div>
-
-          <div id="points-result" class="card result-card">
-            <div class="card__title">Pay with Points</div>
-            <div class="card__body">
-              <div class="page__hero-title" id="points-total">0 pts</div>
-              <p class="card__meta" id="points-details"></p>
-            </div>
-          </div>
+        
+        <div class="recommendation-box">
+          <div class="recommendation-box__title" id="recommendation-title">Use seus pontos!</div>
+          <p class="recommendation-box__text" id="recommendation-text">
+            Com 1.72¢ por ponto, você está obtendo um valor acima da média. 
+            Esse resgate representa uma economia de R$ 2.150 comparado ao preço em dinheiro.
+          </p>
         </div>
-
-        <div class="notice">
-          <div class="card__title" id="recommendation-title"></div>
-          <p id="recommendation-text"></p>
+      </div>
+    </div>
+    
+    <!-- Info Cards -->
+    <div class="grid grid--3" style="margin-top: var(--space-12);">
+      <div class="card">
+        <div class="card__icon card__icon--teal">
+          <i data-lucide="info" style="width: 24px; height: 24px;"></i>
         </div>
-
-        <div class="card card--subtle">
-          <div class="card__title">Point Value Breakdown</div>
-          <div class="cpp-options">
-            <div class="cpp-option">
-              <span>Your Redemption Value</span>
-              <strong id="cpp-actual">0¢</strong>
-            </div>
-            <div class="cpp-option">
-              <span>Cashback Value</span>
-              <strong>1.0¢</strong>
-            </div>
-            <div class="cpp-option">
-              <span>Travel Portal (Base)</span>
-              <strong>1.25¢</strong>
-            </div>
-            <div class="cpp-option">
-              <span>Transfer Average</span>
-              <strong>1.8¢</strong>
-            </div>
-          </div>
+        <h3 class="card__title">O que é CPP?</h3>
+        <p class="card__subtitle">
+          CPP significa "centavos por ponto". Quanto maior o CPP, mais valor você está extraindo dos seus pontos.
+        </p>
+      </div>
+      
+      <div class="card">
+        <div class="card__icon">
+          <i data-lucide="target" style="width: 24px; height: 24px;"></i>
         </div>
+        <h3 class="card__title">Quando usar pontos?</h3>
+        <p class="card__subtitle">
+          Geralmente vale usar pontos quando o CPP é superior a 1.5¢. Em classe executiva, pode chegar a 3-5¢.
+        </p>
+      </div>
+      
+      <div class="card">
+        <div class="card__icon card__icon--navy">
+          <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+        </div>
+        <h3 class="card__title">Dica Pro</h3>
+        <p class="card__subtitle">
+          Compare sempre com o preço em dinheiro da mesma classe. Resgates internacionais geralmente têm melhor CPP.
+        </p>
       </div>
     </div>
   </main>
 
-  <script type="module" src="../js/calculators.js"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer__copyright">
+          &copy; 2026 MilesAI. Plataforma independente de otimização de viagens.
+        </p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Twitter">
+            <i data-lucide="twitter" style="width: 18px; height: 18px;"></i>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <i data-lucide="instagram" style="width: 18px; height: 18px;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+      
+      // Calculator logic
+      const form = document.getElementById('calculator-form');
+      
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        calculateValue();
+      });
+      
+      // Auto-calculate on input change
+      form.querySelectorAll('input, select').forEach(input => {
+        input.addEventListener('change', calculateValue);
+      });
+      
+      function calculateValue() {
+        const cashPrice = parseFloat(document.getElementById('cash-price').value) || 0;
+        const pointsRequired = parseFloat(document.getElementById('points-required').value) || 0;
+        const taxesFees = parseFloat(document.getElementById('taxes-fees').value) || 0;
+        
+        // Calculate CPP (in cents)
+        const netCashValue = cashPrice - taxesFees;
+        const cpp = pointsRequired > 0 ? (netCashValue / pointsRequired) * 100 : 0;
+        
+        // Update display
+        document.getElementById('cash-total').textContent = `R$ ${cashPrice.toLocaleString('pt-BR')}`;
+        document.getElementById('points-total').textContent = `${pointsRequired.toLocaleString('pt-BR')} pts`;
+        document.getElementById('cpp-actual').textContent = `${cpp.toFixed(2)}¢`;
+        
+        // Update CPP color
+        const cppElement = document.getElementById('cpp-actual');
+        if (cpp >= 1.5) {
+          cppElement.classList.remove('cpp-item__value--bad');
+          cppElement.classList.add('cpp-item__value--good');
+        } else {
+          cppElement.classList.remove('cpp-item__value--good');
+          cppElement.classList.add('cpp-item__value--bad');
+        }
+        
+        // Update recommendation
+        const recTitle = document.getElementById('recommendation-title');
+        const recText = document.getElementById('recommendation-text');
+        const savings = netCashValue;
+        
+        if (cpp >= 1.5) {
+          recTitle.textContent = 'Use seus pontos!';
+          recText.textContent = `Com ${cpp.toFixed(2)}¢ por ponto, você está obtendo um valor ${cpp >= 1.8 ? 'excelente' : 'bom'}. Esse resgate representa uma economia de R$ ${savings.toLocaleString('pt-BR')} comparado ao preço em dinheiro.`;
+        } else if (cpp >= 1.0) {
+          recTitle.textContent = 'Considere outras opções';
+          recText.textContent = `Com ${cpp.toFixed(2)}¢ por ponto, o valor está na média. Considere se há rotas ou datas alternativas com melhor CPP antes de decidir.`;
+        } else {
+          recTitle.textContent = 'Pague em dinheiro';
+          recText.textContent = `Com apenas ${cpp.toFixed(2)}¢ por ponto, você não está extraindo bom valor. Guarde seus pontos para um resgate melhor ou considere cashback.`;
+        }
+        
+        // Update winner card
+        const cashResult = document.getElementById('cash-result');
+        const pointsResult = document.getElementById('points-result');
+        
+        if (cpp >= 1.5) {
+          pointsResult.classList.add('result-card--winner');
+          cashResult.classList.remove('result-card--winner');
+        } else {
+          cashResult.classList.add('result-card--winner');
+          pointsResult.classList.remove('result-card--winner');
+        }
+      }
+      
+      // Initial calculation
+      calculateValue();
+    });
+  </script>
 </body>
 </html>

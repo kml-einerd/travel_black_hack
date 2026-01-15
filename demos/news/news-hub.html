@@ -1,42 +1,452 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portal News Hub • MilesAI</title>
-  <meta name="description" content="Portal-style hub for all MilesAI news categories." />
-<link rel="stylesheet" href="../css/design-tokens.css" />
-<link rel="stylesheet" href="../css/components.css" />
-<link rel="stylesheet" href="../css/layouts.css" />
-<link rel="stylesheet" href="../css/utilities.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notícias - MilesAI</title>
+  <meta name="description" content="Portal de notícias MilesAI: últimas atualizações sobre pontos, milhas, cartões de crédito e ofertas de viagem." />
+  <link rel="stylesheet" href="../css/design-tokens.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="page">
-  <header class="page__header">
-    <nav class="page__nav">
-      <div class="page__brand">MilesAI <span>News Hub</span></div>
-      <div class="page__links">
-        <a class="page__link" href="../news/live-ticker.html">Live Ticker</a>
-        <a class="page__link" href="../news/hot-deals-flash.html">Hot Deals</a>
-        <a class="page__link" href="../news/quick-bites.html">Quick Bites</a>
-      </div>
-    </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__top">
+      <a href="../index.html" class="header__brand">
+        <i data-lucide="compass" class="header__brand-icon"></i>
+        Miles<span>AI</span>
+      </a>
+      <nav class="header__nav">
+        <a href="news-hub.html" class="header__link header__link--active">
+          <i data-lucide="newspaper" style="width: 18px; height: 18px;"></i>
+          Notícias
+        </a>
+        <a href="../calculators/cash-vs-points.html" class="header__link">
+          <i data-lucide="calculator" style="width: 18px; height: 18px;"></i>
+          Calculadora
+        </a>
+        <a href="../learn/hacks-library.html" class="header__link">
+          <i data-lucide="book-open" style="width: 18px; height: 18px;"></i>
+          Aprender
+        </a>
+        <a href="../tools/portfolio-analyzer.html" class="header__link">
+          <i data-lucide="wallet" style="width: 18px; height: 18px;"></i>
+          Ferramentas
+        </a>
+        <a href="../dashboard/index.html" class="header__cta">
+          <i data-lucide="layout-dashboard" style="width: 16px; height: 16px;"></i>
+          Dashboard
+        </a>
+      </nav>
+      <button class="header__menu-btn hidden-desktop">
+        <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+      </button>
+    </div>
   </header>
 
-  <main class="page__main">
-    <section class="section news-hub__hero" id="featured"></section>
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1 class="page-header__title">Notícias</h1>
+    <p class="page-header__description">
+      Últimas atualizações sobre pontos, milhas, cartões e oportunidades de viagem.
+    </p>
+    <div class="page-header__tabs">
+      <button class="page-header__tab page-header__tab--active">Todos</button>
+      <button class="page-header__tab">Cartões</button>
+      <button class="page-header__tab">Aéreas</button>
+      <button class="page-header__tab">Hotéis</button>
+      <button class="page-header__tab">Ofertas</button>
+      <button class="page-header__tab">Análises</button>
+    </div>
+  </section>
 
-    <section class="section news-hub__grid">
-      <article class="card" id="trending"></article>
-      <article class="card" id="hot-deals"></article>
-      <article class="card" id="card-news"></article>
-      <article class="card" id="award-availability"></article>
-      <article class="card" id="hotel-deals"></article>
-      <article class="card" id="latest-guides"></article>
+  <main class="page__main">
+    <!-- Latest News Stories -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Últimas notícias</h2>
+        </div>
+        
+        <!-- Featured Story + Sidebar -->
+        <div class="layout-two-col">
+          <div>
+            <!-- Featured Story -->
+            <article class="news-featured" style="display: block;">
+              <img src="../imagens/cards.svg" alt="Cartões" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: var(--radius-2xl) var(--radius-2xl) 0 0; background: var(--color-orange-light);">
+              <div style="padding: var(--space-6);">
+                <span class="badge badge--primary" style="margin-bottom: var(--space-3);">
+                  <i data-lucide="zap" style="width: 12px; height: 12px;"></i>
+                  Breaking
+                </span>
+                <h2 style="font-size: var(--text-h1); margin-bottom: var(--space-4); line-height: var(--leading-tight);">
+                  <a href="stories.html" style="color: inherit;">Chase Anuncia Mudanças Significativas na Linha Sapphire</a>
+                </h2>
+                <p style="color: var(--neutral-600); line-height: var(--leading-relaxed); margin-bottom: var(--space-4);">
+                  Novos benefícios, bônus maior e aumento na anuidade chegando em fevereiro de 2026. 
+                  Saiba como essas mudanças afetam sua estratégia de acúmulo de pontos e se vale a pena fazer upgrade.
+                </p>
+                <div style="display: flex; align-items: center; gap: var(--space-4); font-size: var(--text-xs); color: var(--neutral-500);">
+                  <span>14 Jan 2026</span>
+                  <span>•</span>
+                  <span>8 min de leitura</span>
+                  <span>•</span>
+                  <span style="display: flex; align-items: center; gap: var(--space-1);">
+                    <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+                    45K visualizações
+                  </span>
+                </div>
+              </div>
+            </article>
+            
+            <!-- More News -->
+            <div class="stack-lg" style="margin-top: var(--space-6);">
+              <article class="card" style="display: grid; grid-template-columns: 120px 1fr; gap: var(--space-4); padding: var(--space-4);">
+                <img src="../imagens/aircraft.svg" alt="Aviação" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-lg); background: var(--color-teal-light);">
+                <div>
+                  <span class="card__category">Aéreas</span>
+                  <h4 class="card__title" style="font-size: var(--text-body);">
+                    <a href="stories.html">LATAM Pass oferece 30% de bônus em transferências do Livelo</a>
+                  </h4>
+                  <span class="card__meta">14 Jan 2026 • 4 min</span>
+                </div>
+              </article>
+              
+              <article class="card" style="display: grid; grid-template-columns: 120px 1fr; gap: var(--space-4); padding: var(--space-4);">
+                <img src="../imagens/hotel.svg" alt="Hotel" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-lg); background: var(--color-secondary-subtle);">
+                <div>
+                  <span class="card__category">Hotéis</span>
+                  <h4 class="card__title" style="font-size: var(--text-body);">
+                    <a href="stories.html">Marriott Bonvoy anuncia promoção de 35% off em reservas com pontos</a>
+                  </h4>
+                  <span class="card__meta">13 Jan 2026 • 3 min</span>
+                </div>
+              </article>
+              
+              <article class="card" style="display: grid; grid-template-columns: 120px 1fr; gap: var(--space-4); padding: var(--space-4);">
+                <img src="../imagens/lounge.svg" alt="Lounge" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-lg); background: var(--warning-subtle);">
+                <div>
+                  <span class="card__category">Cartões</span>
+                  <h4 class="card__title" style="font-size: var(--text-body);">
+                    <a href="stories.html">Capital One Venture X abre novo lounge no aeroporto de Dallas</a>
+                  </h4>
+                  <span class="card__meta">12 Jan 2026 • 5 min</span>
+                </div>
+              </article>
+            </div>
+          </div>
+          
+          <!-- Sidebar -->
+          <div class="stack-lg">
+            <!-- Trending -->
+            <div class="card">
+              <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4);">
+                <i data-lucide="trending-up" style="width: 20px; height: 20px; color: var(--color-orange);"></i>
+                <h3 style="font-size: var(--text-h4); font-weight: var(--font-bold);">Em alta</h3>
+              </div>
+              <div class="list">
+                <a href="stories.html" class="list__item list__item--bordered" style="text-decoration: none;">
+                  <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--neutral-400); width: 24px;">01</span>
+                  <div>
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">Amex 40% bônus Avianca LifeMiles</p>
+                    <span style="font-size: var(--text-xs); color: var(--neutral-500);">12.4K views</span>
+                  </div>
+                </a>
+                <a href="stories.html" class="list__item list__item--bordered" style="text-decoration: none;">
+                  <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--neutral-400); width: 24px;">02</span>
+                  <div>
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">Chase 5/24 pode ter atualização</p>
+                    <span style="font-size: var(--text-xs); color: var(--neutral-500);">8.9K views</span>
+                  </div>
+                </a>
+                <a href="stories.html" class="list__item list__item--bordered" style="text-decoration: none;">
+                  <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--neutral-400); width: 24px;">03</span>
+                  <div>
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">ANA First Class disponível em março</p>
+                    <span style="font-size: var(--text-xs); color: var(--neutral-500);">7.6K views</span>
+                  </div>
+                </a>
+                <a href="stories.html" class="list__item list__item--bordered" style="text-decoration: none;">
+                  <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--neutral-400); width: 24px;">04</span>
+                  <div>
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">Hyatt estende promoção de pontos</p>
+                    <span style="font-size: var(--text-xs); color: var(--neutral-500);">5.4K views</span>
+                  </div>
+                </a>
+                <a href="stories.html" class="list__item" style="text-decoration: none;">
+                  <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--neutral-400); width: 24px;">05</span>
+                  <div>
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">United MileagePlus desvalorização</p>
+                    <span style="font-size: var(--text-xs); color: var(--neutral-500);">4.8K views</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Hot Deals -->
+            <div class="card" style="background: var(--color-orange-light); border-color: var(--color-orange);">
+              <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4);">
+                <i data-lucide="zap" style="width: 20px; height: 20px; color: var(--color-orange);"></i>
+                <h3 style="font-size: var(--text-h4); font-weight: var(--font-bold);">Ofertas ativas</h3>
+              </div>
+              <div class="list">
+                <div class="list__item list__item--bordered">
+                  <div style="flex: 1;">
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">Amex 40% Avianca</p>
+                  </div>
+                  <span class="badge badge--warning">3 dias</span>
+                </div>
+                <div class="list__item list__item--bordered">
+                  <div style="flex: 1;">
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">Ink 100K Bônus</p>
+                  </div>
+                  <span class="badge badge--neutral">2 sem</span>
+                </div>
+                <div class="list__item list__item--bordered">
+                  <div style="flex: 1;">
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">Mistake Fare $99</p>
+                  </div>
+                  <span class="badge badge--error">2h</span>
+                </div>
+                <div class="list__item list__item--bordered">
+                  <div style="flex: 1;">
+                    <p style="font-size: var(--text-small); font-weight: var(--font-medium); color: var(--neutral-900);">Hyatt 5ª Noite Free</p>
+                  </div>
+                  <span class="badge badge--teal">ativo</span>
+                </div>
+              </div>
+              <a href="hot-deals-flash.html" class="btn btn-primary btn--full" style="margin-top: var(--space-4);">
+                Ver todas as ofertas
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+      <div class="newsletter__container">
+        <div class="newsletter__content">
+          <span class="newsletter__badge">
+            <i data-lucide="mail" style="width: 14px; height: 14px;"></i>
+            Newsletter Diária
+          </span>
+          <h3 class="newsletter__title">Receba as melhores<br>oportunidades por email</h3>
+          <p class="newsletter__description">
+            Alertas de ofertas, bônus de transferência e oportunidades de resgate 
+            diretamente no seu email toda manhã.
+          </p>
+          <form class="newsletter__form">
+            <input type="email" class="newsletter__input" placeholder="Seu melhor email">
+            <button type="submit" class="newsletter__submit">Assinar</button>
+          </form>
+        </div>
+        <div class="newsletter__image">
+          <img src="../imagens/aircraft.svg" alt="Viagem" style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 16px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- More Stories -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Mais notícias</h2>
+          <a href="stories.html" class="section__link">
+            Ver todas
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </div>
+        
+        <div class="grid grid--4">
+          <article class="card card--news">
+            <img src="../imagens/airport.svg" alt="Aeroporto" class="card__image" style="background: var(--color-orange-light);">
+            <div class="card__content">
+              <span class="card__category">Guias</span>
+              <h4 class="card__title">
+                <a href="stories.html">Como maximizar o Ink Business Preferred</a>
+              </h4>
+              <span class="card__meta">11 Jan 2026 • 6 min</span>
+            </div>
+          </article>
+          
+          <article class="card card--news">
+            <img src="../imagens/aircraft.svg" alt="Avião" class="card__image" style="background: var(--color-teal-light);">
+            <div class="card__content">
+              <span class="card__category">Análise</span>
+              <h4 class="card__title">
+                <a href="stories.html">Sweet spots da Virgin Atlantic para brasileiros</a>
+              </h4>
+              <span class="card__meta">10 Jan 2026 • 8 min</span>
+            </div>
+          </article>
+          
+          <article class="card card--news">
+            <img src="../imagens/hotel.svg" alt="Hotel" class="card__image" style="background: var(--color-secondary-subtle);">
+            <div class="card__content">
+              <span class="card__category">Comparativo</span>
+              <h4 class="card__title">
+                <a href="stories.html">Programas de hotéis 2026: qual escolher</a>
+              </h4>
+              <span class="card__meta">09 Jan 2026 • 12 min</span>
+            </div>
+          </article>
+          
+          <article class="card card--news">
+            <img src="../imagens/cards.svg" alt="Cartões" class="card__image" style="background: var(--warning-subtle);">
+            <div class="card__content">
+              <span class="card__category">Cartões</span>
+              <h4 class="card__title">
+                <a href="stories.html">Melhores cartões para supermercado em 2026</a>
+              </h4>
+              <span class="card__meta">08 Jan 2026 • 5 min</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="section" style="background: var(--neutral-100);">
+      <div class="container">
+        <div class="section__header" style="text-align: center; display: block;">
+          <h2 class="section__title">Explore por categoria</h2>
+          <p class="section__subtitle">Encontre exatamente o que você procura</p>
+        </div>
+        
+        <div class="grid grid--3" style="margin-top: var(--space-8);">
+          <a href="card-universe-feed.html" class="card" style="text-decoration: none; text-align: center;">
+            <div class="card__icon" style="margin: 0 auto var(--space-4);">
+              <i data-lucide="credit-card" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Cartões de Crédito</h3>
+            <p class="card__subtitle">Novidades, bônus e análises de cartões</p>
+          </a>
+          
+          <a href="transfer-bonus-tracker.html" class="card" style="text-decoration: none; text-align: center;">
+            <div class="card__icon card__icon--teal" style="margin: 0 auto var(--space-4);">
+              <i data-lucide="arrow-right-left" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Bônus de Transferência</h3>
+            <p class="card__subtitle">Promoções ativas de transferência de pontos</p>
+          </a>
+          
+          <a href="market-pulse.html" class="card" style="text-decoration: none; text-align: center;">
+            <div class="card__icon card__icon--navy" style="margin: 0 auto var(--space-4);">
+              <i data-lucide="activity" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Market Pulse</h3>
+            <p class="card__subtitle">Análise semanal de valorização de pontos</p>
+          </a>
+          
+          <a href="hot-deals-flash.html" class="card" style="text-decoration: none; text-align: center;">
+            <div class="card__icon" style="margin: 0 auto var(--space-4);">
+              <i data-lucide="zap" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Ofertas Relâmpago</h3>
+            <p class="card__subtitle">Deals por tempo limitado e mistake fares</p>
+          </a>
+          
+          <a href="community-wins.html" class="card" style="text-decoration: none; text-align: center;">
+            <div class="card__icon card__icon--teal" style="margin: 0 auto var(--space-4);">
+              <i data-lucide="trophy" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Histórias de Sucesso</h3>
+            <p class="card__subtitle">Resgates incríveis da nossa comunidade</p>
+          </a>
+          
+          <a href="calendar.html" class="card" style="text-decoration: none; text-align: center;">
+            <div class="card__icon card__icon--navy" style="margin: 0 auto var(--space-4);">
+              <i data-lucide="calendar" style="width: 24px; height: 24px;"></i>
+            </div>
+            <h3 class="card__title">Calendário</h3>
+            <p class="card__subtitle">Eventos e datas importantes do setor</p>
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">MilesAI • Portal News Hub Demo</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <a href="../index.html" class="footer__brand">
+            <i data-lucide="compass" class="footer__brand-icon" style="width: 28px; height: 28px;"></i>
+            MilesAI
+          </a>
+          <p class="footer__about">
+            Plataforma de inteligência em pontos e milhas para viajantes que querem maximizar cada oportunidade.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="footer__column-title">Ferramentas</h4>
+          <nav class="footer__links">
+            <a href="../calculators/cash-vs-points.html" class="footer__link">Calculadora</a>
+            <a href="../tools/portfolio-analyzer.html" class="footer__link">Portfólio</a>
+            <a href="../tools/award-map.html" class="footer__link">Mapa de Rotas</a>
+          </nav>
+        </div>
+        
+        <div>
+          <h4 class="footer__column-title">Aprender</h4>
+          <nav class="footer__links">
+            <a href="../courses/points-101.html" class="footer__link">Points 101</a>
+            <a href="../courses/masterclass.html" class="footer__link">Masterclass</a>
+            <a href="../ebooks/zero-to-100k.html" class="footer__link">E-books</a>
+          </nav>
+        </div>
+        
+        <div>
+          <h4 class="footer__column-title">Notícias</h4>
+          <nav class="footer__links">
+            <a href="news-hub.html" class="footer__link">News Hub</a>
+            <a href="market-pulse.html" class="footer__link">Market Pulse</a>
+            <a href="hot-deals-flash.html" class="footer__link">Ofertas</a>
+          </nav>
+        </div>
+        
+        <div>
+          <h4 class="footer__column-title">Empresa</h4>
+          <nav class="footer__links">
+            <a href="#" class="footer__link">Sobre</a>
+            <a href="#" class="footer__link">Contato</a>
+            <a href="#" class="footer__link">Privacidade</a>
+          </nav>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; 2026 MilesAI. Plataforma independente de otimização de viagens.
+        </p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Twitter">
+            <i data-lucide="twitter" style="width: 18px; height: 18px;"></i>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <i data-lucide="instagram" style="width: 18px; height: 18px;"></i>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">
+            <i data-lucide="youtube" style="width: 18px; height: 18px;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-  <script type="module" src="../js/feeds.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
 </body>
 </html>
