@@ -6,78 +6,89 @@
   <title>Manufactured Spending Blueprint - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { margin: 0; background: var(--color-bg-canvas); }
-    .hero { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; padding: clamp(4rem, 10vw, 8rem) 2rem; text-align: center; }
-    .hero__title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; }
-    .hero__subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); opacity: 0.95; max-width: 700px; margin: 0 auto; }
-    .warning-box { background: #fef2f2; border: 2px solid #dc2626; border-radius: 1rem; padding: 1.5rem; max-width: 800px; margin: 2rem auto; color: #991b1b; text-align: center; }
-    .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
-    .section__title { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 3rem; }
-    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-    .benefit-card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .benefit-card__icon { font-size: 3rem; margin-bottom: 1rem; }
-    .benefit-card__title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .cta-section { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 4rem 2rem; text-align: center; color: white; }
-    .price-box { background: white; color: #1e293b; padding: 2rem; border-radius: 1rem; max-width: 400px; margin: 0 auto 2rem; }
-    .price-box__current { font-size: 3rem; font-weight: 700; color: #dc2626; }
+    .hero { background: var(--color-primary); color: white; padding: clamp(4rem, 10vw, 8rem) var(--space-8); text-align: center; position: relative; }
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--color-accent); }
+    .hero__title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: var(--font-black); margin-bottom: var(--space-4); letter-spacing: var(--tracking-tight); display: flex; align-items: center; justify-content: center; gap: var(--space-4); flex-wrap: wrap; }
+    .hero__subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: var(--leading-relaxed); }
+    .section { padding: var(--space-20) var(--space-8); max-width: 1200px; margin: 0 auto; }
+    .section--alt { background: white; }
+    .section__title { font-size: var(--text-4xl); font-weight: var(--font-bold); text-align: center; margin-bottom: var(--space-12); color: var(--color-text-primary); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-8); }
+    .benefit-card { background: white; padding: var(--space-8); border: 2px solid var(--color-border); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); transition: all var(--transition-normal); }
+    .benefit-card:hover { box-shadow: var(--shadow-elevated); transform: translateY(-4px); border-color: var(--color-primary); }
+    .benefit-card__icon { width: 56px; height: 56px; background: var(--neutral-100); border: 2px solid var(--color-border); border-radius: var(--radius-lg); color: var(--color-secondary); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4); }
+    .benefit-card__title { font-size: var(--text-xl); font-weight: var(--font-bold); margin-bottom: var(--space-2); color: var(--color-text-primary); }
+    .cta-section { background: var(--color-secondary); padding: var(--space-20) var(--space-8); text-align: center; color: white; position: relative; }
+    .cta-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-accent); }
+    .price-box { background: white; color: var(--color-text-primary); padding: var(--space-8); border-radius: var(--radius-xl); max-width: 400px; margin: 0 auto var(--space-6); box-shadow: var(--shadow-elevated); }
+    .price-box__current { font-family: var(--font-mono); font-size: var(--text-7xl); font-weight: var(--font-black); color: var(--color-primary); font-variant-numeric: tabular-nums; line-height: 1; }
+    .price-box__details { margin: var(--space-4) 0; color: var(--color-text-secondary); }
+    @media (max-width: 768px) { .section { padding: var(--space-12) var(--space-4); } }
   </style>
 </head>
 <body>
   <section class="hero">
-    <h1 class="hero__title">🥷 Manufactured Spending Blueprint</h1>
+    <h1 class="hero__title">
+      <i data-lucide="shield" class="icon icon--2xl"></i>
+      <span>Manufactured Spending Blueprint</span>
+    </h1>
     <p class="hero__subtitle">
-      Advanced techniques to safely earn 100K+ points monthly beyond organic spending
+      Scale point earning to 500K+ points per year through systematic manufactured spending techniques
     </p>
-    <div class="warning-box">
-      ⚠️ <strong>ADVANCED GUIDE</strong> - Manufactured spending carries risks. This guide teaches safety-first approaches.
-    </div>
   </section>
 
   <section class="section">
-    <h2 class="section__title">From Beginner to Advanced MS</h2>
+    <h2 class="section__title">What You'll Learn</h2>
     <div class="benefits-grid">
       <div class="benefit-card">
-        <div class="benefit-card__icon">🌱</div>
-        <h3 class="benefit-card__title">Beginner Methods</h3>
-        <p>Start with zero-risk techniques: grocery gift cards, Plastiq, prepaid bills, and refundable bookings</p>
+        <div class="benefit-card__icon">
+          <i data-lucide="layers" class="icon icon--lg"></i>
+        </div>
+        <h3 class="benefit-card__title">MS Fundamentals</h3>
+        <p>Build a foundation with gift cards, money orders, and liquidation strategies</p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-card__icon">📈</div>
-        <h3 class="benefit-card__title">Scaling Strategies</h3>
-        <p>Gradually increase volume from $2K to $50K+ monthly while staying under the radar</p>
+        <div class="benefit-card__icon">
+          <i data-lucide="trending-up" class="icon icon--lg"></i>
+        </div>
+        <h3 class="benefit-card__title">Volume Scaling</h3>
+        <p>Go from $5K/month to $50K/month without triggering shutdowns or FR</p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-card__icon">🛡️</div>
-        <h3 class="benefit-card__title">Risk Management</h3>
-        <p>Avoid bank shutdowns, financial review, and clawbacks with proven safety protocols</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-card__icon">💳</div>
-        <h3 class="benefit-card__title">VGC → MO Methods</h3>
-        <p>Master Visa gift card liquidation via money orders at Walmart, grocery stores, and USPS</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-card__icon">🔧</div>
-        <h3 class="benefit-card__title">Alternative Routes</h3>
-        <p>Bank account bonuses, Venmo/PayPal methods, and creative liquidation techniques</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-card__icon">📊</div>
+        <div class="benefit-card__icon">
+          <i data-lucide="calculator" class="icon icon--lg"></i>
+        </div>
         <h3 class="benefit-card__title">ROI Optimization</h3>
-        <p>Minimize fees to 0.5-1.5% while maximizing earning through category bonuses and portals</p>
+        <p>Calculate true costs including fees, time value, and opportunity cost</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <i data-lucide="shield-alert" class="icon icon--lg"></i>
+        </div>
+        <h3 class="benefit-card__title">Risk Management</h3>
+        <p>Avoid shutdowns, financial reviews, and Level 3 data issues</p>
       </div>
     </div>
   </section>
 
   <section class="cta-section">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Scale Your Earning Safely</h2>
+    <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); margin-bottom: var(--space-6);">Master Manufactured Spending</h2>
     <div class="price-box">
-      <div class="price-box__current">$67</div>
-      <p style="margin-bottom: 1.5rem;">200+ pages • Safety checklists • Tracking spreadsheets</p>
-      <a href="#" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Get Instant Access →</a>
+      <div class="price-box__current">$47</div>
+      <p class="price-box__details">187 pages • 25+ methods • Lifetime updates</p>
+      <a href="#" class="btn btn-accent btn-lg" style="width: 100%;">
+        <i data-lucide="download" class="icon icon--sm"></i>
+        <span>Get MS Blueprint</span>
+      </a>
     </div>
-    <p style="font-size: 0.9rem; opacity: 0.9;">For experienced churners only • Risk disclosure included</p>
+    <p style="font-size: var(--text-sm); opacity: 0.9;">30-day money-back guarantee</p>
   </section>
+
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>

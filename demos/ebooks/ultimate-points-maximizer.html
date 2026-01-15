@@ -6,16 +6,28 @@
   <title>The Ultimate Points Maximizer - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { margin: 0; background: var(--color-bg-canvas); }
 
     .hero {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      background: var(--color-primary);
       color: white;
       padding: var(--space-16) var(--space-8);
       text-align: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-accent);
+      z-index: 2;
     }
 
     .hero::before {
@@ -130,7 +142,15 @@
     }
 
     .benefit-card__icon {
-      font-size: var(--text-4xl);
+      width: 56px;
+      height: 56px;
+      background: var(--neutral-100);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      color: var(--color-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: var(--space-3);
     }
 
@@ -376,14 +396,18 @@
         </p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-card__icon">🎯</div>
+        <div class="benefit-card__icon">
+          <i data-lucide="target" class="icon icon--lg"></i>
+        </div>
         <h3 class="benefit-card__title">Sweet Spot Redemptions</h3>
         <p class="benefit-card__text">
           Discover hidden award charts and book first class flights for 70% less points than competitors
         </p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-card__icon">💰</div>
+        <div class="benefit-card__icon">
+          <i data-lucide="wallet" class="icon icon--lg"></i>
+        </div>
         <h3 class="benefit-card__title">Advanced Earning Tactics</h3>
         <p class="benefit-card__text">
           Learn manufactured spending, stacking strategies, and bonus hunting to 10X your earning rate
@@ -404,7 +428,9 @@
         </p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-card__icon">📊</div>
+        <div class="benefit-card__icon">
+          <i data-lucide="bar-chart-3" class="icon icon--lg"></i>
+        </div>
         <h3 class="benefit-card__title">Portfolio Optimization</h3>
         <p class="benefit-card__text">
           Build a balanced credit card lineup that maximizes earning across all spending categories
@@ -521,7 +547,9 @@
           "This guide paid for itself in the first month. I earned 75K points following just ONE strategy from Chapter 4. Now I'm on track for 600K+ this year."
         </p>
         <div class="testimonial__author">
-          <div class="testimonial__avatar">👨</div>
+          <div class="testimonial__avatar">
+            <i data-lucide="user" class="icon icon--lg"></i>
+          </div>
           <div>
             <div class="testimonial__name">Michael T.</div>
             <div class="testimonial__title">Software Engineer</div>
@@ -545,7 +573,9 @@
           "The manufactured spending chapter alone is worth 10X the price. Clear, actionable steps that actually work. Best $47 I've ever spent."
         </p>
         <div class="testimonial__author">
-          <div class="testimonial__avatar">👨</div>
+          <div class="testimonial__avatar">
+            <i data-lucide="user" class="icon icon--lg"></i>
+          </div>
           <div>
             <div class="testimonial__name">James R.</div>
             <div class="testimonial__title">Business Owner</div>
@@ -573,5 +603,8 @@
       ✅ 30-day money-back guarantee • 📱 Instant digital delivery • 🔄 Free lifetime updates
     </div>
   </section>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
