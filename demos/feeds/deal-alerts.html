@@ -6,6 +6,7 @@
   <title>Deal Alerts - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { padding: 2rem; background: var(--color-bg-canvas); }
     .container { max-width: 900px; margin: 0 auto; }
@@ -20,17 +21,17 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">🚨 Deal Alerts</h1>
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;"><i data-lucide="bell" class="icon icon--lg"></i> <span>Deal Alerts</span></h1>
       <p style="color: #64748b;">Time-sensitive deals and opportunities</p>
     </div>
 
     <div class="deal-card">
       <div class="deal-header">
         <div style="flex: 1;">
-          <div class="deal-title">🔥 Amex Gold 90K Welcome Bonus</div>
+          <div class="deal-title">Amex Gold 90K Welcome Bonus</div>
           <div style="color: #64748b; font-size: 0.875rem;">Public offer • Expires Jan 31st</div>
         </div>
-        <div class="deal-urgency">⏰ 17 days left</div>
+        <div class="deal-urgency">17 days left</div>
       </div>
       <p style="color: #64748b; margin-bottom: 1rem;">
         Highest public offer ever for Amex Gold. Usually 60K, now 90K after $6K spend in 6 months.
@@ -47,10 +48,10 @@
     <div class="deal-card" style="border-left-color: #d97706;">
       <div class="deal-header">
         <div style="flex: 1;">
-          <div class="deal-title">✈️ Error Fare: US to Europe $250 RT</div>
+          <div class="deal-title">Error Fare: US to Europe $250 RT</div>
           <div style="color: #64748b; font-size: 0.875rem;">Mistake fare • May be cancelled</div>
         </div>
-        <div class="deal-urgency" style="background: #d97706;">⚡ ACT FAST</div>
+        <div class="deal-urgency" style="background: #d97706;">ACT FAST</div>
       </div>
       <p style="color: #64748b; margin-bottom: 1rem;">
         United showing $250 round-trip fares from East Coast to multiple European cities. Likely error - book now, pay later if it tickets!
@@ -64,5 +65,8 @@
       <a href="#" class="btn btn-primary" style="width: 100%; padding: 1rem;">Search Flights →</a>
     </div>
   </div>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>

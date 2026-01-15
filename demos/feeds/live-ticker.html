@@ -6,12 +6,13 @@
   <title>Live Ticker - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { padding: 2rem; background: var(--color-bg-canvas); }
     .container { max-width: 900px; margin: 0 auto; }
     .header { text-align: center; margin-bottom: 3rem; }
     .ticker-container { background: white; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
-    .ticker-header { background: linear-gradient(135deg, #dc2626, #991b1b); color: white; padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .ticker-header { background: var(--color-danger); color: white; padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
     .live-badge { background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem; }
     .pulse { width: 8px; height: 8px; background: #fef2f2; border-radius: 50%; animation: pulse 2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -29,7 +30,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">📡 Live Ticker</h1>
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;"><i data-lucide="radio" class="icon icon--lg"></i> <span>Live Ticker</span></h1>
       <p style="color: #64748b;">Real-time updates on bonuses, deals, and breaking news</p>
     </div>
 
@@ -130,6 +131,9 @@
 
     // Add new update every 30 seconds
     setInterval(addUpdate, 30000);
+  </script>
+  <script>
+    lucide.createIcons();
   </script>
 </body>
 </html>
