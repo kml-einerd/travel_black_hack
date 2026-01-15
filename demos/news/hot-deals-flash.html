@@ -6,6 +6,7 @@
   <title>Hot Deals Flash Feed - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { padding: var(--space-8); }
 
@@ -43,7 +44,7 @@
     }
 
     .filter-btn.active {
-      background: var(--gradient-primary);
+      background: var(--color-primary);
       color: white;
       border-color: var(--color-primary);
     }
@@ -140,7 +141,10 @@
 
   <div class="container container--lg">
     <header class="page-header">
-      <h1>🔥 Hot Deals Flash Feed</h1>
+      <h1>
+        <i data-lucide="zap" class="icon icon--lg"></i>
+        <span>Hot Deals Flash Feed</span>
+      </h1>
       <p style="color: var(--color-text-secondary); font-size: var(--text-lg);">
         Time-sensitive opportunities that expire in 24-72 hours
       </p>
@@ -206,7 +210,7 @@
       grid.innerHTML = deals.map(deal => `
         <article class="deal-card deal-card--${deal.urgency}">
           <span class="deal-card__badge badge badge--${deal.urgency === 'critical' ? 'danger' : deal.urgency === 'urgent' ? 'warning' : 'info'}">
-            ${deal.urgency === 'critical' ? '🔴 ENDING SOON' : deal.urgency === 'urgent' ? '🟠 ACT NOW' : '🔵 IMPORTANT'}
+            ${deal.urgency === 'critical' ? 'ENDING SOON' : deal.urgency === 'urgent' ? 'ACT NOW' : 'IMPORTANT'}
           </span>
 
           <img src="${deal.image}" alt="${deal.title}" class="deal-card__image">
@@ -216,7 +220,8 @@
             <p class="deal-card__subtitle">${deal.subtitle}</p>
 
             <div class="deal-card__value">
-              💰 ${deal.value_estimate}
+              <i data-lucide="dollar-sign" class="icon icon--xs"></i>
+              ${deal.value_estimate}
             </div>
 
             <div class="countdown countdown--${deal.urgency === 'critical' ? 'urgent' : ''}"
@@ -243,13 +248,15 @@
                   ${deal.requirements}
                 </small>
               </div>
-              <button class="btn btn-primary btn--sm" onclick="window.open('${deal.cta_url}', '_blank')">
-                ${deal.cta_text}
+              <button class="btn btn-accent btn--sm" onclick="window.open('${deal.cta_url}', '_blank')">
+                <i data-lucide="external-link" class="icon icon--xs"></i>
+                <span>${deal.cta_text}</span>
               </button>
             </div>
           </div>
         </article>
       `).join('');
+      lucide.createIcons();
     }
 
     function startCountdowns() {
@@ -282,5 +289,8 @@
     document.addEventListener('DOMContentLoaded', loadDeals);
   </script>
 
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>

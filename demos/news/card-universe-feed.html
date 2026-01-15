@@ -6,6 +6,7 @@
   <title>Card Universe Feed - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { padding: var(--space-8); background: var(--color-bg-canvas); }
     .page-header { text-align: center; margin-bottom: var(--space-8); }
@@ -104,7 +105,10 @@
 <body>
   <div class="container">
     <header class="page-header">
-      <h1>💳 Card Universe Feed</h1>
+      <h1>
+        <i data-lucide="credit-card" class="icon icon--lg"></i>
+        <span>Card Universe Feed</span>
+      </h1>
       <p style="color: var(--color-text-secondary);">Latest credit card news, launches, and updates</p>
     </header>
 
@@ -185,15 +189,25 @@
 
               <div class="post-card__footer">
                 <div class="engagement">
-                  <span class="engagement__item">👁 ${Math.floor(Math.random() * 10000 + 1000)}</span>
-                  <span class="engagement__item">💬 ${Math.floor(Math.random() * 200 + 50)}</span>
+                  <span class="engagement__item">
+                    <i data-lucide="eye" class="icon icon--xs"></i>
+                    ${Math.floor(Math.random() * 10000 + 1000)}
+                  </span>
+                  <span class="engagement__item">
+                    <i data-lucide="message-circle" class="icon icon--xs"></i>
+                    ${Math.floor(Math.random() * 200 + 50)}
+                  </span>
                 </div>
-                <button class="btn btn-primary btn--sm">Learn More</button>
+                <button class="btn btn-accent btn--sm">
+                  <i data-lucide="arrow-right" class="icon icon--xs"></i>
+                  <span>View Details</span>
+                </button>
               </div>
             </div>
           </article>
         `;
       }).join('');
+      lucide.createIcons();
     }
 
     function formatTime(timestamp) {
@@ -208,6 +222,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadFeed);
+  </script>
+
+  <script>
+    lucide.createIcons();
   </script>
 </body>
 </html>
