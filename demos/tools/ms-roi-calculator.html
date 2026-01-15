@@ -6,50 +6,201 @@
   <title>MS ROI Calculator - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    body { padding: 2rem; background: var(--color-bg-canvas); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .calc-container { max-width: 600px; width: 100%; background: white; padding: 2.5rem; border-radius: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    h1 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
-    .form-group { margin-bottom: 1.5rem; }
-    label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
-    input { width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; }
-    .result { background: linear-gradient(135deg, #059669, #047857); color: white; padding: 2rem; border-radius: 1rem; margin-top: 2rem; text-align: center; display: none; }
-    .result-value { font-size: 3rem; font-weight: 700; }
+    body {
+      padding: var(--space-8);
+      background: var(--color-bg-canvas);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .calc-container {
+      max-width: 600px;
+      width: 100%;
+      background: white;
+      padding: var(--space-10);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-card);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .header__title {
+      font-size: var(--text-4xl);
+      font-weight: var(--font-black);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+
+    .header__subtitle {
+      color: var(--color-text-secondary);
+      font-size: var(--text-base);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-6);
+    }
+
+    label {
+      display: block;
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-2);
+      color: var(--color-text-primary);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      font-size: var(--text-sm);
+    }
+
+    input {
+      width: 100%;
+      padding: var(--space-3);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result {
+      background: var(--color-success);
+      color: white;
+      padding: var(--space-8);
+      border-radius: var(--radius-xl);
+      margin-top: var(--space-6);
+      text-align: center;
+      display: none;
+      position: relative;
+    }
+
+    .result.visible {
+      display: block;
+    }
+
+    .result::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-accent);
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-6xl);
+      font-weight: var(--font-black);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .result-label {
+      margin-top: var(--space-2);
+      opacity: 0.9;
+      font-size: var(--text-base);
+      font-weight: var(--font-semibold);
+    }
+
+    .result-secondary {
+      margin-top: var(--space-4);
+      font-size: var(--text-xl);
+      font-weight: var(--font-bold);
+      padding-top: var(--space-4);
+      border-top: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .result-verdict {
+      margin-top: var(--space-4);
+      padding: var(--space-3);
+      background: rgba(255,255,255,0.2);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+    }
   </style>
 </head>
 <body>
   <div class="calc-container">
-    <h1>💰 MS ROI Calculator</h1>
-    <div class="form-group">
-      <label>MS Volume ($)</label>
-      <input type="number" id="volume" placeholder="e.g., 5000">
+    <div class="header">
+      <h1 class="header__title">
+        <i data-lucide="trending-up" class="icon icon--lg"></i>
+        <span>MS ROI Calculator</span>
+      </h1>
+      <p class="header__subtitle">Manufactured Spending Return on Investment</p>
     </div>
+
     <div class="form-group">
-      <label>Total Fees ($)</label>
-      <input type="number" id="fees" placeholder="e.g., 75">
+      <label for="volume">MS Volume ($)</label>
+      <input type="number" id="volume" placeholder="5000" step="0.01" min="0">
     </div>
+
     <div class="form-group">
-      <label>Points Earned</label>
-      <input type="number" id="points" placeholder="e.g., 20000">
+      <label for="fees">Total Fees ($)</label>
+      <input type="number" id="fees" placeholder="75" step="0.01" min="0">
     </div>
-    <button onclick="calc()" class="btn btn-primary" style="width: 100%; padding: 1rem;">Calculate ROI →</button>
+
+    <div class="form-group">
+      <label for="points">Points Earned</label>
+      <input type="number" id="points" placeholder="20000" step="1" min="0">
+    </div>
+
+    <button onclick="calc()" class="btn btn-primary btn-lg" style="width: 100%;">
+      <i data-lucide="calculator" class="icon icon--sm"></i>
+      <span>Calculate MS ROI</span>
+    </button>
+
     <div id="result" class="result"></div>
   </div>
+
   <script>
+    lucide.createIcons();
+
     function calc() {
       const vol = parseFloat(document.getElementById('volume').value);
       const fees = parseFloat(document.getElementById('fees').value);
       const pts = parseFloat(document.getElementById('points').value);
-      if (!vol || !fees || !pts) return alert('Fill all fields');
+
+      if (!vol || !fees || !pts) return alert('Please fill all fields');
+
       const feePercent = (fees/vol)*100;
       const ptsPerDollar = pts/vol;
+
+      let icon, verdict;
+      if (feePercent < 1.5) {
+        icon = 'check-circle';
+        verdict = 'Excellent efficiency';
+      } else if (feePercent < 2.5) {
+        icon = 'thumbs-up';
+        verdict = 'Good profitability';
+      } else {
+        icon = 'alert-triangle';
+        verdict = 'High fee percentage';
+      }
+
       document.getElementById('result').innerHTML = `
         <div class="result-value">${feePercent.toFixed(2)}%</div>
-        <div>Fee Percentage</div>
-        <div style="margin-top: 1rem; font-size: 1.25rem;">${ptsPerDollar.toFixed(2)}x earning rate</div>
-        <div style="margin-top: 1rem; opacity: 0.9;">${(feePercent < 1.5 ? '✅ Excellent' : feePercent < 2.5 ? '👍 Good' : '⚠️ High fees')}</div>
+        <div class="result-label">Fee Percentage</div>
+        <div class="result-secondary">${ptsPerDollar.toFixed(2)}x earning rate</div>
+        <div class="result-verdict">
+          <i data-lucide="${icon}" class="icon icon--sm"></i>
+          <span>${verdict}</span>
+        </div>
       `;
-      document.getElementById('result').style.display = 'block';
+
+      document.getElementById('result').classList.add('visible');
+      lucide.createIcons();
     }
   </script>
 </body>

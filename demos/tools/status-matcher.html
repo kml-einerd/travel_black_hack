@@ -3,81 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Status Match Finder</title>
+  <title>Status Matcher - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    body { padding: 2rem; background: var(--color-bg-canvas); }
-    .container { max-width: 800px; margin: 0 auto; }
-    .header { text-align: center; margin-bottom: 3rem; }
-    .selector { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-    select { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; }
-    .matches { display: grid; gap: 1rem; }
-    .match-card { background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid #059669; }
+    body { padding: var(--space-8); background: var(--color-bg-canvas); }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: var(--space-12); }
+    .header__title { font-size: var(--text-5xl); font-weight: var(--font-black); color: var(--color-text-primary); margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight); display: flex; align-items: center; justify-content: center; gap: var(--space-3); }
+    .header__subtitle { color: var(--color-text-secondary); font-size: var(--text-lg); }
+    .filters { background: white; padding: var(--space-8); border: 2px solid var(--color-border); border-radius: var(--radius-2xl); margin-bottom: var(--space-8); box-shadow: var(--shadow-card); }
+    .match-card { background: white; padding: var(--space-6); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); border-left: 4px solid var(--color-success); border: 2px solid var(--color-border); margin-bottom: var(--space-4); }
+    .match-card:hover { box-shadow: var(--shadow-elevated); transform: translateY(-2px); transition: all var(--transition-normal); }
+    .match-card__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-3); }
+    .match-card__title { font-size: var(--text-xl); font-weight: var(--font-bold); color: var(--color-text-primary); }
+    .match-card__success { color: var(--color-success); font-weight: var(--font-semibold); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+    .match-card__success--medium { color: var(--color-warning); }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">👑 Status Match Finder</h1>
-      <p style="color: #64748b;">Find hotels that will match your existing elite status</p>
+      <h1 class="header__title">
+        <i data-lucide="award" class="icon icon--xl"></i>
+        <span>Status Matcher</span>
+      </h1>
+      <p class="header__subtitle">Find hotel and airline status match opportunities</p>
     </div>
-
-    <div class="selector">
-      <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Your Current Status</label>
-      <select id="status" onchange="findMatches()">
-        <option value="">Select your status...</option>
-        <option value="hilton-diamond">Hilton Diamond</option>
-        <option value="marriott-plat">Marriott Platinum</option>
-        <option value="hyatt-globalist">Hyatt Globalist</option>
-        <option value="ihg-platinum">IHG Platinum</option>
-        <option value="airline-gold">Airline Gold/Platinum</option>
+    <div class="filters">
+      <label style="display: block; font-weight: var(--font-semibold); margin-bottom: var(--space-2); font-size: var(--text-sm); color: var(--color-text-primary); text-transform: uppercase; letter-spacing: var(--tracking-wide);">Your Current Status</label>
+      <select id="filter" class="input" style="width: 100%;">
+        <option value="all">All Status Levels</option>
+        <option value="gold">Gold/Platinum</option>
+        <option value="elite">Top Tier Elite</option>
       </select>
     </div>
-
-    <div id="matches" class="matches"></div>
+    <div id="matches"></div>
   </div>
-
   <script>
-    const matchData = {
-      'hilton-diamond': [
-        {to: 'Marriott Gold', method: 'Hilton Match Portal', success: 'High'},
-        {to: 'Hyatt Explorist', method: 'Upload proof via Hyatt', success: 'Medium'}
-      ],
-      'marriott-plat': [
-        {to: 'Hilton Gold', method: 'Hilton Match Portal', success: 'High'},
-        {to: 'IHG Platinum', method: 'Email IHG', success: 'Medium'}
-      ],
-      'hyatt-globalist': [
-        {to: 'Marriott Platinum', method: 'Status match challenge', success: 'Medium'},
-        {to: 'Hilton Diamond', method: 'Hilton Match Portal', success: 'High'}
-      ],
-      'airline-gold': [
-        {to: 'Marriott Gold', method: 'Upload airline card', success: 'High'},
-        {to: 'Hilton Gold', method: 'Hilton Match Portal', success: 'High'}
-      ]
-    };
-
-    function findMatches() {
-      const status = document.getElementById('status').value;
-      const matches = matchData[status] || [];
-      const matchesDiv = document.getElementById('matches');
-
-      if (matches.length === 0) {
-        matchesDiv.innerHTML = '<p style="text-align: center; color: #64748b;">Select a status to see match opportunities</p>';
-        return;
-      }
-
-      matchesDiv.innerHTML = matches.map(m => `
+    lucide.createIcons();
+    const matches = [
+      {from: 'Marriott Platinum', to: 'Hertz President\'s Circle', success: 'High', requirements: 'Upload status screenshot'},
+      {from: 'Hilton Diamond', to: 'National Emerald Executive', success: 'High', requirements: 'Email status proof'},
+      {from: 'United Silver', to: 'Avis Preferred Plus', success: 'Medium', requirements: 'Status number verification'}
+    ];
+    function render() {
+      document.getElementById('matches').innerHTML = matches.map(m => `
         <div class="match-card">
-          <h3 style="margin-bottom: 0.5rem;">${m.to}</h3>
-          <div style="color: #64748b; font-size: 0.875rem; margin-bottom: 0.5rem;">Method: ${m.method}</div>
-          <div style="color: ${m.success === 'High' ? '#059669' : '#d97706'}; font-weight: 600; font-size: 0.875rem;">
-            ${m.success === 'High' ? '✅' : '⚠️'} ${m.success} Success Rate
+          <div class="match-card__header">
+            <div class="match-card__title">${m.from} → ${m.to}</div>
+            <div class="match-card__success ${m.success === 'Medium' ? 'match-card__success--medium' : ''}">${m.success} Success Rate</div>
           </div>
+          <div style="color: var(--color-text-secondary); font-size: var(--text-sm);">${m.requirements}</div>
         </div>
       `).join('');
     }
+    render();
   </script>
 </body>
 </html>
