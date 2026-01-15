@@ -167,6 +167,7 @@
     async function loadDeals() {
       try {
         const response = await fetch('../data/hot-deals.json');
+        if (!response.ok) throw new Error('Fetch failed');
         const data = await response.json();
         allDeals = data.hot_deals;
 
@@ -175,6 +176,12 @@
         startCountdowns();
       } catch (error) {
         console.error('Error loading deals:', error);
+        document.getElementById('deals-grid').innerHTML = `
+          <div style="padding: 32px; text-align: center; background: #FFF7ED; border-radius: 12px; border: 1px solid #EA580C;">
+            <p style="color: #EA580C; font-weight: 600;">Não foi possível carregar as ofertas.</p>
+            <p style="color: #78716C; font-size: 14px;">Verifique se está usando um servidor local (CORS bloqueia file://).</p>
+          </div>
+        `;
       }
     }
 
@@ -214,7 +221,7 @@
             ${deal.urgency === 'critical' ? 'ENDING SOON' : deal.urgency === 'urgent' ? 'ACT NOW' : 'IMPORTANT'}
           </span>
 
-          <img src="${deal.image}" alt="${deal.title}" class="deal-card__image">
+          <img src="${deal.image}" alt="${deal.title}" class="deal-card__image" onerror="this.src='../images/core/landing-hero-1920x1080@2x.svg'; this.onerror=null;">
 
           <div class="deal-card__content">
             <h3 class="deal-card__title">${deal.title}</h3>

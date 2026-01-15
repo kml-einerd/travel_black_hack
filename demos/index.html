@@ -1,504 +1,803 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MilesAI - Your Operating System for Travel Hacking</title>
-  <meta name="description" content="Convert everyday spending into premium travel with precision analysis and proven strategies. Independent path to travel hacking mastery.">
+  <title>MilesAI - Inteligência em Pontos e Milhas</title>
+  <meta name="description"
+    content="Transforme seus gastos do dia a dia em viagens premium com análise precisa e estratégias comprovadas. Seu sistema operacional para maximizar pontos.">
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/components.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    /* Hero - Solid Navy Professional */
-    .hero {
-      background: var(--color-primary);
-      color: white;
-      padding: var(--space-20) var(--space-4);
-      position: relative;
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'General Sans', system-ui, sans-serif;
+      background: #FAFAF9;
+      color: #1C1917;
+      line-height: 1.6;
     }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--color-accent);
+    
+    /* Header */
+    .header {
+      background: #0C1829;
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
-    .hero__content {
-      max-width: 900px;
+    
+    .header__inner {
+      max-width: 1440px;
       margin: 0 auto;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-
-    .hero__eyebrow {
+    
+    .header__brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .header__brand svg { color: #EA580C; }
+    .header__brand span { color: #EA580C; }
+    
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    
+    .header__link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #A1A1AA;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.15s;
+    }
+    
+    .header__link:hover { color: white; background: rgba(255,255,255,0.1); }
+    
+    .header__cta {
+      background: #EA580C;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    
+    .header__cta:hover { background: #EA580C; transform: translateY(-1px); }
+    
+    /* Hero */
+    .hero {
+      background: #1E3A5F;
+      padding: 96px 24px;
+      text-align: center;
+      color: white;
+    }
+    
+    .hero__badge {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-2);
-      padding: var(--space-2) var(--space-4);
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: var(--radius-full);
-      font-size: var(--text-sm);
-      font-weight: var(--font-semibold);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-wide);
-      margin-bottom: var(--space-6);
+      gap: 8px;
+      background: rgba(249, 115, 22, 0.2);
+      color: #FDBA74;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 24px;
     }
-
+    
     .hero__title {
-      font-size: var(--text-display);
-      font-weight: var(--font-black);
-      letter-spacing: var(--tracking-tight);
-      line-height: var(--leading-tight);
-      margin-bottom: var(--space-4);
-      color: white;
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
     }
-
-    .hero__value {
-      color: var(--color-accent);
-      font-variant-numeric: tabular-nums;
-    }
-
+    
     .hero__subtitle {
-      font-size: var(--text-xl);
-      line-height: var(--leading-relaxed);
-      color: rgba(255, 255, 255, 0.85);
-      max-width: 700px;
-      margin: 0 auto var(--space-8);
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 640px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
     }
-
+    
+    .hero__value { color: #EA580C; }
+    
     .hero__cta {
       display: flex;
-      gap: var(--space-4);
+      gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: var(--space-12);
+      margin-bottom: 64px;
     }
-
-    /* Philosophy Integration in Hero */
+    
+    .btn-primary {
+      background: #EA580C;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary:hover { background: #EA580C; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3); }
+    
+    .btn-outline {
+      background: transparent;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: all 0.15s;
+    }
+    
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+    
+    /* Principles */
     .hero__principles {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: var(--space-6);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
       max-width: 1000px;
       margin: 0 auto;
-      padding-top: var(--space-12);
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
-
+    
     .principle {
       display: flex;
       align-items: flex-start;
-      gap: var(--space-3);
+      gap: 12px;
       text-align: left;
     }
-
+    
     .principle__icon {
-      flex-shrink: 0;
       width: 40px;
       height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-lg);
-      color: var(--color-accent);
+      color: #EA580C;
+      flex-shrink: 0;
     }
-
-    .principle__content {
-      flex: 1;
-    }
-
+    
     .principle__title {
-      font-size: var(--text-sm);
-      font-weight: var(--font-semibold);
+      font-size: 0.875rem;
+      font-weight: 600;
       color: white;
-      margin-bottom: var(--space-1);
+      margin-bottom: 4px;
     }
-
+    
     .principle__text {
-      font-size: var(--text-xs);
-      color: rgba(255, 255, 255, 0.7);
-      line-height: var(--leading-relaxed);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
     }
-
-    /* Social Proof Stats */
-    .social-proof {
-      background: var(--color-bg-secondary);
-      padding: var(--space-16) var(--space-4);
+    
+    /* Stats */
+    .stats-section {
+      background: white;
+      padding: 64px 24px;
+      margin-top: -40px;
+      position: relative;
+      z-index: 10;
     }
-
-    .stats {
+    
+    .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-8);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
       max-width: 1000px;
       margin: 0 auto;
     }
-
+    
     .stat {
       text-align: center;
+      padding: 24px;
+      background: #FAFAF9;
+      border-radius: 16px;
+      border: 1px solid #E7E5E4;
     }
-
+    
     .stat__value {
-      font-family: var(--font-mono);
-      font-size: var(--text-5xl);
-      font-weight: var(--font-black);
-      color: var(--color-primary);
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-      margin-bottom: var(--space-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #EA580C;
+      margin-bottom: 4px;
     }
-
+    
     .stat__label {
-      font-size: var(--text-sm);
-      color: var(--color-text-secondary);
-      font-weight: var(--font-medium);
+      font-size: 0.875rem;
+      color: #78716C;
     }
-
-    /* Features Section */
+    
+    /* Features */
     .features {
-      padding: var(--space-20) var(--space-4);
-      background: white;
+      padding: 96px 24px;
+      background: #FAFAF9;
     }
-
+    
     .section-header {
       text-align: center;
-      max-width: 700px;
-      margin: 0 auto var(--space-12);
+      max-width: 640px;
+      margin: 0 auto 48px;
     }
-
+    
     .section-header__title {
-      font-size: var(--text-4xl);
-      font-weight: var(--font-bold);
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-3);
+      font-family: 'Satoshi', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1C1917;
+      margin-bottom: 12px;
     }
-
+    
     .section-header__subtitle {
-      font-size: var(--text-lg);
-      color: var(--color-text-secondary);
-      line-height: var(--leading-relaxed);
+      font-size: 1.125rem;
+      color: #78716C;
     }
-
+    
     .features__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-8);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       max-width: 1200px;
       margin: 0 auto;
     }
-
+    
     .feature-card {
-      padding: var(--space-6);
       background: white;
-      border: 2px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      transition: all var(--transition-base);
+      padding: 32px;
+      border-radius: 20px;
+      border: 1px solid #E7E5E4;
+      transition: all 0.2s;
     }
-
+    
     .feature-card:hover {
-      border-color: var(--color-primary);
-      box-shadow: var(--shadow-elevated);
+      border-color: #EA580C;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       transform: translateY(-4px);
     }
-
+    
     .feature-card__icon {
       width: 56px;
       height: 56px;
+      background: #FFF7ED;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--neutral-100);
-      border: 2px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      color: var(--color-primary);
-      margin-bottom: var(--space-4);
+      color: #EA580C;
+      margin-bottom: 20px;
     }
-
+    
     .feature-card__title {
-      font-size: var(--text-xl);
-      font-weight: var(--font-bold);
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-2);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1C1917;
+      margin-bottom: 8px;
     }
-
+    
     .feature-card__description {
-      font-size: var(--text-base);
-      color: var(--color-text-secondary);
-      line-height: var(--leading-relaxed);
+      font-size: 0.9375rem;
+      color: #78716C;
+      line-height: 1.6;
     }
-
-    /* CTA Section - Solid Teal */
+    
+    /* Newsletter */
+    .newsletter {
+      background: #0D9488;
+      padding: 64px 24px;
+      margin: 64px 24px;
+      border-radius: 24px;
+    }
+    
+    .newsletter__inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    .newsletter__content { color: white; }
+    
+    .newsletter__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.2);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    
+    .newsletter__title {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    
+    .newsletter__text {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 24px;
+    }
+    
+    .newsletter__form {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .newsletter__input {
+      flex: 1;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    
+    .newsletter__submit {
+      background: #0C1829;
+      color: white;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    
+    .newsletter__submit:hover { background: #1C1917; }
+    
+    .newsletter__image {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .newsletter__image img {
+      max-width: 250px;
+      background: rgba(255,255,255,0.1);
+      padding: 32px;
+      border-radius: 16px;
+    }
+    
+    /* CTA Section */
     .cta-section {
-      background: var(--color-secondary);
-      color: white;
-      padding: var(--space-20) var(--space-4);
+      background: #0C1829;
+      padding: 96px 24px;
       text-align: center;
-      position: relative;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--color-accent);
-    }
-
-    .cta-section__title {
-      font-size: var(--text-4xl);
-      font-weight: var(--font-bold);
       color: white;
-      margin-bottom: var(--space-4);
     }
-
+    
+    .cta-section__title {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    
     .cta-section__text {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: var(--text-lg);
-      max-width: 600px;
-      margin: 0 auto var(--space-8);
-      line-height: var(--leading-relaxed);
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 560px;
+      margin: 0 auto 32px;
     }
-
-    .btn-white {
-      background: white;
-      color: var(--color-secondary);
-      border: 2px solid white;
-      font-weight: var(--font-bold);
-      box-shadow: var(--shadow-lg);
+    
+    /* Footer */
+    .footer {
+      background: #0C1829;
+      padding: 64px 24px 32px;
+      color: #A1A1AA;
     }
-
-    .btn-white:hover {
-      background: var(--neutral-50);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-xl);
+    
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
     }
-
-    @media (max-width: 768px) {
-      .hero__title {
-        font-size: var(--text-3xl);
-      }
-
-      .hero__subtitle {
-        font-size: var(--text-lg);
-      }
-
-      .hero__principles {
-        grid-template-columns: 1fr;
-      }
-
-      .features__grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    
+    .footer__brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 12px;
+    }
+    
+    .footer__brand svg { color: #EA580C; }
+    
+    .footer__about {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      max-width: 280px;
+    }
+    
+    .footer__column-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .footer__link {
+      font-size: 0.875rem;
+      color: #71717A;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    
+    .footer__link:hover { color: #EA580C; }
+    
+    .footer__bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .footer__copyright {
+      font-size: 0.75rem;
+      color: #52525B;
+    }
+    
+    .footer__social {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .footer__social-link {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      color: #71717A;
+      transition: all 0.15s;
+    }
+    
+    .footer__social-link:hover { background: #EA580C; color: white; }
+    
+    @media (max-width: 1024px) {
+      .hero__principles { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .features__grid { grid-template-columns: 1fr; }
+      .newsletter__inner { grid-template-columns: 1fr; }
+      .newsletter__image { display: none; }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+    
+    @media (max-width: 640px) {
+      .header__nav { display: none; }
+      .hero__principles { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .newsletter__form { flex-direction: column; }
+      .footer__grid { grid-template-columns: 1fr; }
+      .footer__bottom { flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__brand">
+        <i data-lucide="compass" style="width: 28px; height: 28px;"></i>
+        Miles<span>AI</span>
+      </a>
+      <nav class="header__nav">
+        <a href="news/hot-deals-flash.html" class="header__link">
+          <i data-lucide="newspaper" style="width: 18px; height: 18px;"></i>
+          Notícias
+        </a>
+        <a href="calculators/cash-vs-points.html" class="header__link">
+          <i data-lucide="calculator" style="width: 18px; height: 18px;"></i>
+          Calculadora
+        </a>
+        <a href="evergreen/hacks-library.html" class="header__link">
+          <i data-lucide="book-open" style="width: 18px; height: 18px;"></i>
+          Aprender
+        </a>
+        <a href="dashboard/index.html" class="header__cta">
+          <i data-lucide="layout-dashboard" style="width: 16px; height: 16px;"></i>
+          Dashboard
+        </a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Hero Section - No Gradients, Integrated Philosophy -->
+  <!-- Hero -->
   <section class="hero">
-    <div class="container container--lg">
-      <div class="hero__content">
-        <div class="hero__eyebrow">
-          <i data-lucide="shield-check" class="icon icon--xs"></i>
-          <span>Independent • Transparent • Results-Driven</span>
+    <div class="hero__badge">
+      <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
+      R$ 3.4M economizados pelos usuários em 2025
+    </div>
+    <h1 class="hero__title">Seu Sistema Operacional<br>para Maximizar Pontos</h1>
+    <p class="hero__subtitle">
+      Transforme gastos do dia a dia em viagens premium com análise precisa e estratégias comprovadas.
+      Economia média de <strong class="hero__value">R$ 42K</strong> por usuário.
+      </p>
+    <div class="hero__cta">
+      <a href="calculators/cash-vs-points.html" class="btn-primary">
+        <i data-lucide="calculator" style="width: 20px; height: 20px;"></i>
+        Calcular Meu Próximo Voo
+      </a>
+      <a href="dashboard/index.html" class="btn-outline">
+        <i data-lucide="layout-dashboard" style="width: 20px; height: 20px;"></i>
+        Ver Dashboard
+      </a>
+      </div>
+    <div class="hero__principles">
+      <div class="principle">
+        <div class="principle__icon">
+          <i data-lucide="user-check" style="width: 20px; height: 20px;"></i>
+          </div>
+        <div>
+          <div class="principle__title">Usuário em Primeiro</div>
+          <div class="principle__text">Sem afiliados. Sem conflitos de interesse.</div>
         </div>
-
-        <h1 class="hero__title">
-          Your Operating System for<br>Travel Hacking Mastery
-        </h1>
-
-        <p class="hero__subtitle">
-          Convert everyday spending into premium travel with precision analysis and proven strategies.
-          Our users saved <strong class="hero__value">$2.3M</strong> in travel costs during 2024 using systematic optimization.
-        </p>
-
-        <div class="hero__cta">
-          <a href="calculators/cash-vs-points.html" class="btn btn-accent btn-lg">
-            <i data-lucide="calculator" class="icon icon--sm"></i>
-            <span>Calculate Your Next Flight</span>
-          </a>
-          <a href="dashboard/" class="btn btn-white btn-lg">
-            <i data-lucide="layout-dashboard" class="icon icon--sm"></i>
-            <span>See Your Dashboard</span>
-          </a>
         </div>
-
-        <!-- Philosophy Integrated -->
-        <div class="hero__principles">
-          <div class="principle">
-            <div class="principle__icon">
-              <i data-lucide="user-check" class="icon icon--sm"></i>
-            </div>
-            <div class="principle__content">
-              <div class="principle__title">User First, Always</div>
-              <div class="principle__text">No bank affiliates. No conflicts of interest.</div>
-            </div>
+      <div class="principle">
+        <div class="principle__icon">
+          <i data-lucide="eye" style="width: 20px; height: 20px;"></i>
           </div>
-
-          <div class="principle">
-            <div class="principle__icon">
-              <i data-lucide="eye" class="icon icon--sm"></i>
-            </div>
-            <div class="principle__content">
-              <div class="principle__title">Transparent Calculations</div>
-              <div class="principle__text">See exactly how we calculate value.</div>
-            </div>
+        <div>
+          <div class="principle__title">Cálculos Transparentes</div>
+          <div class="principle__text">Veja exatamente como calculamos valor.</div>
+        </div>
+        </div>
+      <div class="principle">
+        <div class="principle__icon">
+          <i data-lucide="message-square" style="width: 20px; height: 20px;"></i>
           </div>
-
-          <div class="principle">
-            <div class="principle__icon">
-              <i data-lucide="message-square-text" class="icon icon--sm"></i>
-            </div>
-            <div class="principle__content">
-              <div class="principle__title">Honest & Direct</div>
-              <div class="principle__text">Straight talk, no hype, real strategies.</div>
-            </div>
+        <div>
+          <div class="principle__title">Honesto e Direto</div>
+          <div class="principle__text">Sem hype, apenas estratégias reais.</div>
+        </div>
+        </div>
+      <div class="principle">
+        <div class="principle__icon">
+          <i data-lucide="graduation-cap" style="width: 20px; height: 20px;"></i>
           </div>
-
-          <div class="principle">
-            <div class="principle__icon">
-              <i data-lucide="graduation-cap" class="icon icon--sm"></i>
-            </div>
-            <div class="principle__content">
-              <div class="principle__title">Empowering Education</div>
-              <div class="principle__text">Teach the 'why' behind every strategy.</div>
-            </div>
-          </div>
+        <div>
+          <div class="principle__title">Educação que Empodera</div>
+          <div class="principle__text">Ensinamos o 'porquê' de cada estratégia.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Social Proof Section -->
-  <section class="social-proof">
-    <div class="container container--lg">
-      <div class="stats">
-        <div class="stat">
-          <div class="stat__value">$42K</div>
-          <div class="stat__label">Average Savings Per User</div>
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat__value">R$ 42K</div>
+        <div class="stat__label">Economia Média por Usuário</div>
         </div>
         <div class="stat">
           <div class="stat__value">2.3M</div>
-          <div class="stat__label">Points Earned Monthly</div>
+        <div class="stat__label">Pontos Acumulados/Mês</div>
         </div>
         <div class="stat">
           <div class="stat__value">156</div>
-          <div class="stat__label">Countries Visited</div>
+        <div class="stat__label">Países Visitados</div>
         </div>
         <div class="stat">
           <div class="stat__value">4.8★</div>
-          <div class="stat__label">User Rating</div>
-        </div>
+        <div class="stat__label">Avaliação dos Usuários</div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Features -->
   <section class="features">
-    <div class="container container--lg">
-      <div class="section-header">
-        <h2 class="section-header__title">Complete Operating System for Travel Optimization</h2>
-        <p class="section-header__subtitle">
-          Not just another miles blog. A systematic platform that decides, executes, teaches, and proves results.
+    <div class="section-header">
+      <h2 class="section-header__title">Sistema Completo de Otimização</h2>
+      <p class="section-header__subtitle">
+        Não é apenas mais um blog de milhas. É uma plataforma sistemática que decide, executa, ensina e comprova resultados.
         </p>
+        </div>
+        
+        <div class="features__grid">
+          <div class="feature-card">
+            <div class="feature-card__icon">
+          <i data-lucide="target" style="width: 28px; height: 28px;"></i>
+          </div>
+        <h3 class="feature-card__title">Decisões Inteligentes</h3>
+        <p class="feature-card__description">
+          Análise em tempo real de cash vs pontos. Saiba sempre a melhor forma de reservar e qual cartão usar.
+          </p>
+          </div>
+          
+          <div class="feature-card">
+        <div class="feature-card__icon" style="background: #CCFBF1;">
+          <i data-lucide="zap" style="width: 28px; height: 28px; color: #0D9488;"></i>
+        </div>
+        <h3 class="feature-card__title">Ação Instantânea</h3>
+        <p class="feature-card__description">
+          Checklists passo a passo e alertas. Nunca mais perca um bônus ou oportunidade de sweet spot.
+          </p>
+          </div>
+          
+          <div class="feature-card">
+        <div class="feature-card__icon" style="background: #F0F4F8;">
+          <i data-lucide="book-open" style="width: 28px; height: 28px; color: #1E3A5F;"></i>
+        </div>
+        <h3 class="feature-card__title">Educação Especializada</h3>
+        <p class="feature-card__description">
+          De iniciante a expert em 90 dias. Cursos, e-books e coaching com IA inclusos.
+          </p>
+          </div>
+    </div>
+    </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="newsletter__inner">
+      <div class="newsletter__content">
+        <div class="newsletter__badge">
+          <i data-lucide="mail" style="width: 14px; height: 14px;"></i>
+          Newsletter Diária
+        </div>
+        <h3 class="newsletter__title">Receba as melhores oportunidades</h3>
+        <p class="newsletter__text">
+          Alertas de ofertas, bônus de transferência e dicas de resgate diretamente no seu email toda manhã.
+        </p>
+        <form class="newsletter__form">
+          <input type="email" class="newsletter__input" placeholder="Seu melhor email">
+          <button type="submit" class="newsletter__submit">Assinar</button>
+        </form>
       </div>
-
-      <div class="features__grid">
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <i data-lucide="target" class="icon icon--lg"></i>
-          </div>
-          <h3 class="feature-card__title">Smart Decisions</h3>
-          <p class="feature-card__description">
-            Real-time analysis of cash vs points. Always know the best way to book and which card to use.
-          </p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <i data-lucide="zap" class="icon icon--lg"></i>
-          </div>
-          <h3 class="feature-card__title">Instant Action</h3>
-          <p class="feature-card__description">
-            Step-by-step checklists and alerts. Never miss a bonus or sweet spot opportunity again.
-          </p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <i data-lucide="book-open" class="icon icon--lg"></i>
-          </div>
-          <h3 class="feature-card__title">Expert Education</h3>
-          <p class="feature-card__description">
-            From beginner to expert in 90 days. Courses, ebooks, and AI coaching included.
-          </p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <i data-lucide="bar-chart-3" class="icon icon--lg"></i>
-          </div>
-          <h3 class="feature-card__title">Proven Results</h3>
-          <p class="feature-card__description">
-            Track your progress with transparent metrics. See exactly how much you're saving.
-          </p>
-        </div>
+      <div class="newsletter__image">
+        <img src="images/aircraft.jpg" alt="Viagem" style="max-width: 200px; border-radius: 12px;">
       </div>
     </div>
   </section>
 
-  <!-- CTA Section - Solid Teal -->
+  <!-- CTA Section -->
   <section class="cta-section">
-    <div class="container container--lg">
-      <h2 class="cta-section__title">Start Optimizing Your Travel Spend Today</h2>
-      <p class="cta-section__text">
-        Join thousands of data-driven travelers who are maximizing value from everyday spending.
-        Begin your 90-day path to systematic travel hacking.
+    <h2 class="cta-section__title">Comece a Otimizar Seus Gastos Hoje</h2>
+    <p class="cta-section__text">
+      Junte-se a milhares de viajantes que estão maximizando o valor dos gastos do dia a dia.
       </p>
-      <a href="dashboard/" class="btn btn-white btn-lg">
-        <i data-lucide="rocket" class="icon icon--sm"></i>
-        <span>Access Your Dashboard</span>
-      </a>
-    </div>
+    <a href="dashboard/index.html" class="btn-primary" style="font-size: 1.125rem; padding: 16px 32px;">
+      <i data-lucide="rocket" style="width: 22px; height: 22px;"></i>
+      Acessar Meu Dashboard
+    </a>
   </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">
+            <i data-lucide="compass" style="width: 28px; height: 28px;"></i>
+            MilesAI
+          </div>
+          <p class="footer__about">
+            Plataforma de inteligência em pontos e milhas para viajantes que querem maximizar cada oportunidade.
+          </p>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Ferramentas</h4>
+          <nav class="footer__links">
+            <a href="calculators/cash-vs-points.html" class="footer__link">Calculadora</a>
+            <a href="tools/card-portfolio-optimizer.html" class="footer__link">Portfólio</a>
+            <a href="tools/award-availability-checker.html" class="footer__link">Award Finder</a>
+          </nav>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Aprender</h4>
+          <nav class="footer__links">
+            <a href="courses/zero-to-500k-course.html" class="footer__link">Cursos</a>
+            <a href="ebooks/ultimate-points-maximizer.html" class="footer__link">E-books</a>
+            <a href="evergreen/hacks-library.html" class="footer__link">Biblioteca</a>
+          </nav>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Notícias</h4>
+          <nav class="footer__links">
+            <a href="news/hot-deals-flash.html" class="footer__link">Ofertas</a>
+            <a href="news/market-pulse-weekly.html" class="footer__link">Market Pulse</a>
+            <a href="news/transfer-bonus-tracker.html" class="footer__link">Bônus</a>
+          </nav>
+        </div>
+  
+        <div>
+          <h4 class="footer__column-title">Empresa</h4>
+          <nav class="footer__links">
+            <a href="#" class="footer__link">Sobre</a>
+            <a href="#" class="footer__link">Contato</a>
+            <a href="#" class="footer__link">Privacidade</a>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 MilesAI. Plataforma independente.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+          <a href="#" class="footer__social-link"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+          <a href="#" class="footer__social-link"><i data-lucide="youtube" style="width: 18px; height: 18px;"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-
-    // Add subtle entrance animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.feature-card, .principle, .stat').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+      }
     });
-  </script>
-
+</script>
 </body>
 </html>

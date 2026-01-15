@@ -10,11 +10,11 @@
       "expires_at": "2026-01-25T23:59:59Z",
       "expires_in_hours": 72,
       "priority": "high",
-      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600",
+      "image": "../images/travel/avianca-lifemiles.jpg",
       "requirements": "Existing Amex MR cardholder",
       "best_for": ["Star Alliance awards", "South America travel"],
       "cta_text": "Transfer Now",
-      "cta_url": "https://americanexpress.com/rewards",
+      "cta_url": "#",
       "details": {
         "transfer_ratio": "1:1.4",
         "min_transfer": 1000,
@@ -36,7 +36,7 @@
       "expires_at": "2026-02-15T23:59:59Z",
       "expires_in_hours": 456,
       "priority": "high",
-      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600",
+      "image": "../images/cards/chase-ink-preferred.png",
       "requirements": "Good credit (700+), business entity (sole proprietor OK)",
       "best_for": ["Small business owners", "Freelancers", "Side hustlers"],
       "cta_text": "Apply Now",
@@ -64,7 +64,7 @@
       "expires_at": "2026-01-20T18:00:00Z",
       "expires_in_hours": 6,
       "priority": "urgent",
-      "image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600",
+      "image": "../images/travel/cabines-executiva-1.webp",
       "requirements": "110K Virgin Atlantic miles + $86 taxes",
       "best_for": ["Luxury travelers", "Honeymoons", "Special occasions"],
       "cta_text": "Check Availability",
@@ -89,11 +89,11 @@
       "expires_at": "2026-03-31T23:59:59Z",
       "expires_in_hours": 1368,
       "priority": "medium",
-      "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600",
+      "image": "../images/hotels/hotel-modern.webp",
       "requirements": "World of Hyatt member (free to join)",
       "best_for": ["Category 5-7 hotels", "Flexible booking", "Point stretching"],
       "cta_text": "Book Now",
-      "cta_url": "https://hyatt.com",
+      "cta_url": "#",
       "details": {
         "promotion_type": "Points back",
         "max_refund": "15,000 points per stay",
@@ -106,17 +106,17 @@
       "id": "deal-005",
       "category": "mistake_fare",
       "urgency": "critical",
-      "title": "⚡ MISTAKE FARE: LA to Bali $287 RT (Qatar Airways)",
+      "title": "MISTAKE FARE: LA to Bali $287 RT (Qatar Airways)",
       "subtitle": "Book NOW before it's killed - normally $1,200+",
       "value_estimate": "$913 savings per ticket",
       "expires_at": "2026-01-14T18:00:00Z",
       "expires_in_hours": 2,
       "priority": "urgent",
-      "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600",
+      "image": "../images/travel/mistake-fare.webp",
       "requirements": "None - cash fare, anyone can book",
       "best_for": ["Flexible travelers", "Quick decision makers"],
       "cta_text": "Book Immediately",
-      "cta_url": "https://qatarairways.com",
+      "cta_url": "#",
       "details": {
         "route": "LAX → DPS (via DOH)",
         "airline": "Qatar Airways",
@@ -126,19 +126,383 @@
         "warning": "May not be honored - book at your own risk"
       },
       "created_at": "2026-01-14T14:30:00Z"
+    },
+    {
+      "id": "deal-006",
+      "category": "transfer_bonus",
+      "urgency": "urgent",
+      "title": "Citi 30% Transfer Bonus to Turkish Miles&Smiles",
+      "subtitle": "Sweet spot for Star Alliance business class",
+      "value_estimate": "$450 extra on 100K transfer",
+      "expires_at": "2026-02-10T23:59:59Z",
+      "expires_in_hours": 624,
+      "priority": "high",
+      "image": "../images/travel/aeronaves-grande-porte-1.jpg",
+      "requirements": "Citi ThankYou Points holder",
+      "best_for": [
+        "Star Alliance Business",
+        "Middle East routes"
+      ],
+      "cta_text": "Transfer Now",
+      "cta_url": "#",
+      "details": {
+        "transfer_ratio": "1:1.3",
+        "min_transfer": 1000,
+        "sweet_spots": [
+          "USA to Europe Business 45K one-way",
+          "USA to Turkey 30K one-way Economy",
+          "Round-the-world in Business 90K"
+        ]
+      },
+      "created_at": "2026-01-12T10:00:00Z"
+    },
+    {
+      "id": "deal-007",
+      "category": "card_bonus",
+      "urgency": "medium",
+      "title": "Capital One Venture X 100K — Limited Time",
+      "subtitle": "Premium travel card with Priority Pass and lounge access",
+      "value_estimate": "$1,500+ in travel value",
+      "expires_at": "2026-02-28T23:59:59Z",
+      "expires_in_hours": 1056,
+      "priority": "high",
+      "image": "../images/cards/capital-one-venture-x.avif",
+      "requirements": "Excellent credit (740+), no 5/24 rule",
+      "best_for": [
+        "Flexible travelers",
+        "Lounge access seekers"
+      ],
+      "cta_text": "Apply Now",
+      "cta_url": "#",
+      "details": {
+        "annual_fee": "$395",
+        "spend_requirement": "$4,000 in 3 months",
+        "earning_rates": {
+          "hotels_via_portal": "10x",
+          "rental_cars_via_portal": "10x",
+          "flights_via_portal": "5x",
+          "other": "2x"
+        },
+        "perks": [
+          "Priority Pass",
+          "$300 travel credit",
+          "Global Entry credit"
+        ]
+      },
+      "created_at": "2026-01-15T08:00:00Z"
+    },
+    {
+      "id": "deal-008",
+      "category": "award_availability",
+      "urgency": "critical",
+      "title": "Singapore Suites JFK-FRA-SIN Available Feb",
+      "subtitle": "The world's most luxurious first class - 2 suites released",
+      "value_estimate": "$22,000 cash value per ticket",
+      "expires_at": "2026-01-16T12:00:00Z",
+      "expires_in_hours": 18,
+      "priority": "urgent",
+      "image": "../images/travel/cabines-executiva-3.jpg",
+      "requirements": "86K Singapore KrisFlyer miles + ~$100 taxes",
+      "best_for": [
+        "Ultimate bucket list",
+        "Aviation enthusiasts"
+      ],
+      "cta_text": "Book Now",
+      "cta_url": "#",
+      "details": {
+        "route": "JFK → FRA → SIN",
+        "airline": "Singapore Airlines",
+        "cabin": "Suites (Double Bed)",
+        "dates_available": [
+          "Feb 8",
+          "Feb 12"
+        ],
+        "cpp_value": "25.6¢",
+        "amenities": [
+          "Double bed",
+          "Lalique amenities",
+          "Dom Perignon",
+          "Book The Cook"
+        ]
+      },
+      "created_at": "2026-01-15T06:00:00Z"
+    },
+    {
+      "id": "deal-009",
+      "category": "hotel_promo",
+      "urgency": "medium",
+      "title": "Marriott Buy Points: 60% Bonus on Purchase",
+      "subtitle": "Best points purchase rate of the year",
+      "value_estimate": "0.6¢ per point effective cost",
+      "expires_at": "2026-02-20T23:59:59Z",
+      "expires_in_hours": 864,
+      "priority": "medium",
+      "image": "../images/hotels/hotel-cali-property.webp",
+      "requirements": "Marriott Bonvoy member",
+      "best_for": [
+        "Topping off accounts",
+        "High-value redemptions"
+      ],
+      "cta_text": "Buy Points",
+      "cta_url": "#",
+      "details": {
+        "bonus": "60% extra points",
+        "max_purchase": "100,000 points per year",
+        "effective_cost": "0.62¢ per point",
+        "best_uses": [
+          "Category 5-6 off-peak",
+          "All-inclusive resorts"
+        ]
+      },
+      "created_at": "2026-01-08T12:00:00Z"
+    },
+    {
+      "id": "deal-010",
+      "category": "transfer_bonus",
+      "urgency": "urgent",
+      "title": "Chase 25% Transfer Bonus to Air France/KLM",
+      "subtitle": "Flying Blue sweet spots now even sweeter",
+      "value_estimate": "$375 extra on 100K transfer",
+      "expires_at": "2026-01-31T23:59:59Z",
+      "expires_in_hours": 384,
+      "priority": "high",
+      "image": "../images/travel/aeronaves-grande-porte-2.png",
+      "requirements": "Chase Ultimate Rewards cardholder",
+      "best_for": [
+        "Europe travel",
+        "SkyTeam redemptions"
+      ],
+      "cta_text": "Transfer Now",
+      "cta_url": "#",
+      "details": {
+        "transfer_ratio": "1:1.25",
+        "min_transfer": 1000,
+        "sweet_spots": [
+          "USA to Europe Business from 53K",
+          "Promo rewards at 25% off",
+          "Caribbean flights from 8K one-way"
+        ]
+      },
+      "created_at": "2026-01-18T09:00:00Z"
+    },
+    {
+      "id": "deal-011",
+      "category": "card_bonus",
+      "urgency": "critical",
+      "title": "Amex Gold 90K via Referral — Elevated Offer",
+      "subtitle": "Best publicly available offer for this card",
+      "value_estimate": "$1,800 in dining/grocery value",
+      "expires_at": "2026-01-20T23:59:59Z",
+      "expires_in_hours": 120,
+      "priority": "urgent",
+      "image": "../images/cards/amex-platinum-sapphire.avif",
+      "requirements": "No Amex welcome bonus in last 24 months",
+      "best_for": [
+        "Foodies",
+        "Grocery shoppers",
+        "US supermarket users"
+      ],
+      "cta_text": "Apply via Referral",
+      "cta_url": "#",
+      "details": {
+        "annual_fee": "$250",
+        "spend_requirement": "$6,000 in 6 months",
+        "earning_rates": {
+          "restaurants": "4x",
+          "supermarkets": "4x (up to $25K/year)",
+          "flights": "3x",
+          "other": "1x"
+        },
+        "credits": [
+          "$120 dining credit",
+          "$120 Uber cash",
+          "$100 hotel credit"
+        ]
+      },
+      "created_at": "2026-01-15T14:00:00Z"
+    },
+    {
+      "id": "deal-012",
+      "category": "mistake_fare",
+      "urgency": "critical",
+      "title": "GLITCH: NYC to Tokyo Business $890 RT (ANA)",
+      "subtitle": "Normally $5,000+ - Limited inventory",
+      "value_estimate": "$4,110 savings per ticket",
+      "expires_at": "2026-01-15T16:00:00Z",
+      "expires_in_hours": 4,
+      "priority": "urgent",
+      "image": "../images/hotels/destino-nyc-skyline.jpg",
+      "requirements": "None - cash fare",
+      "best_for": [
+        "Japan travelers",
+        "Business class seekers"
+      ],
+      "cta_text": "Book Immediately",
+      "cta_url": "#",
+      "details": {
+        "route": "JFK → NRT",
+        "airline": "ANA",
+        "cabin": "Business Class",
+        "dates_available": [
+          "Mar 5-15 departures"
+        ],
+        "ticket_class": "I class (earns 150% miles)",
+        "warning": "YMMV - some bookings being cancelled"
+      },
+      "created_at": "2026-01-15T12:00:00Z"
+    },
+    {
+      "id": "deal-013",
+      "category": "award_availability",
+      "urgency": "medium",
+      "title": "Emirates First Class DXB-JFK Opening Up",
+      "subtitle": "Game room and shower suite awaits",
+      "value_estimate": "$15,000 cash value per ticket",
+      "expires_at": "2026-02-28T23:59:59Z",
+      "expires_in_hours": 1056,
+      "priority": "medium",
+      "image": "../images/travel/cabines-executiva-4.jpg",
+      "requirements": "136K Emirates Skywards or 85K Alaska miles",
+      "best_for": [
+        "UAE visitors",
+        "Emirates enthusiasts"
+      ],
+      "cta_text": "Search Availability",
+      "cta_url": "#",
+      "details": {
+        "route": "DXB → JFK",
+        "airline": "Emirates",
+        "cabin": "First Class (A380)",
+        "dates_available": [
+          "April-May 2026"
+        ],
+        "cpp_value": "11¢",
+        "amenities": [
+          "Private suite",
+          "Onboard shower",
+          "Caviar service",
+          "Game room bar"
+        ]
+      },
+      "created_at": "2026-01-10T10:00:00Z"
+    },
+    {
+      "id": "deal-014",
+      "category": "hotel_promo",
+      "urgency": "medium",
+      "title": "IHG One Rewards: Double Points on All Stays",
+      "subtitle": "Register now for stays through April",
+      "value_estimate": "Up to 50K bonus points per stay",
+      "expires_at": "2026-04-30T23:59:59Z",
+      "expires_in_hours": 2544,
+      "priority": "medium",
+      "image": "../images/hotels/hotel-mandarin.webp",
+      "requirements": "IHG One Rewards member (free)",
+      "best_for": [
+        "Frequent IHG stayers",
+        "Point collectors"
+      ],
+      "cta_text": "Register Now",
+      "cta_url": "#",
+      "details": {
+        "promotion_type": "Double points",
+        "registration_required": true,
+        "stay_dates": "Jan 15 - Apr 30, 2026",
+        "eligible_brands": "All IHG brands"
+      },
+      "created_at": "2026-01-14T08:00:00Z"
+    },
+    {
+      "id": "deal-015",
+      "category": "card_bonus",
+      "urgency": "urgent",
+      "title": "Bilt Mastercard: 5x on Rent This Month",
+      "subtitle": "January rent day bonus - normally 1x",
+      "value_estimate": "$250+ extra on $2,500 rent",
+      "expires_at": "2026-01-31T23:59:59Z",
+      "expires_in_hours": 384,
+      "priority": "high",
+      "image": "../images/cards/bilt-mastercard.jpeg",
+      "requirements": "Bilt cardholder, pay rent through Bilt",
+      "best_for": [
+        "Renters",
+        "NYC residents",
+        "Transfer point collectors"
+      ],
+      "cta_text": "Pay Rent",
+      "cta_url": "#",
+      "details": {
+        "annual_fee": "$0",
+        "earning_rates": {
+          "rent_january": "5x",
+          "rent_normal": "1x",
+          "dining": "3x",
+          "travel": "2x"
+        },
+        "transfer_partners": [
+          "Hyatt",
+          "United",
+          "AA",
+          "Air Canada",
+          "Turkish"
+        ]
+      },
+      "created_at": "2026-01-01T00:00:00Z"
     }
   ],
   "filters": [
-    {"id": "all", "label": "All Deals", "count": 5},
-    {"id": "transfer_bonus", "label": "Transfer Bonuses", "count": 1},
-    {"id": "card_bonus", "label": "Card Offers", "count": 1},
-    {"id": "award_availability", "label": "Award Availability", "count": 1},
-    {"id": "hotel_promo", "label": "Hotel Promos", "count": 1},
-    {"id": "mistake_fare", "label": "Mistake Fares", "count": 1}
+    {
+      "id": "all",
+      "label": "All Deals",
+      "count": 15
+    },
+    {
+      "id": "transfer_bonus",
+      "label": "Transfer Bonuses",
+      "count": 3
+    },
+    {
+      "id": "card_bonus",
+      "label": "Card Offers",
+      "count": 4
+    },
+    {
+      "id": "award_availability",
+      "label": "Award Availability",
+      "count": 3
+    },
+    {
+      "id": "hotel_promo",
+      "label": "Hotel Promos",
+      "count": 3
+    },
+    {
+      "id": "mistake_fare",
+      "label": "Mistake Fares",
+      "count": 2
+    }
   ],
   "urgency_levels": {
-    "critical": {"color": "#dc2626", "label": "ENDING SOON", "icon": "🔴"},
-    "urgent": {"color": "#d97706", "label": "ACT NOW", "icon": "🟠"},
-    "medium": {"color": "#0284c7", "label": "IMPORTANT", "icon": "🔵"}
+    "critical": {
+      "color": "#EA580C",
+      "label": "ENDING SOON",
+      "icon": "flame"
+    },
+    "urgent": {
+      "color": "#B45309",
+      "label": "ACT NOW",
+      "icon": "alert-triangle"
+    },
+    "medium": {
+      "color": "#0D9488",
+      "label": "IMPORTANT",
+      "icon": "info"
+    }
+  },
+  "meta": {
+    "last_updated": "2026-01-15T10:00:00Z",
+    "total_deals": 15,
+    "active_deals": 15,
+    "version": "3.0.0"
   }
 }

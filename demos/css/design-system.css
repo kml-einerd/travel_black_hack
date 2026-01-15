@@ -22,28 +22,34 @@
    ============================================ */
 
 :root {
-  /* === COLORS - PROFESSIONAL FINTECH PALETTE === */
+  /* === COLORS - ORANGE PREMIUM PALETTE === */
+  /* Inspirado no The Points Guy com LARANJA como cor principal */
 
-  /* Primary - Navy profundo (confiança financeira) */
-  --color-primary: #1e293b;
-  --color-primary-hover: #334155;
-  --color-primary-active: #0f172a;
-  --color-primary-light: #f1f5f9;
-  --color-primary-muted: rgba(30, 41, 59, 0.08);
+  /* Primary - Laranja Vibrante (CTAs, destaques principais) */
+  --color-primary: #EA580C;
+  --color-primary-hover: #C2410C;
+  --color-primary-active: #9A3412;
+  --color-primary-light: #FFF7ED;
+  --color-primary-muted: rgba(234, 88, 12, 0.08);
 
-  /* Secondary - Teal premium (diferenciação) */
-  --color-secondary: #0d9488;
-  --color-secondary-hover: #0f766e;
-  --color-secondary-active: #115e59;
-  --color-secondary-light: #f0fdfa;
-  --color-secondary-muted: rgba(13, 148, 136, 0.08);
+  /* Secondary - Navy Profundo (headers, footer, contraste) */
+  --color-secondary: #1E3A5F;
+  --color-secondary-hover: #15293F;
+  --color-secondary-active: #0F1D2F;
+  --color-secondary-light: #F0F4F8;
+  --color-secondary-muted: rgba(30, 58, 95, 0.08);
 
-  /* Accent - Gold sutil (valor/premium) */
-  --color-accent: #ca8a04;
-  --color-accent-hover: #a16207;
-  --color-accent-active: #854d0e;
-  --color-accent-subtle: #fef3c7;
-  --color-accent-muted: rgba(202, 138, 4, 0.08);
+  /* Accent - Teal (elementos complementares) */
+  --color-accent: #0D9488;
+  --color-accent-hover: #0F766E;
+  --color-accent-active: #115E59;
+  --color-accent-subtle: #F0FDFA;
+  --color-accent-muted: rgba(13, 148, 136, 0.08);
+
+  /* Gold - Premium/Valor (badges especiais) */
+  --color-gold: #B45309;
+  --color-gold-light: #FEF3C7;
+  --color-gold-muted: rgba(180, 83, 9, 0.08);
 
   /* Neutrals - Escala refinada (warm-neutral) */
   --neutral-50: #fafaf9;
@@ -511,3 +517,8 @@ small {
 .animate-fade-in { animation: fadeIn 300ms var(--ease-out-expo); }
 .animate-slide-up { animation: slideUp 400ms var(--ease-out-expo); }
 .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* ============================================
+   COMPATIBILITY LAYER
+   ============================================ */
+@import url('compatibility.css');
