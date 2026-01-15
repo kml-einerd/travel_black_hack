@@ -15,9 +15,10 @@
     .newsletter-container { max-width: 900px; margin: 0 auto; }
 
     .newsletter-header {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      background: var(--color-primary);
       color: white;
       padding: var(--space-10) var(--space-6);
+      position: relative;
       border-radius: var(--radius-2xl);
       text-align: center;
       margin-bottom: var(--space-8);
@@ -191,9 +192,6 @@
       gap: var(--space-2);
     }
 
-    .story-card__action::before {
-      content: '💡';
-    }
 
     .sweet-spots {
       background: var(--color-primary-light);
@@ -539,7 +537,7 @@
           </div>
           ${trendsData.trends.map(trend => `
             <div class="trend-item">
-              <span class="trend-item__indicator">${trend.direction === 'up' ? '📈' : '📉'}</span>
+              <i data-lucide="${trend.direction === 'up' ? 'trending-up' : 'trending-down'}" class="icon icon--md trend-item__indicator"></i>
               <div class="trend-item__content">
                 <div class="trend-item__title">${trend.trend}</div>
                 <div class="trend-item__description">${trend.description}</div>

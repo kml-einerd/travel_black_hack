@@ -329,18 +329,18 @@
 
         <div class="widget__meta">
           <div class="meta-badge meta-badge--difficulty-${tip.difficulty}">
-            <span>📊</span>
+            <i data-lucide="bar-chart-3" class="icon icon--xs"></i>
             <span>${tip.difficulty.toUpperCase()}</span>
           </div>
           <div class="meta-badge meta-badge--value-${tip.value}">
-            <span>💎</span>
+            <i data-lucide="gem" class="icon icon--xs"></i>
             <span>${tip.value.toUpperCase()} VALUE</span>
           </div>
         </div>
 
         <div class="tip__pro">
           <div class="tip__pro-label">
-            <span>🔥</span>
+            <i data-lucide="flame" class="icon icon--sm"></i>
             <span>Pro Tip</span>
           </div>
           <p class="tip__pro-text">${tip.pro_tip}</p>
@@ -366,13 +366,13 @@
 
     function getCategoryIcon(category) {
       const icons = {
-        'earning': '💰',
-        'redeeming': '✈️',
-        'redemption': '✈️',
-        'strategy': '🎯',
-        'status': '👑',
-        'booking': '🔍',
-        'advanced': '🥷'
+        'earning': 'dollar-sign',
+        'redeeming': 'plane',
+        'redemption': 'plane',
+        'strategy': 'target',
+        'status': 'crown',
+        'booking': 'search',
+        'advanced': 'zap'
       };
       return icons[category] || 'lightbulb';
     }

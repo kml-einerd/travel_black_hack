@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#1e293b"/>
+
+  <!-- Accent stripes -->
+  <rect x="0" y="0" width="1920" height="4" fill="#ca8a04"/>
+  <rect x="0" y="1076" width="1920" height="4" fill="#ca8a04"/>
+
+  <!-- Icon area (teal circle) -->
+  <circle cx="960" cy="510" r="40" fill="#0d9488" opacity="0.3"/>
+  <circle cx="960" cy="510" r="30" fill="#0d9488" opacity="0.5"/>
+
+  <!-- Text -->
+  <text x="960" y="580"
+        font-family="'Satoshi', system-ui, sans-serif"
+        font-size="24"
+        font-weight="700"
+        fill="#fafaf9"
+        text-anchor="middle">
+    COURSES
+  </text>
+
+  <text x="960" y="610"
+        font-family="'General Sans', system-ui, sans-serif"
+        font-size="14"
+        fill="#57534e"
+        text-anchor="middle">
+    1920×1080 • Placeholder
+  </text>
+
+  <text x="960" y="635"
+        font-family="'General Sans', system-ui, sans-serif"
+        font-size="12"
+        fill="#57534e"
+        text-anchor="middle"
+        opacity="0.7">
+    award-booking-bootcamp-1920x1080@2x.svg
+  </text>
+</svg>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#1e293b"/>
+
+  <!-- Accent stripes -->
+  <rect x="0" y="0" width="600" height="4" fill="#ca8a04"/>
+  <rect x="0" y="396" width="600" height="4" fill="#ca8a04"/>
+
+  <!-- Icon area (teal circle) -->
+  <circle cx="300" cy="170" r="40" fill="#0d9488" opacity="0.3"/>
+  <circle cx="300" cy="170" r="30" fill="#0d9488" opacity="0.5"/>
+
+  <!-- Text -->
+  <text x="300" y="240"
+        font-family="'Satoshi', system-ui, sans-serif"
+        font-size="24"
+        font-weight="700"
+        fill="#fafaf9"
+        text-anchor="middle">
+    FEEDS
+  </text>
+
+  <text x="300" y="270"
+        font-family="'General Sans', system-ui, sans-serif"
+        font-size="14"
+        fill="#57534e"
+        text-anchor="middle">
+    600×400 • Placeholder
+  </text>
+
+  <text x="300" y="295"
+        font-family="'General Sans', system-ui, sans-serif"
+        font-size="12"
+        fill="#57534e"
+        text-anchor="middle"
+        opacity="0.7">
+    deal-alerts-600x400@2x.svg
+  </text>
+</svg>
