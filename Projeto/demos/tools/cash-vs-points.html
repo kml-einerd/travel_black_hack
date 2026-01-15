@@ -10,8 +10,13 @@
 <body>
     <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
     <main class="container">
-        <h1 class="text-3xl">🧮 Trip Cost Comparison</h1>
-        <p class="text-lg text-muted">NYC → London Roundtrip</p>
+        <header style="margin-bottom: var(--space-8);">
+            <h1 class="section-title">
+                <span class="section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
+                Cash vs Points
+            </h1>
+            <p class="text-lg text-muted">NYC → London Roundtrip</p>
+        </header>
 
         <div class="card" style="margin-top: 20px;">
             <table style="width: 100%; border-collapse: collapse;">
@@ -25,20 +30,20 @@
                 </thead>
                 <tbody>
                     <tr style="border-bottom: 1px solid var(--color-border);">
-                        <td style="padding: 15px 10px;">💵 Cash</td>
-                        <td style="padding: 15px 10px;">,400</td>
+                        <td style="padding: 15px 10px;">Cash Price</td>
+                        <td style="padding: 15px 10px;">$2,400</td>
                         <td style="padding: 15px 10px;">-</td>
                         <td style="padding: 15px 10px;">-</td>
                     </tr>
                     <tr style="border-bottom: 1px solid var(--color-border);">
-                        <td style="padding: 15px 10px;">🎯 United Miles</td>
-                        <td style="padding: 15px 10px;">120K + 6</td>
+                        <td style="padding: 15px 10px;">United Miles</td>
+                        <td style="padding: 15px 10px;">120K + $56</td>
                         <td style="padding: 15px 10px;">1.9¢</td>
                         <td style="padding: 15px 10px;"><span class="badge badge--info">GOOD</span></td>
                     </tr>
                     <tr style="background: var(--color-success-light);">
-                        <td style="padding: 15px 10px;">✈️ Virgin Atl. (Transfer)</td>
-                        <td style="padding: 15px 10px;">85K + 00</td>
+                        <td style="padding: 15px 10px;">Virgin Atl. (Transfer)</td>
+                        <td style="padding: 15px 10px;">85K + $200</td>
                         <td style="padding: 15px 10px;">2.6¢</td>
                         <td style="padding: 15px 10px;"><span class="badge badge--success">BEST</span></td>
                     </tr>

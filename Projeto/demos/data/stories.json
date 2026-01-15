@@ -10,7 +10,7 @@
       "slides": [
         {
           "order": 1,
-          "background_image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800",
+          "background_image": "",
           "headline": "AMEX 40% AVIANCA BONUS",
           "subtext": "Transfer 100K MR → Get 140K LifeMiles",
           "footer": "Ends January 25th",
@@ -29,7 +29,7 @@
         },
         {
           "order": 3,
-          "background_image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=800",
+          "background_image": "",
           "headline": "TRANSFER NOW",
           "subtext": "Only 11 days left!",
           "cta": {"text": "Open Amex", "action": "external_link", "url": "https://amex.com"}
@@ -49,7 +49,7 @@
           "order": 1,
           "headline": "VENTURE X BUSINESS",
           "subtext": "Capital One's new premium business card",
-          "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800"
+          "image": ""
         },
         {
           "order": 2,

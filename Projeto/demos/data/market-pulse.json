@@ -19,7 +19,7 @@
       "points": 85000,
       "cpp": 3.2,
       "rating": "excellent",
-      "image": "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=300"
+      "image": ""
     },
     {
       "route": "LAX → LHR",
@@ -28,13 +28,13 @@
       "points": 47500,
       "cpp": 4.1,
       "rating": "insane",
-      "image": "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=300"
+      "image": ""
     }
   ],
   "card_spotlight": {
     "card": "Citi Strata Premier",
     "verdict": "Best everyday travel card of 2026",
     "score": 9.2,
-    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400"
+    "image": ""
   }
 }

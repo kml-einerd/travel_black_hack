@@ -1,45 +1,62 @@
 [
   {
-    "id": "card-post-001",
-    "type": "card_launch",
-    "title": "Capital One Venture X Business LAUNCHING",
-    "subtitle": "First look at the new business premium card",
-    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400",
-    "card_name": "Venture X Business",
-    "issuer": "Capital One",
-    "welcome_bonus": "150,000 Miles",
-    "annual_fee": "95",
-    "highlight": "Unlimited 2X + Capital One Lounges",
-    "our_take": "Game-changer for small business owners",
-    "rating": 4.8,
-    "posted_at": "2026-01-14T10:00:00Z"
+    "id": "chase-sapphire-preferred",
+    "name": "Chase Sapphire Preferred",
+    "issuer": "chase",
+    "network": "visa",
+    "program": "chase-ultimate-rewards",
+    "annual_fee": 95,
+    "welcome_bonus": {
+      "points": 75000,
+      "spend_requirement": 4000,
+      "time_limit_months": 3,
+      "value_estimate": 1500
+    },
+    "earning_rates": [
+      { "category": "travel", "rate": 5, "note": "via portal" },
+      { "category": "dining", "rate": 3 },
+      { "category": "streaming", "rate": 3 },
+      { "category": "other", "rate": 1 }
+    ],
+    "benefits": [
+      "Primary rental car insurance",
+      "Trip cancellation insurance",
+      "$50 annual hotel credit"
+    ],
+    "credit_score_required": "good",
+    "best_for": ["Travel enthusiasts", "Dining out frequently"],
+    "restrictions": ["5/24 rule applies"],
+    "affiliate_link": "",
+    "updated_at": "2026-01-14T00:00:00Z"
   },
   {
-    "id": "card-post-002",
-    "type": "benefit_update",
-    "title": "Chase Sapphire Reserve: NEW 00 Credit",
-    "subtitle": "Annual statement credit expanded",
-    "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400",
-    "card_name": "Sapphire Reserve",
-    "issuer": "Chase",
-    "change_type": "positive",
-    "old_benefit": "00 travel credit",
-    "new_benefit": "00 travel + 00 dining credit",
-    "effective_date": "2026-02-01",
-    "impact": "+00/year value"
-  },
-  {
-    "id": "card-post-003",
-    "type": "downgrade_alert",
-    "title": "⚠️ Amex Platinum Lounge Access Restricted",
-    "subtitle": "Centurion Lounge policy change coming",
-    "image": "https://images.unsplash.com/photo-1540339832862-474599807836?w=400",
-    "card_name": "Platinum Card",
-    "issuer": "American Express",
-    "change_type": "negative",
-    "old_benefit": "Unlimited Centurion access",
-    "new_benefit": "Limited to 2 visits/year unless 5K spend",
-    "effective_date": "2026-03-01",
-    "alternative": "Consider Priority Pass alternatives"
+    "id": "amex-gold-card",
+    "name": "American Express Gold Card",
+    "issuer": "amex",
+    "network": "amex",
+    "program": "membership-rewards",
+    "annual_fee": 250,
+    "welcome_bonus": {
+      "points": 90000,
+      "spend_requirement": 6000,
+      "time_limit_months": 6,
+      "value_estimate": 1800
+    },
+    "earning_rates": [
+      { "category": "dining", "rate": 4, "note": "worldwide" },
+      { "category": "supermarkets", "rate": 4, "note": "US only, up to $25k" },
+      { "category": "flights", "rate": 3 },
+      { "category": "other", "rate": 1 }
+    ],
+    "benefits": [
+      "$120 Dining Credit",
+      "$120 Uber Cash",
+      "No Foreign Transaction Fees"
+    ],
+    "credit_score_required": "good",
+    "best_for": ["Foodies", "Daily Spenders"],
+    "restrictions": ["Once per lifetime bonus rule"],
+    "affiliate_link": "",
+    "updated_at": "2026-01-14T00:00:00Z"
   }
 ]

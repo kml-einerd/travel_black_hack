@@ -3,146 +3,179 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MilesAI - Design System Demo</title>
+  <title>MilesAI - MilesOS Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
 
-  <header style="background: var(--color-bg-primary); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border); margin-bottom: var(--space-8);">
-    <div class="container">
-      <h1 style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">MilesAI Design System</h1>
-      <p style="color: var(--color-text-secondary);">Premium Travel Hacking Platform</p>
+  <!-- Navigation -->
+  <header class="header-nav container">
+    <div class="header-nav__logo">
+      Miles<span>AI</span>
+    </div>
+    <nav class="header-nav__menu">
+      <a href="#" class="header-nav__link" style="color: var(--color-primary);">Dashboard</a>
+      <a href="news/deal-radar.html" class="header-nav__link">Deal Radar</a>
+      <a href="tools/card-simulator.html" class="header-nav__link">Cards</a>
+      <a href="courses/fundamentals.html" class="header-nav__link">Learn</a>
+    </nav>
+    <div style="display: flex; gap: var(--space-4); align-items: center;">
+        <span class="badge badge--accent">Pro Member</span>
+        <div style="width: 32px; height: 32px; background: var(--color-bg-tertiary); border-radius: 50%;"></div>
     </div>
   </header>
 
   <main class="container">
 
-    <!-- Section: UI Components -->
-    <section style="margin-bottom: var(--space-12);">
-      <h2 style="margin-bottom: var(--space-6);">UI Components</h2>
+    <!-- Hero / Status -->
+    <section style="margin-bottom: var(--space-8);">
+      <h1 class="section-title">
+        Command Center
+      </h1>
 
-      <!-- Buttons -->
-      <div class="card" style="margin-bottom: var(--space-6);">
-        <h3 style="margin-bottom: var(--space-4);">Buttons</h3>
-        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
-          <button class="btn-primary">Primary Action</button>
-          <button class="btn-secondary">Secondary Action</button>
-          <button class="btn-ghost">Ghost Action</button>
+      <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        <!-- Net Worth -->
+        <div class="metric-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2);">
+                <span class="metric-card__label">Total Points Value</span>
+                <span class="badge badge--success">+12%</span>
+            </div>
+            <div class="metric-card__value">$4,250.00</div>
+            <div class="text-sm text-muted" style="margin-top: var(--space-2);">Across 5 programs</div>
+        </div>
+
+        <!-- Next Trip Goal -->
+        <div class="metric-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2);">
+                <span class="metric-card__label">Goal: Tokyo (Biz Class)</span>
+                <span class="badge badge--primary">On Track</span>
+            </div>
+            <div class="metric-card__value">85%</div>
+            <div class="text-sm text-muted" style="margin-top: var(--space-2);">Need 15k more MR points</div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="metric-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2);">
+                <span class="metric-card__label">Active Alerts</span>
+                <span class="badge badge--urgent">2 New</span>
+            </div>
+            <div style="font-weight: 500; margin-top: var(--space-1);">Amex Gold 90k Offer</div>
+            <div style="font-weight: 500;">United Polaris Saver Found</div>
         </div>
       </div>
-
-      <!-- Badges -->
-      <div class="card" style="margin-bottom: var(--space-6);">
-        <h3 style="margin-bottom: var(--space-4);">Badges</h3>
-        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
-          <span class="badge badge--primary">Primary</span>
-          <span class="badge badge--success">Success</span>
-          <span class="badge badge--accent">Premium</span>
-        </div>
-      </div>
-
-      <!-- Inputs -->
-      <div class="card" style="margin-bottom: var(--space-6);">
-        <h3 style="margin-bottom: var(--space-4);">Inputs</h3>
-        <div style="max-width: 400px; display: grid; gap: var(--space-4);">
-          <input type="text" class="input" placeholder="Enter your email">
-          <input type="text" class="input" placeholder="Search flights..." value="JFK to CDG">
-        </div>
-      </div>
-
-      <!-- Metrics -->
-      <div class="card" style="margin-bottom: var(--space-6);">
-        <h3 style="margin-bottom: var(--space-4);">Metric Cards</h3>
-        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-          <div class="metric-card metric-card--positive">
-            <span class="metric-card__value">+$1,250</span>
-            <span class="metric-card__label">Estimated Value</span>
-          </div>
-          <div class="metric-card">
-            <span class="metric-card__value">75,000</span>
-            <span class="metric-card__label">Points Balance</span>
-          </div>
-          <div class="metric-card metric-card--negative">
-            <span class="metric-card__value">- $95</span>
-            <span class="metric-card__label">Annual Fee</span>
-          </div>
-        </div>
-      </div>
-
     </section>
 
-    <!-- Section: Product Card Example -->
+    <!-- Quick Tools (Modules) -->
     <section style="margin-bottom: var(--space-12);">
-      <h2 style="margin-bottom: var(--space-6);">Card Product Component</h2>
+        <h2 class="section-title">
+            <span class="section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+            Toolkit
+        </h2>
+        <div class="grid-cards">
+            <!-- M1 Cash vs Points -->
+            <a href="tools/cash-vs-points.html" class="card" style="text-decoration: none;">
+                <div class="card__header">
+                    <span class="badge badge--primary">Calculator</span>
+                </div>
+                <h3 class="card__title">Cash vs Points</h3>
+                <p class="text-sm text-muted">Determine if you should pay cash or burn points.</p>
+            </a>
 
-      <div class="grid-cards">
+            <!-- M2 Award Finder -->
+            <a href="tools/award-finder.html" class="card" style="text-decoration: none;">
+                 <div class="card__header">
+                    <span class="badge badge--accent">Search</span>
+                </div>
+                <h3 class="card__title">Award Finder</h3>
+                <p class="text-sm text-muted">Monitor availability for your dream redemption.</p>
+            </a>
 
-        <!-- Chase Sapphire Preferred (Example from Prompt) -->
-        <article class="card-product">
-          <div class="card-product__header">
-            <div class="card-product__image" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">[Card Image]</div>
-            <span class="badge badge--accent">Popular</span>
-          </div>
+            <!-- M4 Transfer Optimizer -->
+            <a href="tools/transfer-optimizer.html" class="card" style="text-decoration: none;">
+                 <div class="card__header">
+                    <span class="badge badge--primary">Maps</span>
+                </div>
+                <h3 class="card__title">Transfer Path</h3>
+                <p class="text-sm text-muted">Visualize how to move points from Banks to Airlines.</p>
+            </a>
 
-          <div class="card-product__body">
-            <h3 class="card-product__name">Chase Sapphire Preferred</h3>
-            <p class="card-product__issuer">Chase Ultimate Rewards</p>
+            <!-- M6 Best Card -->
+            <a href="tools/best-card.html" class="card" style="text-decoration: none;">
+                 <div class="card__header">
+                    <span class="badge badge--success">Utility</span>
+                </div>
+                <h3 class="card__title">Best Card To Pay</h3>
+                <p class="text-sm text-muted">Maximize multipliers on every transaction.</p>
+            </a>
 
-            <div class="card-product__bonus">
-              <span class="value">75,000</span>
-              <span class="label">pts welcome bonus</span>
+             <!-- M5 Card Simulator -->
+            <a href="tools/card-simulator.html" class="card" style="text-decoration: none;">
+                 <div class="card__header">
+                    <span class="badge badge--primary">Strategy</span>
+                </div>
+                <h3 class="card__title">Card Simulator</h3>
+                <p class="text-sm text-muted">Build your perfect 5/24 compliant portfolio.</p>
+            </a>
+
+            <!-- M8 Wallet Sync -->
+            <a href="tools/wallet-sync.html" class="card" style="text-decoration: none;">
+                 <div class="card__header">
+                    <span class="badge badge--info">Manage</span>
+                </div>
+                <h3 class="card__title">Wallet Sync</h3>
+                <p class="text-sm text-muted">Consolidate balances and expiration dates.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Education Hub -->
+    <section style="margin-bottom: var(--space-12);">
+        <h2 class="section-title">
+            <span class="section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+            Learning Hub
+        </h2>
+        <div class="grid-cards">
+            <!-- Courses -->
+            <div class="card">
+                <h3 class="card__title">Courses</h3>
+                <ul style="list-style: none; padding: 0; margin-top: var(--space-4);">
+                    <li style="margin-bottom: var(--space-2);"><a href="courses/fundamentals.html" style="display: flex; justify-content: space-between; align-items: center; color: var(--color-text-primary);">
+                        <span>Points & Miles Fundamentals</span>
+                        <span class="badge badge--success">Free</span>
+                    </a></li>
+                    <li style="margin-bottom: var(--space-2);"><a href="courses/advanced-strategies.html" style="display: flex; justify-content: space-between; align-items: center; color: var(--color-text-primary);">
+                        <span>Advanced Earning Strategies</span>
+                        <span class="badge badge--primary">$49</span>
+                    </a></li>
+                    <li style="margin-bottom: var(--space-2);"><a href="courses/redemption-masterclass.html" style="display: flex; justify-content: space-between; align-items: center; color: var(--color-text-primary);">
+                        <span>Redemption Masterclass</span>
+                        <span class="badge badge--accent">$99</span>
+                    </a></li>
+                </ul>
             </div>
 
-            <ul class="card-product__rates">
-              <li><span class="rate">5x</span> Travel via portal</li>
-              <li><span class="rate">3x</span> Dining & Streaming</li>
-              <li><span class="rate">1x</span> Everything else</li>
-            </ul>
-          </div>
-
-          <footer class="card-product__footer">
-            <span class="annual-fee">$95/year</span>
-            <button class="btn-primary">Learn More</button>
-          </footer>
-        </article>
-
-        <!-- Another Card Example -->
-         <article class="card-product card--featured">
-          <div class="card-product__header">
-            <div class="card-product__image" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">[Card Image]</div>
-            <span class="badge badge--success">Best Offer</span>
-          </div>
-
-          <div class="card-product__body">
-            <h3 class="card-product__name">Amex Gold Card</h3>
-            <p class="card-product__issuer">American Express MR</p>
-
-            <div class="card-product__bonus">
-              <span class="value">90,000</span>
-              <span class="label">pts welcome bonus</span>
+            <!-- Ebooks -->
+            <div class="card">
+                <h3 class="card__title">Premium Ebooks</h3>
+                <ul style="list-style: none; padding: 0; margin-top: var(--space-4);">
+                    <li style="margin-bottom: var(--space-2);"><a href="ebooks/foundations.html" style="color: var(--color-text-secondary);">Foundations</a></li>
+                    <li style="margin-bottom: var(--space-2);"><a href="ebooks/card-playbook.html" style="color: var(--color-text-secondary);">Card Strategy Playbook</a></li>
+                    <li style="margin-bottom: var(--space-2);"><a href="ebooks/award-mastery.html" style="color: var(--color-text-secondary);">Award Travel Mastery</a></li>
+                    <li style="margin-bottom: var(--space-2);"><a href="ebooks/bank-bonus.html" style="color: var(--color-text-secondary);">Bank Bonus Blueprint</a></li>
+                    <li style="margin-bottom: var(--space-2);"><a href="ebooks/family-travel.html" style="color: var(--color-text-secondary);">Family Travel</a></li>
+                </ul>
             </div>
-
-            <ul class="card-product__rates">
-              <li><span class="rate">4x</span> Dining & Supermarkets</li>
-              <li><span class="rate">3x</span> Flights</li>
-              <li><span class="rate">1x</span> Other</li>
-            </ul>
-          </div>
-
-          <footer class="card-product__footer">
-            <span class="annual-fee">$250/year</span>
-            <button class="btn-primary">Learn More</button>
-          </footer>
-        </article>
-
-      </div>
+        </div>
     </section>
 
   </main>
 
-  <footer style="background: var(--color-bg-tertiary); padding: var(--space-8) 0; margin-top: var(--space-12); border-top: 1px solid var(--color-border);">
+  <footer style="background: var(--color-bg-tertiary); padding: var(--space-8) 0; border-top: 1px solid var(--color-divider);">
     <div class="container" style="text-align: center; color: var(--color-text-secondary); font-size: var(--text-sm);">
-      <p>&copy; 2026 MilesAI. All rights reserved.</p>
+      <p>&copy; 2026 MilesAI. The Operating System for Travel Hacking.</p>
     </div>
   </footer>
 

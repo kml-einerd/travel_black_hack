@@ -1,0 +1,15 @@
+127.0.0.1 - - [14/Jan/2026 23:47:46] "GET /Projeto/demos/index.html HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:47:46] "GET /Projeto/demos/css/components.css HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:47:46] "GET /Projeto/demos/css/design-system.css HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:47:46] "GET /Projeto/demos/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:47:47] "GET /Projeto/demos/news/hot-deals-flash.html HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:47:47] "GET /Projeto/demos/js/components.js HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:47:47] "GET /Projeto/demos/js/utils.js HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:14] "GET /Projeto/demos/index.html HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:14] "GET /Projeto/demos/css/design-system.css HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:14] "GET /Projeto/demos/css/components.css HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:14] "GET /Projeto/demos/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:16] "GET /Projeto/demos/news/deal-radar.html HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:16] "GET /Projeto/demos/js/utils.js HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:16] "GET /Projeto/demos/js/components.js HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jan/2026 23:55:17] "GET /Projeto/demos/ebooks/foundations.html HTTP/1.1" 200 -

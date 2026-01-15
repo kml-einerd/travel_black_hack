@@ -31,7 +31,15 @@
 <body>
     <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
     <main class="container">
-        <h1 class="text-3xl">🗺️ Award Map Explorer</h1>
+        <header style="margin-bottom: var(--space-8);">
+            <div class="section-title">
+                <span class="section-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </span>
+                Award Map Explorer
+            </div>
+            <p class="text-lg text-secondary">Visualize sweet spots and find the best redemption value worldwide.</p>
+        </header>
 
         <div class="card" style="margin-bottom: 20px;">
             <div style="display: flex; gap: 10px;">
@@ -41,8 +49,14 @@
             </div>
         </div>
 
-        <div class="map-container">
-            <span class="text-muted" style="font-size: 2rem; opacity: 0.5;">[Interactive World Map Placeholder]</span>
+        <div class="map-container" style="background-image: radial-gradient(var(--neutral-300) 2px, transparent 2px); background-size: 30px 30px; background-color: var(--neutral-50);">
+            <!-- Simulated Map Background (Abstract) -->
+            <svg style="position: absolute; width: 80%; height: 80%; opacity: 0.1;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                 <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/>
+                 <path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"/>
+                 <path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"/>
+                 <circle cx="12" cy="12" r="10"/>
+            </svg>
 
             <!-- Simulated Pins -->
             <div class="map-pin pin-green" style="top: 40%; left: 30%;" title="NYC (Origin)"></div>

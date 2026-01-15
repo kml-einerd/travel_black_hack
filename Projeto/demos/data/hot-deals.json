@@ -1,54 +1,66 @@
-{
-  "hot_deals": [
-    {
-      "id": "deal-001",
-      "category": "transfer_bonus",
-      "title": "Amex 40% Transfer Bonus to Avianca LifeMiles",
-      "value": "00 extra on 100K transfer",
-      "expires": "2026-01-25T23:59:59Z",
-      "priority": "high",
-      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400",
-      "cta": "Transfer Now"
-    },
-    {
-      "id": "deal-002",
-      "category": "card_bonus",
-      "title": "Chase Ink Preferred 100K — Highest Ever Public Offer",
-      "value": ",250 in travel",
-      "expires": "2026-02-15T23:59:59Z",
-      "priority": "high",
-      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400",
-      "cta": "Apply Now"
-    },
-    {
-      "id": "deal-003",
-      "category": "award_availability",
-      "title": "ANA First Class Wide Open NYC-Tokyo March",
-      "value": "110K Virgin points, K+ value",
-      "expires": "2026-01-20T23:59:59Z",
-      "priority": "urgent",
-      "image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=400",
-      "cta": "Check Availability"
-    },
-    {
-      "id": "deal-004",
-      "category": "hotel_promo",
-      "title": "Hyatt Points + Cash: 50% Bonus Points Back",
-      "value": "Up to 15K points back",
-      "expires": "2026-03-31T23:59:59Z",
-      "priority": "medium",
-      "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400",
-      "cta": "Book Now"
-    },
-    {
-      "id": "deal-005",
-      "category": "mistake_fare",
-      "title": "⚡ MISTAKE FARE: LA to Bali 87 RT (Qatar)",
-      "value": "Normally ,200+",
-      "expires": "2026-01-14T18:00:00Z",
-      "priority": "urgent",
-      "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400",
-      "cta": "Book Immediately"
-    }
-  ]
-}
+[
+  {
+    "id": "deal-2026-01-001",
+    "type": "transfer_bonus",
+    "title": "Amex 40% Transfer Bonus to Avianca LifeMiles",
+    "description": "Get 1,400 LifeMiles for every 1,000 MR points transferred. Excellent for Star Alliance business class redemptions.",
+    "value_estimate": 600,
+    "original_value": 0,
+    "savings_percent": 40,
+    "requirements": "Transfer minimum 1,000 points",
+    "expires_at": "2026-01-25T23:59:59Z",
+    "source_url": "#",
+    "tags": ["amex", "lifemiles", "transfer-bonus"],
+    "is_targeted": false,
+    "priority": "high",
+    "created_at": "2026-01-14T00:00:00Z"
+  },
+  {
+    "id": "deal-2026-01-002",
+    "type": "card_bonus",
+    "title": "Chase Ink Preferred 100K — Highest Ever Public Offer",
+    "description": "Earn 100k points after spending $8k in 3 months. Essential business card for 5/24 slots.",
+    "value_estimate": 1250,
+    "original_value": 0,
+    "savings_percent": 0,
+    "requirements": "Spend $8K in 3 months",
+    "expires_at": "2026-02-15T23:59:59Z",
+    "source_url": "#",
+    "tags": ["chase", "ink", "business", "welcome-bonus"],
+    "is_targeted": false,
+    "priority": "high",
+    "created_at": "2026-01-14T00:00:00Z"
+  },
+  {
+    "id": "deal-2026-01-003",
+    "type": "award_availability",
+    "title": "ANA First Class Wide Open NYC-Tokyo March",
+    "description": "Rare multiple seat availability on JFK-NRT/HND routes. Book via Virgin Atlantic for best value.",
+    "value_estimate": 6000,
+    "original_value": 12000,
+    "savings_percent": 90,
+    "requirements": "110k Virgin Points roundtrip (or 55k one way)",
+    "expires_at": "2026-01-20T23:59:59Z",
+    "source_url": "#",
+    "tags": ["ana", "first-class", "sweet-spot", "award-alert"],
+    "is_targeted": false,
+    "priority": "high",
+    "created_at": "2026-01-14T12:00:00Z"
+  },
+  {
+    "id": "deal-2026-01-005",
+    "type": "mistake_fare",
+    "title": "⚡ MISTAKE FARE: LA to Bali $287 RT (Qatar)",
+    "description": "Pricing error on Qsuites equipped routes. Book immediately, do not call airline.",
+    "value_estimate": 1200,
+    "original_value": 1200,
+    "savings_percent": 75,
+    "requirements": "Book via OTA",
+    "expires_at": "2026-01-14T18:00:00Z",
+    "source_url": "#",
+    "tags": ["mistake-fare", "economy", "qatar"],
+    "is_targeted": false,
+    "priority": "high",
+    "created_at": "2026-01-14T09:00:00Z"
+  }
+]

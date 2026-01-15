@@ -14,9 +14,11 @@
 
             <!-- Featured -->
             <section class="card" style="padding: 0; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200" style="width: 100%; height: 300px; object-fit: cover;">
+                <div class="card-image-placeholder" style="border-radius: 0; margin-bottom: 0; height: 300px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8"/><path d="M10 10h8"/></svg>
+                </div>
                 <div style="padding: var(--space-6);">
-                    <span class="badge badge--urgent">BREAKING</span>
+                    <span class="badge badge--primary">Strategy Alert</span>
                     <h2 class="text-3xl" style="margin-top: 10px;">Chase Announces Major Changes to Sapphire Product Line</h2>
                     <p class="text-lg text-muted">New benefits, higher bonus, fee increase coming February 2026.</p>
                     <button class="btn btn-primary">Read Full Story</button>
@@ -25,7 +27,7 @@
 
             <!-- Trending -->
             <section class="card">
-                <h3 class="text-xl">Trending Now</h3>
+                <h3 class="text-xl">Market Movers</h3>
                 <ol style="padding-left: 20px; line-height: 2;">
                     <li>Amex 40% Avianca</li>
                     <li>Chase 5/24 update</li>
@@ -41,13 +43,13 @@
         <!-- Hot Deals Section -->
         <section style="margin-top: var(--space-12);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
-                <h2 class="text-2xl">🔥 Hot Deals</h2>
+                <h2 class="section-title text-2xl"><span class="section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-2.072-4-2.072-5.5C7.928 1 10.928 2 13 6c1.071 2.071 2.071 3.929 2.071 5.5a2.5 2.5 0 0 1-2.5 2.5c-.69 0-1.25-.56-1.25-1.25 0-1.38-.5-2-1-3-1.072-2.143-2.072-4-2.072-5.5C8.257 1.75 5.257 1.75 3 6c-1.071 2.071-2.071 3.929-2.071 5.5a2.5 2.5 0 0 0 2.5 2.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>Hot Deals</h2>
                 <a href="hot-deals-flash.html">View All</a>
             </div>
             <div class="grid-cards" style="grid-template-columns: repeat(4, 1fr);">
-                <div class="card"><h4 class="text-lg">Amex 40% Avianca</h4><span class="badge badge--urgent">3d left</span></div>
-                <div class="card"><h4 class="text-lg">Ink 100K Bonus</h4><span class="badge badge--info">2w left</span></div>
-                <div class="card"><h4 class="text-lg">Mistake Fare 9</h4><span class="badge badge--urgent">2h left!</span></div>
+                <div class="card"><h4 class="text-lg">Amex 40% Avianca</h4><span class="badge badge--accent">Ends in 3d</span></div>
+                <div class="card"><h4 class="text-lg">Ink 100K Bonus</h4><span class="badge badge--info">2w Remaining</span></div>
+                <div class="card"><h4 class="text-lg">Mistake Fare 9</h4><span class="badge badge--urgent">Expires Soon</span></div>
                 <div class="card"><h4 class="text-lg">Hyatt 5N Free</h4><span class="badge badge--success">Ongoing</span></div>
             </div>
         </section>
