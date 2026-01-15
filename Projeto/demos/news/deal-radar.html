@@ -69,7 +69,7 @@
                 "description": "$600 extra value on 100K transfer",
                 "expires_at": "2026-01-25T23:59:59Z",
                 "priority": "high",
-                "image": "",
+                "image": "../images/avianca-tail.svg",
                 "cta": "Transfer Now"
             },
             {
@@ -79,7 +79,7 @@
                 "description": "$1,250 in travel value",
                 "expires_at": "2026-02-15T23:59:59Z",
                 "priority": "high",
-                "image": "",
+                "image": "../images/chase-ink.svg",
                 "cta": "Apply Now"
             },
             {
@@ -89,7 +89,7 @@
                 "description": "110K Virgin points, $6K+ value",
                 "expires_at": "2026-01-20T23:59:59Z",
                 "priority": "urgent",
-                "image": "",
+                "image": "../images/ana-cabin.svg",
                 "cta": "Check Availability"
             },
             {
@@ -99,7 +99,7 @@
                 "description": "Normally $1,200+. Book immediately.",
                 "expires_at": "2026-01-14T18:00:00Z",
                 "priority": "critical",
-                "image": "",
+                "image": "../images/bali-landscape.svg",
                 "cta": "Book Immediately"
             }
         ];
@@ -118,9 +118,7 @@
                         ${getUrgencyBadge(deal.priority)}
                         <span class="text-xs text-muted">Expires in: <span class="js-countdown" data-expires="${deal.expires_at}"></span></span>
                     </div>
-                    <div class="deal-card__image" style="background-image: url('${deal.image}'); background-size: cover; background-position: center;">
-                         <div class="card-image-placeholder"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></div>
-                    </div>
+                    <img src="${deal.image}" class="deal-card__image" alt="${deal.title}">
                     <div class="card__body">
                         <h3 class="card__title" style="margin-bottom: var(--space-2)">${deal.title}</h3>
                         <p class="text-sm text-primary" style="font-weight: 600;">${deal.description}</p>
