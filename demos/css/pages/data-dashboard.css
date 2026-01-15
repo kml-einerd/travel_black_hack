@@ -1,9 +1,0 @@
-.dashboard-grid {
-  display: grid;
-  gap: var(--space-6);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-.dashboard-table {
-  width: 100%;
-}

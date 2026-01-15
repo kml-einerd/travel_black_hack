@@ -2,7 +2,7 @@
   "changelogs": [
     {
       "program": "Chase Ultimate Rewards",
-      "program_icon": "🔵",
+      "program_icon": "chart",
       "version": "2026.01",
       "date": "2026-01-14",
       "changes": {
@@ -22,7 +22,7 @@
     },
     {
       "program": "American Express Membership Rewards",
-      "program_icon": "🟢",
+      "program_icon": "spark",
       "version": "2026.01",
       "date": "2026-01-10",
       "changes": {

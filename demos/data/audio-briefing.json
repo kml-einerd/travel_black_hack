@@ -8,13 +8,13 @@
       "audio_url": "/audio/briefing-2026-01-14.mp3",
       "transcript_url": "/transcripts/briefing-2026-01-14.txt",
       "chapters": [
-        {"time": "00:00", "title": "Intro & Headlines", "icon": "📍"},
-        {"time": "00:45", "title": "Amex 40% Avianca Bonus Deep Dive", "icon": "🔥"},
-        {"time": "02:30", "title": "Chase Sapphire Changes Explained", "icon": "💳"},
-        {"time": "04:15", "title": "Best Award Availability This Week", "icon": "✈️"},
-        {"time": "05:45", "title": "Tip of the Day: Uber coding trick", "icon": "💡"},
-        {"time": "06:30", "title": "Market Snapshot", "icon": "📊"},
-        {"time": "07:15", "title": "What's Coming Tomorrow", "icon": "📍"}
+        {"time": "00:00", "title": "Intro & Headlines", "icon": "clock"},
+        {"time": "00:45", "title": "Amex 40% Avianca Bonus Deep Dive", "icon": "flame"},
+        {"time": "02:30", "title": "Chase Sapphire Changes Explained", "icon": "card"},
+        {"time": "04:15", "title": "Best Award Availability This Week", "icon": "plane"},
+        {"time": "05:45", "title": "Tip of the Day: Uber coding trick", "icon": "spark"},
+        {"time": "06:30", "title": "Market Snapshot", "icon": "chart"},
+        {"time": "07:15", "title": "What's Coming Tomorrow", "icon": "clock"}
       ],
       "hosts": ["Alex from MilesAI"],
       "plays": 4500,

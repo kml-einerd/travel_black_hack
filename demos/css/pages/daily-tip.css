@@ -1,9 +1,0 @@
-.daily-tip-card {
-  display: grid;
-  gap: var(--space-4);
-  align-items: start;
-}
-
-.daily-tip-card__icon {
-  font-size: var(--text-4xl);
-}

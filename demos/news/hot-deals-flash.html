@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hot Deals Flash Feed • MilesAI</title>
-  <meta name="description" content="Real-time flash deals with urgency, countdowns, and instant actions." />
-  <link rel="stylesheet" href="../css/design-system.css" />
-  <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/pages/hot-deals-flash.css" />
+  <meta name="description" content="Time-bound deal feed with clear requirements, timelines, and actions." />
+<link rel="stylesheet" href="../css/design-tokens.css" />
+<link rel="stylesheet" href="../css/components.css" />
+<link rel="stylesheet" href="../css/layouts.css" />
+<link rel="stylesheet" href="../css/utilities.css" />
 </head>
 <body class="page">
   <header class="page__header">
@@ -24,14 +25,13 @@
   <main class="page__main">
     <section class="page__hero">
       <div>
-        <p class="badge badge--critical">Live Now</p>
+        <p class="badge badge--info">Active Deals</p>
         <h1 class="page__hero-title">Hot Deals Flash Feed</h1>
         <p class="page__hero-description">
-          Urgent, expiring opportunities updated in real time. Track countdowns, value estimates,
-          and jump to action in seconds.
+          Value-focused opportunities with clear timelines and transparent requirements.
         </p>
       </div>
-      <div class="hot-deals__filters">
+      <div class="filter-bar">
         <div class="input-group">
           <label for="deal-filter">Filter by category</label>
           <select id="deal-filter" class="input">
@@ -44,11 +44,11 @@
           </select>
         </div>
         <div class="input-group">
-          <label for="urgency-filter">Urgency level</label>
+          <label for="urgency-filter">Timing window</label>
           <select id="urgency-filter" class="input">
             <option value="all">All urgency</option>
             <option value="critical">Critical</option>
-            <option value="urgent">Urgent</option>
+            <option value="urgent">Time sensitive</option>
             <option value="important">Important</option>
           </select>
         </div>
@@ -59,7 +59,7 @@
       <div class="section__header">
         <div>
           <h2 class="section__title">Live deals</h2>
-          <p class="section__subtitle">Countdown timers refresh every second to keep urgency in view.</p>
+          <p class="section__subtitle">Countdown timers refresh every minute for a calmer read.</p>
         </div>
         <button class="btn btn-secondary" id="refresh-deals">Refresh feed</button>
       </div>
@@ -99,6 +99,6 @@
 
   <footer class="footer">MilesAI • Light Mode Only • Flash Feed Demo</footer>
 
-  <script type="module" src="../js/pages/hot-deals-flash.js"></script>
+  <script type="module" src="../js/feeds.js"></script>
 </body>
 </html>

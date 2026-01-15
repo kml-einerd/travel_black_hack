@@ -1,9 +1,0 @@
-.changelog-card {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.changelog-section {
-  display: grid;
-  gap: var(--space-2);
-}

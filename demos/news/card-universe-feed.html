@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Card Universe Feed • MilesAI</title>
   <meta name="description" content="Social-style feed of credit card launches, updates, and alerts." />
-  <link rel="stylesheet" href="../css/design-system.css" />
-  <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/pages/card-universe-feed.css" />
+<link rel="stylesheet" href="../css/design-tokens.css" />
+<link rel="stylesheet" href="../css/components.css" />
+<link rel="stylesheet" href="../css/layouts.css" />
+<link rel="stylesheet" href="../css/utilities.css" />
 </head>
 <body class="page">
   <header class="page__header">
@@ -24,11 +25,11 @@
   <main class="page__main">
     <section class="page__hero">
       <div>
-        <p class="badge badge--important">Social Feed</p>
+        <p class="badge badge--info">Social Feed</p>
         <h1 class="page__hero-title">Card Universe Feed</h1>
         <p class="page__hero-description">Discover launches, updates, and alerts in a visual card-first feed.</p>
       </div>
-      <div class="card-universe__filters">
+      <div class="filter-bar">
         <div class="input-group">
           <label for="issuer-filter">Issuer</label>
           <select id="issuer-filter" class="input">
@@ -61,6 +62,6 @@
 
   <footer class="footer">MilesAI • Card Universe Feed Demo</footer>
 
-  <script type="module" src="../js/pages/card-universe-feed.js"></script>
+  <script type="module" src="../js/feeds.js"></script>
 </body>
 </html>

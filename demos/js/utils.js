@@ -38,25 +38,24 @@ export const calculateCountdown = (targetDate) => {
   const diff = Math.max(target - now, 0);
   const hours = Math.floor(diff / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  return { hours, minutes, seconds };
+  return { hours, minutes };
 };
 
 export const getUrgencyBadge = (urgency) => {
   switch (urgency) {
     case 'critical':
-      return { label: 'Ending Soon', className: 'badge--critical' };
+      return { label: 'Ending Soon', className: 'badge--warning' };
     case 'urgent':
-      return { label: 'Limited Time', className: 'badge--urgent' };
+      return { label: 'Limited Window', className: 'badge--accent' };
     default:
-      return { label: 'Updated', className: 'badge--important' };
+      return { label: 'Updated', className: 'badge--info' };
   }
 };
 
 export const valueRatingClass = (rating) => {
   const normalized = rating?.toLowerCase?.() ?? 'good';
   if (['excellent', 'insane'].includes(normalized)) return 'badge--success';
-  if (['good'].includes(normalized)) return 'badge--important';
+  if (['good'].includes(normalized)) return 'badge--info';
   if (['fair'].includes(normalized)) return 'badge--neutral';
-  return 'badge--critical';
+  return 'badge--warning';
 };

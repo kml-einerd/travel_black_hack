@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Live Ticker • MilesAI</title>
-  <meta name="description" content="Real-time ticker of critical MilesAI updates." />
-  <link rel="stylesheet" href="../css/design-system.css" />
-  <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/pages/live-ticker.css" />
+  <meta name="description" content="Real-time ticker of priority MilesAI updates." />
+<link rel="stylesheet" href="../css/design-tokens.css" />
+<link rel="stylesheet" href="../css/components.css" />
+<link rel="stylesheet" href="../css/layouts.css" />
+<link rel="stylesheet" href="../css/utilities.css" />
 </head>
 <body class="page">
   <header class="page__header">
@@ -24,7 +25,7 @@
   <main class="page__main">
     <section class="page__hero">
       <div>
-        <p class="badge badge--critical">Live</p>
+        <p class="badge badge--warning">Live</p>
         <h1 class="page__hero-title">Live Ticker</h1>
         <p class="page__hero-description">A Bloomberg-style bar with nonstop updates. Hover to pause.</p>
       </div>
@@ -37,6 +38,6 @@
 
   <footer class="footer">MilesAI • Live Ticker Demo</footer>
 
-  <script type="module" src="../js/pages/live-ticker.js"></script>
+  <script type="module" src="../js/feeds.js"></script>
 </body>
 </html>

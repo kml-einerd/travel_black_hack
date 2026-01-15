@@ -1,9 +1,0 @@
-.course-hero {
-  display: grid;
-  gap: var(--space-6);
-}
-
-.course-modules {
-  display: grid;
-  gap: var(--space-2);
-}

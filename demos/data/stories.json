@@ -4,7 +4,7 @@
       "id": "story-001",
       "type": "deal",
       "title": "HOT DEAL",
-      "icon": "🔥",
+      "icon": "flame",
       "is_new": true,
       "expires_at": "2026-01-15T14:30:00Z",
       "slides": [
@@ -42,7 +42,7 @@
       "id": "story-002",
       "type": "card",
       "title": "NEW CARD",
-      "icon": "💳",
+      "icon": "card",
       "is_new": true,
       "slides": [
         {

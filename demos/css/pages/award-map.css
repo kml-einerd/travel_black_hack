@@ -1,5 +1,0 @@
-.award-map__filters {
-  display: flex;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
