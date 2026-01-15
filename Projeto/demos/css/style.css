@@ -1,30 +1,39 @@
 :root {
-  /* === LIGHT THEME (Único) — Clean & Premium === */
+  /* === LIGHT THEME — Premium Orange + Navy (ThePointsGuy Inspired) === */
 
   /* Fundos */
   --color-bg-primary: #ffffff;        /* Background principal - branco puro */
-  --color-bg-secondary: #f8fafc;      /* Cards, modais - off-white sofisticado */
-  --color-bg-tertiary: #f1f5f9;       /* Hover states, inputs, áreas destacadas */
+  --color-bg-secondary: #FAFAF9;      /* Cards, modais - off-white quente */
+  --color-bg-tertiary: #F5F5F4;       /* Hover states, inputs, áreas destacadas */
   --color-bg-elevated: #ffffff;       /* Elementos elevados (dropdowns, popovers) */
-  --color-bg-canvas: #fafbfc;         /* Background da página/app */
+  --color-bg-canvas: #FAFAF9;         /* Background da página/app */
 
-  /* Cores Primárias - Indigo Refinado */
-  --color-primary: #4f46e5;           /* Indigo vibrante - ações principais */
-  --color-primary-hover: #4338ca;     /* Hover - mais profundo */
-  --color-primary-light: #eef2ff;     /* Background sutil para highlights */
-  --color-primary-muted: rgba(79, 70, 229, 0.08);  /* Backgrounds muito sutis */
+  /* Cores Primárias - Laranja Vibrante */
+  --color-primary: #EA580C;           /* Laranja vibrante - ações principais */
+  --color-primary-hover: #C2410C;     /* Hover - mais profundo */
+  --color-primary-light: #FFF7ED;     /* Background sutil para highlights */
+  --color-primary-muted: rgba(234, 88, 12, 0.08);  /* Backgrounds muito sutis */
+
+  /* Secondary - Navy (Headers, Footer) */
+  --color-secondary: #1E3A5F;         /* Navy profundo - headers, footer */
+  --color-secondary-hover: #15293F;   /* Hover - mais profundo */
+  --color-secondary-light: #F0F4F8;   /* Background sutil */
 
   /* Cores de Destaque */
-  --color-accent: #f59e0b;            /* Amber premium - destaques, badges */
-  --color-accent-light: #fef3c7;      /* Background para badges amber */
+  --color-accent: #0D9488;            /* Teal premium - destaques complementares */
+  --color-accent-light: #F0FDFA;      /* Background para badges teal */
   --color-success: #059669;           /* Verde esmeralda - ganhos, economias */
-  --color-success-light: #d1fae5;     /* Background para success states */
-  --color-warning: #d97706;           /* Amber escuro - alertas */
-  --color-warning-light: #fef3c7;     /* Background para warnings */
-  --color-danger: #dc2626;            /* Vermelho - perdas, erros */
-  --color-danger-light: #fee2e2;      /* Background para errors */
-  --color-info: #0284c7;              /* Azul sky - informações */
-  --color-info-light: #e0f2fe;        /* Background para info states */
+  --color-success-light: #D1FAE5;     /* Background para success states */
+  --color-warning: #D97706;           /* Amber - alertas */
+  --color-warning-light: #FEF3C7;     /* Background para warnings */
+  --color-danger: #DC2626;            /* Vermelho - perdas, erros */
+  --color-danger-light: #FEE2E2;      /* Background para errors */
+  --color-info: #0284C7;              /* Azul sky - informações */
+  --color-info-light: #E0F2FE;        /* Background para info states */
+  
+  /* Gold - Premium badges */
+  --color-gold: #B45309;
+  --color-gold-light: #FEF3C7;
 
   /* Textos - Hierarquia Clara */
   --color-text-primary: #0f172a;      /* Títulos, texto principal - slate 900 */
@@ -38,13 +47,15 @@
   --color-border-focus: #4f46e5;      /* Bordas em focus - primary */
   --color-divider: #f1f5f9;           /* Linhas divisórias sutis */
 
-  /* Gradientes Premium */
-  --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  --gradient-primary-soft: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
-  --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --gradient-success: linear-gradient(135deg, #059669 0%, #047857 100%);
-  --gradient-hero: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-  --gradient-card-shine: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.6) 100%);
+  /* NO GRADIENTS - Solid Colors Only */
+  --gradient-primary: var(--color-primary);
+  --gradient-primary-soft: var(--color-primary-light);
+  --gradient-navy: var(--color-secondary);
+  --gradient-teal: var(--color-accent);
+  --gradient-gold: var(--color-gold);
+  --gradient-success: var(--color-success);
+  --gradient-hero: var(--color-secondary);
+  --gradient-card-shine: var(--color-bg-primary);
 
   /* Overlays */
   --overlay-light: rgba(255, 255, 255, 0.8);
@@ -105,10 +116,11 @@
   --shadow-2xl: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
 
   /* Sombras Coloridas - Para elementos interativos */
-  --shadow-primary: 0 4px 14px rgba(79, 70, 229, 0.25);
-  --shadow-primary-lg: 0 8px 24px rgba(79, 70, 229, 0.3);
+  --shadow-primary: 0 4px 14px rgba(234, 88, 12, 0.25);
+  --shadow-primary-lg: 0 8px 24px rgba(234, 88, 12, 0.3);
   --shadow-success: 0 4px 14px rgba(5, 150, 105, 0.25);
-  --shadow-accent: 0 4px 14px rgba(245, 158, 11, 0.25);
+  --shadow-accent: 0 4px 14px rgba(13, 148, 136, 0.25);
+  --shadow-navy: 0 4px 14px rgba(30, 58, 95, 0.25);
 
   /* Sombra de Elevação para Cards */
   --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.06);

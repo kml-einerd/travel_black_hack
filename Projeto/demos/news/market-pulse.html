@@ -100,7 +100,7 @@
             "card_spotlight": {
                 "card": "Citi Strata Premier",
                 "verdict": "Best everyday travel card of 2026",
-                "image": ""
+                "image": "../images/cards/chase-sapphire.png"
             }
         };
 
@@ -130,7 +130,7 @@
         // Render Card Spotlight
         const card = marketData.card_spotlight;
         document.getElementById('card-spotlight').innerHTML = `
-            <img src="${card.image}" style="width: 100%; height: 150px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: var(--space-4);">
+            <img src="${card.image}" style="width: 100%; height: 150px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: var(--space-4);" onerror="this.src='../images/placeholder.svg'">
             <h3 class="text-lg">${card.card}</h3>
             <p class="text-sm text-primary" style="font-weight: 600;">"${card.verdict}"</p>
             <button class="btn btn-secondary btn-sm" style="width: 100%">Read Review</button>

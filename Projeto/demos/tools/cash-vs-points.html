@@ -6,16 +6,35 @@
     <title>Trip Cost Comparison - MilesAI</title>
     <link rel="stylesheet" href="../css/design-system.css">
     <link rel="stylesheet" href="../css/components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <nav class="container header-nav"><div class="header-nav__logo">MilesAI</div></nav>
+    <nav class="container header-nav">
+        <div class="header-nav__logo" style="display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="compass" style="width: 24px; height: 24px; color: var(--color-accent, #ca8a04);"></i>
+            <span>MilesAI</span>
+        </div>
+        <div style="display: flex; gap: 16px;">
+            <a href="../index.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+                <i data-lucide="home" style="width: 16px; height: 16px;"></i>
+                Home
+            </a>
+            <a href="../courses/fundamentals.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+                <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+                Learn
+            </a>
+        </div>
+    </nav>
     <main class="container">
-        <header style="margin-bottom: var(--space-8);">
-            <h1 class="section-title">
-                <span class="section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
-                Cash vs Points
-            </h1>
-            <p class="text-lg text-muted">NYC → London Roundtrip</p>
+        <header style="margin-bottom: var(--space-8); text-align: center;">
+            <div style="margin-bottom: 16px;">
+                <i data-lucide="calculator" style="width: 48px; height: 48px; color: var(--color-accent, #ca8a04);"></i>
+            </div>
+            <h1 class="section-title">Cash vs Points Comparison</h1>
+            <p class="text-lg text-muted" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i data-lucide="plane" style="width: 20px; height: 20px;"></i>
+                NYC → London Roundtrip
+            </p>
         </header>
 
         <div class="card" style="margin-top: 20px;">
@@ -55,5 +74,12 @@
             </div>
         </div>
     </main>
+
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>

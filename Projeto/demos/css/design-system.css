@@ -5,56 +5,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* === 4.1 PALETA DE CORES === */
+  /* === PALETA DE CORES - LARANJA PREMIUM === */
+  /* Inspirado no The Points Guy com LARANJA como cor principal */
 
-  /* Fundos */
-  --color-bg-primary: #ffffff;        /* Background principal - branco puro */
-  --color-bg-secondary: #f8fafc;      /* Cards, modais - off-white sofisticado */
-  --color-bg-tertiary: #f1f5f9;       /* Hover states, inputs, áreas destacadas */
-  --color-bg-elevated: #ffffff;       /* Elementos elevados (dropdowns, popovers) */
-  --color-bg-canvas: #fafbfc;         /* Background da página/app */
+  /* Fundos - Warm Neutrals */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #fafaf9;
+  --color-bg-tertiary: #f5f5f4;
+  --color-bg-elevated: #ffffff;
+  --color-bg-canvas: #fafaf9;
 
-  /* Cores Primárias - Indigo Refinado */
-  --color-primary: #4f46e5;           /* Indigo vibrante - ações principais */
-  --color-primary-hover: #4338ca;     /* Hover - mais profundo */
-  --color-primary-light: #eef2ff;     /* Background sutil para highlights */
-  --color-primary-muted: rgba(79, 70, 229, 0.08);  /* Backgrounds muito sutis */
+  /* Primary - Laranja Vibrante (CTAs, destaques) */
+  --color-primary: #EA580C;
+  --color-primary-hover: #C2410C;
+  --color-primary-active: #9A3412;
+  --color-primary-light: #FFF7ED;
+  --color-primary-muted: rgba(234, 88, 12, 0.08);
 
-  /* Cores de Destaque */
-  --color-accent: #f59e0b;            /* Amber premium - destaques, badges */
-  --color-accent-light: #fef3c7;      /* Background para badges amber */
-  --color-success: #059669;           /* Verde esmeralda - ganhos, economias */
-  --color-success-light: #d1fae5;     /* Background para success states */
-  --color-warning: #d97706;           /* Amber escuro - alertas */
-  --color-warning-light: #fef3c7;     /* Background para warnings */
-  --color-danger: #dc2626;            /* Vermelho - perdas, erros */
-  --color-danger-light: #fee2e2;      /* Background para errors */
-  --color-info: #0284c7;              /* Azul sky - informações */
-  --color-info-light: #e0f2fe;        /* Background para info states */
+  /* Secondary - Navy (headers, footer) */
+  --color-secondary: #1E3A5F;
+  --color-secondary-hover: #15293F;
+  --color-secondary-light: #F0F4F8;
+  --color-secondary-muted: rgba(30, 58, 95, 0.08);
 
-  /* Textos - Hierarquia Clara */
-  --color-text-primary: #0f172a;      /* Títulos, texto principal - slate 900 */
-  --color-text-secondary: #475569;    /* Descrições, labels - slate 600 */
-  --color-text-muted: #94a3b8;        /* Placeholders, texto desabilitado */
-  --color-text-inverse: #ffffff;      /* Texto sobre fundos escuros */
+  /* Accent - Teal (complementar) */
+  --color-accent: #0D9488;
+  --color-accent-hover: #0F766E;
+  --color-accent-light: #F0FDFA;
+  --color-accent-muted: rgba(13, 148, 136, 0.08);
+
+  /* Gold - Premium badges */
+  --color-gold: #B45309;
+  --color-gold-light: #FEF3C7;
+
+  /* Estados */
+  --color-success: #15803D;
+  --color-success-light: #F0FDF4;
+  --color-success-bg: #F0FDF4;
+  --color-warning: #B45309;
+  --color-warning-light: #FFFBEB;
+  --color-warning-bg: #FFFBEB;
+  --color-danger: #B91C1C;
+  --color-danger-light: #FEF2F2;
+  --color-error: #B91C1C;
+  --color-error-bg: #FEF2F2;
+  --color-info: #0369A1;
+  --color-info-light: #F0F9FF;
+  --color-info-bg: #F0F9FF;
+
+  /* Textos */
+  --color-text-primary: #1c1917;
+  --color-text-secondary: #44403c;
+  --color-text-tertiary: #78716c;
+  --color-text-muted: #a8a29e;
+  --color-text-inverse: #ffffff;
 
   /* Bordas e Divisores */
-  --color-border: #e2e8f0;            /* Bordas padrão - sutil */
-  --color-border-hover: #cbd5e1;      /* Bordas em hover */
-  --color-border-focus: #4f46e5;      /* Bordas em focus - primary */
-  --color-divider: #f1f5f9;           /* Linhas divisórias sutis */
+  --color-border: #e7e5e4;
+  --color-border-hover: #d6d3d1;
+  --color-border-focus: var(--color-primary);
+  --color-divider: #f5f5f4;
 
-  /* Gradientes Premium */
-  --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  --gradient-primary-soft: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
-  --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --gradient-success: linear-gradient(135deg, #059669 0%, #047857 100%);
-  --gradient-hero: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-  --gradient-card-shine: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.6) 100%);
+  /* NO GRADIENTS - Solid Colors Only */
+  --gradient-primary: var(--color-primary);
+  --gradient-primary-soft: var(--color-primary-light);
+  --gradient-gold: var(--color-gold);
+  --gradient-success: var(--color-success);
+  --gradient-hero: var(--color-bg-canvas);
+  --gradient-card-shine: var(--color-bg-primary);
 
   /* Overlays */
   --overlay-light: rgba(255, 255, 255, 0.8);
-  --overlay-dark: rgba(15, 23, 42, 0.4);
+  --overlay-dark: rgba(28, 25, 23, 0.4);
 
   /* === 4.2 TIPOGRAFIA === */
   --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -186,3 +208,8 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-muted);
 }
+
+/* ============================================
+   COMPATIBILITY LAYER
+   ============================================ */
+@import url('compatibility.css');

@@ -69,7 +69,7 @@
                 "description": "$600 extra value on 100K transfer",
                 "expires_at": "2026-01-25T23:59:59Z",
                 "priority": "high",
-                "image": "../images/avianca-tail.svg",
+                "image": "../images/travel/avianca-lifemiles.jpg",
                 "cta": "Transfer Now"
             },
             {
@@ -79,7 +79,7 @@
                 "description": "$1,250 in travel value",
                 "expires_at": "2026-02-15T23:59:59Z",
                 "priority": "high",
-                "image": "../images/chase-ink.svg",
+                "image": "../images/cards/chase-ink.png",
                 "cta": "Apply Now"
             },
             {
@@ -89,7 +89,7 @@
                 "description": "110K Virgin points, $6K+ value",
                 "expires_at": "2026-01-20T23:59:59Z",
                 "priority": "urgent",
-                "image": "../images/ana-cabin.svg",
+                "image": "../images/travel/business-class-1.webp",
                 "cta": "Check Availability"
             },
             {
@@ -99,7 +99,7 @@
                 "description": "Normally $1,200+. Book immediately.",
                 "expires_at": "2026-01-14T18:00:00Z",
                 "priority": "critical",
-                "image": "../images/bali-landscape.svg",
+                "image": "../images/destinations/bali-landscape.jpg",
                 "cta": "Book Immediately"
             }
         ];
@@ -118,7 +118,7 @@
                         ${getUrgencyBadge(deal.priority)}
                         <span class="text-xs text-muted">Expires in: <span class="js-countdown" data-expires="${deal.expires_at}"></span></span>
                     </div>
-                    <img src="${deal.image}" class="deal-card__image" alt="${deal.title}">
+                    <img src="${deal.image}" class="deal-card__image" alt="${deal.title}" onerror="this.src='../images/placeholder.svg'; this.alt='Imagem não disponível'">
                     <div class="card__body">
                         <h3 class="card__title" style="margin-bottom: var(--space-2)">${deal.title}</h3>
                         <p class="text-sm text-primary" style="font-weight: 600;">${deal.description}</p>
