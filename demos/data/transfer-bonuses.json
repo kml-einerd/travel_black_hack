@@ -1,0 +1,56 @@
+{
+  "active_bonuses": [
+    {
+      "id": "tb-001",
+      "from_program": "Chase Ultimate Rewards",
+      "from_logo": "../imagens/logo-chase.svg",
+      "to_program": "British Airways Avios",
+      "to_logo": "../imagens/logo-british.svg",
+      "bonus_percent": 25,
+      "expires_at": "2026-01-31T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": "First transfer in 90 days",
+      "best_use": "Europe short-haul awards",
+      "value_rating": "excellent"
+    },
+    {
+      "id": "tb-002",
+      "from_program": "Amex Membership Rewards",
+      "from_logo": "../imagens/logo-amex.svg",
+      "to_program": "Virgin Atlantic Flying Club",
+      "to_logo": "../imagens/logo-virgin.svg",
+      "bonus_percent": 30,
+      "expires_at": "2026-02-15T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": 100000,
+      "terms": "Promo enrollment required",
+      "best_use": "ANA business class to Japan",
+      "value_rating": "insane"
+    },
+    {
+      "id": "tb-003",
+      "from_program": "Citi ThankYou",
+      "from_logo": "../imagens/logo-citi.svg",
+      "to_program": "Turkish Miles",
+      "to_logo": "../imagens/logo-turkish.svg",
+      "bonus_percent": 20,
+      "expires_at": "2026-01-20T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": 75000,
+      "terms": "One transfer per member",
+      "best_use": "Domestic United flights",
+      "value_rating": "good"
+    }
+  ],
+  "upcoming_predictions": [
+    {
+      "from": "Chase UR",
+      "to": "Hyatt",
+      "predicted_bonus": 15,
+      "confidence": 75,
+      "expected_date": "March 2026",
+      "basis": "Historical pattern (every 6 months)"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal News Hub • MilesAI</title>
+  <meta name="description" content="Portal-style hub for all MilesAI news categories." />
+<link rel="stylesheet" href="../css/design-tokens.css" />
+<link rel="stylesheet" href="../css/components.css" />
+<link rel="stylesheet" href="../css/layouts.css" />
+<link rel="stylesheet" href="../css/utilities.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>News Hub</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../news/live-ticker.html">Live Ticker</a>
+        <a class="page__link" href="../news/hot-deals-flash.html">Hot Deals</a>
+        <a class="page__link" href="../news/quick-bites.html">Quick Bites</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="section news-hub__hero" id="featured"></section>
+
+    <section class="section news-hub__grid">
+      <article class="card" id="trending"></article>
+      <article class="card" id="hot-deals"></article>
+      <article class="card" id="card-news"></article>
+      <article class="card" id="award-availability"></article>
+      <article class="card" id="hotel-deals"></article>
+      <article class="card" id="latest-guides"></article>
+    </section>
+  </main>
+
+  <footer class="footer">MilesAI • Portal News Hub Demo</footer>
+
+  <script type="module" src="../js/feeds.js"></script>
+</body>
+</html>

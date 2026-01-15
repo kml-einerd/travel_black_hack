@@ -1,0 +1,79 @@
+{
+  "hot_deals": [
+    {
+      "id": "deal-001",
+      "category": "transfer_bonus",
+      "title": "Amex 40% Transfer Bonus to Avianca LifeMiles",
+      "value": "$600 extra on 100K transfer",
+      "expires": "2026-01-25T23:59:59Z",
+      "priority": "critical",
+      "image": "../imagens/aircraft.svg",
+      "cta": "Transfer Now",
+      "requirements": "Amex Membership Rewards account",
+      "best_for": [
+        "Star Alliance business",
+        "South America sweet spots"
+      ]
+    },
+    {
+      "id": "deal-002",
+      "category": "card_bonus",
+      "title": "Chase Ink Preferred 100K \u2014 Highest Ever Public Offer",
+      "value": "$1,250 in travel",
+      "expires": "2026-02-15T23:59:59Z",
+      "priority": "urgent",
+      "image": "../imagens/aircraft.svg",
+      "cta": "Apply Now",
+      "requirements": "Business owners, 5/24 eligible",
+      "best_for": [
+        "Small business",
+        "Transfer partners"
+      ]
+    },
+    {
+      "id": "deal-003",
+      "category": "award_availability",
+      "title": "ANA First Class Wide Open NYC \u2192 Tokyo (March)",
+      "value": "110K Virgin points, $6K+ value",
+      "expires": "2026-01-20T23:59:59Z",
+      "priority": "critical",
+      "image": "../imagens/aircraft.svg",
+      "cta": "Check Availability",
+      "requirements": "Virgin Atlantic miles",
+      "best_for": [
+        "First class",
+        "Tokyo flights"
+      ]
+    },
+    {
+      "id": "deal-004",
+      "category": "hotel_promo",
+      "title": "Hyatt Points + Cash: 50% Bonus Points Back",
+      "value": "Up to 15K points back",
+      "expires": "2026-03-31T23:59:59Z",
+      "priority": "important",
+      "image": "../imagens/aircraft.svg",
+      "cta": "Book Now",
+      "requirements": "World of Hyatt members",
+      "best_for": [
+        "Resort stays",
+        "Points + Cash"
+      ]
+    },
+    {
+      "id": "deal-005",
+      "category": "mistake_fare",
+      "title": "Mistake Fare: LA \u2192 Bali $287 RT (Qatar)",
+      "value": "Normally $1,200+",
+      "expires": "2026-01-14T18:00:00Z",
+      "priority": "critical",
+      "image": "../imagens/aircraft.svg",
+      "cta": "Book Immediately",
+      "requirements": "Flexible travel dates",
+      "best_for": [
+        "Cash deals",
+        "Qatar Qsuite"
+      ]
+    }
+  ]
+}

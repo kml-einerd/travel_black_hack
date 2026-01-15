@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Credit Card Component - MilesAI</title>
-  <link rel="stylesheet" href="../../design/design-system.css">
+  <link rel="stylesheet" href="../css/design-tokens.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/utilities.css">
   <style>
     body {
       padding: var(--space-8);
@@ -25,41 +28,21 @@
       gap: var(--space-8);
     }
 
-    /* Card Product Enhanced Styles */
     .card-product {
-      background: var(--color-bg-primary);
-      border: 1px solid var(--color-border);
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-200);
       border-radius: var(--radius-2xl);
       padding: var(--space-6);
-      box-shadow: var(--shadow-card);
-      transition: all var(--transition-normal);
-      position: relative;
-      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition-normal), transform var(--transition-normal);
     }
 
     .card-product:hover {
-      box-shadow: var(--shadow-card-hover);
+      box-shadow: var(--shadow-md);
       transform: translateY(-4px);
     }
 
-    .card-product::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--gradient-primary);
-      opacity: 0;
-      transition: opacity var(--transition-normal);
-    }
-
-    .card-product:hover::before {
-      opacity: 1;
-    }
-
     .card-product__header {
-      position: relative;
       margin-bottom: var(--space-5);
       display: flex;
       justify-content: space-between;
@@ -69,32 +52,27 @@
     .card-product__card-visual {
       width: 100%;
       height: 140px;
-      background: var(--gradient-primary);
+      background: var(--neutral-900);
       border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: var(--text-2xl);
+      color: var(--neutral-0);
+      font-size: var(--text-h2);
       font-weight: var(--font-bold);
       margin-bottom: var(--space-5);
-      box-shadow: var(--shadow-md);
-    }
-
-    .card-product__info {
-      flex: 1;
     }
 
     .card-product__name {
-      font-size: var(--text-xl);
+      font-size: var(--text-h3);
       font-weight: var(--font-semibold);
-      color: var(--color-text-primary);
+      color: var(--neutral-900);
       margin: 0 0 var(--space-1);
     }
 
     .card-product__issuer {
-      font-size: var(--text-sm);
-      color: var(--color-text-secondary);
+      font-size: var(--text-small);
+      color: var(--neutral-600);
       margin: 0 0 var(--space-2);
     }
 
@@ -102,39 +80,39 @@
       display: inline-block;
       font-size: var(--text-xs);
       padding: var(--space-1) var(--space-2);
-      background: var(--color-bg-tertiary);
+      background: var(--neutral-100);
       border-radius: var(--radius-sm);
-      color: var(--color-text-muted);
+      color: var(--neutral-500);
       text-transform: uppercase;
       font-weight: var(--font-medium);
     }
 
     .card-product__bonus {
-      background: var(--gradient-primary-soft);
+      background: var(--neutral-100);
       border-radius: var(--radius-lg);
       padding: var(--space-5);
       text-align: center;
       margin-bottom: var(--space-5);
-      border: 1px solid var(--color-primary-light);
+      border: 1px solid var(--neutral-200);
     }
 
     .card-product__bonus .value {
       display: block;
-      font-size: var(--text-3xl);
+      font-size: var(--text-display);
       font-weight: var(--font-bold);
       color: var(--color-primary);
       font-variant-numeric: tabular-nums;
     }
 
     .card-product__bonus .label {
-      font-size: var(--text-sm);
-      color: var(--color-text-secondary);
+      font-size: var(--text-small);
+      color: var(--neutral-600);
       margin-top: var(--space-1);
     }
 
     .card-product__bonus .requirement {
       font-size: var(--text-xs);
-      color: var(--color-text-muted);
+      color: var(--neutral-500);
       margin-top: var(--space-2);
     }
 
@@ -145,7 +123,7 @@
     .card-product__section-title {
       font-size: var(--text-sm);
       font-weight: var(--font-semibold);
-      color: var(--color-text-primary);
+      color: var(--neutral-900);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: var(--space-3);
@@ -177,12 +155,12 @@
     }
 
     .card-product__rates .category {
-      color: var(--color-text-secondary);
+      color: var(--neutral-600);
     }
 
     .card-product__rates .note {
       font-size: var(--text-xs);
-      color: var(--color-text-muted);
+      color: var(--neutral-500);
       font-style: italic;
     }
 
@@ -197,11 +175,11 @@
       padding-left: var(--space-6);
       position: relative;
       font-size: var(--text-sm);
-      color: var(--color-text-secondary);
+      color: var(--neutral-600);
     }
 
     .card-product__benefits li::before {
-      content: '✓';
+      content: 'Included';
       position: absolute;
       left: 0;
       color: var(--color-success);
@@ -232,18 +210,18 @@
     .annual-fee__value {
       font-size: var(--text-xl);
       font-weight: var(--font-semibold);
-      color: var(--color-text-primary);
+      color: var(--neutral-900);
     }
 
     .annual-fee__label {
       font-size: var(--text-xs);
-      color: var(--color-text-muted);
+      color: var(--neutral-500);
     }
 
     .loading {
       text-align: center;
       padding: var(--space-12);
-      color: var(--color-text-muted);
+      color: var(--neutral-500);
     }
 
     @media (max-width: 768px) {
@@ -258,7 +236,7 @@
   <div class="demo-container">
     <header class="page-header">
       <h1>Credit Card Catalog</h1>
-      <p style="color: var(--color-text-secondary); font-size: var(--text-lg);">
+      <p style="color: var(--neutral-600); font-size: var(--text-body-lg);">
         Find the best credit card for your spending patterns. All data updated regularly with transparent analysis.
       </p>
     </header>
@@ -370,7 +348,7 @@
             <span class="annual-fee__value">$${card.annual_fee}</span>
             <span class="annual-fee__label">Annual Fee</span>
           </div>
-          <button class="btn btn-primary">Learn More</button>
+          <button class="btn btn-primary">View card details</button>
         </footer>
       `;
 

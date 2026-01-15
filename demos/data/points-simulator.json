@@ -1,0 +1,26 @@
+{
+  "scenarios": [
+    {
+      "id": "sim-001",
+      "mode": "Challenge",
+      "title": "Paris in Business",
+      "starting_points": 0,
+      "time_limit_months": 6,
+      "goal": "2 Business Class tickets JFK→CDG",
+      "cards": ["Chase Sapphire Preferred", "Amex Gold"],
+      "monthly_spend": 4000,
+      "target_points": 140000
+    },
+    {
+      "id": "sim-002",
+      "mode": "Campaign",
+      "title": "Family Hawaii Escape",
+      "starting_points": 25000,
+      "time_limit_months": 9,
+      "goal": "4 economy tickets + 5 hotel nights",
+      "cards": ["Citi Premier", "Chase Freedom Flex"],
+      "monthly_spend": 3500,
+      "target_points": 180000
+    }
+  ]
+}

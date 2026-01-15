@@ -1,0 +1,83 @@
+{
+  "stories": [
+    {
+      "id": "story-001",
+      "type": "deal",
+      "title": "HOT DEAL",
+      "icon": "flame",
+      "is_new": true,
+      "expires_at": "2026-01-15T14:30:00Z",
+      "slides": [
+        {
+          "order": 1,
+          "background_image": "../imagens/aircraft.svg",
+          "headline": "AMEX 40% AVIANCA BONUS",
+          "subtext": "Transfer 100K MR \u2192 Get 140K LifeMiles",
+          "footer": "Ends January 25th",
+          "cta": {
+            "text": "Swipe Up",
+            "action": "learn_more"
+          }
+        },
+        {
+          "order": 2,
+          "background_color": "#4f46e5",
+          "headline": "BEST USES",
+          "bullets": [
+            "Star Alliance Business \u2192 63K one-way",
+            "USA-Europe Biz from 45K",
+            "Stopover in Colombia FREE"
+          ],
+          "cta": {
+            "text": "Swipe Up",
+            "action": "view_sweet_spots"
+          }
+        },
+        {
+          "order": 3,
+          "background_image": "../imagens/aircraft.svg",
+          "headline": "TRANSFER NOW",
+          "subtext": "Only 11 days left!",
+          "cta": {
+            "text": "Open Amex",
+            "action": "external_link",
+            "url": "https://amex.com"
+          }
+        }
+      ],
+      "views": 8900,
+      "completed_views": 6200
+    },
+    {
+      "id": "story-002",
+      "type": "card",
+      "title": "NEW CARD",
+      "icon": "card",
+      "is_new": true,
+      "slides": [
+        {
+          "order": 1,
+          "headline": "VENTURE X BUSINESS",
+          "subtext": "Capital One's new premium business card",
+          "image": "../imagens/cards.svg"
+        },
+        {
+          "order": 2,
+          "headline": "THE HIGHLIGHTS",
+          "bullets": [
+            "150K bonus",
+            "$395 fee",
+            "Unlimited 2X",
+            "Lounge access"
+          ]
+        },
+        {
+          "order": 3,
+          "headline": "OUR VERDICT",
+          "rating": 4.7,
+          "verdict": "Best business card of 2026"
+        }
+      ]
+    }
+  ]
+}

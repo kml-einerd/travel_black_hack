@@ -1,0 +1,89 @@
+{
+  "hacks": [
+    {
+      "id": "hack-001",
+      "number": 47,
+      "title": "The Mattress Run Strategy",
+      "slug": "mattress-run-hotel-status",
+      "category": "hotel_hacks",
+      "difficulty": 3,
+      "potential_value": {
+        "min": 500,
+        "max": 2000,
+        "period": "year"
+      },
+      "summary": "Book cheap hotel nights just for elite night credits \u2014 without actually staying.",
+      "content": {
+        "what": "A 'mattress run' is booking hotel stays purely to earn elite qualifying nights, often without actually sleeping there.",
+        "why": "When you're a few nights short of reaching or maintaining elite status, spending $100-200 on cheap rooms can unlock benefits worth $1000+.",
+        "steps": [
+          "Calculate how many nights you need for next tier",
+          "Find cheapest properties in your program (airport hotels, secondary markets)",
+          "Book consecutive nights at end of qualifying period",
+          "Check in (some allow mobile check-in from anywhere)",
+          "Enjoy your elite status for another year"
+        ],
+        "pro_tips": [
+          "Airport hotels often cheapest and don't care if you're there",
+          "Some credit cards give you automatic elite nights",
+          "Combine with promotions for bonus points too"
+        ],
+        "warnings": [
+          "Against strict interpretation of T&Cs",
+          "Use sparingly to avoid account review",
+          "Never book rooms you can't technically cancel if needed"
+        ]
+      },
+      "views": 12400,
+      "rating": 4.8,
+      "updated_at": "2026-01-01"
+    },
+    {
+      "id": "hack-002",
+      "number": 23,
+      "title": "The Southwest Companion Pass Shortcut",
+      "slug": "southwest-companion-pass-fast",
+      "category": "earning_hacks",
+      "difficulty": 2,
+      "potential_value": {
+        "min": 3000,
+        "max": 10000,
+        "period": "year"
+      },
+      "summary": "Earn a Companion Pass (BOGO flights for 2 years) in under 3 months.",
+      "content": {
+        "what": "The Companion Pass lets a designated person fly with you for FREE (just taxes) on every Southwest flight for up to 2 years.",
+        "steps": [
+          "Apply for both Southwest personal cards (Priority + Plus/Premier)",
+          "Meet minimum spends ($4K each = $8K total)",
+          "Earn 140,000+ points = Companion Pass triggered",
+          "Do this in January for maximum 23 months of value"
+        ],
+        "image": "../imagens/hotel.svg"
+      },
+      "views": 34200,
+      "rating": 4.9
+    },
+    {
+      "id": "hack-003",
+      "number": 89,
+      "title": "The Fifth Night Free Stack",
+      "slug": "fifth-night-free-stacking",
+      "category": "hotel_hacks",
+      "difficulty": 1,
+      "potential_value": {
+        "min": 100,
+        "max": 500,
+        "period": "booking"
+      },
+      "summary": "Get 20% off any 5+ night hotel stay automatically.",
+      "content": {
+        "what": "Marriott, Hyatt, and IHG all offer a free night when booking 5+ nights with points.",
+        "calculation": "5 nights but only pay for 4 = 20% instant savings",
+        "optimization": "Always book in 5-night chunks when possible, even if you're staying 6 nights (book 5, book 1)"
+      },
+      "views": 8900,
+      "rating": 4.7
+    }
+  ]
+}

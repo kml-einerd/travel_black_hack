@@ -1,0 +1,21 @@
+{
+  "summary": {
+    "total_value": 18432,
+    "earning_rate": 2.1,
+    "monthly_change": 1200
+  },
+  "scores": [
+    {"label": "Diversification", "value": 80},
+    {"label": "Expiration Risk", "value": 30},
+    {"label": "Earning Power", "value": 95},
+    {"label": "Redemption Ready", "value": 70}
+  ],
+  "alerts": [
+    "15,000 Hilton points expiring in 45 days",
+    "Chase UR balance trending up 12%"
+  ],
+  "recommendations": [
+    "Transfer 30K Amex MR to Virgin for ANA booking",
+    "Diversify with one hotel program before Q2"
+  ]
+}

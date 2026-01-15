@@ -1,0 +1,95 @@
+{
+  "featured_story": {
+    "id": "featured-001",
+    "headline": "BREAKING: Chase Announces Major Changes to Sapphire Product Line",
+    "subheadline": "New benefits, higher bonus, fee increase coming February 2026",
+    "image": "../imagens/airport.svg",
+    "category": "breaking",
+    "read_time_minutes": 8,
+    "author": "MilesAI Team",
+    "published_at": "2026-01-14T10:00:00Z",
+    "engagement": {
+      "views": 45000,
+      "shares": 2300,
+      "comments": 567
+    }
+  },
+  "trending": [
+    {
+      "rank": 1,
+      "title": "Amex 40% Avianca Transfer Bonus",
+      "views": 12400,
+      "trend": "rising"
+    },
+    {
+      "rank": 2,
+      "title": "Chase 5/24 Rule Update Rumored",
+      "views": 8900,
+      "trend": "rising"
+    },
+    {
+      "rank": 3,
+      "title": "ANA First Class March Availability",
+      "views": 7600,
+      "trend": "stable"
+    },
+    {
+      "rank": 4,
+      "title": "Hyatt Points Promo Extended",
+      "views": 5400,
+      "trend": "falling"
+    },
+    {
+      "rank": 5,
+      "title": "United MileagePlus Devaluation",
+      "views": 4800,
+      "trend": "rising"
+    }
+  ],
+  "hot_deals": [
+    {
+      "title": "Amex 40% Avianca",
+      "expires": "3d left"
+    },
+    {
+      "title": "Ink 100K Bonus",
+      "expires": "2w left"
+    },
+    {
+      "title": "Mistake Fare $99",
+      "expires": "2h left"
+    },
+    {
+      "title": "Hyatt 5th Night",
+      "expires": "ongoing"
+    },
+    {
+      "title": "SW Companion Pass",
+      "expires": "5d left"
+    }
+  ],
+  "card_news": [
+    "Amex Platinum new credits",
+    "Venture X lounge opening",
+    "Citi Premier earning change",
+    "Chase adding new partner"
+  ],
+  "award_availability": [
+    "ANA F NYC\u2192TYO Mar 15, 17, 20",
+    "Qatar Qsuite wide open",
+    "Singapore Suites released",
+    "Lufthansa First alerts"
+  ],
+  "hotel_deals": [
+    "Marriott 35% off points",
+    "Hyatt Priv\u00e9 benefits added",
+    "IHG 4th night free promo",
+    "Hilton status match"
+  ],
+  "latest_guides": [
+    "How to maximize Ink Preferred",
+    "Virgin Atlantic sweet spots",
+    "2026 Hotel loyalty comparison",
+    "Best cards for groceries"
+  ]
+}

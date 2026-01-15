@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Award Map Explorer • MilesAI</title>
+  <meta name="description" content="Interactive map for award routes and sweet spots." />
+<link rel="stylesheet" href="../css/design-tokens.css" />
+<link rel="stylesheet" href="../css/components.css" />
+<link rel="stylesheet" href="../css/layouts.css" />
+<link rel="stylesheet" href="../css/utilities.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>Award Map</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../tools/points-simulator.html">Simulator</a>
+        <a class="page__link" href="../tools/trip-comparison.html">Trip Comparison</a>
+        <a class="page__link" href="../news/market-pulse.html">Market Pulse</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="page__hero">
+      <div>
+        <p class="badge badge--info">Explorer</p>
+        <h1 class="page__hero-title">Award Map Explorer</h1>
+        <p class="page__hero-description">Filter routes by program and cabin to uncover sweet spots.</p>
+      </div>
+      <div class="award-map__filters">
+        <select id="program-filter" class="input"></select>
+        <select id="cabin-filter" class="input"></select>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card" id="award-map"></div>
+    </section>
+  </main>
+
+  <footer class="footer">MilesAI • Award Map Demo</footer>
+
+  <script type="module" src="../js/feeds.js"></script>
+</body>
+</html>

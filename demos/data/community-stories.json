@@ -1,0 +1,65 @@
+{
+  "stories": [
+    {
+      "id": "story-001",
+      "type": "epic_redemption",
+      "user": {
+        "username": "MilesHunter_Jake",
+        "avatar": "../imagens/avatar-male.svg",
+        "member_since": "2024-06",
+        "total_value_redeemed": 89500
+      },
+      "route": {
+        "origin": "SFO",
+        "destination": "NRT",
+        "origin_city": "San Francisco",
+        "destination_city": "Tokyo"
+      },
+      "redemption": {
+        "airline": "ANA",
+        "cabin": "First Class",
+        "program_used": "Virgin Atlantic Flying Club",
+        "points_used": 110000,
+        "taxes_paid": 86.2,
+        "cash_value": 18500,
+        "cpp": 4.2
+      },
+      "story": "I waited 6 months for this. When the Amex 30% transfer bonus hit, I pulled the trigger. Found 2 First Class seats on Virgin's website and booked immediately.",
+      "tips": [
+        "Book via Virgin for ANA First (better availability)",
+        "Watch for Amex transfer bonuses quarterly",
+        "Set alerts 330 days out"
+      ],
+      "images": [
+        "../imagens/community.svg"
+      ],
+      "engagement": {
+        "likes": 2400,
+        "comments": 189,
+        "saves": 567
+      },
+      "posted_at": "2026-01-12T14:30:00Z"
+    },
+    {
+      "id": "story-002",
+      "type": "budget_win",
+      "user": {
+        "username": "FamilyPointsMom",
+        "avatar": "../imagens/avatar-female.svg"
+      },
+      "title": "Disney World for 5 \u2014 $0 Flights, $0 Hotels",
+      "summary": "Took the whole family to Disney using only points",
+      "details": {
+        "people": 5,
+        "flights_value": 3200,
+        "flights_points": "160,000 Southwest RR",
+        "hotel_nights": 7,
+        "hotel_value": 2800,
+        "hotel_points": "280,000 Marriott Bonvoy",
+        "total_cash_saved": 6000
+      },
+      "image": "../imagens/family.svg",
+      "posted_at": "2026-01-10T09:15:00Z"
+    }
+  ]
+}

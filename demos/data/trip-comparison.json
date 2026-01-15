@@ -1,0 +1,15 @@
+{
+  "trip": "NYC → London Roundtrip",
+  "options": [
+    {"type": "Cash", "cost": 2400, "cpp": null, "rating": "-"},
+    {"type": "United Miles", "points": 120000, "cash": 86, "cpp": 1.9, "rating": "good"},
+    {"type": "Chase Portal", "points": 160000, "cpp": 1.5, "rating": "ok"},
+    {"type": "Virgin Atlantic", "points": 85000, "cash": 200, "cpp": 2.6, "rating": "best"},
+    {"type": "Cash + Points", "points": 60000, "cash": 1200, "cpp": 2.0, "rating": "good"}
+  ],
+  "recommendation": {
+    "title": "Transfer to Virgin Atlantic",
+    "savings": 2200,
+    "savings_percent": 92
+  }
+}

@@ -1,0 +1,134 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --color-primary: #1e293b;
+  --color-primary-hover: #334155;
+  --color-primary-active: #0f172a;
+  --color-secondary: #0d9488;
+  --color-secondary-hover: #0f766e;
+  --color-secondary-subtle: #f0fdfa;
+  --color-accent: #b45309;
+  --color-accent-subtle: #fef3c7;
+  --color-accent-muted: #92400e;
+
+  --neutral-0: #ffffff;
+  --neutral-50: #fafaf9;
+  --neutral-100: #f5f5f4;
+  --neutral-200: #e7e5e4;
+  --neutral-300: #d6d3d1;
+  --neutral-400: #a8a29e;
+  --neutral-500: #78716c;
+  --neutral-600: #57534e;
+  --neutral-700: #44403c;
+  --neutral-800: #292524;
+  --neutral-900: #1c1917;
+
+  --success: #15803d;
+  --success-subtle: #dcfce7;
+  --warning: #a16207;
+  --warning-subtle: #fef9c3;
+  --error: #b91c1c;
+  --error-subtle: #fee2e2;
+  --info: #0369a1;
+  --info-subtle: #e0f2fe;
+
+  --font-display: 'Satoshi', system-ui, sans-serif;
+  --font-body: 'General Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-display-lg: clamp(2.5rem, 5vw, 3.5rem);
+  --text-display: clamp(2rem, 4vw, 2.75rem);
+  --text-h1: clamp(1.75rem, 3vw, 2.25rem);
+  --text-h2: clamp(1.375rem, 2.5vw, 1.75rem);
+  --text-h3: 1.25rem;
+  --text-h4: 1.125rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-xs: 0.75rem;
+
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-black: 900;
+
+  --leading-none: 1;
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.03);
+  --shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.04), 0 1px 2px rgba(28, 25, 23, 0.02);
+  --shadow-md: 0 4px 6px rgba(28, 25, 23, 0.04), 0 2px 4px rgba(28, 25, 23, 0.02);
+  --shadow-lg: 0 10px 15px rgba(28, 25, 23, 0.04), 0 4px 6px rgba(28, 25, 23, 0.02);
+  --shadow-xl: 0 20px 25px rgba(28, 25, 23, 0.05), 0 8px 10px rgba(28, 25, 23, 0.02);
+
+  --transition-fast: 100ms ease-out;
+  --transition-normal: 150ms ease-out;
+  --transition-slow: 250ms ease-out;
+
+  --container-lg: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--neutral-50);
+  color: var(--neutral-900);
+  line-height: var(--leading-relaxed);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+  line-height: var(--leading-tight);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}

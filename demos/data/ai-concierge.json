@@ -1,0 +1,17 @@
+{
+  "quick_prompts": [
+    "Find the best way to get to Tokyo in business class",
+    "Which card should I apply for next?",
+    "Is this award a good value?"
+  ],
+  "sample_conversation": [
+    {
+      "role": "user",
+      "message": "I have 80K Chase UR and want Tokyo in business class. Options?"
+    },
+    {
+      "role": "assistant",
+      "message": "Top options: 1) Transfer to United (70K-88K miles RT, CPP 2.8-3.5¢). 2) Transfer to Virgin Atlantic to book ANA (55K one-way, CPP 5.0-7.0¢). Recommendation: Virgin Atlantic for best value if availability exists."
+    }
+  ]
+}

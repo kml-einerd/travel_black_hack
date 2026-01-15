@@ -1,0 +1,52 @@
+{
+  "guides": [
+    {
+      "id": "guide-001",
+      "title": "How to Transfer Chase UR to Hyatt",
+      "read_time": 3,
+      "level": "Beginner",
+      "steps": [
+        "Log into Chase and open Ultimate Rewards",
+        "Navigate to Transfer Points",
+        "Select Hyatt from the partner list",
+        "Enter amount and confirm transfer",
+        "Book your award stay immediately"
+      ],
+      "tips": ["Transfers are instant", "Only transfer when ready to book"],
+      "ratio": "1:1",
+      "transfer_time": "Instant"
+    },
+    {
+      "id": "guide-002",
+      "title": "Checking ANA Award Availability",
+      "read_time": 4,
+      "level": "Intermediate",
+      "steps": [
+        "Create a free ANA Mileage Club account",
+        "Use the award search tool",
+        "Search 355 days out for best availability",
+        "Look for " + '"Available"' + " seats and note dates",
+        "Book via Virgin Atlantic by phone"
+      ],
+      "tips": ["ANA releases seats at schedule opening", "Set alerts for drops"],
+      "ratio": "N/A",
+      "transfer_time": "N/A"
+    },
+    {
+      "id": "guide-003",
+      "title": "Calculating Welcome Bonus True Value",
+      "read_time": 2,
+      "level": "Beginner",
+      "steps": [
+        "List bonus points and estimated value",
+        "Subtract annual fee",
+        "Compare with minimum spend requirements",
+        "Estimate total value per dollar spent",
+        "Decide based on your travel goals"
+      ],
+      "tips": ["Use conservative point values", "Factor in statement credits"],
+      "ratio": "Varies",
+      "transfer_time": "N/A"
+    }
+  ]
+}

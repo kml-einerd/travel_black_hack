@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card Wallet Scanner • MilesAI</title>
+  <meta name="description" content="Scan credit cards and auto-detect benefits." />
+<link rel="stylesheet" href="../css/design-tokens.css" />
+<link rel="stylesheet" href="../css/components.css" />
+<link rel="stylesheet" href="../css/layouts.css" />
+<link rel="stylesheet" href="../css/utilities.css" />
+</head>
+<body class="page">
+  <header class="page__header">
+    <nav class="page__nav">
+      <div class="page__brand">MilesAI <span>Card Scanner</span></div>
+      <div class="page__links">
+        <a class="page__link" href="../tools/portfolio-analyzer.html">Portfolio</a>
+        <a class="page__link" href="../tools/ai-concierge.html">AI Concierge</a>
+        <a class="page__link" href="../news/card-universe-feed.html">Card Universe</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page__main">
+    <section class="page__hero">
+      <div>
+        <p class="badge badge--info">Camera Ready</p>
+        <h1 class="page__hero-title">Card Wallet Scanner</h1>
+        <p class="page__hero-description">Scan cards and auto-populate benefits and anniversaries.</p>
+      </div>
+      <button class="btn btn-primary">Launch Scanner</button>
+    </section>
+
+    <section class="section">
+      <div class="grid grid--3" id="scanner-cards"></div>
+    </section>
+  </main>
+
+  <footer class="footer">MilesAI • Card Scanner Demo</footer>
+
+  <script type="module" src="../js/feeds.js"></script>
+</body>
+</html>
