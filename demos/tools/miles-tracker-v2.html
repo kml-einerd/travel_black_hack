@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Dashboard - Track Your Miles</title>
+    <meta name="description" content="Track your points & miles in real-time. Monitor transfer bonuses and program health like tracking your next camp destination.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* ===== ADVENTURE DASHBOARD - CAMPING THEME ===== */
+        :root {
+            /* Colors - UI_ref */
+            --forest-green: #0BA457;
+            --forest-dark: #0D3B28;
+            --forest-darker: #072A1C;
+            --accent-fire: #DF5030;
+            --accent-warm: #F59E0B;
+            --white: #FFFFFF;
+            --white-muted: rgba(255, 255, 255, 0.85);
+            --charcoal: #101828;
+
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-bg-dark: rgba(16, 24, 40, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-blur: blur(20px);
+
+            /* Shadows */
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+            --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+
+            /* Typography */
+            --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--forest-darker);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO COMPASS TRACKER ===== */
+        .hero-tracker {
+            position: relative;
+            padding: var(--space-2xl) var(--space-lg);
+            background: linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-darker) 100%);
+            overflow: hidden;
+        }
+
+        .hero-tracker::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(11, 164, 87, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(223, 80, 48, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .tracker-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Top Navigation */
+        .tracker-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--white-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 10px 16px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-full);
+            transition: all 0.3s;
+        }
+
+        .nav-back:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(-4px);
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 10px 16px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--forest-green);
+            border-radius: 50%;
+            animation: pulse-live 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-live {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        /* Main Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        /* Compass Card */
+        .compass-card {
+            background: var(--glass-bg-dark);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(11, 164, 87, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .compass-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .compass-title {
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .compass-title i {
+            color: var(--forest-green);
+        }
+
+        /* Timeframe Pills */
+        .timeframe-pills {
+            display: flex;
+            gap: var(--space-sm);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px;
+            border-radius: var(--radius-full);
+        }
+
+        .timeframe-pill {
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-full);
+            color: var(--white-muted);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timeframe-pill--active {
+            background: white;
+            color: var(--forest-dark);
+        }
+
+        /* Compass Visualization */
+        .compass-visual {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .compass-circle {
+            position: absolute;
+            inset: 0;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compass-needle {
+            position: absolute;
+            width: 4px;
+            height: 120px;
+            background: linear-gradient(180deg, var(--accent-fire) 0%, var(--forest-green) 100%);
+            border-radius: 10px;
+            transform-origin: bottom center;
+            animation: rotate-needle 8s linear infinite;
+            box-shadow: 0 0 20px rgba(223, 80, 48, 0.6);
+        }
+
+        @keyframes rotate-needle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .compass-center {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: var(--forest-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--glow-green);
+            z-index: 2;
+        }
+
+        .compass-directions {
+            position: absolute;
+            inset: 0;
+        }
+
+        .compass-dir {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--white-muted);
+        }
+
+        .compass-dir--n { top: 10px; left: 50%; transform: translateX(-50%); }
+        .compass-dir--e { right: 10px; top: 50%; transform: translateY(-50%); }
+        .compass-dir--s { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .compass-dir--w { left: 10px; top: 50%; transform: translateY(-50%); }
+
+        /* Market Summary Stats */
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--forest-green);
+        }
+
+        .stat-trend {
+            font-size: 12px;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .stat-trend--up {
+            color: var(--forest-green);
+        }
+
+        .stat-trend--down {
+            color: var(--accent-fire);
+        }
+
+        /* Quick Actions Sidebar */
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .action-card {
+            background: var(--glass-bg-dark);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--forest-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .action-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .action-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .action-card__icon {
+            width: 48px;
+            height: 48px;
+            background: var(--forest-green);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            box-shadow: var(--glow-green);
+        }
+
+        .action-card__icon--fire {
+            background: var(--accent-fire);
+            box-shadow: var(--glow-fire);
+        }
+
+        .action-card__title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .action-card__desc {
+            font-size: 13px;
+            color: var(--white-muted);
+            line-height: 1.5;
+        }
+
+        /* ===== ACTIVE BONUSES SECTION ===== */
+        .section {
+            padding: 0 var(--space-lg) var(--space-2xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .section-title i {
+            color: var(--accent-fire);
+        }
+
+        .section-count {
+            padding: 8px 16px;
+            background: var(--forest-green);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Bonuses Grid */
+        .bonuses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .bonus-card {
+            background: var(--glass-bg-dark);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--forest-green), var(--accent-warm));
+        }
+
+        .bonus-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--forest-green);
+            box-shadow: var(--shadow-xl), var(--glow-green);
+        }
+
+        .bonus-card--urgent::before {
+            background: linear-gradient(90deg, var(--accent-fire), var(--accent-warm));
+            animation: pulse-gradient 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-gradient {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .bonus-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-lg);
+        }
+
+        .bonus-percent {
+            font-family: var(--font-mono);
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--forest-green);
+            line-height: 1;
+        }
+
+        .bonus-urgent-badge {
+            padding: 6px 12px;
+            background: var(--accent-fire);
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: pulse-fire 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-fire {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(223, 80, 48, 0.7); }
+            50% { box-shadow: 0 0 0 8px rgba(223, 80, 48, 0); }
+        }
+
+        .bonus-route {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .bonus-desc {
+            font-size: 14px;
+            color: var(--white-muted);
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+
+        .bonus-recommendation {
+            background: rgba(11, 164, 87, 0.15);
+            border-left: 3px solid var(--forest-green);
+            padding: var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            margin-bottom: var(--space-lg);
+        }
+
+        .bonus-countdown {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .bonus-countdown i {
+            color: var(--forest-green);
+        }
+
+        .bonus-countdown--urgent {
+            background: var(--accent-fire);
+            color: white;
+        }
+
+        .bonus-countdown--urgent i {
+            color: white;
+        }
+
+        /* ===== PROGRAMS SECTION ===== */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .program-card {
+            background: var(--glass-bg-dark);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            transition: all 0.3s;
+        }
+
+        .program-card:hover {
+            border-color: var(--forest-green);
+            transform: translateY(-4px);
+        }
+
+        .program-card--hot {
+            background: linear-gradient(135deg, rgba(11, 164, 87, 0.2) 0%, rgba(16, 24, 40, 0.6) 100%);
+            border-color: var(--forest-green);
+        }
+
+        .program-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .program-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .program-status {
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .program-status--hot {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .program-status--caution {
+            background: var(--accent-warm);
+            color: white;
+        }
+
+        .program-value {
+            font-family: var(--font-mono);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--forest-green);
+            margin-bottom: 6px;
+        }
+
+        .program-trend {
+            font-size: 13px;
+            color: var(--white-muted);
+            margin-bottom: var(--space-lg);
+        }
+
+        .program-chart {
+            height: 80px;
+            margin-bottom: var(--space-md);
+        }
+
+        .program-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn--primary {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .btn--primary:hover {
+            background: #099A4F;
+            transform: translateY(-2px);
+            box-shadow: var(--glow-green);
+        }
+
+        .btn--outline {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--white-muted);
+        }
+
+        .btn--outline:hover {
+            border-color: var(--forest-green);
+            color: var(--forest-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compass-visual {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-tracker {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .section {
+                padding: 0 var(--space-md) var(--space-xl);
+            }
+
+            .bonuses-grid,
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-stats {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Tracker Section -->
+    <section class="hero-tracker">
+        <div class="tracker-container">
+            <!-- Top Nav -->
+            <div class="tracker-nav">
+                <a href="../INDICE_COMPLETO.html" class="nav-back">
+                    <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                    Back to Base Camp
+                </a>
+                <div class="live-badge">
+                    <div class="live-dot"></div>
+                    <span>Live Data</span>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Compass Card -->
+                <div class="compass-card">
+                    <div class="compass-header">
+                        <h1 class="compass-title">
+                            <i data-lucide="compass" style="width: 28px; height: 28px;"></i>
+                            Adventure Dashboard
+                        </h1>
+                        <div class="timeframe-pills">
+                            <button class="timeframe-pill">24h</button>
+                            <button class="timeframe-pill timeframe-pill--active">7d</button>
+                            <button class="timeframe-pill">30d</button>
+                            <button class="timeframe-pill">All</button>
+                        </div>
+                    </div>
+
+                    <!-- Compass Visualization -->
+                    <div class="compass-visual">
+                        <div class="compass-circle">
+                            <div class="compass-directions">
+                                <span class="compass-dir compass-dir--n">N</span>
+                                <span class="compass-dir compass-dir--e">E</span>
+                                <span class="compass-dir compass-dir--s">S</span>
+                                <span class="compass-dir compass-dir--w">W</span>
+                            </div>
+                        </div>
+                        <div class="compass-needle"></div>
+                        <div class="compass-center">
+                            <i data-lucide="navigation" style="width: 24px; height: 24px; color: white;"></i>
+                        </div>
+                    </div>
+
+                    <!-- Market Summary Stats -->
+                    <div class="summary-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">Avg CPP</div>
+                            <div class="stat-value">1.8¢</div>
+                            <div class="stat-trend stat-trend--up">
+                                <i data-lucide="trending-up" style="width: 12px; height: 12px;"></i>
+                                +0.2¢
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Active Bonuses</div>
+                            <div class="stat-value">5</div>
+                            <div class="stat-trend stat-trend--up">
+                                <i data-lucide="zap" style="width: 12px; height: 12px;"></i>
+                                2 New
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Programs</div>
+                            <div class="stat-value">12</div>
+                            <div class="stat-trend stat-trend--down">
+                                <i data-lucide="alert-triangle" style="width: 12px; height: 12px;"></i>
+                                1 Deval
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Sidebar -->
+                <div class="quick-actions">
+                    <div class="action-card">
+                        <div class="action-card__icon action-card__icon--fire">
+                            <i data-lucide="flame" style="width: 24px; height: 24px; color: white;"></i>
+                        </div>
+                        <div class="action-card__title">Hot Transfer Bonus</div>
+                        <div class="action-card__desc">40% to Avianca LifeMiles ending in 48h</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-card__icon">
+                            <i data-lucide="trending-up" style="width: 24px; height: 24px; color: white;"></i>
+                        </div>
+                        <div class="action-card__title">Best Programs</div>
+                        <div class="action-card__desc">Top 3 valuations this week</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-card__icon">
+                            <i data-lucide="bell" style="width: 24px; height: 24px; color: white;"></i>
+                        </div>
+                        <div class="action-card__title">Set Alerts</div>
+                        <div class="action-card__desc">Get notified of new bonuses</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Transfer Bonuses -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i data-lucide="gift" style="width: 28px; height: 28px;"></i>
+                Active Transfer Bonuses
+            </h2>
+            <span class="section-count">5 Active</span>
+        </div>
+
+        <div class="bonuses-grid">
+            <!-- Bonus Card 1 - Urgent -->
+            <article class="bonus-card bonus-card--urgent">
+                <div class="bonus-header">
+                    <div class="bonus-percent">40<span style="font-size: 28px;">%</span></div>
+                    <span class="bonus-urgent-badge">
+                        <i data-lucide="flame" style="width: 12px; height: 12px;"></i>
+                        Ending Soon
+                    </span>
+                </div>
+                <h3 class="bonus-route">Amex MR → Avianca LifeMiles</h3>
+                <p class="bonus-desc">Transform 100K Membership Rewards into 140K LifeMiles. Perfect for Star Alliance redemptions.</p>
+                <div class="bonus-recommendation">
+                    💡 <strong>Best Use:</strong> Business class to Europe (88K miles RT)
+                </div>
+                <div class="bonus-countdown bonus-countdown--urgent">
+                    <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
+                    <span>2d 14h remaining</span>
+                </div>
+            </article>
+
+            <!-- Bonus Card 2 -->
+            <article class="bonus-card">
+                <div class="bonus-header">
+                    <div class="bonus-percent">30<span style="font-size: 28px;">%</span></div>
+                </div>
+                <h3 class="bonus-route">Citi ThankYou → Turkish Miles&Smiles</h3>
+                <p class="bonus-desc">Increase transfer value by 30%. Great for business class sweet spots.</p>
+                <div class="bonus-recommendation">
+                    💡 <strong>Best Use:</strong> USA to Asia business class (45K miles)
+                </div>
+                <div class="bonus-countdown">
+                    <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
+                    <span>15d 6h remaining</span>
+                </div>
+            </article>
+
+            <!-- Bonus Card 3 -->
+            <article class="bonus-card">
+                <div class="bonus-header">
+                    <div class="bonus-percent">25<span style="font-size: 28px;">%</span></div>
+                </div>
+                <h3 class="bonus-route">Chase UR → Virgin Atlantic</h3>
+                <p class="bonus-desc">Book ANA First Class with 25% fewer points needed.</p>
+                <div class="bonus-recommendation">
+                    💡 <strong>Best Use:</strong> ANA First Class to Tokyo (88K vs 110K)
+                </div>
+                <div class="bonus-countdown">
+                    <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
+                    <span>10d 18h remaining</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Program Valuations -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i data-lucide="trending-up" style="width: 28px; height: 28px;"></i>
+                Program Valuations
+            </h2>
+        </div>
+
+        <div class="programs-grid">
+            <!-- Program Card 1 - Hot -->
+            <article class="program-card program-card--hot">
+                <div class="program-header">
+                    <div class="program-name">Chase Ultimate Rewards</div>
+                    <span class="program-status program-status--hot">Hot</span>
+                </div>
+                <div class="program-value">1.8¢</div>
+                <div class="program-trend">↑ +0.2¢ (12%) this week</div>
+                <div class="program-chart">
+                    <!-- Mini chart would go here -->
+                    <canvas id="chart-chase"></canvas>
+                </div>
+                <div class="program-actions">
+                    <button class="btn btn--primary">Transfer Now</button>
+                    <button class="btn btn--outline">Details</button>
+                </div>
+            </article>
+
+            <!-- Program Card 2 -->
+            <article class="program-card">
+                <div class="program-header">
+                    <div class="program-name">Amex Membership Rewards</div>
+                    <span class="program-status program-status--hot">Hot</span>
+                </div>
+                <div class="program-value">1.9¢</div>
+                <div class="program-trend">↑ +0.1¢ (6%) this week</div>
+                <div class="program-chart">
+                    <canvas id="chart-amex"></canvas>
+                </div>
+                <div class="program-actions">
+                    <button class="btn btn--primary">Transfer Now</button>
+                    <button class="btn btn--outline">Details</button>
+                </div>
+            </article>
+
+            <!-- Program Card 3 - Caution -->
+            <article class="program-card">
+                <div class="program-header">
+                    <div class="program-name">Marriott Bonvoy</div>
+                    <span class="program-status program-status--caution">Caution</span>
+                </div>
+                <div class="program-value">0.8¢</div>
+                <div class="program-trend">↓ -0.1¢ (11%) this week</div>
+                <div class="program-chart">
+                    <canvas id="chart-marriott"></canvas>
+                </div>
+                <div class="program-actions">
+                    <button class="btn btn--primary">View Deals</button>
+                    <button class="btn btn--outline">Details</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+
+        // Timeframe pills interaction
+        document.querySelectorAll('.timeframe-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.timeframe-pill').forEach(p => p.classList.remove('timeframe-pill--active'));
+                this.classList.add('timeframe-pill--active');
+            });
+        });
+
+        // Simple mini charts (placeholder)
+        function createMiniChart(canvasId, trend) {
+            const ctx = document.getElementById(canvasId);
+            if (!ctx) return;
+
+            const color = trend === 'up' ? '#0BA457' : trend === 'down' ? '#DF5030' : '#F59E0B';
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', ''],
+                    datasets: [{
+                        data: trend === 'up' ? [1.4, 1.5, 1.6, 1.65, 1.7, 1.8] :
+                              trend === 'down' ? [1.0, 0.95, 0.9, 0.88, 0.85, 0.8] :
+                              [1.5, 1.6, 1.5, 1.6, 1.55, 1.6],
+                        borderColor: color,
+                        backgroundColor: `${color}33`,
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Initialize charts
+        setTimeout(() => {
+            createMiniChart('chart-chase', 'up');
+            createMiniChart('chart-amex', 'up');
+            createMiniChart('chart-marriott', 'down');
+        }, 100);
+    </script>
+</body>
+
+</html>
