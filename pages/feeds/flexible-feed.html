@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Feed - MilesAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-green-light: #ECFDF3;
+            --accent-green-dark: #027A48;
+            --accent-orange: #DF5030;
+            --accent-orange-light: #FFF4ED;
+            --accent-red: #F04438;
+            --accent-red-light: #FEF3F2;
+            --accent-yellow: #F79009;
+            --accent-yellow-light: #FFFAEB;
+            --accent-blue: #1570EF;
+            --accent-blue-light: #EFF8FF;
+            --accent-purple: #7C3AED;
+            --accent-purple-light: #F3E8FF;
+            --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+            --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+            --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--page-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 svg {
+            width: 32px;
+            height: 32px;
+            color: var(--accent-green);
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== TOOLBAR ===== */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .filter-pill--active {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+
+        .filter-pill svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            gap: 4px;
+            background: var(--card-bg);
+            padding: 4px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .view-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 36px;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .view-btn:hover {
+            color: var(--accent-green);
+            background: var(--accent-green-light);
+        }
+
+        .view-btn--active {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .view-btn--active:hover {
+            background: var(--accent-green-dark);
+            color: white;
+        }
+
+        .view-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ===== FEED VIEW ===== */
+        .feed-view {
+            display: none;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .feed-view.active {
+            display: block;
+        }
+
+        .post-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            margin-bottom: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .post-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .post-card__header {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .post-card__meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .post-card__source {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .post-badge {
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .post-badge--new { background: var(--accent-green-light); color: var(--accent-green-dark); }
+        .post-badge--update { background: var(--accent-blue-light); color: var(--accent-blue); }
+        .post-badge--alert { background: var(--accent-red-light); color: var(--accent-red); }
+        .post-badge--limited { background: var(--accent-orange-light); color: var(--accent-orange); }
+        .post-badge--insight { background: var(--accent-purple-light); color: var(--accent-purple); }
+
+        .post-card__time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .post-card__image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--accent-green-light), var(--page-bg));
+        }
+
+        .post-card__content {
+            padding: 20px;
+        }
+
+        .post-card__title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .post-card__subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .post-card__details {
+            background: var(--page-bg);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .post-card__stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-item__label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+        }
+
+        .stat-item__value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .post-card__highlight {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .post-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .engagement {
+            display: flex;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .engagement__item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .engagement__item svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .post-card__action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: transparent;
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+            border-radius: var(--radius-lg);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .post-card__action:hover {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .post-card__action svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ===== GRID VIEW ===== */
+        .grid-view {
+            display: none;
+        }
+
+        .grid-view.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .grid-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--accent-green);
+        }
+
+        .grid-card__image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--accent-green-light), var(--page-bg));
+        }
+
+        .grid-card__content {
+            padding: 16px;
+        }
+
+        .grid-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .grid-card__source {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .grid-card__title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .grid-card__meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .grid-card__value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .grid-card__time {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ===== LIST VIEW ===== */
+        .list-view {
+            display: none;
+        }
+
+        .list-view.active {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .list-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 16px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            align-items: center;
+        }
+
+        .list-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-green);
+            transform: translateX(4px);
+        }
+
+        .list-item__image {
+            width: 80px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--accent-green-light), var(--page-bg));
+        }
+
+        .list-item__content {
+            min-width: 0;
+        }
+
+        .list-item__header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .list-item__source {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .list-item__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .list-item__subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .list-item__meta {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .list-item__value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 2px;
+        }
+
+        .list-item__time {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(16, 24, 40, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay--visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--radius-2xl);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.25);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay--visible .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal__image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--accent-green-light), var(--page-bg));
+        }
+
+        .modal__header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--page-bg);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .modal__close:hover {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .modal__meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .modal__source {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .modal__title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.3;
+            padding-right: 40px;
+        }
+
+        .modal__content {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal__subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal__details {
+            background: var(--page-bg);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal__stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .modal__highlight {
+            background: var(--accent-green-light);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal__highlight-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-green-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+
+        .modal__highlight-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .modal__footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal__action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .modal__action:hover {
+            background: var(--accent-green-dark);
+        }
+
+        .modal__secondary-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .modal__icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--page-bg);
+            color: var(--text-muted);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal__icon-btn:hover {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .hero {
+                padding: 32px 24px;
+            }
+
+            .hero__title {
+                font-size: 28px;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filters {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 8px;
+            }
+
+            .view-toggle {
+                align-self: flex-end;
+            }
+
+            .grid-view.active {
+                grid-template-columns: 1fr;
+            }
+
+            .list-item {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .list-item__meta {
+                display: none;
+            }
+
+            .modal {
+                max-height: 95vh;
+            }
+
+            .modal__footer {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .modal__action {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page Header -->
+        <header class="page-header">
+            <h1>
+                <i data-lucide="rss"></i>
+                <span>Intelligence Feed</span>
+            </h1>
+            <p>Stay updated with the latest news, offers, and insights curated for you</p>
+        </header>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="filters">
+                <button class="filter-pill filter-pill--active" data-filter="all">
+                    <i data-lucide="layers"></i>
+                    All Posts
+                </button>
+                <button class="filter-pill" data-filter="new">
+                    <i data-lucide="sparkles"></i>
+                    New
+                </button>
+                <button class="filter-pill" data-filter="update">
+                    <i data-lucide="refresh-cw"></i>
+                    Updates
+                </button>
+                <button class="filter-pill" data-filter="alert">
+                    <i data-lucide="alert-circle"></i>
+                    Alerts
+                </button>
+                <button class="filter-pill" data-filter="insight">
+                    <i data-lucide="lightbulb"></i>
+                    Insights
+                </button>
+            </div>
+
+            <div class="view-toggle">
+                <button class="view-btn view-btn--active" data-view="feed" title="Feed View">
+                    <i data-lucide="square"></i>
+                </button>
+                <button class="view-btn" data-view="grid" title="Grid View">
+                    <i data-lucide="grid-2x2"></i>
+                </button>
+                <button class="view-btn" data-view="list" title="List View">
+                    <i data-lucide="list"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Feed View (Default - shows full content) -->
+        <div class="feed-view active" id="feed-view">
+            <!-- Posts rendered dynamically -->
+        </div>
+
+        <!-- Grid View (Compact - opens modal) -->
+        <div class="grid-view" id="grid-view">
+            <!-- Cards rendered dynamically -->
+        </div>
+
+        <!-- List View (Compact - opens modal) -->
+        <div class="list-view" id="list-view">
+            <!-- Items rendered dynamically -->
+        </div>
+    </div>
+
+    <!-- Modal for compact views -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <img src="" alt="" class="modal__image" id="modal-image">
+            <div class="modal__header">
+                <button class="modal__close" id="modal-close">
+                    <i data-lucide="x"></i>
+                </button>
+                <div class="modal__meta">
+                    <span class="modal__source" id="modal-source"></span>
+                    <span class="post-badge" id="modal-badge"></span>
+                </div>
+                <h2 class="modal__title" id="modal-title"></h2>
+            </div>
+            <div class="modal__content">
+                <p class="modal__subtitle" id="modal-subtitle"></p>
+                <div class="modal__details">
+                    <div class="modal__stats" id="modal-stats"></div>
+                </div>
+                <div class="modal__highlight">
+                    <div class="modal__highlight-label">Key Takeaway</div>
+                    <div class="modal__highlight-text" id="modal-highlight"></div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <a href="#" class="modal__action" id="modal-action">
+                    Learn More
+                    <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                </a>
+                <div class="modal__secondary-actions">
+                    <button class="modal__icon-btn" title="Save">
+                        <i data-lucide="bookmark"></i>
+                    </button>
+                    <button class="modal__icon-btn" title="Share">
+                        <i data-lucide="share-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - flexible for any topic
+        const feedData = [
+            {
+                id: 1,
+                type: 'new',
+                source: 'MilesAI Research',
+                title: 'Capital One Venture X Business Card Launches',
+                subtitle: 'Capital One enters the premium business card arena with a blockbuster 150K mile welcome bonus, unlimited 2X earning, and comprehensive travel benefits.',
+                image: '../../assets/images/cards/capital-one-venture-x.webp',
+                timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
+                stats: [
+                    { label: 'Welcome Bonus', value: '150K Miles' },
+                    { label: 'Annual Fee', value: '$395' }
+                ],
+                highlight: 'Best new business card launch of 2026 - exceeds expectations with unmatched flexibility.',
+                actionText: 'Apply Now',
+                views: 8420,
+                comments: 156
+            },
+            {
+                id: 2,
+                type: 'alert',
+                source: 'Breaking News',
+                title: 'Amex Platinum Lounge Access Changes Coming',
+                subtitle: 'American Express announces major Centurion Lounge restrictions starting March 1. Platinum cardholders will be limited to 2 visits per year unless meeting $75K annual spend.',
+                image: '../../assets/images/travel/centurion-lounge.webp',
+                timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000),
+                stats: [
+                    { label: 'Effective Date', value: 'March 1, 2026' },
+                    { label: 'Spend Threshold', value: '$75,000/year' }
+                ],
+                highlight: 'Consider alternatives: Delta Reserve for unlimited SkyClub access, or downgrade to Gold to save the annual fee.',
+                actionText: 'What To Do',
+                views: 12350,
+                comments: 423
+            },
+            {
+                id: 3,
+                type: 'update',
+                source: 'Program Update',
+                title: 'Chase Sapphire Reserve Adds $100 Dining Credit',
+                subtitle: 'Starting February 1, Chase Sapphire Reserve adds a $100 annual dining credit on top of the $300 travel credit. Total annual credits now $400 vs $550 annual fee.',
+                image: '../../assets/images/cards/chase-sapphire-reserve.webp',
+                timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000),
+                stats: [
+                    { label: 'New Credit', value: '+$100 Dining' },
+                    { label: 'Effective', value: 'Feb 1, 2026' }
+                ],
+                highlight: 'Net annual fee effectively drops to $150 after credits - making CSR significantly more competitive.',
+                actionText: 'See Details',
+                views: 6890,
+                comments: 89
+            },
+            {
+                id: 4,
+                type: 'insight',
+                source: 'Market Analysis',
+                title: 'Transfer Bonus Roundup: 7 Active Offers',
+                subtitle: 'We\'re seeing a historic concentration of transfer bonuses across all major programs. Here\'s the complete breakdown and our recommendation on which to prioritize.',
+                image: '../../assets/images/news/market-analysis.webp',
+                timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000),
+                stats: [
+                    { label: 'Active Bonuses', value: '7 Programs' },
+                    { label: 'Top Pick', value: 'Capital One 40%' }
+                ],
+                highlight: 'Capital One to Avianca (40%) is the standout - transfer before it ends on January 31.',
+                actionText: 'Full Analysis',
+                views: 4560,
+                comments: 67
+            },
+            {
+                id: 5,
+                type: 'limited',
+                source: 'Limited Offer',
+                title: 'Citi Premier 75K Bonus — Ends Jan 31',
+                subtitle: 'Citi Premier\'s welcome bonus jumps to 75,000 ThankYou Points (usually 60K). With a $4K spend requirement and $95 annual fee, this is exceptional value.',
+                image: '../../assets/images/cards/citi-premier.webp',
+                timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000),
+                stats: [
+                    { label: 'Welcome Bonus', value: '75K Points' },
+                    { label: 'Annual Fee', value: '$95' }
+                ],
+                highlight: 'At 1.5¢/pt value, this represents $1,125 in travel value for meeting $4K spend.',
+                actionText: 'Apply Now',
+                views: 3420,
+                comments: 45
+            }
+        ];
+
+        const badgeConfig = {
+            'new': { label: 'NEW', class: 'post-badge--new' },
+            'update': { label: 'UPDATE', class: 'post-badge--update' },
+            'alert': { label: 'ALERT', class: 'post-badge--alert' },
+            'limited': { label: 'LIMITED', class: 'post-badge--limited' },
+            'insight': { label: 'INSIGHT', class: 'post-badge--insight' }
+        };
+
+        let currentView = 'feed';
+        let currentFilter = 'all';
+
+        function formatTime(date) {
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000);
+
+            if (diff < 60) return 'Just now';
+            if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+            return `${Math.floor(diff / 86400)}d ago`;
+        }
+
+        function getFilteredData() {
+            if (currentFilter === 'all') return feedData;
+            return feedData.filter(item => item.type === currentFilter);
+        }
+
+        function renderFeedView() {
+            const container = document.getElementById('feed-view');
+            const data = getFilteredData();
+
+            container.innerHTML = data.map(post => {
+                const badge = badgeConfig[post.type];
+                return `
+                    <article class="post-card" data-id="${post.id}">
+                        <div class="post-card__header">
+                            <div class="post-card__meta">
+                                <span class="post-card__source">${post.source}</span>
+                                <span class="post-badge ${badge.class}">${badge.label}</span>
+                            </div>
+                            <span class="post-card__time">${formatTime(post.timestamp)}</span>
+                        </div>
+
+                        <img src="${post.image}" alt="${post.title}" class="post-card__image"
+                             onerror="this.style.background='linear-gradient(135deg, var(--accent-green-light), var(--page-bg))'">
+
+                        <div class="post-card__content">
+                            <h2 class="post-card__title">${post.title}</h2>
+                            <p class="post-card__subtitle">${post.subtitle}</p>
+
+                            <div class="post-card__details">
+                                <div class="post-card__stats">
+                                    ${post.stats.map(stat => `
+                                        <div class="stat-item">
+                                            <span class="stat-item__label">${stat.label}</span>
+                                            <span class="stat-item__value">${stat.value}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="post-card__highlight">${post.highlight}</div>
+                            </div>
+
+                            <div class="post-card__footer">
+                                <div class="engagement">
+                                    <span class="engagement__item">
+                                        <i data-lucide="eye"></i>
+                                        ${post.views.toLocaleString()}
+                                    </span>
+                                    <span class="engagement__item">
+                                        <i data-lucide="message-circle"></i>
+                                        ${post.comments}
+                                    </span>
+                                </div>
+                                <a href="#" class="post-card__action">
+                                    ${post.actionText}
+                                    <i data-lucide="arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderGridView() {
+            const container = document.getElementById('grid-view');
+            const data = getFilteredData();
+
+            container.innerHTML = data.map(post => {
+                const badge = badgeConfig[post.type];
+                return `
+                    <article class="grid-card" data-id="${post.id}">
+                        <img src="${post.image}" alt="${post.title}" class="grid-card__image"
+                             onerror="this.style.background='linear-gradient(135deg, var(--accent-green-light), var(--page-bg))'">
+                        <div class="grid-card__content">
+                            <div class="grid-card__header">
+                                <span class="grid-card__source">${post.source}</span>
+                                <span class="post-badge ${badge.class}">${badge.label}</span>
+                            </div>
+                            <h3 class="grid-card__title">${post.title}</h3>
+                            <div class="grid-card__meta">
+                                <span class="grid-card__value">${post.stats[0]?.value || ''}</span>
+                                <span class="grid-card__time">${formatTime(post.timestamp)}</span>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderListView() {
+            const container = document.getElementById('list-view');
+            const data = getFilteredData();
+
+            container.innerHTML = data.map(post => {
+                const badge = badgeConfig[post.type];
+                return `
+                    <article class="list-item" data-id="${post.id}">
+                        <img src="${post.image}" alt="${post.title}" class="list-item__image"
+                             onerror="this.style.background='linear-gradient(135deg, var(--accent-green-light), var(--page-bg))'">
+                        <div class="list-item__content">
+                            <div class="list-item__header">
+                                <span class="list-item__source">${post.source}</span>
+                                <span class="post-badge ${badge.class}">${badge.label}</span>
+                            </div>
+                            <h3 class="list-item__title">${post.title}</h3>
+                            <p class="list-item__subtitle">${post.subtitle}</p>
+                        </div>
+                        <div class="list-item__meta">
+                            <div class="list-item__value">${post.stats[0]?.value || ''}</div>
+                            <div class="list-item__time">${formatTime(post.timestamp)}</div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function openModal(postId) {
+            const post = feedData.find(p => p.id === postId);
+            if (!post) return;
+
+            const badge = badgeConfig[post.type];
+
+            document.getElementById('modal-image').src = post.image;
+            document.getElementById('modal-source').textContent = post.source;
+            document.getElementById('modal-badge').textContent = badge.label;
+            document.getElementById('modal-badge').className = `post-badge ${badge.class}`;
+            document.getElementById('modal-title').textContent = post.title;
+            document.getElementById('modal-subtitle').textContent = post.subtitle;
+            document.getElementById('modal-highlight').textContent = post.highlight;
+            document.getElementById('modal-action').textContent = post.actionText;
+
+            document.getElementById('modal-stats').innerHTML = post.stats.map(stat => `
+                <div class="stat-item">
+                    <span class="stat-item__label">${stat.label}</span>
+                    <span class="stat-item__value">${stat.value}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('modal-overlay').classList.add('modal-overlay--visible');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('modal-overlay--visible');
+            document.body.style.overflow = '';
+        }
+
+        function switchView(view) {
+            currentView = view;
+
+            // Update buttons
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.toggle('view-btn--active', btn.dataset.view === view);
+            });
+
+            // Update views
+            document.getElementById('feed-view').classList.toggle('active', view === 'feed');
+            document.getElementById('grid-view').classList.toggle('active', view === 'grid');
+            document.getElementById('list-view').classList.toggle('active', view === 'list');
+
+            // Render appropriate view
+            if (view === 'feed') renderFeedView();
+            else if (view === 'grid') renderGridView();
+            else if (view === 'list') renderListView();
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+
+            document.querySelectorAll('.filter-pill').forEach(pill => {
+                pill.classList.toggle('filter-pill--active', pill.dataset.filter === filter);
+            });
+
+            switchView(currentView);
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchView(btn.dataset.view));
+        });
+
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', () => setFilter(pill.dataset.filter));
+        });
+
+        // Grid/List item click -> open modal
+        document.getElementById('grid-view').addEventListener('click', (e) => {
+            const card = e.target.closest('.grid-card');
+            if (card) openModal(parseInt(card.dataset.id));
+        });
+
+        document.getElementById('list-view').addEventListener('click', (e) => {
+            const item = e.target.closest('.list-item');
+            if (item) openModal(parseInt(item.dataset.id));
+        });
+
+        // Modal close
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal-overlay')) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFeedView();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
+

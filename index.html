@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="MilesAI Production Build - Complete travel hacking platform with normalized database">
+    <title>MilesAI Production - Index</title>
+    <link rel="stylesheet" href="assets/css/design-system.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .production-index {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--color-bg-canvas) 0%, var(--color-primary-light) 50%, var(--color-bg-canvas) 100%);
+        }
+
+        .index-header {
+            background: var(--color-secondary);
+            color: white;
+            padding: var(--space-16) var(--space-6);
+            text-align: center;
+        }
+
+        .index-header__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--color-primary);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: var(--font-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-4);
+        }
+
+        .index-header__title {
+            font-size: var(--text-display);
+            font-weight: var(--font-black);
+            margin-bottom: var(--space-4);
+            color: white;
+        }
+
+        .index-header__subtitle {
+            font-size: var(--text-h4);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--neutral-200);
+        }
+
+        .index-sections {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-12) var(--space-6);
+        }
+
+        .index-section {
+            margin-bottom: var(--space-12);
+        }
+
+        .index-section__header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .index-section__icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .index-section__title {
+            font-size: var(--text-h2);
+            font-weight: var(--font-bold);
+            color: var(--color-text-primary);
+        }
+
+        .index-section__description {
+            color: var(--color-text-secondary);
+            font-size: var(--text-small);
+        }
+
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .index-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            border: 2px solid var(--color-border);
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .index-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .index-card__icon {
+            font-size: 32px;
+            margin-bottom: var(--space-4);
+        }
+
+        .index-card__name {
+            font-size: var(--text-h4);
+            font-weight: var(--font-bold);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .index-card__description {
+            font-size: var(--text-small);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .index-card__status {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+            padding: var(--space-2) var(--space-3);
+            background: var(--color-success-bg);
+            color: var(--color-success);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: var(--font-semibold);
+        }
+
+        .database-section {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            margin-bottom: var(--space-12);
+            border: 1px solid var(--color-border);
+        }
+
+        .database-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .database-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--transition-fast);
+        }
+
+        .database-item:hover {
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+
+        .database-item__icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-accent-subtle);
+            color: var(--color-accent);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .database-item__name {
+            font-weight: var(--font-semibold);
+            font-size: var(--text-small);
+        }
+
+        .footer {
+            background: var(--color-secondary);
+            color: white;
+            padding: var(--space-8) var(--space-6);
+            text-align: center;
+        }
+
+        .footer__text {
+            opacity: 0.8;
+            font-size: var(--text-small);
+        }
+
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-6);
+            padding: var(--space-8);
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-2xl);
+            margin: calc(-1 * var(--space-12)) auto var(--space-12);
+            max-width: 900px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-banner__item {
+            text-align: center;
+        }
+
+        .stats-banner__value {
+            font-size: var(--text-h1);
+            font-weight: var(--font-black);
+            color: var(--color-primary);
+        }
+
+        .stats-banner__label {
+            font-size: var(--text-small);
+            color: var(--color-text-tertiary);
+        }
+
+        /* Design System Section */
+        .design-system-section {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, #0F1D2F 100%);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-10);
+            margin-bottom: var(--space-12);
+            color: white;
+        }
+
+        .design-system-section h2 {
+            color: white;
+            margin-bottom: var(--space-6);
+        }
+
+        .design-system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .ds-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ds-card__title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-h4);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--space-4);
+            color: white;
+        }
+
+        /* Color Palette */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2);
+        }
+
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+            font-weight: var(--font-bold);
+        }
+
+        .color-swatch--primary {
+            background: var(--color-primary);
+        }
+
+        .color-swatch--accent {
+            background: var(--color-accent);
+        }
+
+        .color-swatch--secondary {
+            background: var(--color-secondary);
+        }
+
+        .color-swatch--gold {
+            background: var(--color-gold);
+        }
+
+        .color-swatch--success {
+            background: var(--color-success);
+        }
+
+        .color-swatch--warning {
+            background: var(--color-warning);
+        }
+
+        .color-swatch--error {
+            background: var(--color-error);
+        }
+
+        .color-swatch--neutral {
+            background: var(--neutral-500);
+        }
+
+        .color-labels {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+            font-size: 10px;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Typography Preview */
+        .typography-preview {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .type-sample--display {
+            font-size: var(--text-display);
+            font-weight: var(--font-black);
+            line-height: 1.1;
+        }
+
+        .type-sample--h1 {
+            font-size: var(--text-h1);
+            font-weight: var(--font-bold);
+        }
+
+        .type-sample--h3 {
+            font-size: var(--text-h3);
+            font-weight: var(--font-semibold);
+        }
+
+        .type-sample--body {
+            font-size: var(--text-body);
+            opacity: 0.8;
+        }
+
+        .type-sample--small {
+            font-size: var(--text-small);
+            opacity: 0.6;
+        }
+
+        /* Spacing System */
+        .spacing-demo {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .spacing-row {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .spacing-bar {
+            height: 16px;
+            background: var(--color-primary);
+            border-radius: var(--radius-sm);
+        }
+
+        .spacing-bar--4 {
+            width: 16px;
+        }
+
+        .spacing-bar--8 {
+            width: 32px;
+        }
+
+        .spacing-bar--16 {
+            width: 64px;
+        }
+
+        .spacing-bar--24 {
+            width: 96px;
+        }
+
+        .spacing-label {
+            font-size: var(--text-xs);
+            opacity: 0.7;
+            font-family: var(--font-mono);
+        }
+
+        /* Component Demo */
+        .component-demo {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .demo-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-md);
+            font-weight: var(--font-semibold);
+            font-size: var(--text-small);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .demo-btn--primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .demo-btn--primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .demo-btn--secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .demo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: var(--font-bold);
+            text-transform: uppercase;
+        }
+
+        .demo-badge--success {
+            background: var(--color-success-bg);
+            color: var(--color-success);
+        }
+
+        .demo-badge--warning {
+            background: var(--color-warning-bg);
+            color: var(--color-warning);
+        }
+
+        .demo-badge--error {
+            background: var(--color-error-bg);
+            color: var(--color-error);
+        }
+
+        .demo-badge--accent {
+            background: var(--color-accent-subtle);
+            color: var(--color-accent);
+        }
+
+        .demo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-card__title {
+            font-weight: var(--font-semibold);
+            margin-bottom: var(--space-2);
+        }
+
+        .demo-card__text {
+            font-size: var(--text-small);
+            opacity: 0.7;
+        }
+
+        /* Shadow Demo */
+        .shadow-demo {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .shadow-box {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--color-text-muted);
+        }
+
+        .shadow-box--sm {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .shadow-box--md {
+            box-shadow: var(--shadow-md);
+        }
+
+        .shadow-box--lg {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .shadow-box--xl {
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* CSS Code Block */
+        .css-code {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+
+        .css-code .prop {
+            color: #7dd3fc;
+        }
+
+        .css-code .val {
+            color: #86efac;
+        }
+
+        .css-code .comment {
+            color: #6b7280;
+        }
+
+        /* Page Anatomy */
+        .page-anatomy {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .anatomy-header {
+            background: var(--color-primary);
+            padding: var(--space-4);
+            text-align: center;
+            font-weight: var(--font-bold);
+            font-size: var(--text-small);
+        }
+
+        .anatomy-body {
+            padding: var(--space-4);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-3);
+        }
+
+        .anatomy-main,
+        .anatomy-sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            font-size: var(--text-xs);
+            text-align: center;
+        }
+
+        .anatomy-main {
+            min-height: 80px;
+        }
+
+        .anatomy-sidebar {
+            min-height: 80px;
+        }
+    </style>
+</head>
+
+<body class="production-index">
+    <!-- Header -->
+    <header class="index-header">
+        <div class="index-header__badge">
+            <span>🚀</span>
+            Production Build v1.0
+        </div>
+        <h1 class="index-header__title">MilesAI Production</h1>
+        <p class="index-header__subtitle">Complete travel hacking platform with normalized database and modular pages
+        </p>
+    </header>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+        <div class="stats-banner__item">
+            <div class="stats-banner__value">6</div>
+            <div class="stats-banner__label">JSON Databases</div>
+        </div>
+        <div class="stats-banner__item">
+            <div class="stats-banner__value">7</div>
+            <div class="stats-banner__label">Production Pages</div>
+        </div>
+        <div class="stats-banner__item">
+            <div class="stats-banner__value">3</div>
+            <div class="stats-banner__label">CSS Files</div>
+        </div>
+        <div class="stats-banner__item">
+            <div class="stats-banner__value">50+</div>
+            <div class="stats-banner__label">Assets</div>
+        </div>
+    </div>
+
+    <main class="index-sections">
+        <!-- Database Section -->
+        <section class="database-section">
+            <div class="index-section__header">
+                <div class="index-section__icon">
+                    <i data-lucide="database"></i>
+                </div>
+                <div>
+                    <h2 class="index-section__title">Normalized Database</h2>
+                    <p class="index-section__description">All data sources in JSON format</p>
+                </div>
+            </div>
+            <div class="database-grid">
+                <a href="source/cards.json" class="database-item" target="_blank">
+                    <div class="database-item__icon"><i data-lucide="credit-card"></i></div>
+                    <span class="database-item__name">cards.json</span>
+                </a>
+                <a href="source/programs.json" class="database-item" target="_blank">
+                    <div class="database-item__icon"><i data-lucide="award"></i></div>
+                    <span class="database-item__name">programs.json</span>
+                </a>
+                <a href="source/transfer-bonuses.json" class="database-item" target="_blank">
+                    <div class="database-item__icon"><i data-lucide="repeat"></i></div>
+                    <span class="database-item__name">transfer-bonuses.json</span>
+                </a>
+                <a href="source/hacks.json" class="database-item" target="_blank">
+                    <div class="database-item__icon"><i data-lucide="lightbulb"></i></div>
+                    <span class="database-item__name">hacks.json</span>
+                </a>
+                <a href="source/guides.json" class="database-item" target="_blank">
+                    <div class="database-item__icon"><i data-lucide="book-open"></i></div>
+                    <span class="database-item__name">guides.json</span>
+                </a>
+                <a href="source/notifications.json" class="database-item" target="_blank">
+                    <div class="database-item__icon"><i data-lucide="bell"></i></div>
+                    <span class="database-item__name">notifications.json</span>
+                </a>
+            </div>
+            <div style="margin-top: var(--space-6); text-align: center;">
+                <a href="source/README.html" class="index-card__status">
+                    <i data-lucide="file-text" style="width: 14px; height: 14px;"></i>
+                    View Database Documentation
+                </a>
+            </div>
+        </section>
+
+        <!-- Design System Section -->
+        <section class="design-system-section">
+            <div class="index-section__header" style="margin-bottom: var(--space-8);">
+                <div class="index-section__icon" style="background: var(--color-accent);">
+                    <i data-lucide="palette"></i>
+                </div>
+                <div>
+                    <h2 class="index-section__title" style="color: white;">Design System</h2>
+                    <p class="index-section__description" style="color: rgba(255,255,255,0.7);">Visual language and
+                        component patterns</p>
+                </div>
+            </div>
+
+            <div class="design-system-grid">
+                <!-- Colors -->
+                <div class="ds-card">
+                    <h3 class="ds-card__title">
+                        <i data-lucide="droplets"></i>
+                        Color Palette
+                    </h3>
+                    <div class="color-palette">
+                        <div class="color-swatch color-swatch--primary"></div>
+                        <div class="color-swatch color-swatch--accent"></div>
+                        <div class="color-swatch color-swatch--secondary"></div>
+                        <div class="color-swatch color-swatch--gold"></div>
+                        <div class="color-swatch color-swatch--success"></div>
+                        <div class="color-swatch color-swatch--warning"></div>
+                        <div class="color-swatch color-swatch--error"></div>
+                        <div class="color-swatch color-swatch--neutral"></div>
+                    </div>
+                    <div class="color-labels">
+                        <span>Primary</span>
+                        <span>Accent</span>
+                        <span>Secondary</span>
+                        <span>Gold</span>
+                        <span>Success</span>
+                        <span>Warning</span>
+                        <span>Error</span>
+                        <span>Neutral</span>
+                    </div>
+                </div>
+
+                <!-- Typography -->
+                <div class="ds-card">
+                    <h3 class="ds-card__title">
+                        <i data-lucide="type"></i>
+                        Typography
+                    </h3>
+                    <div class="typography-preview">
+                        <span class="type-sample--display">Display</span>
+                        <span class="type-sample--h1">Heading 1</span>
+                        <span class="type-sample--h3">Heading 3</span>
+                        <span class="type-sample--body">Body text for paragraphs</span>
+                        <span class="type-sample--small">Small / Caption text</span>
+                    </div>
+                </div>
+
+                <!-- Spacing -->
+                <div class="ds-card">
+                    <h3 class="ds-card__title">
+                        <i data-lucide="ruler"></i>
+                        Spacing (8pt Grid)
+                    </h3>
+                    <div class="spacing-demo">
+                        <div class="spacing-row">
+                            <div class="spacing-bar spacing-bar--4"></div>
+                            <span class="spacing-label">--space-1 (4px)</span>
+                        </div>
+                        <div class="spacing-row">
+                            <div class="spacing-bar spacing-bar--8"></div>
+                            <span class="spacing-label">--space-2 (8px)</span>
+                        </div>
+                        <div class="spacing-row">
+                            <div class="spacing-bar spacing-bar--16"></div>
+                            <span class="spacing-label">--space-4 (16px)</span>
+                        </div>
+                        <div class="spacing-row">
+                            <div class="spacing-bar spacing-bar--24"></div>
+                            <span class="spacing-label">--space-6 (24px)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shadows -->
+                <div class="ds-card">
+                    <h3 class="ds-card__title">
+                        <i data-lucide="layers"></i>
+                        Shadows
+                    </h3>
+                    <div class="shadow-demo">
+                        <div class="shadow-box shadow-box--sm">sm</div>
+                        <div class="shadow-box shadow-box--md">md</div>
+                        <div class="shadow-box shadow-box--lg">lg</div>
+                        <div class="shadow-box shadow-box--xl">xl</div>
+                    </div>
+                </div>
+
+                <!-- Components -->
+                <div class="ds-card">
+                    <h3 class="ds-card__title">
+                        <i data-lucide="component"></i>
+                        Components
+                    </h3>
+                    <div class="component-demo">
+                        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                            <button class="demo-btn demo-btn--primary">Primary</button>
+                            <button class="demo-btn demo-btn--secondary">Secondary</button>
+                        </div>
+                        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                            <span class="demo-badge demo-badge--success">✓ Easy</span>
+                            <span class="demo-badge demo-badge--warning">⚡ Medium</span>
+                            <span class="demo-badge demo-badge--error">🔥 Hard</span>
+                            <span class="demo-badge demo-badge--accent">★ Featured</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page Layout -->
+                <div class="ds-card">
+                    <h3 class="ds-card__title">
+                        <i data-lucide="layout"></i>
+                        Page Anatomy
+                    </h3>
+                    <div class="page-anatomy">
+                        <div class="anatomy-header">Hero / Header</div>
+                        <div class="anatomy-body">
+                            <div class="anatomy-main">
+                                Main Content<br>
+                                <small style="opacity: 0.6;">Cards Grid / List</small>
+                            </div>
+                            <div class="anatomy-sidebar">
+                                Sidebar<br>
+                                <small style="opacity: 0.6;">Filters / Stats</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Variables -->
+                <div class="ds-card" style="grid-column: 1 / -1;">
+                    <h3 class="ds-card__title">
+                        <i data-lucide="code"></i>
+                        CSS Variables Example
+                    </h3>
+                    <div class="css-code">
+                        <span class="comment">/* Import design system */</span><br>
+                        <span class="prop">@import</span> <span
+                            class="val">"../../assets/css/design-system.css"</span>;<br><br>
+                        <span class="comment">/* Use variables in your styles */</span><br>
+                        .card {<br>
+                        &nbsp;&nbsp;<span class="prop">background:</span> <span
+                            class="val">var(--color-bg-primary)</span>;<br>
+                        &nbsp;&nbsp;<span class="prop">border-radius:</span> <span
+                            class="val">var(--radius-xl)</span>;<br>
+                        &nbsp;&nbsp;<span class="prop">padding:</span> <span class="val">var(--space-6)</span>;<br>
+                        &nbsp;&nbsp;<span class="prop">box-shadow:</span> <span class="val">var(--shadow-md)</span>;<br>
+                        &nbsp;&nbsp;<span class="prop">transition:</span> <span class="val">all
+                            var(--transition-normal)</span>;<br>
+                        }<br>
+                        .card:hover {<br>
+                        &nbsp;&nbsp;<span class="prop">border-color:</span> <span
+                            class="val">var(--color-primary)</span>;<br>
+                        &nbsp;&nbsp;<span class="prop">box-shadow:</span> <span class="val">var(--shadow-lg)</span>;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Pages -->
+        <section class="index-section">
+            <div class="index-section__header">
+                <div class="index-section__icon">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <div>
+                    <h2 class="index-section__title">Content Pages</h2>
+                    <p class="index-section__description">Evergreen educational content</p>
+                </div>
+            </div>
+            <div class="index-grid">
+                <a href="pages/content/hacks-library.html" class="index-card">
+                    <div class="index-card__icon">🥷</div>
+                    <div class="index-card__name">Hacks Library</div>
+                    <div class="index-card__description">Complete collection of points and miles strategies with
+                        difficulty ratings and step-by-step guides</div>
+                    <span class="index-card__status"><i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                        Ready</span>
+                </a>
+                <a href="pages/content/quick-guides.html" class="index-card">
+                    <div class="index-card__icon">📚</div>
+                    <div class="index-card__name">Quick Guides</div>
+                    <div class="index-card__description">Educational guides covering award booking, credit card
+                        strategy, and hotel status</div>
+                    <span class="index-card__status"><i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                        Ready</span>
+                </a>
+                <a href="pages/content/cards-library.html" class="index-card">
+                    <div class="index-card__icon">💳</div>
+                    <div class="index-card__name">Cards Library</div>
+                    <div class="index-card__description">Complete database of travel credit cards with earning rates,
+                        perks, and recommendations</div>
+                    <span class="index-card__status"><i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                        Ready</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Feeds Pages -->
+        <section class="index-section">
+            <div class="index-section__header">
+                <div class="index-section__icon">
+                    <i data-lucide="rss"></i>
+                </div>
+                <div>
+                    <h2 class="index-section__title">Feeds & Updates</h2>
+                    <p class="index-section__description">Real-time deals and notifications</p>
+                </div>
+            </div>
+            <div class="index-grid">
+                <a href="pages/feeds/flexible-feed.html" class="index-card">
+                    <div class="index-card__icon">📰</div>
+                    <div class="index-card__name">Flexible Feed</div>
+                    <div class="index-card__description">Multi-mode feed with grid, list, and timeline views for all
+                        deals and updates</div>
+                    <span class="index-card__status"><i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                        Ready</span>
+                </a>
+                <a href="pages/feeds/deal-alerts.html" class="index-card">
+                    <div class="index-card__icon">🔥</div>
+                    <div class="index-card__name">Deal Alerts</div>
+                    <div class="index-card__description">Expandable deal alerts with urgency indicators and quick action
+                        buttons</div>
+                    <span class="index-card__status"><i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                        Ready</span>
+                </a>
+                <a href="pages/feeds/transfer-tracker.html" class="index-card">
+                    <div class="index-card__icon">🔄</div>
+                    <div class="index-card__name">Transfer Tracker</div>
+                    <div class="index-card__description">Live tracking of transfer bonuses and miles program valuations
+                    </div>
+                    <span class="index-card__status"><i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                        Ready</span>
+                </a>
+                <a href="pages/feeds/notifications-panel.html" class="index-card">
+                    <div class="index-card__icon">🔔</div>
+                    <div class="index-card__name">Notifications Panel</div>
+                    <div class="index-card__description">Centralized notification center for all alerts and updates
+                    </div>
+                    <span class="index-card__status"><i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                        Ready</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer__text">MilesAI Production Build • Built with normalized data architecture • January 2026</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

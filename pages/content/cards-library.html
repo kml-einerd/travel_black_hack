@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Cards Library - MilesAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-blue: #1570EF;
+            --accent-blue-light: #EFF8FF;
+            --accent-blue-dark: #175CD3;
+            --accent-green: #0BA457;
+            --accent-green-light: #ECFDF3;
+            --accent-green-dark: #027A48;
+            --accent-orange: #DF5030;
+            --accent-orange-light: #FFF4ED;
+            --accent-yellow: #F79009;
+            --accent-yellow-light: #FFFAEB;
+            --accent-red: #F04438;
+            --accent-red-light: #FEF3F2;
+            --accent-purple: #7A5AF8;
+            --accent-purple-light: #F4F3FF;
+            --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+            --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+            --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--page-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1E3A5F 0%, #0F2744 50%, #0A1929 100%);
+            border-radius: var(--radius-2xl);
+            padding: 48px 40px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(21, 112, 239, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(122, 90, 248, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-blue);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .hero__subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-bottom: 24px;
+        }
+
+        .hero__stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero__stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero__stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .hero__stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+
+        /* Search & Filters */
+        .search-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .search-bar {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-bar__input {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-size: 16px;
+            font-family: inherit;
+            background: var(--page-bg);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .search-bar__input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(21, 112, 239, 0.1);
+        }
+
+        .search-bar__icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filters-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .filter-btn--active {
+            background: var(--accent-blue-light);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .filter-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Category Pills */
+        .categories {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .category-pill:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-pill--active {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+        }
+
+        .category-pill svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .category-pill__count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-size: 12px;
+        }
+
+        .category-pill:not(.category-pill--active) .category-pill__count {
+            background: var(--page-bg);
+        }
+
+        /* Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+        }
+
+        /* Cards Grid */
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card-item {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+        }
+
+        .card-item__main {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 24px;
+            padding: 24px;
+        }
+
+        .card-item__image-wrapper {
+            position: relative;
+        }
+
+        .card-item__image {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, #1E3A5F, #0A1929);
+        }
+
+        .card-item__issuer-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            padding: 4px 10px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .card-item__content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-item__badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge--travel { background: var(--accent-blue-light); color: var(--accent-blue-dark); }
+        .badge--business { background: var(--accent-purple-light); color: var(--accent-purple); }
+        .badge--cashback { background: var(--accent-green-light); color: var(--accent-green-dark); }
+        .badge--hotel { background: var(--accent-orange-light); color: var(--accent-orange); }
+        .badge--airline { background: #E0F2FE; color: #0369A1; }
+        .badge--premium { background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; }
+        .badge--no-fee { background: var(--accent-green-light); color: var(--accent-green-dark); }
+        .badge--new { background: var(--accent-blue); color: white; }
+
+        .card-item__title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .card-item__issuer {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .card-item__highlights {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .card-item__highlight {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-item__highlight-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .card-item__highlight-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .card-item__perks {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .card-item__perk {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .card-item__perk svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent-green);
+        }
+
+        .card-item__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: var(--page-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .card-item__rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-item__stars {
+            color: var(--accent-yellow);
+            font-size: 14px;
+        }
+
+        .card-item__rating-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-item__reviews {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .card-item__action {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .card-item__action:hover {
+            background: var(--accent-blue-dark);
+        }
+
+        .card-item__action svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card__title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-card__title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-blue);
+        }
+
+        /* Top Cards List */
+        .top-cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .top-card-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .top-card-item:hover {
+            background: var(--accent-blue-light);
+        }
+
+        .top-card-item__rank {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .top-card-item__content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .top-card-item__name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .top-card-item__bonus {
+            font-size: 12px;
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .quick-stat {
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .quick-stat__value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .quick-stat__label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Fee Comparison */
+        .fee-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .fee-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fee-bar__label {
+            width: 60px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .fee-bar__track {
+            flex: 1;
+            height: 8px;
+            background: var(--page-bg);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .fee-bar__fill {
+            height: 100%;
+            border-radius: 100px;
+            transition: width 0.5s ease;
+        }
+
+        .fee-bar__fill--free { background: var(--accent-green); }
+        .fee-bar__fill--low { background: var(--accent-blue); }
+        .fee-bar__fill--premium { background: var(--accent-purple); }
+
+        .fee-bar__count {
+            width: 32px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(16, 24, 40, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay--visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--radius-2xl);
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.25);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay--visible .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal__hero {
+            position: relative;
+            padding: 32px;
+            background: linear-gradient(135deg, #1E3A5F 0%, #0F2744 100%);
+            color: white;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .modal__close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal__card-image {
+            width: 180px;
+            height: 114px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal__badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .modal__title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .modal__issuer {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal__content {
+            padding: 24px 32px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal__highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .modal__highlight {
+            text-align: center;
+            padding: 16px;
+            background: var(--page-bg);
+            border-radius: var(--radius-lg);
+        }
+
+        .modal__highlight-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+        }
+
+        .modal__highlight-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .modal__section {
+            margin-bottom: 24px;
+        }
+
+        .modal__section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+
+        .modal__section-title svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal__perks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .modal__perk {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+        }
+
+        .modal__perk-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .modal__perk-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .modal__perk-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .modal__perk-text strong {
+            color: var(--text-primary);
+        }
+
+        .modal__earning-rates {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal__earning-rate {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+        }
+
+        .modal__earning-category {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .modal__earning-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .modal__footer {
+            padding: 20px 32px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .modal__rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal__stars {
+            color: var(--accent-yellow);
+            font-size: 18px;
+        }
+
+        .modal__rating-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal__rating-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal__rating-count {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .modal__apply {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .modal__apply:hover {
+            background: var(--accent-blue-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .hero {
+                padding: 32px 24px;
+            }
+
+            .hero__title {
+                font-size: 28px;
+            }
+
+            .card-item__main {
+                grid-template-columns: 1fr;
+            }
+
+            .card-item__image-wrapper {
+                max-width: 200px;
+            }
+
+            .modal__highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .modal__perks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal__footer {
+                flex-direction: column;
+            }
+
+            .modal__apply {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="hero__badge">
+                <i data-lucide="credit-card"></i>
+                Updated January 2026
+            </span>
+            <h1 class="hero__title">Credit Cards Library</h1>
+            <p class="hero__subtitle">
+                Compare the best credit cards for travel, cashback, and rewards.
+                Find the perfect card to maximize your points strategy.
+            </p>
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <span class="hero__stat-value" id="total-cards">0</span>
+                    <span class="hero__stat-label">Cards Reviewed</span>
+                </div>
+                <div class="hero__stat">
+                    <span class="hero__stat-value" id="avg-bonus">0</span>
+                    <span class="hero__stat-label">Avg. Welcome Bonus</span>
+                </div>
+                <div class="hero__stat">
+                    <span class="hero__stat-value" id="no-fee-cards">0</span>
+                    <span class="hero__stat-label">No Annual Fee</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filters -->
+        <section class="search-section">
+            <div class="search-bar">
+                <i data-lucide="search" class="search-bar__icon"></i>
+                <input type="text" class="search-bar__input" id="search-input"
+                       placeholder="Search cards by name, issuer, or benefit...">
+            </div>
+            <div class="filters-row">
+                <button class="filter-btn" id="filter-fee" data-filter="fee">
+                    <i data-lucide="wallet"></i>
+                    Annual Fee
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <button class="filter-btn" id="filter-bonus" data-filter="bonus">
+                    <i data-lucide="gift"></i>
+                    Bonus Size
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <button class="filter-btn" id="filter-credit" data-filter="credit">
+                    <i data-lucide="shield-check"></i>
+                    Credit Score
+                    <i data-lucide="chevron-down"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <div class="categories" id="categories-nav">
+            <!-- Categories loaded dynamically -->
+        </div>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Cards List -->
+            <div class="cards-list" id="cards-list">
+                <!-- Cards loaded dynamically -->
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Top Rated Cards -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="trophy"></i>
+                        Top Rated Cards
+                    </h3>
+                    <div class="top-cards-list" id="top-cards">
+                        <!-- Top cards loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="bar-chart-3"></i>
+                        Quick Stats
+                    </h3>
+                    <div class="quick-stats">
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="travel-count">0</div>
+                            <div class="quick-stat__label">Travel Cards</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="business-count">0</div>
+                            <div class="quick-stat__label">Business</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="premium-count">0</div>
+                            <div class="quick-stat__label">Premium</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="cashback-count">0</div>
+                            <div class="quick-stat__label">Cashback</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee Distribution -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="pie-chart"></i>
+                        Annual Fee Breakdown
+                    </h3>
+                    <div class="fee-bars" id="fee-bars">
+                        <!-- Bars loaded dynamically -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal__hero">
+                <button class="modal__close" id="modal-close">
+                    <i data-lucide="x"></i>
+                </button>
+                <img src="" alt="" class="modal__card-image" id="modal-image">
+                <div class="modal__badges" id="modal-badges"></div>
+                <h2 class="modal__title" id="modal-title"></h2>
+                <p class="modal__issuer" id="modal-issuer"></p>
+            </div>
+            <div class="modal__content">
+                <div class="modal__highlights" id="modal-highlights"></div>
+
+                <div class="modal__section">
+                    <h4 class="modal__section-title">
+                        <i data-lucide="percent"></i>
+                        Earning Rates
+                    </h4>
+                    <div class="modal__earning-rates" id="modal-earning-rates"></div>
+                </div>
+
+                <div class="modal__section">
+                    <h4 class="modal__section-title">
+                        <i data-lucide="gift"></i>
+                        Key Benefits
+                    </h4>
+                    <div class="modal__perks-grid" id="modal-perks"></div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <div class="modal__rating">
+                    <span class="modal__stars" id="modal-stars"></span>
+                    <div class="modal__rating-info">
+                        <span class="modal__rating-value" id="modal-rating"></span>
+                        <span class="modal__rating-count" id="modal-reviews"></span>
+                    </div>
+                </div>
+                <button class="modal__apply">
+                    Apply Now
+                    <i data-lucide="external-link"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cards data
+        const allCards = [
+            {
+                id: 'chase-sapphire-preferred',
+                name: 'Chase Sapphire Preferred',
+                issuer: 'Chase',
+                image: '../../assets/images/cards/chase-sapphire-preferred.webp',
+                category: 'travel',
+                tags: ['travel', 'premium'],
+                welcome_bonus: '80,000 pts',
+                welcome_bonus_value: 80000,
+                annual_fee: '$95',
+                annual_fee_value: 95,
+                credit_score: 'Good-Excellent',
+                rating: 4.8,
+                reviews: 2450,
+                highlights: [
+                    { value: '80K', label: 'Welcome Bonus' },
+                    { value: '$95', label: 'Annual Fee' },
+                    { value: '3X', label: 'Travel & Dining' }
+                ],
+                earning_rates: [
+                    { category: 'Travel (via Chase Portal)', rate: '5X points' },
+                    { category: 'Dining & Streaming', rate: '3X points' },
+                    { category: 'Online Groceries', rate: '3X points' },
+                    { category: 'All Other Purchases', rate: '1X points' }
+                ],
+                perks: [
+                    { icon: 'plane', text: '<strong>25% bonus</strong> when redeeming for travel via Chase' },
+                    { icon: 'shield', text: '<strong>Trip cancellation</strong> and interruption insurance' },
+                    { icon: 'car', text: '<strong>Primary rental car</strong> coverage worldwide' },
+                    { icon: 'dollar-sign', text: '<strong>No foreign transaction</strong> fees' }
+                ]
+            },
+            {
+                id: 'capital-one-venture-x',
+                name: 'Capital One Venture X',
+                issuer: 'Capital One',
+                image: '../../assets/images/cards/capital-one-venture-x.webp',
+                category: 'travel',
+                tags: ['travel', 'premium', 'new'],
+                welcome_bonus: '75,000 miles',
+                welcome_bonus_value: 75000,
+                annual_fee: '$395',
+                annual_fee_value: 395,
+                credit_score: 'Excellent',
+                rating: 4.9,
+                reviews: 1820,
+                highlights: [
+                    { value: '75K', label: 'Welcome Bonus' },
+                    { value: '$395', label: 'Annual Fee' },
+                    { value: '10X', label: 'Hotels & Cars' }
+                ],
+                earning_rates: [
+                    { category: 'Hotels & Rental Cars (via Capital One)', rate: '10X miles' },
+                    { category: 'Flights (via Capital One)', rate: '5X miles' },
+                    { category: 'All Other Purchases', rate: '2X miles' }
+                ],
+                perks: [
+                    { icon: 'credit-card', text: '<strong>$300 annual</strong> travel credit' },
+                    { icon: 'plane', text: '<strong>Priority Pass</strong> airport lounge access' },
+                    { icon: 'gift', text: '<strong>10,000 miles</strong> anniversary bonus yearly' },
+                    { icon: 'globe', text: '<strong>Transfer to 15+</strong> airline partners' }
+                ]
+            },
+            {
+                id: 'chase-ink-business-preferred',
+                name: 'Chase Ink Business Preferred',
+                issuer: 'Chase',
+                image: '../../assets/images/cards/chase-ink-business.webp',
+                category: 'business',
+                tags: ['business', 'premium'],
+                welcome_bonus: '100,000 pts',
+                welcome_bonus_value: 100000,
+                annual_fee: '$95',
+                annual_fee_value: 95,
+                credit_score: 'Good-Excellent',
+                rating: 4.7,
+                reviews: 1650,
+                highlights: [
+                    { value: '100K', label: 'Welcome Bonus' },
+                    { value: '$95', label: 'Annual Fee' },
+                    { value: '3X', label: 'Business Spend' }
+                ],
+                earning_rates: [
+                    { category: 'Travel & Select Business (first $150K)', rate: '3X points' },
+                    { category: 'Shipping, Internet, Phone', rate: '3X points' },
+                    { category: 'Advertising (Social Media & Search)', rate: '3X points' },
+                    { category: 'All Other Purchases', rate: '1X points' }
+                ],
+                perks: [
+                    { icon: 'trending-up', text: '<strong>25% bonus</strong> when redeeming for travel via Chase' },
+                    { icon: 'users', text: '<strong>Employee cards</strong> at no additional cost' },
+                    { icon: 'shield', text: '<strong>Cell phone protection</strong> up to $1,000' },
+                    { icon: 'truck', text: '<strong>Purchase protection</strong> for 120 days' }
+                ]
+            },
+            {
+                id: 'bilt-mastercard',
+                name: 'Bilt Mastercard',
+                issuer: 'Bilt Rewards',
+                image: '../../assets/images/cards/bilt-mastercard.webp',
+                category: 'travel',
+                tags: ['travel', 'no-fee'],
+                welcome_bonus: 'No SUB',
+                welcome_bonus_value: 0,
+                annual_fee: '$0',
+                annual_fee_value: 0,
+                credit_score: 'Good-Excellent',
+                rating: 4.5,
+                reviews: 980,
+                highlights: [
+                    { value: '1X', label: 'On Rent' },
+                    { value: '$0', label: 'Annual Fee' },
+                    { value: '3X', label: 'Dining' }
+                ],
+                earning_rates: [
+                    { category: 'Dining', rate: '3X points' },
+                    { category: 'Travel', rate: '2X points' },
+                    { category: 'Rent Payments (unique!)', rate: '1X points' },
+                    { category: 'All Other Purchases', rate: '1X points' }
+                ],
+                perks: [
+                    { icon: 'home', text: '<strong>Earn points on rent</strong> - only card that does this' },
+                    { icon: 'arrow-right-left', text: '<strong>Transfer to 15+</strong> airline & hotel partners' },
+                    { icon: 'dollar-sign', text: '<strong>No annual fee</strong> ever' },
+                    { icon: 'building', text: '<strong>Rent Day</strong> - double points on 1st of month' }
+                ]
+            },
+            {
+                id: 'amex-gold',
+                name: 'American Express Gold Card',
+                issuer: 'American Express',
+                image: '../../assets/images/cards/amex-gold.webp',
+                category: 'travel',
+                tags: ['travel', 'premium'],
+                welcome_bonus: '90,000 pts',
+                welcome_bonus_value: 90000,
+                annual_fee: '$250',
+                annual_fee_value: 250,
+                credit_score: 'Good-Excellent',
+                rating: 4.6,
+                reviews: 3200,
+                highlights: [
+                    { value: '90K', label: 'Welcome Bonus' },
+                    { value: '$250', label: 'Annual Fee' },
+                    { value: '4X', label: 'Dining & Groceries' }
+                ],
+                earning_rates: [
+                    { category: 'Restaurants Worldwide', rate: '4X points' },
+                    { category: 'US Supermarkets (up to $25K/yr)', rate: '4X points' },
+                    { category: 'Flights (booked direct)', rate: '3X points' },
+                    { category: 'All Other Purchases', rate: '1X points' }
+                ],
+                perks: [
+                    { icon: 'utensils', text: '<strong>$120 annual</strong> dining credit (Uber Eats, Grubhub)' },
+                    { icon: 'building', text: '<strong>$120 annual</strong> Uber Cash credit' },
+                    { icon: 'globe', text: '<strong>Transfer to 20+</strong> airline partners' },
+                    { icon: 'percent', text: '<strong>No foreign transaction</strong> fees' }
+                ]
+            },
+            {
+                id: 'chase-sapphire-reserve',
+                name: 'Chase Sapphire Reserve',
+                issuer: 'Chase',
+                image: '../../assets/images/cards/chase-sapphire-reserve.webp',
+                category: 'travel',
+                tags: ['travel', 'premium'],
+                welcome_bonus: '60,000 pts',
+                welcome_bonus_value: 60000,
+                annual_fee: '$550',
+                annual_fee_value: 550,
+                credit_score: 'Excellent',
+                rating: 4.7,
+                reviews: 2890,
+                highlights: [
+                    { value: '60K', label: 'Welcome Bonus' },
+                    { value: '$550', label: 'Annual Fee' },
+                    { value: '10X', label: 'Hotels & Cars' }
+                ],
+                earning_rates: [
+                    { category: 'Hotels & Cars (via Chase)', rate: '10X points' },
+                    { category: 'Flights (via Chase)', rate: '5X points' },
+                    { category: 'Dining & Travel', rate: '3X points' },
+                    { category: 'All Other Purchases', rate: '1X points' }
+                ],
+                perks: [
+                    { icon: 'credit-card', text: '<strong>$300 annual</strong> travel credit' },
+                    { icon: 'plane', text: '<strong>Priority Pass</strong> lounge access' },
+                    { icon: 'trending-up', text: '<strong>50% more value</strong> on travel via Chase' },
+                    { icon: 'shield', text: '<strong>Trip delay</strong> reimbursement' }
+                ]
+            },
+            {
+                id: 'amex-platinum',
+                name: 'American Express Platinum',
+                issuer: 'American Express',
+                image: '../../assets/images/cards/amex-platinum.webp',
+                category: 'travel',
+                tags: ['travel', 'premium'],
+                welcome_bonus: '150,000 pts',
+                welcome_bonus_value: 150000,
+                annual_fee: '$695',
+                annual_fee_value: 695,
+                credit_score: 'Excellent',
+                rating: 4.5,
+                reviews: 4120,
+                highlights: [
+                    { value: '150K', label: 'Welcome Bonus' },
+                    { value: '$695', label: 'Annual Fee' },
+                    { value: '5X', label: 'Flights' }
+                ],
+                earning_rates: [
+                    { category: 'Flights (booked direct or Amex Travel)', rate: '5X points' },
+                    { category: 'Hotels (via Amex Travel)', rate: '5X points' },
+                    { category: 'All Other Purchases', rate: '1X points' }
+                ],
+                perks: [
+                    { icon: 'plane', text: '<strong>Centurion Lounge</strong> access worldwide' },
+                    { icon: 'credit-card', text: '<strong>$200 airline</strong> fee credit' },
+                    { icon: 'hotel', text: '<strong>$200 hotel</strong> credit' },
+                    { icon: 'car', text: '<strong>$200 Uber</strong> credit annually' }
+                ]
+            },
+            {
+                id: 'citi-premier',
+                name: 'Citi Premier Card',
+                issuer: 'Citi',
+                image: '../../assets/images/cards/citi-premier.webp',
+                category: 'travel',
+                tags: ['travel'],
+                welcome_bonus: '75,000 pts',
+                welcome_bonus_value: 75000,
+                annual_fee: '$95',
+                annual_fee_value: 95,
+                credit_score: 'Good-Excellent',
+                rating: 4.4,
+                reviews: 1560,
+                highlights: [
+                    { value: '75K', label: 'Welcome Bonus' },
+                    { value: '$95', label: 'Annual Fee' },
+                    { value: '3X', label: 'Multiple Categories' }
+                ],
+                earning_rates: [
+                    { category: 'Restaurants', rate: '3X points' },
+                    { category: 'Supermarkets', rate: '3X points' },
+                    { category: 'Gas Stations', rate: '3X points' },
+                    { category: 'Air Travel & Hotels', rate: '3X points' },
+                    { category: 'All Other Purchases', rate: '1X points' }
+                ],
+                perks: [
+                    { icon: 'globe', text: '<strong>Transfer to 15+</strong> airline partners' },
+                    { icon: 'dollar-sign', text: '<strong>No foreign transaction</strong> fees' },
+                    { icon: 'shield', text: '<strong>Trip cancellation</strong> protection' },
+                    { icon: 'gift', text: '<strong>$100 annual</strong> hotel savings benefit' }
+                ]
+            }
+        ];
+
+        const categories = [
+            { id: 'all', name: 'All Cards', icon: 'layers' },
+            { id: 'travel', name: 'Travel', icon: 'plane' },
+            { id: 'business', name: 'Business', icon: 'briefcase' },
+            { id: 'cashback', name: 'Cashback', icon: 'dollar-sign' },
+            { id: 'hotel', name: 'Hotel', icon: 'building-2' },
+            { id: 'airline', name: 'Airline', icon: 'plane-takeoff' }
+        ];
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCategories() {
+            const nav = document.getElementById('categories-nav');
+            const counts = {};
+            categories.forEach(cat => {
+                if (cat.id === 'all') {
+                    counts[cat.id] = allCards.length;
+                } else {
+                    counts[cat.id] = allCards.filter(c => c.category === cat.id).length;
+                }
+            });
+
+            nav.innerHTML = categories.map(cat => `
+                <div class="category-pill ${cat.id === 'all' ? 'category-pill--active' : ''}" data-category="${cat.id}">
+                    <i data-lucide="${cat.icon}"></i>
+                    <span>${cat.name}</span>
+                    <span class="category-pill__count">${counts[cat.id]}</span>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            nav.querySelectorAll('.category-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    nav.querySelectorAll('.category-pill').forEach(p => p.classList.remove('category-pill--active'));
+                    pill.classList.add('category-pill--active');
+                    currentFilter = pill.dataset.category;
+                    renderCards();
+                });
+            });
+
+            lucide.createIcons();
+        }
+
+        function filterCards() {
+            return allCards.filter(card => {
+                if (currentFilter !== 'all' && card.category !== currentFilter) return false;
+                if (searchQuery) {
+                    const q = searchQuery.toLowerCase();
+                    return card.name.toLowerCase().includes(q) ||
+                           card.issuer.toLowerCase().includes(q) ||
+                           card.tags.some(t => t.includes(q));
+                }
+                return true;
+            });
+        }
+
+        function renderCards() {
+            const filtered = filterCards();
+            const list = document.getElementById('cards-list');
+
+            list.innerHTML = filtered.map(card => `
+                <article class="card-item" data-card-id="${card.id}">
+                    <div class="card-item__main">
+                        <div class="card-item__image-wrapper">
+                            <img src="${card.image}" alt="${card.name}" class="card-item__image"
+                                 onerror="this.style.background='linear-gradient(135deg, #1E3A5F, #0A1929)'">
+                            <span class="card-item__issuer-badge">${card.issuer}</span>
+                        </div>
+                        <div class="card-item__content">
+                            <div class="card-item__badges">
+                                ${card.tags.map(tag => `<span class="badge badge--${tag}">${tag}</span>`).join('')}
+                            </div>
+                            <h3 class="card-item__title">${card.name}</h3>
+                            <div class="card-item__highlights">
+                                <div class="card-item__highlight">
+                                    <span class="card-item__highlight-value">${card.welcome_bonus}</span>
+                                    <span class="card-item__highlight-label">Welcome Bonus</span>
+                                </div>
+                                <div class="card-item__highlight">
+                                    <span class="card-item__highlight-value">${card.annual_fee}</span>
+                                    <span class="card-item__highlight-label">Annual Fee</span>
+                                </div>
+                            </div>
+                            <div class="card-item__perks">
+                                ${card.perks.slice(0, 3).map(perk => `
+                                    <span class="card-item__perk">
+                                        <i data-lucide="check"></i>
+                                        ${perk.text.replace(/<[^>]*>/g, '').substring(0, 25)}...
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item__footer">
+                        <div class="card-item__rating">
+                            <span class="card-item__stars">${renderStars(card.rating)}</span>
+                            <span class="card-item__rating-value">${card.rating}</span>
+                            <span class="card-item__reviews">(${card.reviews.toLocaleString()} reviews)</span>
+                        </div>
+                        <button class="card-item__action">
+                            View Details
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderSidebar() {
+            // Top Rated Cards
+            const topCards = [...allCards]
+                .sort((a, b) => b.rating - a.rating)
+                .slice(0, 5);
+
+            document.getElementById('top-cards').innerHTML = topCards.map((card, i) => `
+                <div class="top-card-item" data-card-id="${card.id}">
+                    <div class="top-card-item__rank">${i + 1}</div>
+                    <div class="top-card-item__content">
+                        <div class="top-card-item__name">${card.name}</div>
+                        <div class="top-card-item__bonus">${card.welcome_bonus}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Fee Distribution
+            const feeCounts = {
+                free: allCards.filter(c => c.annual_fee_value === 0).length,
+                low: allCards.filter(c => c.annual_fee_value > 0 && c.annual_fee_value <= 100).length,
+                premium: allCards.filter(c => c.annual_fee_value > 100).length
+            };
+            const maxCount = Math.max(...Object.values(feeCounts), 1);
+
+            document.getElementById('fee-bars').innerHTML = `
+                <div class="fee-bar">
+                    <span class="fee-bar__label">No Fee</span>
+                    <div class="fee-bar__track">
+                        <div class="fee-bar__fill fee-bar__fill--free"
+                             style="width: ${(feeCounts.free / maxCount) * 100}%"></div>
+                    </div>
+                    <span class="fee-bar__count">${feeCounts.free}</span>
+                </div>
+                <div class="fee-bar">
+                    <span class="fee-bar__label">< $100</span>
+                    <div class="fee-bar__track">
+                        <div class="fee-bar__fill fee-bar__fill--low"
+                             style="width: ${(feeCounts.low / maxCount) * 100}%"></div>
+                    </div>
+                    <span class="fee-bar__count">${feeCounts.low}</span>
+                </div>
+                <div class="fee-bar">
+                    <span class="fee-bar__label">Premium</span>
+                    <div class="fee-bar__track">
+                        <div class="fee-bar__fill fee-bar__fill--premium"
+                             style="width: ${(feeCounts.premium / maxCount) * 100}%"></div>
+                    </div>
+                    <span class="fee-bar__count">${feeCounts.premium}</span>
+                </div>
+            `;
+        }
+
+        function updateStats() {
+            document.getElementById('total-cards').textContent = allCards.length;
+
+            const avgBonus = Math.round(
+                allCards.reduce((sum, c) => sum + c.welcome_bonus_value, 0) / allCards.length
+            );
+            document.getElementById('avg-bonus').textContent = avgBonus.toLocaleString() + ' pts';
+
+            document.getElementById('no-fee-cards').textContent =
+                allCards.filter(c => c.annual_fee_value === 0).length;
+
+            document.getElementById('travel-count').textContent =
+                allCards.filter(c => c.category === 'travel').length;
+            document.getElementById('business-count').textContent =
+                allCards.filter(c => c.category === 'business').length;
+            document.getElementById('premium-count').textContent =
+                allCards.filter(c => c.tags.includes('premium')).length;
+            document.getElementById('cashback-count').textContent =
+                allCards.filter(c => c.category === 'cashback').length;
+        }
+
+        function openModal(cardId) {
+            const card = allCards.find(c => c.id === cardId);
+            if (!card) return;
+
+            document.getElementById('modal-image').src = card.image;
+            document.getElementById('modal-badges').innerHTML =
+                card.tags.map(tag => `<span class="badge badge--${tag}">${tag}</span>`).join('');
+            document.getElementById('modal-title').textContent = card.name;
+            document.getElementById('modal-issuer').textContent = 'Issued by ' + card.issuer;
+
+            document.getElementById('modal-highlights').innerHTML = card.highlights.map(h => `
+                <div class="modal__highlight">
+                    <div class="modal__highlight-value">${h.value}</div>
+                    <div class="modal__highlight-label">${h.label}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('modal-earning-rates').innerHTML = card.earning_rates.map(r => `
+                <div class="modal__earning-rate">
+                    <span class="modal__earning-category">${r.category}</span>
+                    <span class="modal__earning-value">${r.rate}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('modal-perks').innerHTML = card.perks.map(p => `
+                <div class="modal__perk">
+                    <div class="modal__perk-icon">
+                        <i data-lucide="${p.icon}"></i>
+                    </div>
+                    <div class="modal__perk-text">${p.text}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('modal-stars').textContent = renderStars(card.rating);
+            document.getElementById('modal-rating').textContent = card.rating + ' / 5.0';
+            document.getElementById('modal-reviews').textContent = card.reviews.toLocaleString() + ' reviews';
+
+            document.getElementById('modal-overlay').classList.add('modal-overlay--visible');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('modal-overlay--visible');
+            document.body.style.overflow = '';
+        }
+
+        function renderStars(rating) {
+            const full = Math.floor(rating);
+            return '★'.repeat(full) + (rating % 1 >= 0.5 ? '½' : '');
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderCards();
+            renderSidebar();
+            updateStats();
+            lucide.createIcons();
+        });
+
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderCards();
+        });
+
+        document.getElementById('cards-list').addEventListener('click', (e) => {
+            const card = e.target.closest('.card-item');
+            if (card) {
+                openModal(card.dataset.cardId);
+            }
+        });
+
+        document.getElementById('top-cards').addEventListener('click', (e) => {
+            const item = e.target.closest('.top-card-item');
+            if (item) {
+                openModal(item.dataset.cardId);
+            }
+        });
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal-overlay')) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
+

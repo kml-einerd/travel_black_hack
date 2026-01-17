@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-01-17T18:15:00Z",
+    "description": "Active transfer bonuses between loyalty programs"
+  },
+  "value_ratings": [
+    {"id": "insane", "name": "Insane Value", "color": "#EA580C", "min_bonus": 30},
+    {"id": "excellent", "name": "Excellent", "color": "#15803d", "min_bonus": 20},
+    {"id": "good", "name": "Good", "color": "#0D9488", "min_bonus": 10},
+    {"id": "fair", "name": "Fair", "color": "#B45309", "min_bonus": 1}
+  ],
+  "active_bonuses": [
+    {
+      "id": "tb-001",
+      "from_program_id": "capital-one",
+      "from_program_name": "Capital One Miles",
+      "from_logo": "🟠",
+      "to_program_id": "avianca-lifemiles",
+      "to_program_name": "Avianca LifeMiles",
+      "to_logo": "✈️",
+      "bonus_percent": 40,
+      "effective_ratio": "1:1.4",
+      "expires_at": "2026-01-25T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": "First transfer only",
+      "best_use": "Star Alliance awards at 40% off",
+      "value_rating": "insane",
+      "recommended_action": "Transfer ALL available points now",
+      "sweet_spots": [
+        {"route": "USA-Europe Business", "points": 45000, "effective_cost": 32000},
+        {"route": "USA-Japan Business", "points": 60000, "effective_cost": 43000}
+      ]
+    },
+    {
+      "id": "tb-002",
+      "from_program_id": "amex-mr",
+      "from_program_name": "Amex Membership Rewards",
+      "from_logo": "🟢",
+      "to_program_id": "virgin-atlantic",
+      "to_program_name": "Virgin Atlantic Flying Club",
+      "to_logo": "✈️",
+      "bonus_percent": 30,
+      "effective_ratio": "1:1.3",
+      "expires_at": "2026-02-15T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": 100000,
+      "terms": null,
+      "best_use": "ANA business/first class to Japan",
+      "value_rating": "insane",
+      "recommended_action": "Best path to ANA First Class",
+      "sweet_spots": [
+        {"route": "USA-Japan First Class", "points": 110000, "effective_cost": 84500}
+      ]
+    },
+    {
+      "id": "tb-003",
+      "from_program_id": "citi-ty",
+      "from_program_name": "Citi ThankYou Points",
+      "from_logo": "🔴",
+      "to_program_id": "turkish",
+      "to_program_name": "Turkish Airlines Miles&Smiles",
+      "to_logo": "✈️",
+      "bonus_percent": 30,
+      "effective_ratio": "1:1.3",
+      "expires_at": "2026-02-10T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": null,
+      "best_use": "Star Alliance business class",
+      "value_rating": "insane",
+      "recommended_action": "Great for Star Alliance business class",
+      "sweet_spots": [
+        {"route": "USA-Europe Business", "points": 45000, "effective_cost": 35000},
+        {"route": "Round-the-World Business", "points": 90000, "effective_cost": 69000}
+      ]
+    },
+    {
+      "id": "tb-004",
+      "from_program_id": "chase-ur",
+      "from_program_name": "Chase Ultimate Rewards",
+      "from_logo": "🔵",
+      "to_program_id": "british-airways",
+      "to_program_name": "British Airways Avios",
+      "to_logo": "✈️",
+      "bonus_percent": 25,
+      "effective_ratio": "1:1.25",
+      "expires_at": "2026-01-31T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": "First transfer in 90 days",
+      "best_use": "Europe short-haul awards",
+      "value_rating": "excellent",
+      "recommended_action": "Good for oneworld short-hauls",
+      "sweet_spots": [
+        {"route": "Intra-Europe Economy", "points": 13000, "effective_cost": 10400}
+      ]
+    },
+    {
+      "id": "tb-005",
+      "from_program_id": "amex-mr",
+      "from_program_name": "Amex Membership Rewards",
+      "from_logo": "🟢",
+      "to_program_id": "flying-blue",
+      "to_program_name": "Air France-KLM Flying Blue",
+      "to_logo": "✈️",
+      "bonus_percent": 25,
+      "effective_ratio": "1:1.25",
+      "expires_at": "2026-02-28T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": null,
+      "best_use": "Promo Awards monthly deals",
+      "value_rating": "excellent",
+      "recommended_action": "Stack with Promo Rewards for max value",
+      "sweet_spots": [
+        {"route": "USA-Europe Business", "points": 53000, "effective_cost": 42400}
+      ]
+    },
+    {
+      "id": "tb-006",
+      "from_program_id": "chase-ur",
+      "from_program_name": "Chase Ultimate Rewards",
+      "from_logo": "🔵",
+      "to_program_id": "flying-blue",
+      "to_program_name": "Air France-KLM Flying Blue",
+      "to_logo": "✈️",
+      "bonus_percent": 25,
+      "effective_ratio": "1:1.25",
+      "expires_at": "2026-01-31T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": null,
+      "best_use": "SkyTeam awards to Europe",
+      "value_rating": "excellent",
+      "recommended_action": "Stack with Promo Rewards",
+      "sweet_spots": [
+        {"route": "Caribbean Economy", "points": 8000, "effective_cost": 6400}
+      ]
+    },
+    {
+      "id": "tb-007",
+      "from_program_id": "chase-ur",
+      "from_program_name": "Chase Ultimate Rewards",
+      "from_logo": "🔵",
+      "to_program_id": "ihg",
+      "to_program_name": "IHG Rewards",
+      "to_logo": "🏨",
+      "bonus_percent": 50,
+      "effective_ratio": "1:1.5",
+      "expires_at": "2026-02-10T23:59:59Z",
+      "min_transfer": 1000,
+      "max_transfer": null,
+      "terms": null,
+      "best_use": "Point Breaks hotels",
+      "value_rating": "good",
+      "recommended_action": "Consider for IHG Point Breaks properties",
+      "sweet_spots": []
+    },
+    {
+      "id": "tb-008",
+      "from_program_id": "marriott-bonvoy",
+      "from_program_name": "Marriott Bonvoy",
+      "from_logo": "🏨",
+      "to_program_id": "united",
+      "to_program_name": "United MileagePlus",
+      "to_logo": "✈️",
+      "bonus_percent": 10,
+      "effective_ratio": "3:1.1",
+      "expires_at": "2026-12-31T23:59:59Z",
+      "min_transfer": 60000,
+      "max_transfer": null,
+      "terms": "60K Marriott = 25K United + 5K bonus",
+      "ongoing": true,
+      "best_use": "Topping off United miles",
+      "value_rating": "fair",
+      "recommended_action": "Only for topping off accounts",
+      "sweet_spots": []
+    }
+  ],
+  "market_alerts": [
+    {
+      "type": "opportunity",
+      "title": "Capital One → Avianca at 40%",
+      "message": "Historic high transfer bonus. Transfer before Jan 25th.",
+      "urgency": "critical"
+    },
+    {
+      "type": "opportunity",
+      "title": "Multiple 25-30% bonuses active",
+      "message": "Consider consolidating points to take advantage.",
+      "urgency": "high"
+    }
+  ]
+}

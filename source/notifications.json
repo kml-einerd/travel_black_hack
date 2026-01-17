@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-01-17T18:15:00Z",
+    "description": "Live notifications and alerts database"
+  },
+  "notification_types": [
+    {"id": "transfer-bonus", "name": "Transfer Bonus", "icon": "🔄", "color": "#EA580C"},
+    {"id": "card-offer", "name": "Card Offer", "icon": "💳", "color": "#0D9488"},
+    {"id": "award-alert", "name": "Award Alert", "icon": "✈️", "color": "#1E3A5F"},
+    {"id": "mistake-fare", "name": "Mistake Fare", "icon": "🔥", "color": "#b91c1c"},
+    {"id": "hotel-promo", "name": "Hotel Promo", "icon": "🏨", "color": "#B45309"},
+    {"id": "devaluation", "name": "Devaluation Warning", "icon": "⚠️", "color": "#b91c1c"},
+    {"id": "community", "name": "Community", "icon": "👥", "color": "#6366f1"}
+  ],
+  "priority_levels": [
+    {"id": "urgent", "name": "Urgent", "color": "#b91c1c", "icon": "🚨"},
+    {"id": "high", "name": "High", "color": "#EA580C", "icon": "⚡"},
+    {"id": "medium", "name": "Medium", "color": "#B45309", "icon": "📌"},
+    {"id": "low", "name": "Low", "color": "#0D9488", "icon": "ℹ️"}
+  ],
+  "notifications": [
+    {
+      "id": "notif-001",
+      "type": "transfer-bonus",
+      "priority": "urgent",
+      "title": "Capital One → Avianca 40% Bonus",
+      "text": "Historic 40% transfer bonus ending Jan 25th. Transfer ALL points now for Star Alliance business class.",
+      "source": "MilesAI Alert",
+      "tags": ["capital-one", "avianca", "transfer-bonus"],
+      "action_url": "#",
+      "action_text": "Transfer Now",
+      "timestamp": "2026-01-17T14:00:00Z",
+      "expires_at": "2026-01-25T23:59:59Z",
+      "read": false
+    },
+    {
+      "id": "notif-002",
+      "type": "award-alert",
+      "priority": "high",
+      "title": "ANA First Class JFK-NRT Available",
+      "text": "2 seats found for March 15-22. Book via Virgin Atlantic for 110K points + $86.",
+      "source": "Award Scanner",
+      "tags": ["ana", "first-class", "japan"],
+      "action_url": "#",
+      "action_text": "Check Availability",
+      "timestamp": "2026-01-17T12:30:00Z",
+      "expires_at": "2026-01-18T12:00:00Z",
+      "read": false
+    },
+    {
+      "id": "notif-003",
+      "type": "card-offer",
+      "priority": "high",
+      "title": "Chase Ink Preferred 100K - Highest Ever",
+      "text": "Best public offer on record for this business card. No revenue verification required.",
+      "source": "Card Tracker",
+      "tags": ["chase", "business", "welcome-bonus"],
+      "action_url": "#",
+      "action_text": "Apply Now",
+      "timestamp": "2026-01-17T10:00:00Z",
+      "expires_at": "2026-02-15T23:59:59Z",
+      "read": false
+    },
+    {
+      "id": "notif-004",
+      "type": "mistake-fare",
+      "priority": "urgent",
+      "title": "GLITCH: NYC-Tokyo Business $890 RT",
+      "text": "ANA Business Class normally $5,000+. Book immediately - may be killed soon!",
+      "source": "Fare Alert",
+      "tags": ["mistake-fare", "ana", "business-class"],
+      "action_url": "#",
+      "action_text": "Book Now",
+      "timestamp": "2026-01-17T15:00:00Z",
+      "expires_at": "2026-01-17T20:00:00Z",
+      "read": false
+    },
+    {
+      "id": "notif-005",
+      "type": "hotel-promo",
+      "priority": "medium",
+      "title": "Hyatt 50% Points Back on P+C",
+      "text": "Book with Points + Cash, get 50% of points refunded. Valid through March 31.",
+      "source": "Hotel Deals",
+      "tags": ["hyatt", "promotion", "points-cash"],
+      "action_url": "#",
+      "action_text": "Learn More",
+      "timestamp": "2026-01-17T08:00:00Z",
+      "expires_at": "2026-03-31T23:59:59Z",
+      "read": true
+    },
+    {
+      "id": "notif-006",
+      "type": "devaluation",
+      "priority": "medium",
+      "title": "Marriott Category Changes Coming",
+      "text": "50+ properties moving up categories in March. Burn points before devaluation hits.",
+      "source": "Devaluation Watch",
+      "tags": ["marriott", "devaluation", "warning"],
+      "action_url": "#",
+      "action_text": "See Affected Properties",
+      "timestamp": "2026-01-16T14:00:00Z",
+      "expires_at": "2026-03-01T00:00:00Z",
+      "read": true
+    },
+    {
+      "id": "notif-007",
+      "type": "transfer-bonus",
+      "priority": "high",
+      "title": "Amex → Virgin Atlantic 30% Bonus",
+      "text": "Best path to ANA First Class. Transfer before Feb 15 deadline.",
+      "source": "MilesAI Alert",
+      "tags": ["amex", "virgin-atlantic", "transfer-bonus"],
+      "action_url": "#",
+      "action_text": "Transfer Now",
+      "timestamp": "2026-01-15T10:00:00Z",
+      "expires_at": "2026-02-15T23:59:59Z",
+      "read": false
+    },
+    {
+      "id": "notif-008",
+      "type": "community",
+      "priority": "low",
+      "title": "New Success Story: $18K First Class for $86",
+      "text": "@MilesHunter_Jake shared ANA First Class redemption. See the full trip report!",
+      "source": "Community",
+      "tags": ["community", "success-story", "ana"],
+      "action_url": "#",
+      "action_text": "Read Story",
+      "timestamp": "2026-01-14T16:00:00Z",
+      "expires_at": null,
+      "read": true
+    }
+  ],
+  "summary": {
+    "unread_count": 5,
+    "urgent_count": 2,
+    "expiring_soon": 3
+  }
+}

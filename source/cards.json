@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-01-17T18:15:00Z",
+    "description": "Normalized credit card database"
+  },
+  "issuers": [
+    {"id": "chase", "name": "Chase", "logo": "chase-logo.webp"},
+    {"id": "amex", "name": "American Express", "logo": "amex-logo.webp"},
+    {"id": "citi", "name": "Citi", "logo": "citi-logo.webp"},
+    {"id": "capital-one", "name": "Capital One", "logo": "capital-one-logo.webp"},
+    {"id": "us-bank", "name": "US Bank", "logo": "us-bank-logo.webp"},
+    {"id": "bilt", "name": "Bilt", "logo": "bilt-logo.webp"}
+  ],
+  "categories": [
+    {"id": "travel-premium", "name": "Premium Travel", "icon": "✈️", "color": "#1E3A5F"},
+    {"id": "dining", "name": "Dining & Groceries", "icon": "🍽️", "color": "#EA580C"},
+    {"id": "business", "name": "Business", "icon": "💼", "color": "#0D9488"},
+    {"id": "cash-back", "name": "Cash Back", "icon": "💵", "color": "#15803d"},
+    {"id": "hotel", "name": "Hotel", "icon": "🏨", "color": "#B45309"}
+  ],
+  "cards": [
+    {
+      "id": "chase-sapphire-reserve",
+      "name": "Chase Sapphire Reserve",
+      "issuer_id": "chase",
+      "category": "travel-premium",
+      "image": "../assets/images/cards/chase-sapphire-reserve.webp",
+      "welcome_bonus": {
+        "points": 60000,
+        "currency": "Ultimate Rewards",
+        "spend_required": 4000,
+        "months": 3
+      },
+      "annual_fee": 550,
+      "earning_rates": [
+        {"category": "travel", "multiplier": 3},
+        {"category": "dining", "multiplier": 3},
+        {"category": "other", "multiplier": 1}
+      ],
+      "perks": [
+        "$300 travel credit",
+        "$100 dining credit",
+        "Priority Pass lounge access",
+        "Global Entry/TSA PreCheck credit",
+        "1.5X value in travel portal"
+      ],
+      "transfer_partners": ["united", "hyatt", "southwest", "british-airways", "flying-blue"],
+      "rating": 4.8,
+      "best_for": ["Frequent travelers", "Lounge seekers", "High spenders"],
+      "pros": ["Great transfer partners", "High earning on travel/dining", "Strong travel protections"],
+      "cons": ["High annual fee", "Requires 5/24 compliance"],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "id": "chase-sapphire-preferred",
+      "name": "Chase Sapphire Preferred",
+      "issuer_id": "chase",
+      "category": "travel-premium",
+      "image": "../assets/images/cards/chase-sapphire-preferred.webp",
+      "welcome_bonus": {
+        "points": 75000,
+        "currency": "Ultimate Rewards",
+        "spend_required": 4000,
+        "months": 3
+      },
+      "annual_fee": 95,
+      "earning_rates": [
+        {"category": "travel", "multiplier": 2},
+        {"category": "dining", "multiplier": 3},
+        {"category": "streaming", "multiplier": 3},
+        {"category": "groceries", "multiplier": 3},
+        {"category": "other", "multiplier": 1}
+      ],
+      "perks": [
+        "$50 hotel credit annually",
+        "1.25X value in travel portal",
+        "Primary rental car insurance"
+      ],
+      "transfer_partners": ["united", "hyatt", "southwest", "british-airways", "flying-blue"],
+      "rating": 4.7,
+      "best_for": ["New points collectors", "Budget travelers", "Dining lovers"],
+      "pros": ["Low annual fee", "Great welcome bonus", "Solid earning rates"],
+      "cons": ["No lounge access", "Lower multiplier on travel than Reserve"],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "id": "amex-platinum",
+      "name": "The Platinum Card",
+      "issuer_id": "amex",
+      "category": "travel-premium",
+      "image": "../assets/images/cards/amex-platinum.webp",
+      "welcome_bonus": {
+        "points": 80000,
+        "currency": "Membership Rewards",
+        "spend_required": 8000,
+        "months": 6
+      },
+      "annual_fee": 695,
+      "earning_rates": [
+        {"category": "flights_direct", "multiplier": 5},
+        {"category": "hotels_amex_portal", "multiplier": 5},
+        {"category": "other", "multiplier": 1}
+      ],
+      "perks": [
+        "$200 airline fee credit",
+        "$200 Uber cash",
+        "$200 hotel credit",
+        "Centurion Lounge access",
+        "Priority Pass",
+        "Hotel elite status",
+        "Global Entry/TSA PreCheck"
+      ],
+      "transfer_partners": ["virgin-atlantic", "british-airways", "delta", "ana", "flying-blue", "hilton"],
+      "rating": 4.6,
+      "best_for": ["Ultra-frequent travelers", "Lounge addicts", "Status seekers"],
+      "pros": ["Best lounge network", "Maximum perks", "Status boosts"],
+      "cons": ["Very high annual fee", "Credits require effort to use"],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "id": "amex-gold",
+      "name": "American Express Gold Card",
+      "issuer_id": "amex",
+      "category": "dining",
+      "image": "../assets/images/cards/amex-gold.webp",
+      "welcome_bonus": {
+        "points": 90000,
+        "currency": "Membership Rewards",
+        "spend_required": 6000,
+        "months": 6
+      },
+      "annual_fee": 250,
+      "earning_rates": [
+        {"category": "restaurants", "multiplier": 4},
+        {"category": "supermarkets", "multiplier": 4, "limit": 25000},
+        {"category": "flights_direct", "multiplier": 3},
+        {"category": "other", "multiplier": 1}
+      ],
+      "perks": [
+        "$120 dining credit",
+        "$120 Uber cash",
+        "$100 hotel credit"
+      ],
+      "transfer_partners": ["virgin-atlantic", "british-airways", "delta", "ana", "flying-blue"],
+      "rating": 4.9,
+      "best_for": ["Foodies", "Grocery shoppers", "US supermarket users"],
+      "pros": ["Best dining/grocery multiplier", "Solid credits", "Great transfer partners"],
+      "cons": ["No lounge access", "Supermarket cap"],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "id": "capital-one-venture-x",
+      "name": "Capital One Venture X",
+      "issuer_id": "capital-one",
+      "category": "travel-premium",
+      "image": "../assets/images/cards/capital-one-venture-x.webp",
+      "welcome_bonus": {
+        "points": 100000,
+        "currency": "Miles",
+        "spend_required": 4000,
+        "months": 3
+      },
+      "annual_fee": 395,
+      "earning_rates": [
+        {"category": "hotels_portal", "multiplier": 10},
+        {"category": "rental_cars_portal", "multiplier": 10},
+        {"category": "flights_portal", "multiplier": 5},
+        {"category": "other", "multiplier": 2}
+      ],
+      "perks": [
+        "$300 travel credit",
+        "Priority Pass",
+        "Capital One Lounges",
+        "Global Entry/TSA PreCheck",
+        "10,000 anniversary miles"
+      ],
+      "transfer_partners": ["avianca", "turkish", "british-airways", "emirates", "singapore", "tap"],
+      "rating": 4.7,
+      "best_for": ["Flexible travelers", "Lounge seekers", "Transfer bonus hunters"],
+      "pros": ["Easy earning", "Great transfer bonuses", "Full Priority Pass"],
+      "cons": ["Fewer partner airlines", "No elite status"],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "id": "chase-ink-business-preferred",
+      "name": "Chase Ink Business Preferred",
+      "issuer_id": "chase",
+      "category": "business",
+      "image": "../assets/images/cards/chase-ink-business.webp",
+      "welcome_bonus": {
+        "points": 100000,
+        "currency": "Ultimate Rewards",
+        "spend_required": 8000,
+        "months": 3
+      },
+      "annual_fee": 95,
+      "earning_rates": [
+        {"category": "travel", "multiplier": 3, "limit": 150000},
+        {"category": "shipping", "multiplier": 3, "limit": 150000},
+        {"category": "internet_cable_phone", "multiplier": 3, "limit": 150000},
+        {"category": "advertising", "multiplier": 3, "limit": 150000},
+        {"category": "other", "multiplier": 1}
+      ],
+      "perks": [
+        "Cell phone protection",
+        "Purchase protection",
+        "Extended warranty",
+        "Transfer to Sapphire for portal use"
+      ],
+      "transfer_partners": ["united", "hyatt", "southwest", "british-airways", "flying-blue"],
+      "rating": 4.8,
+      "best_for": ["Small business owners", "Freelancers", "Side hustlers"],
+      "pros": ["Huge welcome bonus", "Doesn't count toward 5/24", "Great business categories"],
+      "cons": ["No employee cards", "Spend cap on bonus categories"],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "id": "citi-premier",
+      "name": "Citi Premier",
+      "issuer_id": "citi",
+      "category": "travel-premium",
+      "image": "../assets/images/cards/citi-premier.webp",
+      "welcome_bonus": {
+        "points": 75000,
+        "currency": "ThankYou Points",
+        "spend_required": 4000,
+        "months": 3
+      },
+      "annual_fee": 95,
+      "earning_rates": [
+        {"category": "restaurants", "multiplier": 3},
+        {"category": "supermarkets", "multiplier": 3},
+        {"category": "gas", "multiplier": 3},
+        {"category": "air_travel", "multiplier": 3},
+        {"category": "hotels", "multiplier": 3},
+        {"category": "other", "multiplier": 1}
+      ],
+      "perks": [
+        "$100 hotel credit annually",
+        "No foreign transaction fees"
+      ],
+      "transfer_partners": ["turkish", "avianca", "singapore", "jetblue", "virgin-atlantic"],
+      "rating": 4.5,
+      "best_for": ["Varied spenders", "Turkish Miles hunters", "Low fee seekers"],
+      "pros": ["Solid all-around earning", "Great transfer partners", "Low fee"],
+      "cons": ["Fewer perks", "Limited bonus categories"],
+      "status": "active",
+      "featured": false
+    },
+    {
+      "id": "bilt-mastercard",
+      "name": "Bilt Mastercard",
+      "issuer_id": "bilt",
+      "category": "travel-premium",
+      "image": "../assets/images/cards/bilt-mastercard.webp",
+      "welcome_bonus": {
+        "points": 0,
+        "currency": "Bilt Points",
+        "spend_required": 0,
+        "months": 0
+      },
+      "annual_fee": 0,
+      "earning_rates": [
+        {"category": "rent", "multiplier": 1},
+        {"category": "dining", "multiplier": 3},
+        {"category": "travel", "multiplier": 2},
+        {"category": "other", "multiplier": 1}
+      ],
+      "perks": [
+        "Earn on rent with no fee",
+        "Rent Day 5X bonus",
+        "Transfer to 16+ partners",
+        "Gym and fitness perks"
+      ],
+      "transfer_partners": ["hyatt", "united", "american", "air-canada", "turkish"],
+      "rating": 4.6,
+      "best_for": ["Renters", "NYC residents", "Transfer point collectors"],
+      "pros": ["Only card to earn on rent", "No annual fee", "Great transfer partners"],
+      "cons": ["Must make 5 transactions/month", "Low base earning rate"],
+      "status": "active",
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications Panel - MilesAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --panel-bg: #FFFFFF;
+            --page-bg: #F9FAFB;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #10B981;
+            --accent-green-light: #ECFDF5;
+            --accent-orange: #F59E0B;
+            --accent-orange-light: #FFFBEB;
+            --accent-red: #EF4444;
+            --accent-red-light: #FEF2F2;
+            --accent-blue: #3B82F6;
+            --accent-blue-light: #EFF6FF;
+            --accent-purple: #8B5CF6;
+            --accent-purple-light: #F5F3FF;
+            --shadow-panel: 0 20px 40px -8px rgba(16, 24, 40, 0.2);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #667085;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* ===== NOTIFICATION PANEL ===== */
+        .notification-panel {
+            width: 100%;
+            max-width: 380px;
+            height: calc(100vh - 40px);
+            background: var(--panel-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-panel);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel-header__title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .panel-header__actions {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .panel-header__btn {
+            width: 28px;
+            height: 28px;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.15s ease;
+        }
+
+        .panel-header__btn:hover {
+            background: var(--page-bg);
+            color: var(--text-primary);
+        }
+
+        .panel-header__btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ===== TODAY'S ACTIVITY - Uma linha compacta ===== */
+        .activity-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--page-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .activity-bar__label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .activity-bar__stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .activity-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .activity-stat__value {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+
+        .activity-stat__label {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        /* ===== LATEST UPDATES BAR ===== */
+        .updates-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7C3AED 100%);
+        }
+
+        .updates-bar__title {
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .updates-bar__live {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            font-size: 9px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .updates-bar__live-dot {
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ===== QUICK FILTERS ===== */
+        .quick-filters {
+            display: flex;
+            gap: 6px;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .quick-filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .quick-filter {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 10px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+
+        .quick-filter:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .quick-filter--active {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: white;
+        }
+
+        .quick-filter svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* ===== NOTIFICATIONS LIST ===== */
+        .notifications-list {
+            flex: 1;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .notifications-list::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .notifications-list::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        /* Notification Item */
+        .notification-item {
+            display: flex;
+            gap: 10px;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.15s ease;
+            position: relative;
+        }
+
+        .notification-item:hover {
+            background: var(--page-bg);
+        }
+
+        .notification-item--unread {
+            background: linear-gradient(90deg, var(--accent-purple-light) 0%, transparent 50%);
+        }
+
+        .notification-item--unread::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent-purple);
+        }
+
+        .notification-item--new {
+            animation: highlightNew 2s ease-out;
+        }
+
+        @keyframes highlightNew {
+            0% { background: var(--accent-purple-light); }
+            100% { background: transparent; }
+        }
+
+        /* Icon */
+        .notification-item__icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .notification-item__icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .notification-item__icon--bonus {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+        }
+
+        .notification-item__icon--alert {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .notification-item__icon--news {
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+        }
+
+        .notification-item__icon--update {
+            background: var(--accent-orange-light);
+            color: var(--accent-orange);
+        }
+
+        /* Content */
+        .notification-item__content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notification-item__header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 3px;
+        }
+
+        .notification-item__source {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .notification-item__badge {
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 5px;
+            border-radius: 3px;
+            letter-spacing: 0.3px;
+        }
+
+        .notification-item__badge--bonus {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+        }
+
+        .notification-item__badge--alert {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .notification-item__badge--news {
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+        }
+
+        .notification-item__badge--update {
+            background: var(--accent-orange-light);
+            color: #92400E;
+        }
+
+        .notification-item__time {
+            margin-left: auto;
+            font-size: 10px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .notification-item__text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .notification-item__text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .notification-item__tags {
+            display: flex;
+            gap: 4px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .notification-item__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 2px 6px;
+            background: var(--page-bg);
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .notification-item__tag svg {
+            width: 10px;
+            height: 10px;
+        }
+
+        .notification-item__tag--highlight {
+            background: var(--accent-purple-light);
+            color: var(--accent-purple);
+        }
+
+        /* ===== PANEL FOOTER ===== */
+        .panel-footer {
+            padding: 10px 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--page-bg);
+        }
+
+        .panel-footer__link {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-purple);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .panel-footer__link svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .panel-footer__btn {
+            padding: 6px 12px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .panel-footer__btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .empty-state__icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 12px;
+            background: var(--page-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .empty-state__title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .empty-state__text {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <!-- Header -->
+        <div class="panel-header">
+            <h2 class="panel-header__title">Notifications</h2>
+            <div class="panel-header__actions">
+                <button class="panel-header__btn" title="Settings">
+                    <i data-lucide="settings"></i>
+                </button>
+                <button class="panel-header__btn" title="Close">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Today's Activity - Uma linha -->
+        <div class="activity-bar">
+            <span class="activity-bar__label">Today:</span>
+            <div class="activity-bar__stats">
+                <div class="activity-stat">
+                    <span class="activity-stat__value">5</span>
+                    <span class="activity-stat__label">Bonus</span>
+                </div>
+                <div class="activity-stat">
+                    <span class="activity-stat__value">3</span>
+                    <span class="activity-stat__label">Alerts</span>
+                </div>
+                <div class="activity-stat">
+                    <span class="activity-stat__value">8</span>
+                    <span class="activity-stat__label">News</span>
+                </div>
+                <div class="activity-stat">
+                    <span class="activity-stat__value">12</span>
+                    <span class="activity-stat__label">Updates</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Updates Bar -->
+        <div class="updates-bar">
+            <span class="updates-bar__title">Latest Updates</span>
+            <span class="updates-bar__live">
+                <span class="updates-bar__live-dot"></span>
+                Live
+            </span>
+        </div>
+
+        <!-- Quick Filters -->
+        <div class="quick-filters">
+            <button class="quick-filter quick-filter--active" data-filter="all">
+                <i data-lucide="layers"></i>
+                All
+            </button>
+            <button class="quick-filter" data-filter="bonus">
+                <i data-lucide="gift"></i>
+                Bonuses
+            </button>
+            <button class="quick-filter" data-filter="alert">
+                <i data-lucide="alert-circle"></i>
+                Alerts
+            </button>
+            <button class="quick-filter" data-filter="news">
+                <i data-lucide="newspaper"></i>
+                News
+            </button>
+        </div>
+
+        <!-- Notifications List -->
+        <div class="notifications-list" id="notifications-list">
+            <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Footer -->
+        <div class="panel-footer">
+            <a href="#" class="panel-footer__link">
+                View All
+                <i data-lucide="arrow-right"></i>
+            </a>
+            <button class="panel-footer__btn">Mark All Read</button>
+        </div>
+    </div>
+
+    <script>
+        const notifications = [
+            {
+                id: 1,
+                type: 'bonus',
+                source: 'Capital One',
+                time: '2m',
+                text: '<strong>40% transfer bonus</strong> to Avianca LifeMiles extended through Jan 31st',
+                tags: [
+                    { icon: 'percent', text: '+40%', highlight: true },
+                    { icon: 'clock', text: 'Ends Jan 31' }
+                ],
+                unread: true
+            },
+            {
+                id: 2,
+                type: 'alert',
+                source: 'Award Space',
+                time: '15m',
+                text: '<strong>ANA First Class</strong> SFO-NRT availability for March 15-22',
+                tags: [
+                    { icon: 'plane', text: 'SFO → NRT' },
+                    { icon: 'star', text: 'First Class', highlight: true }
+                ],
+                unread: true
+            },
+            {
+                id: 3,
+                type: 'news',
+                source: 'Chase',
+                time: '1h',
+                text: '<strong>Sapphire Preferred</strong> welcome bonus increased to 80K points',
+                tags: [
+                    { icon: 'gift', text: '80K pts', highlight: true }
+                ],
+                unread: true
+            },
+            {
+                id: 4,
+                type: 'alert',
+                source: 'United',
+                time: '2h',
+                text: '<strong>Saver awards to Europe</strong> removed starting Feb 1st',
+                tags: [
+                    { icon: 'alert-triangle', text: 'Devaluation' }
+                ],
+                unread: false
+            },
+            {
+                id: 5,
+                type: 'bonus',
+                source: 'Hilton',
+                time: '3h',
+                text: '<strong>2X points on all stays</strong> through February',
+                tags: [
+                    { icon: 'hotel', text: '2X points' }
+                ],
+                unread: false
+            },
+            {
+                id: 6,
+                type: 'news',
+                source: 'Capital One',
+                time: '4h',
+                text: '<strong>Venture X Business</strong> now available - 150K welcome bonus',
+                tags: [
+                    { icon: 'credit-card', text: 'New Card' }
+                ],
+                unread: false
+            },
+            {
+                id: 7,
+                type: 'update',
+                source: 'Marriott',
+                time: '5h',
+                text: '<strong>Category changes</strong> coming March 1st - properties moving up',
+                tags: [
+                    { icon: 'trending-up', text: 'Inflation' }
+                ],
+                unread: false
+            },
+            {
+                id: 8,
+                type: 'bonus',
+                source: 'Amex',
+                time: '6h',
+                text: '<strong>25% bonus</strong> to British Airways Avios limited time',
+                tags: [
+                    { icon: 'percent', text: '+25%' }
+                ],
+                unread: false
+            }
+        ];
+
+        function renderNotifications(filter = 'all') {
+            const list = document.getElementById('notifications-list');
+            const filtered = filter === 'all' 
+                ? notifications 
+                : notifications.filter(n => n.type === filter);
+
+            if (filtered.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state__icon">
+                            <i data-lucide="bell-off"></i>
+                        </div>
+                        <div class="empty-state__title">No notifications</div>
+                        <div class="empty-state__text">You're all caught up!</div>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            list.innerHTML = filtered.map(notif => `
+                <div class="notification-item ${notif.unread ? 'notification-item--unread' : ''}" data-id="${notif.id}" data-type="${notif.type}">
+                    <div class="notification-item__icon notification-item__icon--${notif.type}">
+                        <i data-lucide="${getIcon(notif.type)}"></i>
+                    </div>
+                    <div class="notification-item__content">
+                        <div class="notification-item__header">
+                            <span class="notification-item__source">${notif.source}</span>
+                            <span class="notification-item__badge notification-item__badge--${notif.type}">${notif.type}</span>
+                            <span class="notification-item__time">${notif.time}</span>
+                        </div>
+                        <p class="notification-item__text">${notif.text}</p>
+                        ${notif.tags ? `
+                            <div class="notification-item__tags">
+                                ${notif.tags.map(tag => `
+                                    <span class="notification-item__tag ${tag.highlight ? 'notification-item__tag--highlight' : ''}">
+                                        <i data-lucide="${tag.icon}"></i>
+                                        ${tag.text}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function getIcon(type) {
+            const icons = {
+                'bonus': 'gift',
+                'alert': 'alert-circle',
+                'news': 'newspaper',
+                'update': 'refresh-cw'
+            };
+            return icons[type] || 'bell';
+        }
+
+        // Filter clicks
+        document.querySelectorAll('.quick-filter').forEach(filter => {
+            filter.addEventListener('click', () => {
+                document.querySelectorAll('.quick-filter').forEach(f => 
+                    f.classList.remove('quick-filter--active')
+                );
+                filter.classList.add('quick-filter--active');
+                renderNotifications(filter.dataset.filter);
+            });
+        });
+
+        // Mark item as read on click
+        document.getElementById('notifications-list').addEventListener('click', (e) => {
+            const item = e.target.closest('.notification-item');
+            if (item) {
+                item.classList.remove('notification-item--unread');
+            }
+        });
+
+        // Mark all as read
+        document.querySelector('.panel-footer__btn').addEventListener('click', () => {
+            document.querySelectorAll('.notification-item--unread').forEach(item => {
+                item.classList.remove('notification-item--unread');
+            });
+            notifications.forEach(n => n.unread = false);
+        });
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNotifications();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
+

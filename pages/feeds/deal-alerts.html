@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deal Alerts - MilesAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-green-light: #ECFDF3;
+            --accent-green-dark: #027A48;
+            --accent-orange: #DF5030;
+            --accent-orange-light: #FFF4ED;
+            --accent-red: #F04438;
+            --accent-red-light: #FEF3F2;
+            --accent-yellow: #F79009;
+            --accent-yellow-light: #FFFAEB;
+            --accent-blue: #1570EF;
+            --accent-blue-light: #EFF8FF;
+            --accent-purple: #7C3AED;
+            --accent-purple-light: #F3E8FF;
+            --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+            --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+            --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--page-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before { display: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-red-light) 0%, #FFF5F5 50%, var(--accent-orange-light) 100%);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(240, 68, 56, 0.1) 0%, transparent 70%);
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-red);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            animation: pulse-badge 2s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero__title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .hero__subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 500px;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .filter-pill--active {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+            color: white;
+        }
+
+        .filter-pill svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+        }
+
+        /* Deal Cards */
+        .deals-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .deal-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .deal-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+            border-color: var(--accent-green);
+        }
+
+        .deal-card--expanded {
+            border-color: var(--accent-green);
+        }
+
+        .deal-card__urgency-bar {
+            height: 4px;
+            background: var(--accent-red);
+        }
+
+        .deal-card__urgency-bar--warning {
+            background: var(--accent-orange);
+        }
+
+        .deal-card__urgency-bar--moderate {
+            background: var(--accent-yellow);
+        }
+
+        .deal-card__content {
+            padding: 24px;
+        }
+
+        .deal-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .deal-card__badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .deal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .deal-badge--credit-card {
+            background: var(--accent-blue-light);
+            color: #1D4ED8;
+        }
+
+        .deal-badge--flight {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+        }
+
+        .deal-badge--hotel {
+            background: var(--accent-orange-light);
+            color: #C2410C;
+        }
+
+        .deal-badge--transfer {
+            background: var(--accent-purple-light);
+            color: var(--accent-purple);
+        }
+
+        .deal-card__title {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .deal-card__meta {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .deal-card__countdown {
+            background: var(--accent-red);
+            color: white;
+            padding: 8px 14px;
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .deal-card__countdown--warning {
+            background: var(--accent-orange);
+        }
+
+        .deal-card__countdown--moderate {
+            background: var(--accent-yellow);
+            color: var(--text-primary);
+        }
+
+        .deal-card__description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Expand Indicator */
+        .deal-card__expand-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .deal-card__expand-hint svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .deal-card:hover .deal-card__expand-hint {
+            color: var(--accent-green);
+        }
+
+        .deal-card--expanded .deal-card__expand-hint svg {
+            transform: rotate(180deg);
+        }
+
+        /* Expandable Section */
+        .deal-card__expandable {
+            display: none;
+            padding: 0 24px 24px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .deal-card--expanded .deal-card__expandable {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Details Grid */
+        .deal-card__details {
+            background: var(--page-bg);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .deal-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .deal-detail:last-child {
+            border-bottom: none;
+        }
+
+        .deal-detail__label {
+            color: var(--text-muted);
+        }
+
+        .deal-detail__value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Pro Tips Section */
+        .deal-tips {
+            background: linear-gradient(135deg, var(--accent-green-light) 0%, #F0FDF4 100%);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .deal-tips__header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-green-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .deal-tips__header svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .deal-tips__list {
+            list-style: none;
+        }
+
+        .deal-tips__item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+        }
+
+        .deal-tips__item::before {
+            content: '→';
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        /* Warning Box */
+        .deal-warning {
+            background: var(--accent-yellow-light);
+            border-radius: var(--radius-lg);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: #92400E;
+        }
+
+        .deal-warning svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            color: var(--accent-yellow);
+        }
+
+        /* Sweet Spots Section */
+        .deal-sweetspots {
+            background: var(--accent-blue-light);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .deal-sweetspots__header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1D4ED8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .deal-sweetspots__header svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .deal-sweetspots__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .sweetspot-item {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 12px;
+        }
+
+        .sweetspot-item__route {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .sweetspot-item__value {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Action Footer */
+        .deal-card__footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .deal-card__action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .deal-card__action:hover {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .deal-card__action svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .deal-card__secondary-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .deal-card__icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--page-bg);
+            color: var(--text-muted);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .deal-card__icon-btn:hover {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+        }
+
+        .deal-card__icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card__title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-card__title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-red);
+        }
+
+        /* Alert Preferences */
+        .alert-pref {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .alert-pref:last-child {
+            border-bottom: none;
+        }
+
+        .alert-pref__label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .toggle {
+            width: 44px;
+            height: 24px;
+            background: var(--border-color);
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toggle--active {
+            background: var(--accent-green);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toggle--active::after {
+            left: 22px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-box {
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-box__value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-red);
+        }
+
+        .stat-box__label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Recent Alerts List */
+        .recent-alerts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .recent-alert {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .recent-alert:hover {
+            background: var(--accent-red-light);
+        }
+
+        .recent-alert__icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-red);
+            color: white;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .recent-alert__icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .recent-alert__content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .recent-alert__title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .recent-alert__time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .deal-sweetspots__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .hero {
+                padding: 32px 24px;
+            }
+
+            .hero__title {
+                font-size: 28px;
+            }
+
+            .deal-card__header {
+                flex-direction: column;
+            }
+
+            .deal-card__countdown {
+                align-self: flex-start;
+            }
+
+            .deal-card__footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .deal-card__action {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .deal-card__secondary-actions {
+                justify-content: center;
+            }
+
+            .filters {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <span class="hero__badge">
+                <i data-lucide="zap"></i>
+                Time-Sensitive
+            </span>
+            <h1 class="hero__title">Deal Alerts</h1>
+            <p class="hero__subtitle">
+                Don't miss out on time-sensitive deals, error fares, and limited-time offers.
+                Act fast before they expire.
+            </p>
+        </section>
+
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-pill filter-pill--active" data-filter="all">
+                <i data-lucide="layers"></i>
+                All Deals
+            </button>
+            <button class="filter-pill" data-filter="credit-card">
+                <i data-lucide="credit-card"></i>
+                Credit Cards
+            </button>
+            <button class="filter-pill" data-filter="flight">
+                <i data-lucide="plane"></i>
+                Flights
+            </button>
+            <button class="filter-pill" data-filter="hotel">
+                <i data-lucide="building-2"></i>
+                Hotels
+            </button>
+            <button class="filter-pill" data-filter="transfer">
+                <i data-lucide="arrow-right-left"></i>
+                Transfers
+            </button>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Deals List -->
+            <div class="deals-list" id="deals-list">
+                <!-- Deal 1: Credit Card -->
+                <article class="deal-card" data-type="credit-card">
+                    <div class="deal-card__urgency-bar"></div>
+                    <div class="deal-card__content">
+                        <div class="deal-card__header">
+                            <div>
+                                <div class="deal-card__badges">
+                                    <span class="deal-badge deal-badge--credit-card">Credit Card</span>
+                                </div>
+                                <h3 class="deal-card__title">Amex Gold 90K Welcome Bonus</h3>
+                                <div class="deal-card__meta">Public offer • Expires Jan 31st</div>
+                            </div>
+                            <div class="deal-card__countdown">17 days left</div>
+                        </div>
+                        <p class="deal-card__description">
+                            Highest public offer ever for Amex Gold. Usually 60K, now 90K after $6K spend in 6 months.
+                            Great for dining and grocery spend.
+                        </p>
+                        <div class="deal-card__expand-hint">
+                            <span>View details</span>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <!-- Expandable Section -->
+                    <div class="deal-card__expandable">
+                        <div class="deal-card__details">
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Welcome Bonus</span>
+                                <span class="deal-detail__value">90,000 MR Points</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Minimum Spend</span>
+                                <span class="deal-detail__value">$6,000 in 6 months</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Annual Fee</span>
+                                <span class="deal-detail__value">$250</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Bonus Categories</span>
+                                <span class="deal-detail__value">4X Dining & Groceries</span>
+                            </div>
+                        </div>
+
+                        <div class="deal-tips">
+                            <div class="deal-tips__header">
+                                <i data-lucide="lightbulb"></i>
+                                Pro Tips
+                            </div>
+                            <ul class="deal-tips__list">
+                                <li class="deal-tips__item">Use Resy to access exclusive restaurant reservations</li>
+                                <li class="deal-tips__item">$120 dining credit + $120 Uber Cash included</li>
+                                <li class="deal-tips__item">Transfer MR to Avianca at 40% bonus right now</li>
+                            </ul>
+                        </div>
+
+                        <div class="deal-card__footer">
+                            <a href="#" class="deal-card__action">
+                                Apply Now
+                                <i data-lucide="external-link"></i>
+                            </a>
+                            <div class="deal-card__secondary-actions">
+                                <button class="deal-card__icon-btn" title="Save for later">
+                                    <i data-lucide="bookmark"></i>
+                                </button>
+                                <button class="deal-card__icon-btn" title="Share">
+                                    <i data-lucide="share-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Deal 2: Flight Error Fare -->
+                <article class="deal-card" data-type="flight">
+                    <div class="deal-card__urgency-bar deal-card__urgency-bar--warning"></div>
+                    <div class="deal-card__content">
+                        <div class="deal-card__header">
+                            <div>
+                                <div class="deal-card__badges">
+                                    <span class="deal-badge deal-badge--flight">Error Fare</span>
+                                </div>
+                                <h3 class="deal-card__title">US to Europe $250 RT</h3>
+                                <div class="deal-card__meta">Mistake fare • May be cancelled</div>
+                            </div>
+                            <div class="deal-card__countdown deal-card__countdown--warning">ACT FAST</div>
+                        </div>
+                        <p class="deal-card__description">
+                            United showing $250 round-trip fares from East Coast to multiple European cities.
+                            Likely error - book now, pay later if it tickets!
+                        </p>
+                        <div class="deal-card__expand-hint">
+                            <span>View details</span>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <!-- Expandable Section -->
+                    <div class="deal-card__expandable">
+                        <div class="deal-card__details">
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Routes</span>
+                                <span class="deal-detail__value">NYC, BOS, PHL → LON, PAR, ROM</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Travel Dates</span>
+                                <span class="deal-detail__value">March - May 2026</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Normal Price</span>
+                                <span class="deal-detail__value">$800-1,200</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Savings</span>
+                                <span class="deal-detail__value">Up to $950/ticket</span>
+                            </div>
+                        </div>
+
+                        <div class="deal-warning">
+                            <i data-lucide="alert-triangle"></i>
+                            <div>
+                                <strong>Mistake Fare Alert:</strong> This fare may be cancelled. Book only if you have flexibility. 
+                                Don't make non-refundable plans until tickets are confirmed.
+                            </div>
+                        </div>
+
+                        <div class="deal-tips">
+                            <div class="deal-tips__header">
+                                <i data-lucide="lightbulb"></i>
+                                Booking Strategy
+                            </div>
+                            <ul class="deal-tips__list">
+                                <li class="deal-tips__item">Book directly on United.com for best protection</li>
+                                <li class="deal-tips__item">Use a card with trip delay protection</li>
+                                <li class="deal-tips__item">Wait 48-72 hours before booking hotels</li>
+                            </ul>
+                        </div>
+
+                        <div class="deal-card__footer">
+                            <a href="#" class="deal-card__action">
+                                Search Flights
+                                <i data-lucide="external-link"></i>
+                            </a>
+                            <div class="deal-card__secondary-actions">
+                                <button class="deal-card__icon-btn" title="Save for later">
+                                    <i data-lucide="bookmark"></i>
+                                </button>
+                                <button class="deal-card__icon-btn" title="Share">
+                                    <i data-lucide="share-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Deal 3: Transfer Bonus -->
+                <article class="deal-card" data-type="transfer">
+                    <div class="deal-card__urgency-bar deal-card__urgency-bar--moderate"></div>
+                    <div class="deal-card__content">
+                        <div class="deal-card__header">
+                            <div>
+                                <div class="deal-card__badges">
+                                    <span class="deal-badge deal-badge--transfer">Transfer Bonus</span>
+                                </div>
+                                <h3 class="deal-card__title">40% Bonus to Avianca LifeMiles</h3>
+                                <div class="deal-card__meta">Capital One • Extended offer</div>
+                            </div>
+                            <div class="deal-card__countdown deal-card__countdown--moderate">14 days left</div>
+                        </div>
+                        <p class="deal-card__description">
+                            Capital One extending 40% transfer bonus to Avianca LifeMiles. Great for Star Alliance
+                            awards including Lufthansa First Class at sweet spot pricing.
+                        </p>
+                        <div class="deal-card__expand-hint">
+                            <span>View details</span>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <!-- Expandable Section -->
+                    <div class="deal-card__expandable">
+                        <div class="deal-card__details">
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Transfer Bonus</span>
+                                <span class="deal-detail__value">40% Extra Miles</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Expiration</span>
+                                <span class="deal-detail__value">January 31, 2026</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Transfer Time</span>
+                                <span class="deal-detail__value">Instant</span>
+                            </div>
+                        </div>
+
+                        <div class="deal-sweetspots">
+                            <div class="deal-sweetspots__header">
+                                <i data-lucide="target"></i>
+                                Best Redemptions
+                            </div>
+                            <div class="deal-sweetspots__grid">
+                                <div class="sweetspot-item">
+                                    <div class="sweetspot-item__route">US → Europe Biz</div>
+                                    <div class="sweetspot-item__value">63K miles (normally 87K)</div>
+                                </div>
+                                <div class="sweetspot-item">
+                                    <div class="sweetspot-item__route">US → Asia Biz</div>
+                                    <div class="sweetspot-item__value">87.5K miles (normally 115K)</div>
+                                </div>
+                                <div class="sweetspot-item">
+                                    <div class="sweetspot-item__route">Intra-Europe</div>
+                                    <div class="sweetspot-item__value">5.25K miles (normally 7K)</div>
+                                </div>
+                                <div class="sweetspot-item">
+                                    <div class="sweetspot-item__route">LH First Class</div>
+                                    <div class="sweetspot-item__value">87K miles one-way</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="deal-tips">
+                            <div class="deal-tips__header">
+                                <i data-lucide="lightbulb"></i>
+                                Transfer Strategy
+                            </div>
+                            <ul class="deal-tips__list">
+                                <li class="deal-tips__item">Only transfer what you need for a specific booking</li>
+                                <li class="deal-tips__item">Search availability BEFORE transferring points</li>
+                                <li class="deal-tips__item">LifeMiles doesn't pass fuel surcharges</li>
+                            </ul>
+                        </div>
+
+                        <div class="deal-card__footer">
+                            <a href="#" class="deal-card__action">
+                                Transfer Now
+                                <i data-lucide="external-link"></i>
+                            </a>
+                            <div class="deal-card__secondary-actions">
+                                <button class="deal-card__icon-btn" title="Save for later">
+                                    <i data-lucide="bookmark"></i>
+                                </button>
+                                <button class="deal-card__icon-btn" title="Share">
+                                    <i data-lucide="share-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Deal 4: Hotel -->
+                <article class="deal-card" data-type="hotel">
+                    <div class="deal-card__urgency-bar deal-card__urgency-bar--moderate"></div>
+                    <div class="deal-card__content">
+                        <div class="deal-card__header">
+                            <div>
+                                <div class="deal-card__badges">
+                                    <span class="deal-badge deal-badge--hotel">Hotel Promo</span>
+                                </div>
+                                <h3 class="deal-card__title">Hyatt 50% Points Back on P+C</h3>
+                                <div class="deal-card__meta">Points + Cash stays • Through March</div>
+                            </div>
+                            <div class="deal-card__countdown deal-card__countdown--moderate">45 days left</div>
+                        </div>
+                        <p class="deal-card__description">
+                            Book Points + Cash rates at any Hyatt and get 50% of your points refunded after your stay.
+                            Effectively halves the point cost of award stays.
+                        </p>
+                        <div class="deal-card__expand-hint">
+                            <span>View details</span>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <!-- Expandable Section -->
+                    <div class="deal-card__expandable">
+                        <div class="deal-card__details">
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Promotion</span>
+                                <span class="deal-detail__value">50% Points Back</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Valid Through</span>
+                                <span class="deal-detail__value">March 31, 2026</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Max Refund</span>
+                                <span class="deal-detail__value">15,000 points per stay</span>
+                            </div>
+                            <div class="deal-detail">
+                                <span class="deal-detail__label">Registration</span>
+                                <span class="deal-detail__value">Required before booking</span>
+                            </div>
+                        </div>
+
+                        <div class="deal-tips">
+                            <div class="deal-tips__header">
+                                <i data-lucide="lightbulb"></i>
+                                Maximize Value
+                            </div>
+                            <ul class="deal-tips__list">
+                                <li class="deal-tips__item">Best for Category 5-7 properties (higher point requirement)</li>
+                                <li class="deal-tips__item">Stack with Globalist benefits if you have status</li>
+                                <li class="deal-tips__item">Points refund posts within 2 weeks of checkout</li>
+                            </ul>
+                        </div>
+
+                        <div class="deal-card__footer">
+                            <a href="#" class="deal-card__action">
+                                Register Now
+                                <i data-lucide="external-link"></i>
+                            </a>
+                            <div class="deal-card__secondary-actions">
+                                <button class="deal-card__icon-btn" title="Save for later">
+                                    <i data-lucide="bookmark"></i>
+                                </button>
+                                <button class="deal-card__icon-btn" title="Share">
+                                    <i data-lucide="share-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Alert Stats -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="bar-chart-3"></i>
+                        This Week
+                    </h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-box__value">12</div>
+                            <div class="stat-box__label">New Deals</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box__value">3</div>
+                            <div class="stat-box__label">Expiring Soon</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box__value">$15K</div>
+                            <div class="stat-box__label">Avg Savings</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box__value">2</div>
+                            <div class="stat-box__label">Error Fares</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alert Preferences -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="bell"></i>
+                        Notifications
+                    </h3>
+                    <div class="alert-pref">
+                        <span class="alert-pref__label">Credit Card Offers</span>
+                        <div class="toggle toggle--active" onclick="this.classList.toggle('toggle--active')"></div>
+                    </div>
+                    <div class="alert-pref">
+                        <span class="alert-pref__label">Error Fares</span>
+                        <div class="toggle toggle--active" onclick="this.classList.toggle('toggle--active')"></div>
+                    </div>
+                    <div class="alert-pref">
+                        <span class="alert-pref__label">Transfer Bonuses</span>
+                        <div class="toggle toggle--active" onclick="this.classList.toggle('toggle--active')"></div>
+                    </div>
+                    <div class="alert-pref">
+                        <span class="alert-pref__label">Hotel Promotions</span>
+                        <div class="toggle" onclick="this.classList.toggle('toggle--active')"></div>
+                    </div>
+                </div>
+
+                <!-- Recent Alerts -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="clock"></i>
+                        Recent Alerts
+                    </h3>
+                    <div class="recent-alerts">
+                        <div class="recent-alert">
+                            <div class="recent-alert__icon">
+                                <i data-lucide="credit-card"></i>
+                            </div>
+                            <div class="recent-alert__content">
+                                <div class="recent-alert__title">Chase Ink Business Preferred 100K</div>
+                                <div class="recent-alert__time">2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="recent-alert">
+                            <div class="recent-alert__icon">
+                                <i data-lucide="plane"></i>
+                            </div>
+                            <div class="recent-alert__content">
+                                <div class="recent-alert__title">JAL Award Space to Tokyo</div>
+                                <div class="recent-alert__time">5 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="recent-alert">
+                            <div class="recent-alert__icon">
+                                <i data-lucide="building-2"></i>
+                            </div>
+                            <div class="recent-alert__content">
+                                <div class="recent-alert__title">Hyatt Category Changes</div>
+                                <div class="recent-alert__time">Yesterday</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Expand/Collapse functionality
+        document.querySelectorAll('.deal-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't toggle if clicking on action buttons
+                if (e.target.closest('.deal-card__action') || 
+                    e.target.closest('.deal-card__icon-btn')) {
+                    return;
+                }
+                card.classList.toggle('deal-card--expanded');
+                lucide.createIcons();
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('filter-pill--active'));
+                pill.classList.add('filter-pill--active');
+
+                const filter = pill.dataset.filter;
+                document.querySelectorAll('.deal-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.type === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacks Library - MilesAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-green-light: #ECFDF3;
+            --accent-green-dark: #027A48;
+            --accent-orange: #DF5030;
+            --accent-orange-light: #FFF4ED;
+            --accent-blue: #1570EF;
+            --accent-blue-light: #EFF8FF;
+            --accent-yellow: #F79009;
+            --accent-yellow-light: #FFFAEB;
+            --accent-red: #F04438;
+            --accent-red-light: #FEF3F2;
+            --accent-purple: #7A5AF8;
+            --accent-purple-light: #F4F3FF;
+            --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+            --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+            --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--page-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before {
+            display: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-green-light) 0%, #F0FDF4 50%, #FEFCE8 100%);
+            border-radius: var(--radius-2xl);
+            padding: 48px 40px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(11, 164, 87, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-green);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .hero__title {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .hero__subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 24px;
+        }
+
+        .hero__stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero__stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero__stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+
+        .hero__stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Search & Filters */
+        .search-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .search-bar {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-bar__input {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-size: 16px;
+            font-family: inherit;
+            background: var(--page-bg);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .search-bar__input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 4px rgba(11, 164, 87, 0.1);
+        }
+
+        .search-bar__input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-bar__icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filters-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-dropdown {
+            position: relative;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .filter-btn--active {
+            background: var(--accent-green-light);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* Category Pills */
+        .categories {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .category-pill:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-pill--active {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+
+        .category-pill__count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-size: 12px;
+        }
+
+        .category-pill:not(.category-pill--active) .category-pill__count {
+            background: var(--page-bg);
+        }
+
+        /* Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+        }
+
+        /* Hacks Grid */
+        .hacks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hack-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hack-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+            border-color: var(--accent-green);
+        }
+
+        .hack-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .hack-card__badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge--easy {
+            background: var(--accent-green-light);
+            color: var(--accent-green-dark);
+        }
+
+        .badge--medium {
+            background: var(--accent-yellow-light);
+            color: #B54708;
+        }
+
+        .badge--hard {
+            background: var(--accent-red-light);
+            color: #B42318;
+        }
+
+        .badge--low {
+            background: var(--page-bg);
+            color: var(--text-muted);
+        }
+
+        .badge--medium-value {
+            background: var(--accent-blue-light);
+            color: #175CD3;
+        }
+
+        .badge--high {
+            background: var(--accent-green-light);
+            color: var(--accent-green-dark);
+        }
+
+        .badge--insane {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .badge--legal {
+            background: var(--accent-green-light);
+            color: var(--accent-green-dark);
+        }
+
+        .badge--gray {
+            background: var(--accent-yellow-light);
+            color: #B54708;
+        }
+
+        .badge--violation {
+            background: var(--accent-red-light);
+            color: #B42318;
+        }
+
+        .hack-card__title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .hack-card__summary {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .hack-card__meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hack-card__meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .hack-card__meta-item svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hack-card__rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hack-card__stars {
+            color: var(--accent-yellow);
+            font-size: 14px;
+        }
+
+        .hack-card__rating-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card__title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-card__title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-green);
+        }
+
+        /* Top Hacks List */
+        .top-hacks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .top-hack-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .top-hack-item:hover {
+            background: var(--accent-green-light);
+        }
+
+        .top-hack-item__rank {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .top-hack-item__content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .top-hack-item__name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .top-hack-item__value {
+            font-size: 12px;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .quick-stat {
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .quick-stat__value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+
+        .quick-stat__label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Difficulty Distribution */
+        .difficulty-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .difficulty-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .difficulty-bar__label {
+            width: 80px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .difficulty-bar__track {
+            flex: 1;
+            height: 8px;
+            background: var(--page-bg);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .difficulty-bar__fill {
+            height: 100%;
+            border-radius: 100px;
+            transition: width 0.5s ease;
+        }
+
+        .difficulty-bar__fill--easy {
+            background: var(--accent-green);
+        }
+
+        .difficulty-bar__fill--medium {
+            background: var(--accent-yellow);
+        }
+
+        .difficulty-bar__fill--hard {
+            background: var(--accent-red);
+        }
+
+        .difficulty-bar__count {
+            width: 32px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+        }
+
+        .no-results__icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            color: var(--text-muted);
+        }
+
+        .no-results__title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .no-results__text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(16, 24, 40, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay--visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--radius-2xl);
+            max-width: 680px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.25);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay--visible .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal__header {
+            padding: 24px 24px 0;
+            position: relative;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--page-bg);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .modal__close:hover {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .modal__badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .modal__title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            padding-right: 40px;
+        }
+
+        .modal__summary {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .modal__meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 16px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal__meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .modal__meta-item svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .modal__rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .modal__stars {
+            color: var(--accent-yellow);
+            font-size: 16px;
+        }
+
+        .modal__rating-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal__content {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal__section {
+            margin-bottom: 24px;
+        }
+
+        .modal__section:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal__section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+
+        .modal__section-title svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal__steps {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .modal__steps li {
+            position: relative;
+            padding-left: 44px;
+            padding-bottom: 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            counter-increment: step;
+        }
+
+        .modal__steps li:last-child {
+            padding-bottom: 0;
+        }
+
+        .modal__steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .modal__requirements {
+            list-style: none;
+        }
+
+        .modal__requirements li {
+            position: relative;
+            padding-left: 28px;
+            padding-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .modal__requirements li:last-child {
+            padding-bottom: 0;
+        }
+
+        .modal__requirements li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230BA457' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M5 13l4 4L19 7'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+        }
+
+        .modal__warnings {
+            background: var(--accent-yellow-light);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            border-left: 4px solid var(--accent-yellow);
+        }
+
+        .modal__warnings-list {
+            list-style: none;
+        }
+
+        .modal__warnings-list li {
+            position: relative;
+            padding-left: 24px;
+            padding-bottom: 8px;
+            font-size: 14px;
+            color: #93370D;
+        }
+
+        .modal__warnings-list li:last-child {
+            padding-bottom: 0;
+        }
+
+        .modal__warnings-list li::before {
+            content: '!';
+            position: absolute;
+            left: 0;
+            font-weight: 800;
+            color: var(--accent-yellow);
+        }
+
+        .modal__value-box {
+            background: linear-gradient(135deg, var(--accent-green-light) 0%, #F0FDF4 100%);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .modal__value-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .modal__value-amount {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+
+        .modal__tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .modal__tag {
+            padding: 6px 12px;
+            background: var(--page-bg);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                max-height: 95vh;
+                margin: 10px;
+                border-radius: var(--radius-xl);
+            }
+
+            .modal__title {
+                font-size: 20px;
+            }
+
+            .modal__meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .modal__rating {
+                margin-left: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .hero {
+                padding: 32px 24px;
+            }
+
+            .hero__title {
+                font-size: 28px;
+            }
+
+            .hero__stats {
+                gap: 20px;
+            }
+
+            .filters-row {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 8px;
+            }
+
+            .hack-card__meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="hero__badge">
+                <i data-lucide="sparkles"></i>
+                Community Curated
+            </span>
+            <h1 class="hero__title">Hacks Library</h1>
+            <p class="hero__subtitle">
+                Battle-tested strategies to maximize your points, miles, and travel value.
+                Learn from the community's collective wisdom.
+            </p>
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <span class="hero__stat-value" id="total-hacks">0</span>
+                    <span class="hero__stat-label">Total Hacks</span>
+                </div>
+                <div class="hero__stat">
+                    <span class="hero__stat-value" id="verified-hacks">0</span>
+                    <span class="hero__stat-label">Verified This Month</span>
+                </div>
+                <div class="hero__stat">
+                    <span class="hero__stat-value" id="total-value">$0</span>
+                    <span class="hero__stat-label">Avg. Annual Value</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filters -->
+        <section class="search-section">
+            <div class="search-bar">
+                <i data-lucide="search" class="search-bar__icon"></i>
+                <input type="text" class="search-bar__input" id="search-input"
+                       placeholder="Search hacks by name, keyword, or program...">
+            </div>
+            <div class="filters-row">
+                <button class="filter-btn" id="filter-difficulty" onclick="toggleFilter('difficulty')">
+                    <i data-lucide="gauge"></i>
+                    Difficulty
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <button class="filter-btn" id="filter-value" onclick="toggleFilter('value')">
+                    <i data-lucide="trending-up"></i>
+                    Value
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <button class="filter-btn" id="filter-legality" onclick="toggleFilter('legality')">
+                    <i data-lucide="shield-check"></i>
+                    Legality
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <button class="filter-btn" id="clear-filters" onclick="clearFilters()" style="display: none;">
+                    <i data-lucide="x"></i>
+                    Clear Filters
+                </button>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <div class="categories" id="categories-nav">
+            <!-- Categories loaded dynamically -->
+        </div>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Hacks List -->
+            <div class="hacks-list" id="hacks-list">
+                <!-- Hacks loaded dynamically -->
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Top Rated Hacks -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="trophy"></i>
+                        Top Rated Hacks
+                    </h3>
+                    <div class="top-hacks-list" id="top-hacks">
+                        <!-- Top hacks loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="bar-chart-3"></i>
+                        Quick Stats
+                    </h3>
+                    <div class="quick-stats">
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="legal-count">0</div>
+                            <div class="quick-stat__label">100% Legal</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="high-value-count">0</div>
+                            <div class="quick-stat__label">High Value</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="easy-count">0</div>
+                            <div class="quick-stat__label">Easy Hacks</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value" id="success-rate">0%</div>
+                            <div class="quick-stat__label">Avg Success</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difficulty Distribution -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="pie-chart"></i>
+                        Difficulty Spread
+                    </h3>
+                    <div class="difficulty-bars" id="difficulty-bars">
+                        <!-- Bars loaded dynamically -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" id="no-results" style="display: none;">
+            <i data-lucide="search-x" class="no-results__icon"></i>
+            <h3 class="no-results__title">No hacks found</h3>
+            <p class="no-results__text">Try adjusting your filters or search terms</p>
+        </div>
+    </div>
+
+    <!-- Modal Popup -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <div class="modal__header">
+                <button class="modal__close" id="modal-close">
+                    <i data-lucide="x"></i>
+                </button>
+                <div class="modal__badges" id="modal-badges"></div>
+                <h2 class="modal__title" id="modal-title"></h2>
+                <p class="modal__summary" id="modal-summary"></p>
+                <div class="modal__meta">
+                    <div class="modal__meta-item">
+                        <i data-lucide="clock"></i>
+                        <span id="modal-time"></span>
+                    </div>
+                    <div class="modal__meta-item">
+                        <i data-lucide="target"></i>
+                        <span id="modal-success"></span>
+                    </div>
+                    <div class="modal__meta-item">
+                        <i data-lucide="calendar-check"></i>
+                        <span id="modal-verified"></span>
+                    </div>
+                    <div class="modal__rating">
+                        <span class="modal__stars" id="modal-stars"></span>
+                        <span class="modal__rating-value" id="modal-rating"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__content">
+                <div class="modal__section">
+                    <h4 class="modal__section-title">
+                        <i data-lucide="list-ordered"></i>
+                        Step-by-Step Guide
+                    </h4>
+                    <ol class="modal__steps" id="modal-steps"></ol>
+                </div>
+                <div class="modal__section">
+                    <h4 class="modal__section-title">
+                        <i data-lucide="check-circle-2"></i>
+                        Requirements
+                    </h4>
+                    <ul class="modal__requirements" id="modal-requirements"></ul>
+                </div>
+                <div class="modal__section" id="modal-warnings-section">
+                    <h4 class="modal__section-title">
+                        <i data-lucide="alert-triangle"></i>
+                        Warnings & Risks
+                    </h4>
+                    <div class="modal__warnings">
+                        <ul class="modal__warnings-list" id="modal-warnings"></ul>
+                    </div>
+                </div>
+                <div class="modal__section">
+                    <div class="modal__value-box">
+                        <div class="modal__value-label">Estimated Annual Value</div>
+                        <div class="modal__value-amount" id="modal-value"></div>
+                    </div>
+                </div>
+                <div class="modal__tags" id="modal-tags"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allHacks = [];
+        let allCategories = [];
+        let currentFilters = {
+            category: 'all',
+            difficulty: 'all',
+            value: 'all',
+            legality: 'all',
+            search: ''
+        };
+
+        async function loadLibrary() {
+            try {
+                const response = await fetch('../../source/hacks-library.json');
+                const data = await response.json();
+                allHacks = data.hacks;
+                allCategories = data.categories;
+
+                renderCategories();
+                renderHacks();
+                renderSidebar();
+                updateStats();
+                setupEventListeners();
+            } catch (error) {
+                console.error('Error loading library:', error);
+                showMockData();
+            }
+        }
+
+        function showMockData() {
+            allHacks = [
+                {
+                    id: 'credit-card-churning',
+                    title: 'Credit Card Sign-Up Bonus Optimization',
+                    summary: 'Strategically apply for new credit cards to earn sign-up bonuses, timing applications for maximum points accumulation.',
+                    category: 'earning',
+                    difficulty: 'medium',
+                    value_potential: 'high',
+                    legality: 'fully_legal',
+                    community_rating: 4.8,
+                    time_investment: '2-4 hours/month',
+                    success_rate: '95%',
+                    last_verified: '2025-01-10',
+                    estimated_annual_value: '$5,000-$15,000',
+                    detailed_steps: [
+                        'Check your credit score and ensure it\'s above 720 for best approval odds',
+                        'Research current bonus offers across major issuers (Chase, Amex, Citi)',
+                        'Space applications 3+ months apart from same issuer',
+                        'Meet minimum spend requirements organically or via MS techniques',
+                        'Track bonus posting and plan next application'
+                    ],
+                    requirements: ['Good credit score (720+)', 'Organized tracking system', 'Understanding of 5/24 rules'],
+                    warnings: ['Can temporarily lower credit score', 'Requires discipline to avoid overspending'],
+                    tags: ['credit-cards', 'sign-up-bonus', 'churning']
+                },
+                {
+                    id: 'transfer-bonus-stacking',
+                    title: 'Transfer Bonus Stacking Strategy',
+                    summary: 'Take advantage of transfer bonuses between programs to multiply your points value through strategic timing.',
+                    category: 'transfer',
+                    difficulty: 'easy',
+                    value_potential: 'high',
+                    legality: 'fully_legal',
+                    community_rating: 4.6,
+                    time_investment: '30 min research',
+                    success_rate: '100%',
+                    last_verified: '2025-01-12',
+                    estimated_annual_value: '$1,000-$3,000',
+                    detailed_steps: [
+                        'Monitor current transfer bonuses (usually 20-40% extra)',
+                        'Calculate effective cpp with bonus applied',
+                        'Transfer only what you need for immediate booking',
+                        'Stack with partner promotions when available'
+                    ],
+                    requirements: ['Flexible points currency', 'Active monitoring of bonuses'],
+                    warnings: ['Transfers are usually irreversible', 'Bonuses expire frequently'],
+                    tags: ['transfers', 'bonuses', 'points']
+                },
+                {
+                    id: 'manufactured-spending',
+                    title: 'Gift Card Manufactured Spending',
+                    summary: 'Purchase gift cards and liquidate them to meet minimum spend requirements and earn additional points.',
+                    category: 'earning',
+                    difficulty: 'hard',
+                    value_potential: 'insane',
+                    legality: 'gray_area',
+                    community_rating: 4.2,
+                    time_investment: '5-10 hours/month',
+                    success_rate: '85%',
+                    last_verified: '2025-01-08',
+                    estimated_annual_value: '$10,000-$50,000',
+                    detailed_steps: [
+                        'Find stores selling VGCs with credit card acceptance',
+                        'Purchase at bonus category retailers for multiplied points',
+                        'Liquidate via money order or payment services',
+                        'Track all transactions meticulously',
+                        'Rotate stores and methods to avoid shutdown'
+                    ],
+                    requirements: ['High tolerance for complexity', 'Local liquidation options', 'Meticulous record keeping'],
+                    warnings: ['Risk of card shutdown', 'Some methods may violate ToS', 'Tax implications'],
+                    tags: ['manufactured-spending', 'gift-cards', 'advanced']
+                }
+            ];
+
+            allCategories = [
+                { id: 'earning', name: 'Earning', icon: 'coins' },
+                { id: 'transfer', name: 'Transfers', icon: 'arrow-right-left' },
+                { id: 'redemption', name: 'Redemption', icon: 'ticket' },
+                { id: 'status', name: 'Status', icon: 'crown' }
+            ];
+
+            renderCategories();
+            renderHacks();
+            renderSidebar();
+            updateStats();
+            setupEventListeners();
+        }
+
+        function renderCategories() {
+            const nav = document.getElementById('categories-nav');
+            const counts = {};
+            allCategories.forEach(cat => {
+                counts[cat.id] = allHacks.filter(h => h.category === cat.id).length;
+            });
+
+            nav.innerHTML = `
+                <div class="category-pill category-pill--active" data-category="all">
+                    <i data-lucide="layers"></i>
+                    <span>All Hacks</span>
+                    <span class="category-pill__count">${allHacks.length}</span>
+                </div>
+                ${allCategories.map(cat => `
+                    <div class="category-pill" data-category="${cat.id}">
+                        <i data-lucide="${cat.icon}"></i>
+                        <span>${cat.name}</span>
+                        <span class="category-pill__count">${counts[cat.id] || 0}</span>
+                    </div>
+                `).join('')}
+            `;
+            lucide.createIcons();
+        }
+
+        function renderHacks() {
+            const filtered = filterHacks();
+            const list = document.getElementById('hacks-list');
+            const noResults = document.getElementById('no-results');
+
+            if (filtered.length === 0) {
+                list.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            list.style.display = 'flex';
+            noResults.style.display = 'none';
+
+            list.innerHTML = filtered.map(hack => `
+                <article class="hack-card" data-hack-id="${hack.id}">
+                    <div class="hack-card__header">
+                        <div>
+                            <div class="hack-card__badges">
+                                <span class="badge badge--${hack.difficulty}">${hack.difficulty}</span>
+                                <span class="badge badge--${hack.value_potential === 'medium' ? 'medium-value' : hack.value_potential}">${hack.value_potential} value</span>
+                                <span class="badge badge--${getLegalityClass(hack.legality)}">${formatLegality(hack.legality)}</span>
+                            </div>
+                            <h3 class="hack-card__title">${hack.title}</h3>
+                        </div>
+                        <div class="hack-card__rating">
+                            <span class="hack-card__stars">${renderStars(hack.community_rating)}</span>
+                            <span class="hack-card__rating-value">${hack.community_rating}</span>
+                        </div>
+                    </div>
+
+                    <p class="hack-card__summary">${hack.summary}</p>
+
+                    <div class="hack-card__meta">
+                        <div class="hack-card__meta-item">
+                            <i data-lucide="clock"></i>
+                            <span>${hack.time_investment}</span>
+                        </div>
+                        <div class="hack-card__meta-item">
+                            <i data-lucide="target"></i>
+                            <span>${hack.success_rate} success</span>
+                        </div>
+                        <div class="hack-card__meta-item">
+                            <i data-lucide="calendar-check"></i>
+                            <span>Verified ${formatDate(hack.last_verified)}</span>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function renderSidebar() {
+            // Top Rated Hacks
+            const topHacks = [...allHacks]
+                .sort((a, b) => b.community_rating - a.community_rating)
+                .slice(0, 5);
+
+            document.getElementById('top-hacks').innerHTML = topHacks.map((hack, i) => `
+                <div class="top-hack-item" onclick="scrollToHack('${hack.id}')">
+                    <div class="top-hack-item__rank">${i + 1}</div>
+                    <div class="top-hack-item__content">
+                        <div class="top-hack-item__name">${hack.title}</div>
+                        <div class="top-hack-item__value">${hack.estimated_annual_value}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Difficulty Distribution
+            const diffCounts = {
+                easy: allHacks.filter(h => h.difficulty === 'easy').length,
+                medium: allHacks.filter(h => h.difficulty === 'medium').length,
+                hard: allHacks.filter(h => h.difficulty === 'hard').length
+            };
+            const maxCount = Math.max(...Object.values(diffCounts), 1);
+
+            document.getElementById('difficulty-bars').innerHTML = `
+                <div class="difficulty-bar">
+                    <span class="difficulty-bar__label">Easy</span>
+                    <div class="difficulty-bar__track">
+                        <div class="difficulty-bar__fill difficulty-bar__fill--easy"
+                             style="width: ${(diffCounts.easy / maxCount) * 100}%"></div>
+                    </div>
+                    <span class="difficulty-bar__count">${diffCounts.easy}</span>
+                </div>
+                <div class="difficulty-bar">
+                    <span class="difficulty-bar__label">Medium</span>
+                    <div class="difficulty-bar__track">
+                        <div class="difficulty-bar__fill difficulty-bar__fill--medium"
+                             style="width: ${(diffCounts.medium / maxCount) * 100}%"></div>
+                    </div>
+                    <span class="difficulty-bar__count">${diffCounts.medium}</span>
+                </div>
+                <div class="difficulty-bar">
+                    <span class="difficulty-bar__label">Hard</span>
+                    <div class="difficulty-bar__track">
+                        <div class="difficulty-bar__fill difficulty-bar__fill--hard"
+                             style="width: ${(diffCounts.hard / maxCount) * 100}%"></div>
+                    </div>
+                    <span class="difficulty-bar__count">${diffCounts.hard}</span>
+                </div>
+            `;
+        }
+
+        function updateStats() {
+            document.getElementById('total-hacks').textContent = allHacks.length;
+            document.getElementById('verified-hacks').textContent = allHacks.filter(h => {
+                const verified = new Date(h.last_verified);
+                const now = new Date();
+                return (now - verified) < 30 * 24 * 60 * 60 * 1000;
+            }).length;
+
+            // Calculate average value
+            const values = allHacks.map(h => {
+                const match = h.estimated_annual_value.match(/\$?([\d,]+)/);
+                return match ? parseInt(match[1].replace(/,/g, '')) : 0;
+            });
+            const avgValue = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+            document.getElementById('total-value').textContent = '$' + avgValue.toLocaleString();
+
+            // Quick stats
+            document.getElementById('legal-count').textContent =
+                allHacks.filter(h => h.legality === 'fully_legal').length;
+            document.getElementById('high-value-count').textContent =
+                allHacks.filter(h => ['high', 'insane'].includes(h.value_potential)).length;
+            document.getElementById('easy-count').textContent =
+                allHacks.filter(h => h.difficulty === 'easy').length;
+
+            const avgSuccess = allHacks.reduce((sum, h) => {
+                const rate = parseInt(h.success_rate);
+                return sum + (isNaN(rate) ? 0 : rate);
+            }, 0) / allHacks.length;
+            document.getElementById('success-rate').textContent = Math.round(avgSuccess) + '%';
+        }
+
+        function filterHacks() {
+            return allHacks.filter(hack => {
+                if (currentFilters.category !== 'all' && hack.category !== currentFilters.category) return false;
+                if (currentFilters.difficulty !== 'all' && hack.difficulty !== currentFilters.difficulty) return false;
+                if (currentFilters.value !== 'all' && hack.value_potential !== currentFilters.value) return false;
+                if (currentFilters.legality !== 'all' && hack.legality !== currentFilters.legality) return false;
+                if (currentFilters.search) {
+                    const search = currentFilters.search.toLowerCase();
+                    return hack.title.toLowerCase().includes(search) ||
+                           hack.summary.toLowerCase().includes(search) ||
+                           (hack.tags && hack.tags.some(t => t.includes(search)));
+                }
+                return true;
+            });
+        }
+
+        function setupEventListeners() {
+            // Category clicks
+            document.querySelectorAll('.category-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('category-pill--active'));
+                    pill.classList.add('category-pill--active');
+                    currentFilters.category = pill.dataset.category;
+                    renderHacks();
+                });
+            });
+
+            // Search
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                currentFilters.search = e.target.value;
+                renderHacks();
+            });
+
+            // Card click - open modal
+            document.addEventListener('click', (e) => {
+                const card = e.target.closest('.hack-card');
+                if (card) {
+                    const hackId = card.dataset.hackId;
+                    const hack = allHacks.find(h => h.id === hackId);
+                    if (hack) {
+                        openModal(hack);
+                    }
+                }
+            });
+
+            // Modal close handlers
+            document.getElementById('modal-close').addEventListener('click', closeModal);
+            document.getElementById('modal-overlay').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('modal-overlay')) {
+                    closeModal();
+                }
+            });
+
+            // ESC key to close modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        }
+
+        function openModal(hack) {
+            const overlay = document.getElementById('modal-overlay');
+            
+            // Populate modal content
+            document.getElementById('modal-badges').innerHTML = `
+                <span class="badge badge--${hack.difficulty}">${hack.difficulty}</span>
+                <span class="badge badge--${hack.value_potential === 'medium' ? 'medium-value' : hack.value_potential}">${hack.value_potential} value</span>
+                <span class="badge badge--${getLegalityClass(hack.legality)}">${formatLegality(hack.legality)}</span>
+            `;
+            document.getElementById('modal-title').textContent = hack.title;
+            document.getElementById('modal-summary').textContent = hack.summary;
+            document.getElementById('modal-time').textContent = hack.time_investment;
+            document.getElementById('modal-success').textContent = hack.success_rate + ' success';
+            document.getElementById('modal-verified').textContent = 'Verified ' + formatDate(hack.last_verified);
+            document.getElementById('modal-stars').textContent = renderStars(hack.community_rating);
+            document.getElementById('modal-rating').textContent = hack.community_rating;
+            
+            // Steps
+            document.getElementById('modal-steps').innerHTML = hack.detailed_steps
+                .map(step => `<li>${step}</li>`).join('');
+            
+            // Requirements
+            document.getElementById('modal-requirements').innerHTML = hack.requirements
+                .map(req => `<li>${req}</li>`).join('');
+            
+            // Warnings
+            const warningsSection = document.getElementById('modal-warnings-section');
+            if (hack.warnings && hack.warnings.length > 0) {
+                warningsSection.style.display = 'block';
+                document.getElementById('modal-warnings').innerHTML = hack.warnings
+                    .map(w => `<li>${w}</li>`).join('');
+            } else {
+                warningsSection.style.display = 'none';
+            }
+            
+            // Value
+            document.getElementById('modal-value').textContent = hack.estimated_annual_value;
+            
+            // Tags
+            if (hack.tags && hack.tags.length > 0) {
+                document.getElementById('modal-tags').innerHTML = hack.tags
+                    .map(tag => `<span class="modal__tag">#${tag}</span>`).join('');
+                document.getElementById('modal-tags').style.display = 'flex';
+            } else {
+                document.getElementById('modal-tags').style.display = 'none';
+            }
+            
+            // Show modal
+            overlay.classList.add('modal-overlay--visible');
+            document.body.style.overflow = 'hidden';
+            
+            // Refresh icons
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.remove('modal-overlay--visible');
+            document.body.style.overflow = '';
+        }
+
+        function toggleFilter(type) {
+            const values = {
+                difficulty: ['all', 'easy', 'medium', 'hard'],
+                value: ['all', 'low', 'medium', 'high', 'insane'],
+                legality: ['all', 'fully_legal', 'gray_area', 'terms_violation']
+            };
+
+            const current = currentFilters[type];
+            const options = values[type];
+            const nextIndex = (options.indexOf(current) + 1) % options.length;
+            currentFilters[type] = options[nextIndex];
+
+            const btn = document.getElementById(`filter-${type}`);
+            if (currentFilters[type] !== 'all') {
+                btn.classList.add('filter-btn--active');
+            } else {
+                btn.classList.remove('filter-btn--active');
+            }
+
+            updateClearButton();
+            renderHacks();
+        }
+
+        function clearFilters() {
+            currentFilters = { ...currentFilters, difficulty: 'all', value: 'all', legality: 'all' };
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('filter-btn--active'));
+            updateClearButton();
+            renderHacks();
+        }
+
+        function updateClearButton() {
+            const hasFilters = currentFilters.difficulty !== 'all' ||
+                               currentFilters.value !== 'all' ||
+                               currentFilters.legality !== 'all';
+            document.getElementById('clear-filters').style.display = hasFilters ? 'flex' : 'none';
+        }
+
+        function scrollToHack(hackId) {
+            const hack = allHacks.find(h => h.id === hackId);
+            if (hack) {
+                openModal(hack);
+            }
+        }
+
+        function getLegalityClass(legality) {
+            return { 'fully_legal': 'legal', 'gray_area': 'gray', 'terms_violation': 'violation' }[legality] || 'legal';
+        }
+
+        function formatLegality(legality) {
+            return { 'fully_legal': '100% Legal', 'gray_area': 'Gray Area', 'terms_violation': 'ToS Risk' }[legality] || legality;
+        }
+
+        function renderStars(rating) {
+            const full = Math.floor(rating);
+            return '★'.repeat(full) + (rating % 1 >= 0.5 ? '½' : '');
+        }
+
+        function formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadLibrary);
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+

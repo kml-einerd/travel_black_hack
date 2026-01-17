@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-01-17T18:15:00Z",
+    "description": "Normalized loyalty programs database with valuations"
+  },
+  "currency_types": [
+    {"id": "flexible", "name": "Transferable Points", "icon": "🔄"},
+    {"id": "airline", "name": "Airline Miles", "icon": "✈️"},
+    {"id": "hotel", "name": "Hotel Points", "icon": "🏨"}
+  ],
+  "health_statuses": [
+    {"id": "hot", "name": "Hot", "color": "#EA580C", "description": "Exceptional value right now"},
+    {"id": "healthy", "name": "Healthy", "color": "#15803d", "description": "Stable and reliable"},
+    {"id": "stable", "name": "Stable", "color": "#0D9488", "description": "No significant changes"},
+    {"id": "caution", "name": "Caution", "color": "#B45309", "description": "Watch for changes"},
+    {"id": "declining", "name": "Declining", "color": "#b91c1c", "description": "Losing value"}
+  ],
+  "programs": [
+    {
+      "id": "chase-ur",
+      "name": "Chase Ultimate Rewards",
+      "short_name": "Chase UR",
+      "logo": "../assets/images/cards/chase-sapphire-preferred.webp",
+      "currency_type": "flexible",
+      "current_value": 1.85,
+      "previous_value": 1.80,
+      "change_percent": 2.8,
+      "trend": "up",
+      "all_time_high": 2.10,
+      "all_time_low": 1.50,
+      "health_status": "healthy",
+      "health_rating": 4.7,
+      "analysis": "1.5X PYB categories expanded. Transfer partners remain strong. Excellent value through Hyatt.",
+      "best_uses": [
+        "Hyatt hotels (1.5-2.5¢)",
+        "United Saver awards",
+        "Flying Blue Promo Rewards"
+      ],
+      "transfer_partners": [
+        {"id": "united", "name": "United MileagePlus", "ratio": "1:1", "instant": true},
+        {"id": "hyatt", "name": "World of Hyatt", "ratio": "1:1", "instant": true},
+        {"id": "southwest", "name": "Southwest Rapid Rewards", "ratio": "1:1", "instant": true},
+        {"id": "british-airways", "name": "British Airways Avios", "ratio": "1:1", "instant": true},
+        {"id": "flying-blue", "name": "Air France-KLM Flying Blue", "ratio": "1:1", "instant": true},
+        {"id": "marriott", "name": "Marriott Bonvoy", "ratio": "1:1", "instant": false}
+      ],
+      "earning_cards": ["chase-sapphire-reserve", "chase-sapphire-preferred", "chase-ink-business-preferred"],
+      "historical_data": [
+        {"date": "2025-07", "value": 1.70},
+        {"date": "2025-08", "value": 1.72},
+        {"date": "2025-09", "value": 1.75},
+        {"date": "2025-10", "value": 1.78},
+        {"date": "2025-11", "value": 1.80},
+        {"date": "2025-12", "value": 1.82},
+        {"date": "2026-01", "value": 1.85}
+      ]
+    },
+    {
+      "id": "amex-mr",
+      "name": "Amex Membership Rewards",
+      "short_name": "Amex MR",
+      "logo": "../assets/images/cards/amex-platinum.webp",
+      "currency_type": "flexible",
+      "current_value": 1.65,
+      "previous_value": 1.67,
+      "change_percent": -1.2,
+      "trend": "down",
+      "all_time_high": 2.00,
+      "all_time_low": 1.50,
+      "health_status": "caution",
+      "health_rating": 4.2,
+      "analysis": "Recent Centurion lounge restrictions signal cost-cutting. Watch for potential devaluation.",
+      "best_uses": [
+        "ANA via Virgin Atlantic",
+        "Air France Flying Blue",
+        "British Airways short-hauls"
+      ],
+      "transfer_partners": [
+        {"id": "virgin-atlantic", "name": "Virgin Atlantic Flying Club", "ratio": "1:1", "instant": true},
+        {"id": "british-airways", "name": "British Airways Avios", "ratio": "1:1", "instant": true},
+        {"id": "delta", "name": "Delta SkyMiles", "ratio": "1:1", "instant": true},
+        {"id": "ana", "name": "ANA Mileage Club", "ratio": "1:1", "instant": false},
+        {"id": "flying-blue", "name": "Air France-KLM Flying Blue", "ratio": "1:1", "instant": true},
+        {"id": "hilton", "name": "Hilton Honors", "ratio": "1:2", "instant": true}
+      ],
+      "earning_cards": ["amex-platinum", "amex-gold"],
+      "historical_data": [
+        {"date": "2025-07", "value": 1.75},
+        {"date": "2025-08", "value": 1.73},
+        {"date": "2025-09", "value": 1.70},
+        {"date": "2025-10", "value": 1.68},
+        {"date": "2025-11", "value": 1.68},
+        {"date": "2025-12", "value": 1.67},
+        {"date": "2026-01", "value": 1.65}
+      ]
+    },
+    {
+      "id": "citi-ty",
+      "name": "Citi ThankYou Points",
+      "short_name": "Citi TY",
+      "logo": "../assets/images/cards/citi-premier.webp",
+      "currency_type": "flexible",
+      "current_value": 1.45,
+      "previous_value": 1.45,
+      "change_percent": 0.0,
+      "trend": "stable",
+      "all_time_high": 1.70,
+      "all_time_low": 1.30,
+      "health_status": "stable",
+      "health_rating": 3.8,
+      "analysis": "Stable but limited partner network. Turkish Miles & Smiles and Avianca are standouts.",
+      "best_uses": [
+        "Turkish Miles & Smiles",
+        "Avianca LifeMiles",
+        "JetBlue domestic"
+      ],
+      "transfer_partners": [
+        {"id": "turkish", "name": "Turkish Miles & Smiles", "ratio": "1:1", "instant": true},
+        {"id": "avianca", "name": "Avianca LifeMiles", "ratio": "1:1", "instant": true},
+        {"id": "singapore", "name": "Singapore KrisFlyer", "ratio": "1:1", "instant": true},
+        {"id": "jetblue", "name": "JetBlue TrueBlue", "ratio": "1:1", "instant": true},
+        {"id": "virgin-atlantic", "name": "Virgin Atlantic", "ratio": "1:1", "instant": true}
+      ],
+      "earning_cards": ["citi-premier"],
+      "historical_data": [
+        {"date": "2025-07", "value": 1.40},
+        {"date": "2025-08", "value": 1.42},
+        {"date": "2025-09", "value": 1.45},
+        {"date": "2025-10", "value": 1.45},
+        {"date": "2025-11", "value": 1.45},
+        {"date": "2025-12", "value": 1.45},
+        {"date": "2026-01", "value": 1.45}
+      ]
+    },
+    {
+      "id": "capital-one",
+      "name": "Capital One Miles",
+      "short_name": "Cap One",
+      "logo": "../assets/images/cards/capital-one-venture-x.webp",
+      "currency_type": "flexible",
+      "current_value": 1.35,
+      "previous_value": 1.25,
+      "change_percent": 8.0,
+      "trend": "up",
+      "all_time_high": 1.40,
+      "all_time_low": 1.00,
+      "health_status": "hot",
+      "health_rating": 4.5,
+      "analysis": "Aggressive transfer bonuses (40% Avianca!) making this a top accumulation currency right now.",
+      "best_uses": [
+        "Avianca LifeMiles (w/ bonus)",
+        "Turkish Miles & Smiles",
+        "British Airways Avios"
+      ],
+      "transfer_partners": [
+        {"id": "avianca", "name": "Avianca LifeMiles", "ratio": "1:1", "instant": true},
+        {"id": "turkish", "name": "Turkish Airlines", "ratio": "1:1", "instant": true},
+        {"id": "british-airways", "name": "British Airways", "ratio": "1:1", "instant": true},
+        {"id": "emirates", "name": "Emirates Skywards", "ratio": "1:1", "instant": true},
+        {"id": "singapore", "name": "Singapore KrisFlyer", "ratio": "1:1", "instant": true},
+        {"id": "tap", "name": "TAP Miles&Go", "ratio": "1:1", "instant": true}
+      ],
+      "earning_cards": ["capital-one-venture-x"],
+      "historical_data": [
+        {"date": "2025-07", "value": 1.10},
+        {"date": "2025-08", "value": 1.12},
+        {"date": "2025-09", "value": 1.15},
+        {"date": "2025-10", "value": 1.18},
+        {"date": "2025-11", "value": 1.22},
+        {"date": "2025-12", "value": 1.25},
+        {"date": "2026-01", "value": 1.35}
+      ]
+    },
+    {
+      "id": "hyatt-woh",
+      "name": "World of Hyatt",
+      "short_name": "Hyatt",
+      "logo": "../assets/images/hotels/hyatt-room.webp",
+      "currency_type": "hotel",
+      "current_value": 1.70,
+      "previous_value": 1.65,
+      "change_percent": 3.0,
+      "trend": "up",
+      "all_time_high": 1.80,
+      "all_time_low": 1.40,
+      "health_status": "healthy",
+      "health_rating": 4.6,
+      "analysis": "Best hotel currency by far. Consistent value, great properties, excellent transfer from Chase.",
+      "best_uses": [
+        "Cat 4-6 properties",
+        "All-inclusive resorts",
+        "Suite upgrades with Globalist"
+      ],
+      "transfer_partners": [
+        {"id": "chase-ur", "name": "Chase Ultimate Rewards", "ratio": "1:1", "incoming": true}
+      ],
+      "earning_cards": ["world-of-hyatt-card"],
+      "historical_data": [
+        {"date": "2025-07", "value": 1.55},
+        {"date": "2025-08", "value": 1.58},
+        {"date": "2025-09", "value": 1.60},
+        {"date": "2025-10", "value": 1.62},
+        {"date": "2025-11", "value": 1.65},
+        {"date": "2025-12", "value": 1.65},
+        {"date": "2026-01", "value": 1.70}
+      ]
+    },
+    {
+      "id": "marriott-bonvoy",
+      "name": "Marriott Bonvoy",
+      "short_name": "Marriott",
+      "logo": "../assets/images/hotels/marriott-resort.webp",
+      "currency_type": "hotel",
+      "current_value": 0.65,
+      "previous_value": 0.70,
+      "change_percent": -7.1,
+      "trend": "down",
+      "all_time_high": 1.00,
+      "all_time_low": 0.60,
+      "health_status": "declining",
+      "health_rating": 3.0,
+      "analysis": "Continuous devaluation through category inflation. Peak/off-peak helps but overall value dropping.",
+      "best_uses": [
+        "Off-peak Cat 5-6",
+        "All-inclusive resorts",
+        "Airline transfers (with bonus)"
+      ],
+      "transfer_partners": [
+        {"id": "united", "name": "United MileagePlus", "ratio": "3:1", "instant": false},
+        {"id": "delta", "name": "Delta SkyMiles", "ratio": "3:1", "instant": false},
+        {"id": "american", "name": "American AAdvantage", "ratio": "3:1", "instant": false},
+        {"id": "emirates", "name": "Emirates Skywards", "ratio": "3:1", "instant": false}
+      ],
+      "earning_cards": ["marriott-bonvoy-brilliant", "marriott-bonvoy-boundless"],
+      "historical_data": [
+        {"date": "2025-07", "value": 0.80},
+        {"date": "2025-08", "value": 0.78},
+        {"date": "2025-09", "value": 0.75},
+        {"date": "2025-10", "value": 0.72},
+        {"date": "2025-11", "value": 0.70},
+        {"date": "2025-12", "value": 0.70},
+        {"date": "2026-01", "value": 0.65}
+      ]
+    },
+    {
+      "id": "avianca-lifemiles",
+      "name": "Avianca LifeMiles",
+      "short_name": "LifeMiles",
+      "logo": "../assets/images/travel/aircraft-exterior.webp",
+      "currency_type": "airline",
+      "current_value": 1.40,
+      "previous_value": 1.20,
+      "change_percent": 16.7,
+      "trend": "up",
+      "all_time_high": 1.50,
+      "all_time_low": 0.80,
+      "health_status": "hot",
+      "health_rating": 4.9,
+      "analysis": "With 40% transfer bonuses available, this is THE program to target for Star Alliance awards right now.",
+      "best_uses": [
+        "Star Alliance Business Class",
+        "Lufthansa First Class",
+        "ANA Business Class"
+      ],
+      "transfer_partners": [
+        {"id": "amex-mr", "name": "Amex MR", "ratio": "1:1", "incoming": true},
+        {"id": "citi-ty", "name": "Citi TY", "ratio": "1:1", "incoming": true},
+        {"id": "capital-one", "name": "Capital One", "ratio": "1:1", "incoming": true},
+        {"id": "marriott-bonvoy", "name": "Marriott Bonvoy", "ratio": "3:1", "incoming": true}
+      ],
+      "earning_cards": [],
+      "historical_data": [
+        {"date": "2025-07", "value": 1.10},
+        {"date": "2025-08", "value": 1.12},
+        {"date": "2025-09", "value": 1.15},
+        {"date": "2025-10", "value": 1.18},
+        {"date": "2025-11", "value": 1.18},
+        {"date": "2025-12", "value": 1.20},
+        {"date": "2026-01", "value": 1.40}
+      ]
+    }
+  ]
+}

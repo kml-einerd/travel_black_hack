@@ -1,0 +1,330 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-01-17T18:15:00Z",
+    "description": "Normalized hacks and strategies database"
+  },
+  "categories": [
+    {"id": "earning", "name": "Earning Points", "icon": "💰", "description": "Strategies to maximize point earning"},
+    {"id": "redeeming", "name": "Redeeming Smart", "icon": "🎯", "description": "Getting maximum value from your points"},
+    {"id": "advanced", "name": "Advanced Tactics", "icon": "🥷", "description": "Gray-area strategies and complex moves"},
+    {"id": "beginner", "name": "Beginner-Friendly", "icon": "🌱", "description": "Easy wins for newcomers"},
+    {"id": "status", "name": "Status Hacks", "icon": "👑", "description": "Achieving elite status faster"}
+  ],
+  "difficulty_levels": [
+    {"id": "easy", "name": "Easy", "rating": 1, "color": "#15803d"},
+    {"id": "medium", "name": "Medium", "rating": 2, "color": "#B45309"},
+    {"id": "hard", "name": "Hard", "rating": 3, "color": "#b91c1c"}
+  ],
+  "legality_types": [
+    {"id": "fully_legal", "name": "100% Legal", "icon": "✅", "color": "#15803d"},
+    {"id": "gray_area", "name": "Gray Area", "icon": "⚠️", "color": "#B45309"},
+    {"id": "terms_violation", "name": "Terms Violation", "icon": "❌", "color": "#b91c1c"}
+  ],
+  "hacks": [
+    {
+      "id": "hack-001",
+      "category_id": "earning",
+      "title": "The Grocery Store Gold Mine",
+      "difficulty": "easy",
+      "difficulty_rating": 2,
+      "value_potential": "high",
+      "time_investment": "low",
+      "summary": "Earn 4X-6X points on everyday purchases through grocery store gift card stacking",
+      "steps": [
+        "Get a credit card with bonus category for grocery stores (e.g., Amex Gold 4X, Chase Freedom quarterly 5X)",
+        "Buy gift cards at grocery stores for stores you already shop at (Amazon, Target, gas stations)",
+        "Stack with store loyalty programs and cashback portals",
+        "Use gift cards for normal purchases",
+        "Net result: 4X-6X on purchases that would normally earn 1X"
+      ],
+      "requirements": [
+        "Credit card with grocery bonus category",
+        "Grocery stores that sell gift cards",
+        "Self-control to only buy gift cards you'll actually use"
+      ],
+      "warnings": [
+        "Don't buy more gift cards than you can use",
+        "Some cards exclude gift cards from bonus categories - check T&Cs",
+        "Don't manufacture spending on cards you don't plan to keep"
+      ],
+      "estimated_annual_value": "$600-1,200 in extra points",
+      "legality": "fully_legal",
+      "tags": ["earning", "manufactured-spending", "beginner-friendly", "grocery"],
+      "success_rate": 95,
+      "community_rating": 4.8,
+      "last_verified": "2026-01-14",
+      "related_cards": ["amex-gold", "chase-freedom-flex"]
+    },
+    {
+      "id": "hack-002",
+      "category_id": "redeeming",
+      "title": "Virgin Atlantic ANA Redemption Sweet Spot",
+      "difficulty": "medium",
+      "difficulty_rating": 6,
+      "value_potential": "insane",
+      "time_investment": "medium",
+      "summary": "Book ANA First Class to Japan for 110K Virgin points instead of 165K through ANA direct",
+      "steps": [
+        "Accumulate transferable points (Amex MR, Chase UR, Citi ThankYou)",
+        "Wait for transfer bonuses (Amex regularly offers 25-40% bonuses to Virgin Atlantic)",
+        "Search ANA award space 330 days in advance (opens at midnight Japan time)",
+        "Call Virgin Atlantic to book over the phone (online booking often doesn't work)",
+        "Pay minimal taxes (typically $80-150)",
+        "Enjoy one of the world's best First Class products for a fraction of the cost"
+      ],
+      "requirements": [
+        "110,000 Virgin Atlantic points",
+        "ANA award availability (check 330 days out)",
+        "Flexibility with dates",
+        "Patience for phone booking"
+      ],
+      "warnings": [
+        "ANA space is competitive - book exactly 330 days out",
+        "Virgin phone agents can be inconsistent - HUCA if needed",
+        "Award space to/from Tokyo better than to/from other Japanese cities"
+      ],
+      "estimated_annual_value": "$15,000+ in First Class value",
+      "legality": "fully_legal",
+      "tags": ["redemption", "first-class", "ana", "transfer-partners", "sweet-spot"],
+      "success_rate": 70,
+      "community_rating": 4.9,
+      "last_verified": "2026-01-14",
+      "related_programs": ["amex-mr", "virgin-atlantic"]
+    },
+    {
+      "id": "hack-003",
+      "category_id": "advanced",
+      "title": "The Self-Referral Strategy",
+      "difficulty": "hard",
+      "difficulty_rating": 8,
+      "value_potential": "high",
+      "time_investment": "medium",
+      "summary": "Refer yourself for multiple credit cards using Player 2, earning referral bonuses + SUBs",
+      "steps": [
+        "Have a trusted Player 2 (spouse, partner, family member)",
+        "Get a card with good referral bonuses (e.g., Chase Sapphire cards give 15K-20K per referral)",
+        "Generate your referral link",
+        "Player 2 applies using your referral link",
+        "You earn referral bonus, Player 2 earns welcome bonus",
+        "After 3-6 months, reverse: Player 2 refers you for their next card",
+        "Rinse and repeat with different card families"
+      ],
+      "requirements": [
+        "Trusted Player 2 with good credit",
+        "Both players eligible for cards (under 5/24, etc.)",
+        "Different addresses preferred (but not required)",
+        "Separate finances to avoid scrutiny"
+      ],
+      "warnings": [
+        "Stay under issuer velocity rules (5/24 for Chase, 2/90 for Amex, etc.)",
+        "Don't refer from business to personal or vice versa with same SSN",
+        "Space out applications 2-3 months apart",
+        "Banks may claw back bonuses if abuse detected"
+      ],
+      "estimated_annual_value": "$2,000-4,000 in extra bonuses",
+      "legality": "gray_area",
+      "tags": ["advanced", "referrals", "player-2", "welcome-bonus"],
+      "success_rate": 85,
+      "community_rating": 4.5,
+      "last_verified": "2026-01-14"
+    },
+    {
+      "id": "hack-004",
+      "category_id": "beginner",
+      "title": "Southwest Companion Pass - The Family Hack",
+      "difficulty": "easy",
+      "difficulty_rating": 3,
+      "value_potential": "high",
+      "time_investment": "low",
+      "summary": "Earn Companion Pass through credit card bonuses, get a companion for free on all Southwest flights for up to 2 years",
+      "steps": [
+        "Wait until January or February to start (maximizes CP duration)",
+        "Apply for 2 Southwest credit cards (Personal + Business)",
+        "Meet minimum spend requirements",
+        "Earn 125,000+ qualifying points from SUBs + spend",
+        "Companion Pass activates automatically",
+        "Add companion (can change 3x per year)",
+        "Companion flies free on all Southwest flights for rest of year + next full year"
+      ],
+      "requirements": [
+        "Good credit score (700+)",
+        "Ability to meet minimum spend ($3K-5K per card)",
+        "Under Chase 5/24 for personal cards"
+      ],
+      "warnings": [
+        "Only qualifying points count toward CP (not transferred points)",
+        "Plan timing carefully - apply in January for maximum 24 months",
+        "Companion must be added before booking",
+        "Companion pays taxes/fees (~$5.60 per one-way)"
+      ],
+      "estimated_annual_value": "$2,000-5,000 per year (depends on flight frequency)",
+      "legality": "fully_legal",
+      "tags": ["beginner", "companion-pass", "southwest", "welcome-bonus", "family"],
+      "success_rate": 98,
+      "community_rating": 4.9,
+      "last_verified": "2026-01-14"
+    },
+    {
+      "id": "hack-005",
+      "category_id": "status",
+      "title": "Marriott Platinum Status Challenge",
+      "difficulty": "medium",
+      "difficulty_rating": 5,
+      "value_potential": "medium",
+      "time_investment": "high",
+      "summary": "Fast-track to Marriott Platinum Elite with just 16 nights in 3 months",
+      "steps": [
+        "Call Marriott or email status challenge team",
+        "Request Platinum Status Challenge",
+        "Get instant Platinum Elite status for 90 days",
+        "Complete 16 qualifying nights within 90 days",
+        "Status extended through end of next calendar year",
+        "Earn suite upgrades, lounge access, free breakfast"
+      ],
+      "requirements": [
+        "No current Marriott elite status",
+        "Ability to stay 16 nights in 3 months",
+        "Valid Marriott Bonvoy account"
+      ],
+      "warnings": [
+        "Challenge not always available - call to confirm",
+        "16 nights must be paid or award stays (not points advance)",
+        "Can't do status challenge again for 12 months if you fail",
+        "Some hotels charge resort fees even for elite members"
+      ],
+      "estimated_annual_value": "$1,500-3,000 (suite upgrades, lounge, breakfast)",
+      "legality": "fully_legal",
+      "tags": ["status", "marriott", "platinum", "hotel", "challenge"],
+      "success_rate": 90,
+      "community_rating": 4.6,
+      "last_verified": "2026-01-14"
+    },
+    {
+      "id": "hack-006",
+      "category_id": "earning",
+      "title": "Plastiq Bill Pay Strategy",
+      "difficulty": "medium",
+      "difficulty_rating": 4,
+      "value_potential": "medium",
+      "time_investment": "low",
+      "summary": "Pay rent, mortgage, or other bills with credit cards to hit minimum spends and earn points",
+      "steps": [
+        "Create account on Plastiq or similar service",
+        "Add your credit card",
+        "Set up bill payment (rent, mortgage, tuition, etc.)",
+        "Pay 2.5-3% fee",
+        "Recipient receives check or direct deposit",
+        "Earn points on payment + progress toward minimum spend"
+      ],
+      "requirements": [
+        "Bills that accept check payments",
+        "Credit card with rewards that offset the fee",
+        "Working toward SUB or manufactured spend"
+      ],
+      "warnings": [
+        "Only worth it for SUBs or high-value cards (>3% return)",
+        "Some landlords don't accept Plastiq checks",
+        "Card issuers may code as cash advance - check first",
+        "Plastiq occasionally restricts certain card combinations"
+      ],
+      "estimated_annual_value": "$500-2,000 (depending on rent/mortgage amount)",
+      "legality": "fully_legal",
+      "tags": ["earning", "manufactured-spending", "minimum-spend", "plastiq"],
+      "success_rate": 85,
+      "community_rating": 4.2,
+      "last_verified": "2026-01-14"
+    },
+    {
+      "id": "hack-007",
+      "category_id": "redeeming",
+      "title": "Hidden City Ticketing",
+      "difficulty": "hard",
+      "difficulty_rating": 9,
+      "value_potential": "high",
+      "time_investment": "medium",
+      "summary": "Book flights with connections and get off at the layover city for cheaper fares",
+      "steps": [
+        "Search for flights where connection city is your actual destination",
+        "Book round-trip flight that includes desired city as layover",
+        "Get off at layover city, skip final leg",
+        "Don't check bags (they'll go to final destination)",
+        "Don't do this on return leg (airline will cancel remaining flights)",
+        "Use sparingly with different airlines/accounts"
+      ],
+      "requirements": [
+        "Carry-on luggage only",
+        "One-way or first leg of round-trip only",
+        "Significant price difference to justify risk"
+      ],
+      "warnings": [
+        "VIOLATES airline terms of service",
+        "Frequent flyer account can be shut down",
+        "Can't check bags",
+        "Can't do on return leg or airline cancels rest",
+        "Airlines may ban you if caught repeatedly",
+        "Use tools like Skiplagged at your own risk"
+      ],
+      "estimated_annual_value": "$500-2,000 in flight savings",
+      "legality": "terms_violation",
+      "tags": ["advanced", "risky", "hidden-city", "flights", "skiplagged"],
+      "success_rate": 75,
+      "community_rating": 3.8,
+      "last_verified": "2026-01-14"
+    },
+    {
+      "id": "hack-008",
+      "category_id": "redeeming",
+      "title": "Chase Ultimate Rewards Portal 1.5X Cash Out",
+      "difficulty": "easy",
+      "difficulty_rating": 1,
+      "value_potential": "medium",
+      "time_investment": "low",
+      "summary": "Get 1.5X value on UR points through Pay Yourself Back instead of transferring to partners",
+      "steps": [
+        "Have Chase Sapphire Reserve or Preferred card",
+        "Accumulate Ultimate Rewards points",
+        "Check Pay Yourself Back categories (dining, groceries, gas, etc.)",
+        "Redeem points against eligible purchases at 1.25X (Preferred) or 1.5X (Reserve)",
+        "Get statement credit automatically",
+        "Alternative to transferring to partners when no good redemptions available"
+      ],
+      "requirements": [
+        "Chase Sapphire Reserve (1.5X) or Preferred (1.25X)",
+        "Purchases in eligible PYB categories",
+        "No travel plans or transfer partner sweet spots available"
+      ],
+      "warnings": [
+        "1.5X is often WORSE than transfer partner sweet spots (2X+ value)",
+        "PYB categories change quarterly",
+        "Once redeemed, can't get points back for better redemption",
+        "Travel portal at 1.5X might be better for flights/hotels"
+      ],
+      "estimated_annual_value": "$500-1,500 (vs 1:1 cash out)",
+      "legality": "fully_legal",
+      "tags": ["beginner", "chase", "ultimate-rewards", "cash-out", "redemption"],
+      "success_rate": 100,
+      "community_rating": 4.4,
+      "last_verified": "2026-01-14",
+      "related_cards": ["chase-sapphire-reserve", "chase-sapphire-preferred"]
+    }
+  ],
+  "filters": {
+    "difficulty": [
+      {"value": "easy", "label": "Easy"},
+      {"value": "medium", "label": "Medium"},
+      {"value": "hard", "label": "Hard"}
+    ],
+    "value_potential": [
+      {"value": "low", "label": "Low Value"},
+      {"value": "medium", "label": "Medium Value"},
+      {"value": "high", "label": "High Value"},
+      {"value": "insane", "label": "Insane Value"}
+    ],
+    "legality": [
+      {"value": "fully_legal", "label": "100% Legal"},
+      {"value": "gray_area", "label": "Gray Area"},
+      {"value": "terms_violation", "label": "Terms Violation"}
+    ]
+  }
+}
