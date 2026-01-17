@@ -9,8 +9,8 @@
         content="Real-time points and miles valuations. Track program health, transfer bonuses, and market trends.">
 
     <!-- Design System -->
-    <link rel="stylesheet" href="../css/camping-design-system.css">
-    <link rel="stylesheet" href="../css/camping-components.css">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -19,20 +19,22 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        /* ===== White/Light Mode Override ===== */
+        /* ===== Design System Integration ===== */
         :root {
-            --page-bg: #FAFAFA;
+            --page-bg: #fafaf9;
             --card-bg: #FFFFFF;
-            --text-primary: #101828;
-            --text-secondary: #344054;
-            --text-muted: #667085;
-            --border-color: #E4E7EC;
-            --accent-green: #0BA457;
-            --accent-orange: #DF5030;
-            --chart-gradient-1: #0BA457;
-            --chart-gradient-2: #10B981;
-            --chart-gradient-3: #34D399;
-            --chart-gradient-4: #6EE7B7;
+            --text-primary: #1c1917;
+            --text-secondary: #44403c;
+            --text-muted: #78716c;
+            --border-color: #e7e5e4;
+            --accent-primary: #EA580C;
+            --accent-orange: #EA580C;
+            --accent-teal: #0D9488;
+            --navy: #1E3A5F;
+            --chart-gradient-1: #EA580C;
+            --chart-gradient-2: #F97316;
+            --chart-gradient-3: #0D9488;
+            --chart-gradient-4: #14B8A6;
         }
 
         body {
@@ -73,7 +75,7 @@
         }
 
         .nav-back:hover {
-            color: var(--accent-green);
+            color: var(--accent-orange);
         }
 
         .nav-meta {
@@ -85,11 +87,11 @@
             border-radius: 20px;
         }
 
-        /* Hero Section - Light Theme */
+        /* Hero Section - Orange Premium Theme */
         .tracker-hero {
             position: relative;
             padding: 48px;
-            background: linear-gradient(135deg, #0BA457 0%, #059669 100%);
+            background: linear-gradient(135deg, var(--navy) 0%, #15293F 100%);
             border-radius: 24px;
             color: white;
             overflow: hidden;
@@ -184,7 +186,7 @@
         }
 
         .timeframe-btn--active {
-            color: #0BA457;
+            color: var(--accent-orange);
             background: white;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
@@ -251,7 +253,7 @@
         }
 
         .section-title i {
-            color: var(--accent-green);
+            color: var(--accent-orange);
         }
 
         /* Transfer Bonuses Section */
@@ -282,12 +284,12 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--accent-green), #10B981);
+            background: linear-gradient(90deg, var(--accent-teal), #14B8A6);
         }
 
         .bonus-card:hover {
-            border-color: var(--accent-green);
-            box-shadow: 0 12px 40px rgba(11, 164, 87, 0.15);
+            border-color: var(--accent-teal);
+            box-shadow: 0 12px 40px rgba(13, 148, 136, 0.15);
             transform: translateY(-4px);
         }
 
@@ -311,7 +313,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 40px;
             font-weight: 800;
-            color: var(--accent-green);
+            color: var(--accent-orange);
             line-height: 1;
         }
 
@@ -347,7 +349,7 @@
             padding: 12px;
             border-radius: 10px;
             margin-bottom: 16px;
-            border-left: 3px solid var(--accent-green);
+            border-left: 3px solid var(--accent-teal);
         }
 
         .bonus-card__countdown {
@@ -364,7 +366,7 @@
         }
 
         .bonus-card__countdown i {
-            color: var(--accent-green);
+            color: var(--accent-teal);
         }
 
         .bonus-card__countdown--urgent {
@@ -397,7 +399,7 @@
         }
 
         .program-card:hover {
-            border-color: var(--accent-green);
+            border-color: var(--accent-teal);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
@@ -706,14 +708,14 @@
         }
 
         .btn--primary {
-            background: var(--accent-green);
+            background: var(--accent-orange);
             color: white;
         }
 
         .btn--primary:hover {
-            background: #099A4F;
+            background: #C2410C;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(11, 164, 87, 0.3);
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
         }
 
         .btn--outline {
@@ -723,8 +725,8 @@
         }
 
         .btn--outline:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
         }
 
         .btn--sm {
@@ -827,6 +829,21 @@
                 </div>
             </div>
         </header>
+
+        <!-- Context Section -->
+        <section style="margin-bottom: 48px; background: white; border-radius: 16px; padding: 32px; border: 1px solid var(--border-color);">
+            <div style="max-width: 900px;">
+                <h2 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="info" class="icon icon--md" style="color: var(--accent-orange);"></i>
+                    Como usar o Miles Tracker
+                </h2>
+                <div style="display: grid; gap: 16px; color: var(--text-secondary); line-height: 1.7; font-size: 15px;">
+                    <p>O <strong>Miles Tracker</strong> monitora em tempo real o valor das principais moedas de pontos e milhas, permitindo que você tome decisões informadas sobre quando transferir, acumular ou queimar seus pontos.</p>
+                    <p>📊 Os <strong>gráficos de valuação</strong> mostram tendências históricas e ajudam a identificar o momento ideal para maximizar o valor dos seus pontos. Valores abaixo de 1.5¢/ponto geralmente não compensam - prefira usar portais de cashback.</p>
+                    <p>🎁 Os <strong>bônus de transferência</strong> são oportunidades limitadas onde você recebe pontos extras ao transferir entre programas. Um bônus de 30-40% pode transformar 100K pontos em 130K-140K, abrindo novas possibilidades de resgate.</p>
+                </div>
+            </div>
+        </section>
 
         <!-- Active Transfer Bonuses -->
         <section class="bonuses-section">

@@ -4,70 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hot Deals Flash - MilesAI</title>
+  <title>Hot Deals Flash - Miles Intelligence</title>
+  <meta name="description" content="Time-sensitive travel deals and opportunities. Premium credit cards, award flights, and hotel offers.">
 
-  <!-- Fonts matching UI_ref style -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap"
-    rel="stylesheet">
+  <!-- Design System -->
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* ===== UI_REF STYLE SYSTEM ===== */
+    /* ===== Premium Hot Deals Design ===== */
     :root {
-      /* Cores do UI_ref - Camping/Outdoor Premium */
-      --forest-green: #0D5B28;
-      --forest-dark: #1A4730;
-      --forest-light: #0BA457;
-      --accent-orange: #DF5030;
-      --white: #FFFFFF;
-      --cream: #F5F5F0;
-      --stone-100: #F5F5F4;
-      --stone-200: #E7E5E4;
-      --text-dark: #1C1917;
-      --text-secondary: #57534E;
-      --text-muted: #A8A29E;
-
-      /* Glassmorphism */
-      --glass-bg: rgba(255, 255, 255, 0.92);
-      --glass-bg-dark: rgba(26, 71, 48, 0.85);
-      --glass-border: rgba(255, 255, 255, 0.25);
-      --glass-blur: blur(16px);
-
-      /* Shadows */
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
-      --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.12);
-
-      /* Borders */
-      --radius-pill: 100px;
-      --radius-card: 20px;
-      --radius-button: 12px;
-
-      /* Fonts */
-      --font-main: 'DM Sans', -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      --orange-primary: #EA580C;
+      --orange-hover: #C2410C;
+      --orange-light: #FFF7ED;
+      --navy: #1E3A5F;
+      --navy-dark: #15293F;
+      --teal: #0D9488;
+      --teal-light: #F0FDFA;
+      --gold: #B45309;
+      --gold-light: #FEF3C7;
     }
 
     body {
-      font-family: var(--font-main);
-      background: var(--cream);
-      color: var(--text-dark);
+      background: #fafaf9;
       min-height: 100vh;
     }
 
-    /* ===== HERO SECTION (Similar to UI_ref header) ===== */
+    /* ===== HERO SECTION (Navy gradient) ===== */
     .hero-section {
       position: relative;
-      padding: 24px 32px 48px;
-      background: linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-green) 100%);
+      padding: 32px 32px 64px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
       overflow: hidden;
     }
 
@@ -75,20 +45,26 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      background: radial-gradient(circle at top right, rgba(234, 88, 12, 0.1), transparent 50%);
       pointer-events: none;
     }
 
-    /* Nav Back */
+    .hero-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
     .nav-back {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
       font-weight: 500;
       font-size: 14px;
-      text-decoration: none;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       transition: all 0.2s;
     }
 
@@ -97,35 +73,80 @@
       transform: translateX(-4px);
     }
 
-    /* Hero Content */
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
     .hero-title {
-      font-size: 42px;
-      font-weight: 700;
+      font-size: 48px;
+      font-weight: 800;
       color: white;
-      margin-bottom: 8px;
+      margin: 0 0 12px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
+      letter-spacing: -0.02em;
     }
 
     .hero-title i {
-      color: var(--accent-orange);
+      color: var(--orange-primary);
     }
 
     .hero-subtitle {
-      font-size: 17px;
-      color: rgba(255, 255, 255, 0.75);
-      margin-bottom: 28px;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 32px;
+      max-width: 600px;
     }
 
-    /* ===== FILTER PILLS (Exactly like UI_ref) ===== */
+    /* Advanced Filters */
+    .filters-advanced {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .filter-dropdown {
+      position: relative;
+    }
+
+    .filter-select {
+      width: 100%;
+      padding: 12px 40px 12px 16px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      appearance: none;
+      transition: all 0.2s;
+    }
+
+    .filter-select:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .filter-select option {
+      background: var(--navy);
+      color: white;
+    }
+
+    .filter-dropdown::after {
+      content: '';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid rgba(255, 255, 255, 0.7);
+      pointer-events: none;
+    }
+
+    /* Filter Pills */
     .filter-pills {
       display: flex;
       gap: 10px;
@@ -137,7 +158,7 @@
       align-items: center;
       gap: 8px;
       padding: 10px 18px;
-      border-radius: var(--radius-pill);
+      border-radius: 100px;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
@@ -146,47 +167,46 @@
     }
 
     .filter-pill--active {
-      background: var(--forest-light);
+      background: var(--orange-primary);
       color: white;
+      box-shadow: 0 4px 16px rgba(234, 88, 12, 0.3);
     }
 
     .filter-pill--inactive {
-      background: var(--glass-bg);
-      color: var(--text-dark);
-      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      color: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .filter-pill--inactive:hover {
-      background: white;
+      background: rgba(255, 255, 255, 0.25);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .filter-pill i {
-      width: 16px;
-      height: 16px;
     }
 
     /* ===== MAIN CONTENT ===== */
     .main-content {
       max-width: 1200px;
-      margin: 0 auto;
-      padding: 32px;
-      margin-top: -24px;
+      margin: -40px auto 0;
+      padding: 0 32px 48px;
       position: relative;
       z-index: 2;
     }
 
-    /* ===== SECTION HEADER ===== */
+    /* Featured Deals Grid */
+    .featured-section {
+      margin-bottom: 48px;
+    }
+
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .section-title {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -194,182 +214,190 @@
     }
 
     .section-title i {
-      color: var(--accent-orange);
-      width: 22px;
-      height: 22px;
+      color: var(--orange-primary);
     }
 
-    .sort-select {
-      padding: 10px 16px;
-      border-radius: var(--radius-button);
-      border: 1px solid var(--stone-200);
-      font-size: 13px;
-      font-weight: 500;
+    .view-toggle {
+      display: flex;
+      gap: 8px;
       background: white;
-      cursor: pointer;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid #e7e5e4;
     }
 
-    /* ===== FEATURED GRID (1 Hero + 2 Secondary) ===== */
+    .toggle-btn {
+      padding: 8px 16px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #78716c;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toggle-btn--active {
+      background: var(--orange-primary);
+      color: white;
+    }
+
+    /* Featured Grid: 1 Large + 2 Medium */
     .featured-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: 1.6fr 1fr;
       gap: 24px;
-      margin-bottom: 40px;
     }
 
-    /* HERO CARD - Like "Your Camp" in UI_ref */
-    .hero-card {
+    /* Hero Deal Card (Large) */
+    .deal-hero {
       grid-row: span 2;
       position: relative;
-      border-radius: var(--radius-card);
+      border-radius: 24px;
       overflow: hidden;
-      background: var(--text-dark);
-      min-height: 480px;
+      background: #1c1917;
+      min-height: 520px;
+      transition: transform 0.3s;
     }
 
-    .hero-card__image {
+    .deal-hero:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .deal-hero__image {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s;
     }
 
-    .hero-card:hover .hero-card__image {
+    .deal-hero:hover .deal-hero__image {
       transform: scale(1.05);
     }
 
-    .hero-card__overlay {
+    .deal-hero__overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.75) 100%);
     }
 
-    .hero-card__badge {
+    .deal-hero__badges {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 24px;
+      left: 24px;
+      right: 24px;
       display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      background: var(--accent-orange);
-      border-radius: var(--radius-pill);
-      color: white;
+      justify-content: space-between;
+      align-items: flex-start;
+      z-index: 2;
+    }
+
+    .badge {
+      padding: 8px 16px;
+      border-radius: 100px;
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .hero-card__content {
+    .badge--urgent {
+      background: var(--orange-primary);
+      color: white;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .badge--value {
+      background: var(--gold);
+      color: white;
+    }
+
+    .deal-hero__content {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 28px;
+      padding: 32px;
       z-index: 2;
     }
 
-    /* Glassmorphism title overlay (like UI_ref) */
-    .hero-card__title-box {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-radius: 16px;
-      padding: 20px 24px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-card);
-    }
-
-    .hero-card__category {
+    .deal-hero__category {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      color: white;
       font-size: 11px;
       font-weight: 700;
-      color: var(--forest-green);
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 6px;
+      margin-bottom: 12px;
     }
 
-    .hero-card__title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.3;
-    }
-
-    /* Metrics row (like Temperature/Distance in UI_ref) */
-    .hero-card__metrics {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 20px;
-    }
-
-    .metric {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .deal-hero__title {
+      font-size: 32px;
+      font-weight: 800;
       color: white;
+      line-height: 1.2;
+      margin-bottom: 12px;
     }
 
-    .metric__icon {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      border-radius: 10px;
+    .deal-hero__desc {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 500px;
     }
 
-    .metric__icon i {
-      width: 18px;
-      height: 18px;
-    }
-
-    .metric__value {
-      font-family: var(--font-mono);
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .metric__label {
-      font-size: 12px;
-      opacity: 0.8;
-    }
-
-    .hero-card__footer {
+    .deal-hero__footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .date-info {
+    .deal-expiry {
       display: flex;
       align-items: center;
       gap: 8px;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 14px;
+      font-weight: 500;
     }
 
-    .date-info i {
+    .deal-expiry i {
       width: 16px;
       height: 16px;
     }
 
-    /* CTA Button (Orange like UI_ref) */
     .btn-cta {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 24px;
-      background: var(--accent-orange);
-      color: white;
+      padding: 14px 28px;
+      background: white;
+      color: var(--navy);
       border: none;
-      border-radius: var(--radius-button);
-      font-size: 14px;
+      border-radius: 12px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
@@ -377,207 +405,229 @@
     }
 
     .btn-cta:hover {
-      background: #C84428;
+      background: var(--orange-primary);
+      color: white;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(223, 80, 48, 0.35);
+      box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4);
     }
 
-    /* ===== SECONDARY CARDS (Stacked) ===== */
-    .secondary-stack {
+    /* Medium Deal Cards */
+    .deal-cards-stack {
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
 
-    .secondary-card {
+    .deal-card {
       position: relative;
       background: white;
-      border-radius: var(--radius-card);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: var(--shadow-card);
+      border: 1px solid #e7e5e4;
       transition: all 0.3s;
     }
 
-    .secondary-card:hover {
+    .deal-card:hover {
+      border-color: var(--orange-primary);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
       transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
     }
 
-    .secondary-card__image-wrap {
+    .deal-card__image-wrap {
       position: relative;
-      height: 120px;
+      height: 140px;
       overflow: hidden;
+      background: #f5f5f4;
     }
 
-    .secondary-card__image {
+    .deal-card__image {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s;
     }
 
-    .secondary-card:hover .secondary-card__image {
+    .deal-card:hover .deal-card__image {
       transform: scale(1.08);
     }
 
-    .secondary-card__badge {
+    .deal-card__badge {
       position: absolute;
       top: 12px;
       right: 12px;
-      padding: 5px 12px;
-      background: var(--forest-green);
-      border-radius: var(--radius-pill);
+      padding: 6px 12px;
+      background: var(--teal);
       color: white;
+      border-radius: 100px;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
     }
 
-    /* Title overlay box (glassmorphism like UI_ref) */
-    .secondary-card__title-overlay {
-      position: absolute;
-      bottom: -24px;
-      left: 16px;
-      right: 16px;
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-radius: 12px;
-      padding: 14px 18px;
+    .deal-card__content {
+      padding: 20px;
+    }
+
+    .deal-card__category {
+      font-size: 11px;
       font-weight: 700;
-      font-size: 15px;
-      box-shadow: var(--shadow-card);
-      z-index: 2;
+      color: var(--orange-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
     }
 
-    .secondary-card__content {
-      padding: 44px 20px 20px;
+    .deal-card__title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1c1917;
+      line-height: 1.3;
+      margin-bottom: 8px;
     }
 
-    .secondary-card__desc {
-      font-size: 13px;
-      color: var(--text-secondary);
+    .deal-card__desc {
+      font-size: 14px;
+      color: #57534e;
       line-height: 1.6;
       margin-bottom: 16px;
     }
 
-    .secondary-card__footer {
+    .deal-card__footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .value-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 12px;
-      background: #ECFDF5;
-      color: var(--forest-green);
-      border-radius: 8px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .action-link {
+    .deal-value {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .deal-expiry-compact {
       font-size: 13px;
-      font-weight: 600;
-      color: var(--forest-green);
-      text-decoration: none;
-      transition: gap 0.2s;
+      color: #78716c;
     }
 
-    .action-link:hover {
-      gap: 8px;
-    }
-
-    /* ===== LIST SECTION ===== */
-    .list-section {
-      margin-bottom: 40px;
-    }
-
-    .list-container {
+    /* ===== MORE DEALS SECTION (Compact & Expandable) ===== */
+    .more-deals-section {
       background: white;
-      border-radius: var(--radius-card);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
+      border: 1px solid #e7e5e4;
     }
 
-    .list-item {
-      display: grid;
-      grid-template-columns: 56px 1fr auto auto;
-      gap: 18px;
+    .more-deals-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid #e7e5e4;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--stone-100);
+    }
+
+    .more-deals-title {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .more-deals-title i {
+      color: var(--teal);
+    }
+
+    .sort-dropdown {
+      padding: 10px 16px;
+      background: #fafaf9;
+      border: 1px solid #e7e5e4;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Compact Deal List */
+    .deal-list {
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    .deal-list-item {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 20px 28px;
+      border-bottom: 1px solid #f5f5f4;
       transition: all 0.2s;
       cursor: pointer;
     }
 
-    .list-item:last-of-type {
+    .deal-list-item:last-child {
       border-bottom: none;
     }
 
-    .list-item:hover {
-      background: var(--stone-100);
-      padding-left: 28px;
+    .deal-list-item:hover {
+      background: #fafaf9;
+      padding-left: 32px;
     }
 
-    .list-item__icon {
-      width: 56px;
-      height: 56px;
+    .deal-icon {
+      width: 64px;
+      height: 64px;
       border-radius: 14px;
-      background: var(--stone-100);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      background: #f5f5f4;
     }
 
-    .list-item__icon img {
+    .deal-icon img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 14px;
     }
 
-    .list-item__info {
+    .deal-info {
+      flex: 1;
       min-width: 0;
     }
 
-    .list-item__title {
-      font-weight: 600;
+    .deal-info__title {
       font-size: 15px;
-      margin-bottom: 3px;
+      font-weight: 600;
+      color: #1c1917;
+      margin-bottom: 4px;
     }
 
-    .list-item__desc {
+    .deal-info__meta {
+      display: flex;
+      gap: 12px;
       font-size: 13px;
-      color: var(--text-muted);
+      color: #78716c;
     }
 
-    .list-item__value {
-      font-family: var(--font-mono);
+    .deal-list-value {
+      text-align: right;
+    }
+
+    .deal-list-value__amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
       font-weight: 700;
-      font-size: 15px;
-      color: var(--forest-green);
-      text-align: right;
+      color: var(--orange-primary);
     }
 
-    .list-item__date {
-      font-size: 13px;
-      color: var(--text-muted);
-      min-width: 90px;
-      text-align: right;
-    }
-
-    .list-item__date--urgent {
-      color: var(--accent-orange);
-      font-weight: 600;
+    .deal-list-value__expiry {
+      font-size: 12px;
+      color: #a8a29e;
+      margin-top: 2px;
     }
 
     .show-more-btn {
@@ -587,83 +637,78 @@
       gap: 10px;
       width: 100%;
       padding: 18px;
-      background: var(--stone-100);
+      background: #fafaf9;
       border: none;
-      border-top: 1px solid var(--stone-200);
+      border-top: 1px solid #e7e5e4;
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: var(--navy);
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .show-more-btn:hover {
-      background: var(--stone-200);
-      color: var(--forest-green);
+      background: var(--orange-light);
+      color: var(--orange-primary);
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* Responsive */
     @media (max-width: 1024px) {
       .featured-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero-card {
+      .deal-hero {
         grid-row: auto;
-        min-height: 400px;
+        min-height: 420px;
       }
 
-      .secondary-stack {
+      .deal-cards-stack {
         flex-direction: row;
       }
 
-      .secondary-card {
+      .deal-card {
         flex: 1;
       }
     }
 
     @media (max-width: 768px) {
       .hero-section {
-        padding: 20px 16px 40px;
+        padding: 24px 16px 48px;
       }
 
       .main-content {
-        padding: 24px 16px;
+        padding: 0 16px 32px;
       }
 
       .hero-title {
         font-size: 32px;
       }
 
-      .secondary-stack {
+      .filters-advanced {
+        grid-template-columns: 1fr;
+      }
+
+      .deal-cards-stack {
         flex-direction: column;
       }
 
-      .filter-pills {
-        gap: 8px;
-      }
-
-      .filter-pill {
-        padding: 8px 14px;
-        font-size: 13px;
-      }
-
-      .list-item {
-        grid-template-columns: 48px 1fr;
+      .deal-list-item {
+        grid-template-columns: 56px 1fr;
         gap: 12px;
       }
 
-      .list-item__value,
-      .list-item__date {
+      .deal-list-value {
         grid-column: 2;
         text-align: left;
+        margin-top: 8px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- HERO SECTION (Dark green like UI_ref) -->
+  <!-- HERO SECTION -->
   <section class="hero-section">
     <div class="hero-content">
       <a href="../INDICE_COMPLETO.html" class="nav-back">
@@ -672,32 +717,70 @@
       </a>
 
       <h1 class="hero-title">
-        <i data-lucide="zap" style="width: 36px; height: 36px;"></i>
+        <i data-lucide="zap" style="width: 42px; height: 42px;"></i>
         Hot Deals Flash
       </h1>
-      <p class="hero-subtitle">Time-sensitive opportunities — discover and book before they expire</p>
+      <p class="hero-subtitle">Time-sensitive opportunities in credit cards, award flights, and luxury hotels. Updated in real-time.</p>
 
-      <!-- Filter Pills (like Nearby/Lakes/Rivers in UI_ref) -->
+      <!-- Advanced Filters -->
+      <div class="filters-advanced">
+        <div class="filter-dropdown">
+          <select class="filter-select">
+            <option>All Categories</option>
+            <option>Transfer Bonuses</option>
+            <option>Credit Cards</option>
+            <option>Award Flights</option>
+            <option>Hotels</option>
+          </select>
+        </div>
+        <div class="filter-dropdown">
+          <select class="filter-select">
+            <option>Expiring: Any Time</option>
+            <option>Next 24 hours</option>
+            <option>Next 3 days</option>
+            <option>Next week</option>
+            <option>Next month</option>
+          </select>
+        </div>
+        <div class="filter-dropdown">
+          <select class="filter-select">
+            <option>Value: Any</option>
+            <option>$500+ Value</option>
+            <option>$1,000+ Value</option>
+            <option>$2,500+ Value</option>
+          </select>
+        </div>
+        <div class="filter-dropdown">
+          <select class="filter-select">
+            <option>Sort: Ending Soon</option>
+            <option>Sort: Highest Value</option>
+            <option>Sort: Newest</option>
+            <option>Sort: Most Popular</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Filter Pills -->
       <div class="filter-pills">
         <button class="filter-pill filter-pill--active">
-          <i data-lucide="flame"></i>
+          <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
           All Deals
         </button>
         <button class="filter-pill filter-pill--inactive">
-          <i data-lucide="repeat"></i>
-          Transfer Bonuses
+          <i data-lucide="credit-card" style="width: 14px; height: 14px;"></i>
+          Cards
         </button>
         <button class="filter-pill filter-pill--inactive">
-          <i data-lucide="credit-card"></i>
-          Card Offers
+          <i data-lucide="plane" style="width: 14px; height: 14px;"></i>
+          Flights
         </button>
         <button class="filter-pill filter-pill--inactive">
-          <i data-lucide="plane"></i>
-          Award Flights
-        </button>
-        <button class="filter-pill filter-pill--inactive">
-          <i data-lucide="building"></i>
+          <i data-lucide="building" style="width: 14px; height: 14px;"></i>
           Hotels
+        </button>
+        <button class="filter-pill filter-pill--inactive">
+          <i data-lucide="repeat" style="width: 14px; height: 14px;"></i>
+          Transfers
         </button>
       </div>
     </div>
@@ -705,109 +788,96 @@
 
   <!-- MAIN CONTENT -->
   <main class="main-content">
-    <!-- FEATURED SECTION -->
-    <section>
+    <!-- FEATURED DEALS -->
+    <section class="featured-section">
       <div class="section-header">
         <h2 class="section-title">
-          <i data-lucide="star"></i>
+          <i data-lucide="star" style="width: 24px; height: 24px;"></i>
           Featured Deals
         </h2>
+        <div class="view-toggle">
+          <button class="toggle-btn toggle-btn--active">
+            <i data-lucide="grid-2x2" style="width: 14px; height: 14px;"></i>
+            Grid
+          </button>
+          <button class="toggle-btn">
+            <i data-lucide="list" style="width: 14px; height: 14px;"></i>
+            List
+          </button>
+        </div>
       </div>
 
       <div class="featured-grid">
-        <!-- HERO CARD (Large, like "Your Camp" card) -->
-        <article class="hero-card">
-          <img src="../images/cards/amex-platinum.webp" alt="Amex Transfer Bonus" class="hero-card__image"
-            onerror="this.style.background='linear-gradient(135deg, #0D5B28, #1A4730)';">
-          <div class="hero-card__overlay"></div>
-          <span class="hero-card__badge">
-            <i data-lucide="clock" style="width: 12px; height: 12px;"></i>
-            Ending Soon
-          </span>
+        <!-- HERO DEAL (Large) -->
+        <article class="deal-hero">
+          <img src="../images/travel/ana-first-class.webp" alt="ANA First Class" class="deal-hero__image"
+            onerror="this.style.background='linear-gradient(135deg, #1E3A5F, #EA580C)';">
+          <div class="deal-hero__overlay"></div>
 
-          <div class="hero-card__content">
-            <!-- Glassmorphism title box -->
-            <div class="hero-card__title-box">
-              <div class="hero-card__category">Transfer Bonus</div>
-              <h3 class="hero-card__title">Amex 40% Transfer Bonus to Avianca LifeMiles</h3>
-            </div>
+          <div class="deal-hero__badges">
+            <span class="badge badge--urgent">
+              <i data-lucide="clock" style="width: 12px; height: 12px;"></i>
+              Ends in 48h
+            </span>
+            <span class="badge badge--value">$18,000 Value</span>
+          </div>
 
-            <!-- Metrics (like Temperature/Distance) -->
-            <div class="hero-card__metrics">
-              <div class="metric">
-                <div class="metric__icon"><i data-lucide="trending-up"></i></div>
-                <div>
-                  <div class="metric__value">$600</div>
-                  <div class="metric__label">Extra Value</div>
-                </div>
-              </div>
-              <div class="metric">
-                <div class="metric__icon"><i data-lucide="timer"></i></div>
-                <div>
-                  <div class="metric__value">3d</div>
-                  <div class="metric__label">Remaining</div>
-                </div>
-              </div>
-              <div class="metric">
-                <div class="metric__icon"><i data-lucide="percent"></i></div>
-                <div>
-                  <div class="metric__value">40%</div>
-                  <div class="metric__label">Bonus</div>
-                </div>
-              </div>
-            </div>
+          <div class="deal-hero__content">
+            <span class="deal-hero__category">Award Flight</span>
+            <h3 class="deal-hero__title">ANA First Class JFK-Tokyo Wide Open</h3>
+            <p class="deal-hero__desc">Multiple March dates with 2-4 seats available. Book with Virgin Atlantic miles after Amex 40% transfer bonus for just 77K points.</p>
 
-            <div class="hero-card__footer">
-              <div class="date-info">
+            <div class="deal-hero__footer">
+              <div class="deal-expiry">
                 <i data-lucide="calendar"></i>
-                Valid until Jan 20, 2026
+                <span>Book by <strong>January 20, 2026</strong></span>
               </div>
               <a href="#" class="btn-cta">
-                Transfer Now
+                Check Availability
                 <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
               </a>
             </div>
           </div>
         </article>
 
-        <!-- SECONDARY CARDS (Stacked) -->
-        <div class="secondary-stack">
-          <article class="secondary-card">
-            <div class="secondary-card__image-wrap">
-              <span class="secondary-card__badge">Hot</span>
-              <img src="../images/travel/ana-first-class.webp" alt="ANA First Class" class="secondary-card__image"
-                onerror="this.style.background='linear-gradient(135deg, #0D5B28, #059669)';">
-              <div class="secondary-card__title-overlay">ANA First Class JFK-NRT Wide Open</div>
+        <!-- MEDIUM DEALS (Stack) -->
+        <div class="deal-cards-stack">
+          <article class="deal-card">
+            <div class="deal-card__image-wrap">
+              <span class="deal-card__badge">Hot</span>
+              <img src="../images/cards/chase-sapphire.webp" alt="Chase Sapphire" class="deal-card__image"
+                onerror="this.style.background='linear-gradient(135deg, #1E40AF, #3B82F6)';">
             </div>
-            <div class="secondary-card__content">
-              <p class="secondary-card__desc">2-4 seats available on multiple March dates. Book with 110K Virgin
-                Atlantic miles.</p>
-              <div class="secondary-card__footer">
-                <span class="value-badge">$18,000</span>
-                <a href="#" class="action-link">
-                  Check Availability
-                  <i data-lucide="chevron-right" style="width: 14px; height: 14px;"></i>
-                </a>
+            <div class="deal-card__content">
+              <div class="deal-card__category">Credit Card</div>
+              <h4 class="deal-card__title">Chase Ink Preferred 100K Bonus</h4>
+              <p class="deal-card__desc">Highest ever public offer. Business card, no revenue verification required.</p>
+              <div class="deal-card__footer">
+                <span class="deal-value">
+                  <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
+                  $1,250
+                </span>
+                <span class="deal-expiry-compact">Until Mar 15</span>
               </div>
             </div>
           </article>
 
-          <article class="secondary-card">
-            <div class="secondary-card__image-wrap">
-              <span class="secondary-card__badge">New</span>
-              <img src="../images/cards/chase-sapphire.webp" alt="Chase Card" class="secondary-card__image"
-                onerror="this.style.background='linear-gradient(135deg, #1E40AF, #3B82F6)';">
-              <div class="secondary-card__title-overlay">Chase Ink Preferred 100K Offer</div>
+          <article class="deal-card">
+            <div class="deal-card__image-wrap">
+              <span class="deal-card__badge">New</span>
+              <img src="../images/cards/amex-platinum.webp" alt="Amex" class="deal-card__image"
+                onerror="this.style.background='linear-gradient(135deg, #B45309, #EA580C)';">
             </div>
-            <div class="secondary-card__content">
-              <p class="secondary-card__desc">Highest ever public offer. Business card with no revenue verification
-                required.</p>
-              <div class="secondary-card__footer">
-                <span class="value-badge">$1,250</span>
-                <a href="#" class="action-link">
-                  Apply Now
-                  <i data-lucide="chevron-right" style="width: 14px; height: 14px;"></i>
-                </a>
+            <div class="deal-card__content">
+              <div class="deal-card__category">Transfer Bonus</div>
+              <h4 class="deal-card__title">Amex 40% to Avianca LifeMiles</h4>
+              <p class="deal-card__desc">Perfect for Star Alliance redemptions. Transform 100K MR into 140K miles.</p>
+              <div class="deal-card__footer">
+                <span class="deal-value">
+                  <i data-lucide="gift" style="width: 16px; height: 16px;"></i>
+                  $600
+                </span>
+                <span class="deal-expiry-compact">Until Jan 25</span>
               </div>
             </div>
           </article>
@@ -815,96 +885,121 @@
       </div>
     </section>
 
-    <!-- LIST SECTION -->
-    <section class="list-section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i data-lucide="list"></i>
+    <!-- MORE DEALS (Compact List) -->
+    <section class="more-deals-section">
+      <div class="more-deals-header">
+        <h2 class="more-deals-title">
+          <i data-lucide="list-checks" style="width: 22px; height: 22px;"></i>
           More Deals
         </h2>
-        <select class="sort-select">
+        <select class="sort-dropdown">
           <option>Sort: Ending Soon</option>
           <option>Sort: Highest Value</option>
           <option>Sort: Newest</option>
         </select>
       </div>
 
-      <div class="list-container">
-        <div class="list-item">
-          <div class="list-item__icon">
+      <div class="deal-list">
+        <div class="deal-list-item">
+          <div class="deal-icon">
             <img src="../images/hotels/hyatt-room.webp" alt="Hyatt"
-              onerror="this.parentElement.innerHTML='<i data-lucide=\" hotel\"
-              style=\"width:24px;height:24px;color:#A8A29E\"></i>'; lucide.createIcons();">
+              onerror="this.innerHTML='<i data-lucide=building style=width:28px;height:28px;color:#78716c></i>'; lucide.createIcons();">
           </div>
-          <div class="list-item__info">
-            <div class="list-item__title">Hyatt Points + Cash: 50% Bonus Points Back</div>
-            <div class="list-item__desc">Book with points and cash, get half refunded</div>
+          <div class="deal-info">
+            <div class="deal-info__title">Hyatt Points + Cash: 50% Bonus Points Back</div>
+            <div class="deal-info__meta">
+              <span>🏨 Hotels</span>
+              <span>•</span>
+              <span>Book with points and cash, get half refunded</span>
+            </div>
           </div>
-          <div class="list-item__value">Up to 15K</div>
-          <div class="list-item__date">Until Feb 28</div>
+          <div class="deal-list-value">
+            <div class="deal-list-value__amount">Up to 15K pts</div>
+            <div class="deal-list-value__expiry">Until Feb 28</div>
+          </div>
         </div>
 
-        <div class="list-item">
-          <div class="list-item__icon">
-            <img src="../images/travel/maldives-beach.webp" alt="Mistake Fare"
-              onerror="this.parentElement.innerHTML='<i data-lucide=\" plane\"
-              style=\"width:24px;height:24px;color:#A8A29E\"></i>'; lucide.createIcons();">
+        <div class="deal-list-item">
+          <div class="deal-icon">
+            <img src="../images/travel/maldives-beach.webp" alt="Maldives"
+              onerror="this.innerHTML='<i data-lucide=plane style=width:28px;height:28px;color:#78716c></i>'; lucide.createIcons();">
           </div>
-          <div class="list-item__info">
-            <div class="list-item__title">MISTAKE FARE: LA to Bali $287 RT</div>
-            <div class="list-item__desc">Qatar Airways — normally $1,200+</div>
+          <div class="deal-info">
+            <div class="deal-info__title">MISTAKE FARE: LA to Bali $287 RT</div>
+            <div class="deal-info__meta">
+              <span>✈️ Award Flight</span>
+              <span>•</span>
+              <span>Qatar Airways — normally $1,200+</span>
+            </div>
           </div>
-          <div class="list-item__value">$913 saved</div>
-          <div class="list-item__date list-item__date--urgent">Book now!</div>
+          <div class="deal-list-value">
+            <div class="deal-list-value__amount">$913 saved</div>
+            <div class="deal-list-value__expiry" style="color: #EA580C; font-weight: 600;">Book NOW!</div>
+          </div>
         </div>
 
-        <div class="list-item">
-          <div class="list-item__icon">
-            <img src="../images/cards/citi-thankyou.webp" alt="Citi"
-              onerror="this.parentElement.innerHTML='<i data-lucide=\" credit-card\"
-              style=\"width:24px;height:24px;color:#A8A29E\"></i>'; lucide.createIcons();">
-          </div>
-          <div class="list-item__info">
-            <div class="list-item__title">Citi 30% Transfer to Turkish Miles&Smiles</div>
-            <div class="list-item__desc">Star Alliance business class sweet spot</div>
-          </div>
-          <div class="list-item__value">$450 value</div>
-          <div class="list-item__date">Until Feb 15</div>
-        </div>
-
-        <div class="list-item">
-          <div class="list-item__icon">
+        <div class="deal-list-item">
+          <div class="deal-icon">
             <img src="../images/travel/singapore-suites.webp" alt="Singapore"
-              onerror="this.parentElement.innerHTML='<i data-lucide=\" plane\"
-              style=\"width:24px;height:24px;color:#A8A29E\"></i>'; lucide.createIcons();">
+              onerror="this.innerHTML='<i data-lucide=plane style=width:28px;height:28px;color:#78716c></i>'; lucide.createIcons();">
           </div>
-          <div class="list-item__info">
-            <div class="list-item__title">Singapore Suites LAX-SIN Open</div>
-            <div class="list-item__desc">Rare A380 Suites availability</div>
+          <div class="deal-info">
+            <div class="deal-info__title">Singapore Suites LAX-SIN Open</div>
+            <div class="deal-info__meta">
+              <span>✈️ Award Flight</span>
+              <span>•</span>
+              <span>Rare A380 Suites availability</span>
+            </div>
           </div>
-          <div class="list-item__value">$25,000</div>
-          <div class="list-item__date">Book by Feb 1</div>
+          <div class="deal-list-value">
+            <div class="deal-list-value__amount">$25,000</div>
+            <div class="deal-list-value__expiry">Book by Feb 1</div>
+          </div>
         </div>
 
-        <div class="list-item">
-          <div class="list-item__icon">
+        <div class="deal-list-item">
+          <div class="deal-icon">
+            <img src="../images/cards/capital-one-venture-x.webp" alt="Citi"
+              onerror="this.innerHTML='<i data-lucide=credit-card style=width:28px;height:28px;color:#78716c></i>'; lucide.createIcons();">
+          </div>
+          <div class="deal-info">
+            <div class="deal-info__title">Citi 30% Transfer to Turkish Miles&Smiles</div>
+            <div class="deal-info__meta">
+              <span>🔄 Transfer Bonus</span>
+              <span>•</span>
+              <span>Star Alliance business class sweet spot</span>
+            </div>
+          </div>
+          <div class="deal-list-value">
+            <div class="deal-list-value__amount">$450 value</div>
+            <div class="deal-list-value__expiry">Until Feb 15</div>
+          </div>
+        </div>
+
+        <div class="deal-list-item">
+          <div class="deal-icon">
             <img src="../images/hotels/marriott-resort.webp" alt="Marriott"
-              onerror="this.parentElement.innerHTML='<i data-lucide=\" building\"
-              style=\"width:24px;height:24px;color:#A8A29E\"></i>'; lucide.createIcons();">
+              onerror="this.innerHTML='<i data-lucide=building style=width:28px;height:28px;color:#78716c></i>'; lucide.createIcons();">
           </div>
-          <div class="list-item__info">
-            <div class="list-item__title">Marriott Buy Points: 60% Bonus</div>
-            <div class="list-item__desc">Best rate of the year</div>
+          <div class="deal-info">
+            <div class="deal-info__title">Marriott Buy Points: 60% Bonus</div>
+            <div class="deal-info__meta">
+              <span>🏨 Hotels</span>
+              <span>•</span>
+              <span>Best rate of the year - effective 0.7¢/pt</span>
+            </div>
           </div>
-          <div class="list-item__value">0.7¢/pt</div>
-          <div class="list-item__date">Until Jan 31</div>
+          <div class="deal-list-value">
+            <div class="deal-list-value__amount">0.7¢/pt</div>
+            <div class="deal-list-value__expiry">Until Jan 31</div>
+          </div>
         </div>
-
-        <button class="show-more-btn">
-          Show More Deals
-          <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
-        </button>
       </div>
+
+      <button class="show-more-btn">
+        <span>Show 10 More Deals</span>
+        <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
     </section>
   </main>
 
@@ -921,6 +1016,24 @@
         pill.classList.remove('filter-pill--inactive');
         pill.classList.add('filter-pill--active');
       });
+    });
+
+    // View toggle
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('toggle-btn--active'));
+        btn.classList.add('toggle-btn--active');
+      });
+    });
+
+    // Show more functionality
+    document.querySelector('.show-more-btn').addEventListener('click', function() {
+      this.textContent = 'Loading...';
+      setTimeout(() => {
+        this.innerHTML = '<span>All deals loaded</span><i data-lucide="check" style="width: 16px; height: 16px;"></i>';
+        lucide.createIcons();
+        this.disabled = true;
+      }, 800);
     });
   </script>
 </body>
