@@ -1,0 +1,474 @@
+{
+    "portal_config": {
+        "title": "The Briefing Room",
+        "subtitle": "Miles & Points Intelligence · Financial Authority Format",
+        "version": "4.0.0",
+        "last_updated": "2026-01-16T17:00:00Z"
+    },
+    "tabs": [
+        {
+            "id": "miles-and-points",
+            "label": "Miles & Points",
+            "icon": "trending-up",
+            "badge": "🔥",
+            "description": "Breaking news on transfer bonuses, program changes, and award availability"
+        },
+        {
+            "id": "cards",
+            "label": "Cards",
+            "icon": "credit-card",
+            "badge": "💳",
+            "description": "New launches, benefit updates, and limited-time offers"
+        },
+        {
+            "id": "content",
+            "label": "Content",
+            "icon": "book-open",
+            "badge": "📖",
+            "description": "Evergreen guides, strategies, and educational content"
+        }
+    ],
+    "miles_and_points": [
+        {
+            "id": "mp-001",
+            "type": "breaking",
+            "priority": "critical",
+            "headline": "Capital One 40% Avianca Bonus ENDS TONIGHT",
+            "dateline": "JAN 16, 2026 • 14:32 EST",
+            "summary": "The best transfer bonus of 2026 expires at midnight. Transfer now or regret it for months. This 40% bonus to Avianca LifeMiles unlocks Star Alliance sweet spots at historic lows.",
+            "image": "../images/travel/aircraft-exterior.webp",
+            "expires_at": "2026-01-17T00:00:00Z",
+            "category": "transfer_bonus",
+            "impact_level": "critical",
+            "action_required": true,
+            "details": {
+                "bonus_percentage": 40,
+                "from_program": "Capital One Miles",
+                "to_program": "Avianca LifeMiles",
+                "sweet_spots": [
+                    "USA-Europe Business: 63K (normally 87K)",
+                    "USA-Asia Business: 87.5K (normally 115K)",
+                    "Short-haul Europe: 5.25K (normally 7K)"
+                ]
+            },
+            "cta": {
+                "text": "Transfer Now",
+                "url": "#",
+                "urgency": "critical"
+            }
+        },
+        {
+            "id": "mp-002",
+            "type": "breaking",
+            "priority": "urgent",
+            "headline": "Amex MR 25% Bonus to British Airways — Ends Jan 31",
+            "dateline": "JAN 16, 2026 • 10:15 EST",
+            "summary": "American Express is offering a 25% transfer bonus to British Airways Avios through the end of January. Perfect for transatlantic premium cabin bookings.",
+            "image": "../images/travel/airbus-a380.webp",
+            "expires_at": "2026-01-31T23:59:59Z",
+            "category": "transfer_bonus",
+            "impact_level": "high",
+            "action_required": true,
+            "details": {
+                "bonus_percentage": 25,
+                "from_program": "Amex Membership Rewards",
+                "to_program": "British Airways Avios",
+                "sweet_spots": [
+                    "NYC-London Business: 50K Avios",
+                    "Off-peak domestic: 7.5K Avios",
+                    "Partner awards on JAL, Qatar"
+                ]
+            },
+            "cta": {
+                "text": "View Details",
+                "url": "#",
+                "urgency": "high"
+            }
+        },
+        {
+            "id": "mp-003",
+            "type": "program_update",
+            "priority": "high",
+            "headline": "United MileagePlus Announces Dynamic Pricing Pause",
+            "dateline": "JAN 15, 2026 • 16:45 EST",
+            "summary": "In a surprise move, United will pause dynamic pricing increases through Q1 2026 following member backlash. Saver awards remain available at traditional levels.",
+            "image": "../images/travel/boeing-787.webp",
+            "expires_at": null,
+            "category": "program_change",
+            "impact_level": "high",
+            "action_required": false,
+            "details": {
+                "affected_program": "United MileagePlus",
+                "change_type": "positive",
+                "effective_date": "2026-01-15",
+                "key_points": [
+                    "Dynamic pricing paused through March 31",
+                    "Saver awards guaranteed at published rates",
+                    "Review of pricing algorithm underway"
+                ]
+            },
+            "cta": {
+                "text": "Read Analysis",
+                "url": "#",
+                "urgency": "medium"
+            }
+        },
+        {
+            "id": "mp-004",
+            "type": "award_alert",
+            "priority": "urgent",
+            "headline": "Singapore Suites Space Released: JFK-SIN February",
+            "dateline": "JAN 16, 2026 • 08:00 EST",
+            "summary": "Two seats in Singapore's legendary Suites product have been released for February dates. Book via KrisFlyer for 86K miles or transfer partners. These will go FAST.",
+            "image": "../images/travel/singapore-suites.webp",
+            "expires_at": "2026-01-16T20:00:00Z",
+            "category": "award_availability",
+            "impact_level": "critical",
+            "action_required": true,
+            "details": {
+                "route": "JFK → FRA → SIN",
+                "airline": "Singapore Airlines",
+                "cabin": "Suites (Double Bed)",
+                "available_dates": [
+                    "Feb 8",
+                    "Feb 12"
+                ],
+                "miles_required": 86000,
+                "cpp_value": "25.6¢"
+            },
+            "cta": {
+                "text": "Book Immediately",
+                "url": "#",
+                "urgency": "critical"
+            }
+        },
+        {
+            "id": "mp-005",
+            "type": "deal_alert",
+            "priority": "high",
+            "headline": "Hyatt Points + Cash: 50% Bonus Points Back on Stays",
+            "dateline": "JAN 14, 2026 • 11:30 EST",
+            "summary": "World of Hyatt's new promotion gives you half your points back when booking Points + Cash rates. Valid for stays through March 31, 2026.",
+            "image": "../images/hotels/hyatt-room.webp",
+            "expires_at": "2026-03-31T23:59:59Z",
+            "category": "hotel_promo",
+            "impact_level": "medium",
+            "action_required": true,
+            "details": {
+                "program": "World of Hyatt",
+                "promotion_type": "Points back",
+                "max_refund": "15,000 points per stay",
+                "booking_window": "Now through March 31"
+            },
+            "cta": {
+                "text": "Register Now",
+                "url": "#",
+                "urgency": "medium"
+            }
+        },
+        {
+            "id": "mp-006",
+            "type": "market_analysis",
+            "priority": "medium",
+            "headline": "Weekly Transfer Bonus Roundup: 7 Active Offers",
+            "dateline": "JAN 16, 2026 • 09:00 EST",
+            "summary": "We're seeing a historic concentration of transfer bonuses across all major programs. Here's the complete breakdown and our recommendation on which to prioritize.",
+            "image": "../images/news/market-analysis.webp",
+            "expires_at": null,
+            "category": "analysis",
+            "impact_level": "high",
+            "action_required": false,
+            "details": {
+                "active_bonuses": 7,
+                "top_pick": "Capital One → Avianca (40%)",
+                "runner_up": "Amex → British Airways (25%)",
+                "best_for_beginners": "Chase → Flying Blue (25%)"
+            },
+            "cta": {
+                "text": "Full Analysis",
+                "url": "#",
+                "urgency": "low"
+            }
+        }
+    ],
+    "cards": [
+        {
+            "id": "card-001",
+            "type": "card_launch",
+            "priority": "high",
+            "headline": "NEW: Capital One Venture X Business Launches Today",
+            "dateline": "JAN 16, 2026 • 06:00 EST",
+            "summary": "Capital One enters the premium business card arena with a blockbuster 150K mile welcome bonus. Unlimited 2X earning, lounge access, and a $395 annual fee that's easily offset.",
+            "image": "../images/cards/capital-one-venture-x.webp",
+            "expires_at": null,
+            "category": "new_card",
+            "impact_level": "high",
+            "action_required": false,
+            "card_details": {
+                "card_name": "Venture X Business",
+                "issuer": "Capital One",
+                "welcome_bonus": "150,000 Miles",
+                "annual_fee": "$395",
+                "spend_requirement": "$15,000 in 6 months",
+                "key_benefits": [
+                    "Unlimited 2X on all purchases",
+                    "10X on hotels/cars via portal",
+                    "$300 annual travel credit",
+                    "Plaza Premium lounge access",
+                    "TSA PreCheck/Global Entry credit"
+                ],
+                "our_rating": 4.8,
+                "best_for": [
+                    "Business travelers",
+                    "High spenders",
+                    "Entrepreneurs"
+                ]
+            },
+            "cta": {
+                "text": "Full Review",
+                "url": "#"
+            }
+        },
+        {
+            "id": "card-002",
+            "type": "benefit_change",
+            "priority": "critical",
+            "headline": "⚠️ BREAKING: Amex Platinum Lounge Access Restricted",
+            "dateline": "JAN 15, 2026 • 14:00 EST",
+            "summary": "American Express announces major Centurion Lounge restrictions starting March 1. Platinum cardholders limited to 2 visits/year unless meeting $75K annual spend threshold.",
+            "image": "../images/travel/centurion-lounge.webp",
+            "expires_at": null,
+            "category": "benefit_downgrade",
+            "impact_level": "critical",
+            "action_required": true,
+            "change_details": {
+                "card_name": "Platinum Card",
+                "issuer": "American Express",
+                "change_type": "negative",
+                "effective_date": "2026-03-01",
+                "old_benefit": "Unlimited Centurion Lounge access + 2 guests",
+                "new_benefit": "2 visits/year unless $75K annual spend",
+                "alternatives": [
+                    "Delta Reserve (unlimited SkyClub)",
+                    "Priority Pass alternatives",
+                    "Consider downgrade to Gold"
+                ]
+            },
+            "cta": {
+                "text": "What To Do",
+                "url": "#"
+            }
+        },
+        {
+            "id": "card-003",
+            "type": "limited_offer",
+            "priority": "urgent",
+            "headline": "Citi Premier 75K — Highest Public Offer, Ends Jan 31",
+            "dateline": "JAN 14, 2026 • 10:00 EST",
+            "summary": "Citi Premier's welcome bonus jumps to 75,000 ThankYou Points (usually 60K). With a $4K spend requirement and $95 annual fee, this is exceptional value.",
+            "image": "../images/cards/citi-premier.webp",
+            "expires_at": "2026-01-31T23:59:59Z",
+            "category": "elevated_offer",
+            "impact_level": "high",
+            "action_required": true,
+            "offer_details": {
+                "card_name": "Citi Premier",
+                "issuer": "Citi",
+                "welcome_bonus": "75,000 ThankYou Points",
+                "annual_fee": "$95",
+                "spend_requirement": "$4,000 in 3 months",
+                "value_estimate": "$1,125 (at 1.5¢/pt)",
+                "key_benefits": [
+                    "3X on travel, gas, restaurants",
+                    "Transfer to airline/hotel partners",
+                    "No foreign transaction fees"
+                ]
+            },
+            "cta": {
+                "text": "Apply Now",
+                "url": "#",
+                "urgency": "high"
+            }
+        },
+        {
+            "id": "card-004",
+            "type": "hidden_gem",
+            "priority": "medium",
+            "headline": "Hidden Gem: US Bank Altitude Reserve — 4.5X on Mobile Wallet",
+            "dateline": "JAN 12, 2026 • 15:30 EST",
+            "summary": "Most underrated premium card in the market. Earn 4.5X on ALL mobile wallet purchases (Apple Pay, Google Pay). Stack with Amex Shop Small for insane multipliers.",
+            "image": "../images/cards/us-bank-altitude-reserve.webp",
+            "expires_at": null,
+            "category": "card_spotlight",
+            "impact_level": "medium",
+            "action_required": false,
+            "card_details": {
+                "card_name": "Altitude Reserve",
+                "issuer": "US Bank",
+                "welcome_bonus": "50,000 points",
+                "annual_fee": "$400",
+                "key_benefits": [
+                    "4.5X on mobile wallet purchases",
+                    "$325 annual travel credit",
+                    "Priority Pass lounge access",
+                    "Points worth 1.5¢ in Real-Time Rewards"
+                ],
+                "why_hidden": "US Bank has strict approval requirements — must have existing relationship"
+            },
+            "cta": {
+                "text": "See Details",
+                "url": "#"
+            }
+        },
+        {
+            "id": "card-005",
+            "type": "benefit_upgrade",
+            "priority": "medium",
+            "headline": "Chase Sapphire Reserve Adds $100 Dining Credit",
+            "dateline": "JAN 13, 2026 • 09:00 EST",
+            "summary": "Starting February 1, Chase Sapphire Reserve adds a $100 annual dining credit on top of the $300 travel credit. Total annual credits now $400 vs $550 annual fee.",
+            "image": "../images/cards/chase-sapphire-reserve.webp",
+            "expires_at": null,
+            "category": "benefit_upgrade",
+            "impact_level": "high",
+            "action_required": false,
+            "change_details": {
+                "card_name": "Sapphire Reserve",
+                "issuer": "Chase",
+                "change_type": "positive",
+                "effective_date": "2026-02-01",
+                "old_benefit": "$300 travel credit only",
+                "new_benefit": "$300 travel + $100 dining credit",
+                "net_impact": "+$100/year value"
+            },
+            "cta": {
+                "text": "Read More",
+                "url": "#"
+            }
+        }
+    ],
+    "content": [
+        {
+            "id": "content-001",
+            "type": "guide",
+            "headline": "The Complete Guide to Companion Passes in 2026",
+            "author": "MilesAI Editorial",
+            "published_at": "2026-01-10T12:00:00Z",
+            "summary": "Everything you need to know about earning and maximizing Southwest Companion Pass, Alaska's Buy One Get One, and other companion ticket benefits.",
+            "image": "../images/travel/boeing-787-dreamliner.webp",
+            "reading_time": "12 min read",
+            "category": "strategy",
+            "difficulty": "beginner",
+            "featured": true,
+            "tags": [
+                "companion-pass",
+                "southwest",
+                "alaska",
+                "strategy"
+            ]
+        },
+        {
+            "id": "content-002",
+            "type": "deep_dive",
+            "headline": "Transfer Partner Sweet Spots: The 2026 Master List",
+            "author": "Jake Morrison",
+            "published_at": "2026-01-08T10:00:00Z",
+            "summary": "A comprehensive database of every sweet spot redemption across all major transfer partners, updated monthly with availability insights.",
+            "image": "../images/evergreen/sweet-spots-map.webp",
+            "reading_time": "25 min read",
+            "category": "redemptions",
+            "difficulty": "intermediate",
+            "featured": true,
+            "tags": [
+                "sweet-spots",
+                "transfer-partners",
+                "award-travel"
+            ]
+        },
+        {
+            "id": "content-003",
+            "type": "tutorial",
+            "headline": "How to Book ANA First Class for $86 in Taxes",
+            "author": "Sarah Chen",
+            "published_at": "2026-01-05T14:00:00Z",
+            "summary": "Step-by-step guide to booking one of the world's best first class products using Virgin Atlantic points transferred from Amex, Chase, or Citi.",
+            "image": "../images/travel/ana-first-class.webp",
+            "reading_time": "8 min read",
+            "category": "tutorial",
+            "difficulty": "intermediate",
+            "featured": false,
+            "tags": [
+                "ana",
+                "first-class",
+                "virgin-atlantic",
+                "japan"
+            ]
+        },
+        {
+            "id": "content-004",
+            "type": "analysis",
+            "headline": "Credit Card Strategy for Beginners: Your First 5 Cards",
+            "author": "MilesAI Editorial",
+            "published_at": "2025-12-28T10:00:00Z",
+            "summary": "The optimal sequence for building a travel rewards card portfolio from scratch. Includes timing strategies, velocity rules, and expected point earnings.",
+            "image": "../images/cards/bilt-mastercard.webp",
+            "reading_time": "15 min read",
+            "category": "strategy",
+            "difficulty": "beginner",
+            "featured": false,
+            "tags": [
+                "beginner",
+                "card-strategy",
+                "5/24",
+                "getting-started"
+            ]
+        },
+        {
+            "id": "content-005",
+            "type": "comparison",
+            "headline": "Chase Sapphire Preferred vs Reserve: 2026 Decision Guide",
+            "author": "David Park",
+            "published_at": "2025-12-20T12:00:00Z",
+            "summary": "Which Sapphire card is right for you? We break down the math, benefits, and use cases to help you decide between CSP and CSR.",
+            "image": "../images/cards/chase-sapphire-preferred.webp",
+            "reading_time": "10 min read",
+            "category": "comparison",
+            "difficulty": "beginner",
+            "featured": false,
+            "tags": [
+                "chase",
+                "sapphire",
+                "comparison",
+                "decision-guide"
+            ]
+        },
+        {
+            "id": "content-006",
+            "type": "guide",
+            "headline": "Manufactured Spending 101: A Responsible Approach",
+            "author": "Anonymous Contributor",
+            "published_at": "2025-12-15T08:00:00Z",
+            "summary": "Understanding the fundamentals of manufactured spending, the risks involved, and ethical considerations for those who want to accelerate point earning.",
+            "image": "../images/evergreen/strategy-advanced.webp",
+            "reading_time": "20 min read",
+            "category": "advanced",
+            "difficulty": "advanced",
+            "featured": false,
+            "tags": [
+                "manufactured-spending",
+                "advanced",
+                "risks"
+            ]
+        }
+    ],
+    "meta": {
+        "total_articles": {
+            "miles_and_points": 6,
+            "cards": 5,
+            "content": 6
+        },
+        "breaking_count": 3,
+        "action_required_count": 5,
+        "last_refresh": "2026-01-16T17:00:00Z"
+    }
+}

@@ -1,0 +1,164 @@
+{
+    "page_config": {
+        "id": "arbitrage-matrix",
+        "title": "The Arbitrage Matrix",
+        "subtitle": "Point Value Arbitrage Trading Terminal",
+        "version": "1.0.0"
+    },
+    "market_open": true,
+    "last_update": "2026-01-16T17:59:00Z",
+    "arbitrage_opportunities": [
+        {
+            "id": "arb-001",
+            "spread_name": "LifeMiles Premium Spread",
+            "status": "ACTIVE",
+            "profit_margin": 68,
+            "buy_side": {
+                "method": "Capital One Miles + 40% Bonus",
+                "effective_cost_cpp": 1.25,
+                "source": "Venture X Sign-up Bonus"
+            },
+            "sell_side": {
+                "method": "Star Alliance Business Class",
+                "effective_value_cpp": 2.10,
+                "example": "JFK-FRA Lufthansa Business"
+            },
+            "volume_available": "HIGH",
+            "complexity": "LOW",
+            "window_closes": "2026-01-25T23:59:59Z",
+            "steps": [
+                "Earn Capital One miles via Venture X (2x on everything)",
+                "Transfer to Avianca LifeMiles with 40% bonus",
+                "Book Star Alliance partner business class"
+            ]
+        },
+        {
+            "id": "arb-002",
+            "spread_name": "Hyatt Sweet Spot Arbitrage",
+            "status": "ACTIVE",
+            "profit_margin": 85,
+            "buy_side": {
+                "method": "Chase UR → Hyatt 1:1",
+                "effective_cost_cpp": 1.85,
+                "source": "Sapphire Preferred 60K Bonus"
+            },
+            "sell_side": {
+                "method": "Park Hyatt Maldives Suite",
+                "effective_value_cpp": 8.00,
+                "example": "5 nights = $12,000 value for 150K points"
+            },
+            "volume_available": "LIMITED",
+            "complexity": "LOW",
+            "window_closes": null,
+            "steps": [
+                "Accumulate Chase Ultimate Rewards",
+                "Transfer 1:1 to World of Hyatt",
+                "Book Cat 7 properties off-peak"
+            ]
+        },
+        {
+            "id": "arb-003",
+            "spread_name": "ANA First via Virgin Atlantic",
+            "status": "ACTIVE",
+            "profit_margin": 120,
+            "buy_side": {
+                "method": "Amex MR → Virgin Atlantic",
+                "effective_cost_cpp": 1.65,
+                "source": "Amex Platinum Retention"
+            },
+            "sell_side": {
+                "method": "ANA First Class JFK-TYO",
+                "effective_value_cpp": 6.50,
+                "example": "One-way: 120K points = $25,000 ticket"
+            },
+            "volume_available": "SCARCE",
+            "complexity": "MEDIUM",
+            "window_closes": null,
+            "steps": [
+                "Call Amex for retention bonus (40K MR typical)",
+                "Transfer to Virgin Atlantic Flying Club",
+                "Book ANA First Class via VA (call required)"
+            ]
+        },
+        {
+            "id": "arb-004",
+            "spread_name": "Qatar QSuite Spread",
+            "status": "ACTIVE",
+            "profit_margin": 75,
+            "buy_side": {
+                "method": "AA Miles Purchase Sale",
+                "effective_cost_cpp": 1.70,
+                "source": "Periodic 40% off sales"
+            },
+            "sell_side": {
+                "method": "Qatar QSuite JFK-DOH",
+                "effective_value_cpp": 4.20,
+                "example": "70K miles = $8,500 one-way"
+            },
+            "volume_available": "MEDIUM",
+            "complexity": "LOW",
+            "window_closes": null,
+            "steps": [
+                "Wait for AA miles purchase sale (40%+ off)",
+                "Purchase at ~1.7cpp",
+                "Book Qatar QSuite via AA"
+            ]
+        },
+        {
+            "id": "arb-005",
+            "spread_name": "Turkish Miles & Smiles Leverage",
+            "status": "PENDING",
+            "profit_margin": 55,
+            "buy_side": {
+                "method": "Citi TY → Turkish +30%",
+                "effective_cost_cpp": 1.12,
+                "source": "Citi Premier + Bonus"
+            },
+            "sell_side": {
+                "method": "Turkish Business Class IST-JFK",
+                "effective_value_cpp": 2.80,
+                "example": "45K miles one-way business"
+            },
+            "volume_available": "HIGH",
+            "complexity": "MEDIUM",
+            "window_closes": "2026-02-10T23:59:59Z",
+            "steps": [
+                "Earn Citi ThankYou Points",
+                "Transfer with 30% bonus to Turkish",
+                "Book on Turkish metal for best availability"
+            ]
+        }
+    ],
+    "market_indices": {
+        "points_market_cap": "$847B",
+        "daily_volume": "$2.3M",
+        "avg_spread": "42%",
+        "best_spread_today": "ANA First 120%"
+    },
+    "trading_signals": [
+        {
+            "signal": "BUY",
+            "currency": "Capital One Miles",
+            "reason": "Avianca 40% bonus creates exceptional entry",
+            "strength": 95
+        },
+        {
+            "signal": "HOLD",
+            "currency": "Chase UR",
+            "reason": "Strong but wait for Hyatt promo",
+            "strength": 70
+        },
+        {
+            "signal": "SELL",
+            "currency": "Marriott Bonvoy",
+            "reason": "Imminent devaluation, burn now",
+            "strength": 82
+        },
+        {
+            "signal": "BUY",
+            "currency": "Amex MR",
+            "reason": "Historically undervalued, accumulate",
+            "strength": 78
+        }
+    ]
+}

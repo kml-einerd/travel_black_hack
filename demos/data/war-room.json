@@ -1,0 +1,138 @@
+{
+    "page_config": {
+        "id": "war-room",
+        "title": "The War Room",
+        "subtitle": "Real-Time Battle Command for Points Warfare",
+        "version": "1.0.0"
+    },
+    "live_radar": {
+        "scanning": true,
+        "threats_detected": 3,
+        "opportunities_detected": 7,
+        "last_scan": "2026-01-16T17:59:00Z"
+    },
+    "active_operations": [
+        {
+            "id": "op-001",
+            "codename": "GOLD RUSH",
+            "type": "transfer_bonus",
+            "status": "ACTIVE",
+            "threat_level": "CRITICAL",
+            "time_to_expiry_hours": 9,
+            "details": {
+                "from": "Capital One",
+                "to": "Avianca LifeMiles",
+                "bonus": "40%",
+                "effective_value": "2.1¢/pt"
+            },
+            "recommended_action": "TRANSFER ALL",
+            "priority_score": 98
+        },
+        {
+            "id": "op-002",
+            "codename": "SWISS PRECISION",
+            "type": "award_availability",
+            "status": "ACTIVE",
+            "threat_level": "HIGH",
+            "time_to_expiry_hours": 24,
+            "details": {
+                "route": "EWR → ZRH",
+                "cabin": "SWISS First Class",
+                "aircraft": "777-300ER",
+                "dates_available": [
+                    "2026-03-15",
+                    "2026-03-18",
+                    "2026-03-22"
+                ],
+                "points_required": "110,000 Aeroplan"
+            },
+            "recommended_action": "BOOK NOW",
+            "priority_score": 92
+        },
+        {
+            "id": "op-003",
+            "codename": "MALDIVE STRIKE",
+            "type": "hotel_deal",
+            "status": "ACTIVE",
+            "threat_level": "HIGH",
+            "time_to_expiry_hours": 72,
+            "details": {
+                "property": "Park Hyatt Maldives",
+                "category": "Premium Suite",
+                "points_per_night": 30000,
+                "cash_value": "$2,400",
+                "cpp_value": "8.0¢"
+            },
+            "recommended_action": "RESERVE",
+            "priority_score": 88
+        }
+    ],
+    "threat_map": [
+        {
+            "program": "Marriott Bonvoy",
+            "threat_type": "DEVALUATION",
+            "severity": "HIGH",
+            "eta_days": 45,
+            "intel": "Category inflation imminent. 15% of properties expected to move up.",
+            "defensive_action": "Burn points now on Cat 5-6 properties"
+        },
+        {
+            "program": "Delta SkyMiles",
+            "threat_type": "AWARD_CHART_CHANGE",
+            "severity": "MEDIUM",
+            "eta_days": 90,
+            "intel": "Dynamic pricing expansion rumored for domestic routes.",
+            "defensive_action": "Book domestic awards before March"
+        },
+        {
+            "program": "Amex Centurion Lounges",
+            "threat_type": "ACCESS_RESTRICTION",
+            "severity": "HIGH",
+            "eta_days": 30,
+            "intel": "Guest policy changes and overcrowding limits expected.",
+            "defensive_action": "Add authorized users before cutoff"
+        }
+    ],
+    "sector_status": {
+        "airlines": {
+            "status": "YELLOW",
+            "active_bonuses": 4,
+            "pending_devals": 2
+        },
+        "hotels": {
+            "status": "RED",
+            "active_bonuses": 2,
+            "pending_devals": 3
+        },
+        "cards": {
+            "status": "GREEN",
+            "new_offers": 5,
+            "clawbacks": 0
+        },
+        "transfer_market": {
+            "status": "GREEN",
+            "avg_bonus": "28%",
+            "best_opportunity": "Avianca +40%"
+        }
+    },
+    "intel_feed": [
+        {
+            "timestamp": "2026-01-16T17:45:00Z",
+            "source": "SIGINT",
+            "message": "Qatar QSuite availability detected JFK-DOH multiple dates Feb-Mar",
+            "priority": "high"
+        },
+        {
+            "timestamp": "2026-01-16T17:30:00Z",
+            "source": "HUMINT",
+            "message": "Community reports United Polaris Lounge EWR reopening ahead of schedule",
+            "priority": "medium"
+        },
+        {
+            "timestamp": "2026-01-16T17:15:00Z",
+            "source": "OSINT",
+            "message": "Chase rumored to announce new premium card at investor day",
+            "priority": "low"
+        }
+    ]
+}

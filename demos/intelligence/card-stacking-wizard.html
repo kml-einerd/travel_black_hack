@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Stacking Wizard - Miles Intelligence</title>
+    <meta name="description" content="Build your optimal credit card portfolio. Drag and drop to maximize earnings.">
+
+    <link rel="stylesheet" href="../css/camping-design-system.css">
+    <link rel="stylesheet" href="../css/camping-components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-orange: #DF5030;
+            --wizard-blue: #3B82F6;
+            --wizard-purple: #8B5CF6;
+        }
+
+        body {
+            background: var(--page-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        body::before {
+            display: none;
+        }
+
+        .wizard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* Header */
+        .wizard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-green);
+        }
+
+        .wizard-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .wizard-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--wizard-blue), var(--wizard-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn--primary {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .btn--outline {
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .btn--outline:hover {
+            border-color: var(--wizard-blue);
+            color: var(--wizard-blue);
+        }
+
+        /* Main Layout */
+        .wizard-main {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 24px;
+            min-height: calc(100vh - 180px);
+        }
+
+        /* Card Library */
+        .card-library {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .library-header {
+            padding: 16px 20px;
+            background: var(--page-bg);
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .library-search {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .library-search input {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .library-search input:focus {
+            outline: none;
+            border-color: var(--wizard-blue);
+        }
+
+        .library-cards {
+            padding: 12px;
+            max-height: 520px;
+            overflow-y: auto;
+        }
+
+        .library-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--page-bg);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            cursor: grab;
+            transition: all 0.2s;
+        }
+
+        .library-card:hover {
+            border-color: var(--wizard-blue);
+            background: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+
+        .library-card:active {
+            cursor: grabbing;
+        }
+
+        .library-card__image {
+            width: 52px;
+            height: 32px;
+            background: linear-gradient(135deg, #E7E5E4, #D6D3D1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .library-card__info {
+            flex: 1;
+        }
+
+        .library-card__name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .library-card__issuer {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Stack Builder */
+        .stack-builder {
+            background: white;
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .builder-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .builder-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .builder-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .stack-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            flex: 1;
+        }
+
+        .stack-slot {
+            position: relative;
+            min-height: 180px;
+            background: var(--page-bg);
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .stack-slot:hover {
+            border-color: var(--wizard-blue);
+            background: rgba(59, 130, 246, 0.02);
+        }
+
+        .stack-slot--filled {
+            border-style: solid;
+            border-color: var(--wizard-purple);
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
+        }
+
+        .slot-placeholder {
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .slot-placeholder-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .slot-placeholder-text {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .slot-card {
+            width: 100%;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .slot-card__image {
+            width: 100px;
+            height: 64px;
+            margin: 0 auto 12px;
+            background: linear-gradient(135deg, #E7E5E4, #D6D3D1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .slot-card__name {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .slot-card__fee {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .slot-card__benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .slot-card__benefit {
+            padding: 4px 8px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .slot-remove {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            background: #EF4444;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .slot-remove:hover {
+            background: #DC2626;
+            transform: scale(1.1);
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .stats-header {
+            padding: 16px 20px;
+            background: var(--page-bg);
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .stats-content {
+            padding: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .stat-value--green { color: #10B981; }
+        .stat-value--blue { color: var(--wizard-blue); }
+        .stat-value--purple { color: var(--wizard-purple); }
+        .stat-value--red { color: #EF4444; }
+
+        .earnings-breakdown {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .breakdown-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .breakdown-bar {
+            width: 100%;
+            height: 28px;
+            background: var(--page-bg);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .breakdown-bar-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .optimize-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--wizard-blue), var(--wizard-purple));
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .optimize-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .wizard-main {
+                grid-template-columns: 1fr;
+            }
+
+            .stack-slots {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wizard-container {
+                padding: 16px;
+            }
+
+            .stack-slots {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wizard-container">
+        <!-- Header -->
+        <header class="wizard-header">
+            <div class="wizard-title">
+                <a href="../INDICE_COMPLETO.html" class="nav-back">
+                    <i data-lucide="arrow-left" class="icon icon--sm"></i>
+                </a>
+                <i data-lucide="layers" class="icon icon--xl" style="color: var(--wizard-blue);"></i>
+                <h1>Card Stacking Wizard</h1>
+            </div>
+            <div>
+                <button class="btn btn--outline">
+                    <i data-lucide="share-2" class="icon icon--sm"></i>
+                    Share Stack
+                </button>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <div class="wizard-main">
+            <!-- Card Library -->
+            <div class="card-library">
+                <div class="library-header">
+                    <i data-lucide="credit-card" class="icon icon--sm"></i>
+                    Card Library
+                </div>
+                <div class="library-search">
+                    <input type="text" placeholder="Search cards..." id="cardSearch">
+                </div>
+                <div class="library-cards" id="cardLibrary">
+                    <div class="library-card" draggable="true" data-card="csp">
+                        <div class="library-card__image">💎</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">Sapphire Preferred</div>
+                            <div class="library-card__issuer">Chase • $95/yr</div>
+                        </div>
+                    </div>
+                    <div class="library-card" draggable="true" data-card="csr">
+                        <div class="library-card__image">🌟</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">Sapphire Reserve</div>
+                            <div class="library-card__issuer">Chase • $550/yr</div>
+                        </div>
+                    </div>
+                    <div class="library-card" draggable="true" data-card="cff">
+                        <div class="library-card__image">🔄</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">Freedom Flex</div>
+                            <div class="library-card__issuer">Chase • $0/yr</div>
+                        </div>
+                    </div>
+                    <div class="library-card" draggable="true" data-card="amex-gold">
+                        <div class="library-card__image">🥇</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">Gold Card</div>
+                            <div class="library-card__issuer">Amex • $250/yr</div>
+                        </div>
+                    </div>
+                    <div class="library-card" draggable="true" data-card="amex-plat">
+                        <div class="library-card__image">⬛</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">Platinum</div>
+                            <div class="library-card__issuer">Amex • $695/yr</div>
+                        </div>
+                    </div>
+                    <div class="library-card" draggable="true" data-card="venture-x">
+                        <div class="library-card__image">✈️</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">Venture X</div>
+                            <div class="library-card__issuer">Capital One • $395/yr</div>
+                        </div>
+                    </div>
+                    <div class="library-card" draggable="true" data-card="bilt">
+                        <div class="library-card__image">🏠</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">Bilt Mastercard</div>
+                            <div class="library-card__issuer">Bilt • $0/yr</div>
+                        </div>
+                    </div>
+                    <div class="library-card" draggable="true" data-card="woh">
+                        <div class="library-card__image">🏨</div>
+                        <div class="library-card__info">
+                            <div class="library-card__name">World of Hyatt</div>
+                            <div class="library-card__issuer">Chase • $95/yr</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stack Builder -->
+            <div class="stack-builder">
+                <div class="builder-header">
+                    <h2 class="builder-title">Your Card Stack</h2>
+                    <p class="builder-subtitle">Click cards to add them to your portfolio</p>
+                </div>
+                <div class="stack-slots" id="stackSlots">
+                    <div class="stack-slot" data-slot="0">
+                        <div class="slot-placeholder">
+                            <div class="slot-placeholder-icon">💳</div>
+                            <div class="slot-placeholder-text">Primary Card</div>
+                        </div>
+                    </div>
+                    <div class="stack-slot" data-slot="1">
+                        <div class="slot-placeholder">
+                            <div class="slot-placeholder-icon">🍽️</div>
+                            <div class="slot-placeholder-text">Dining Card</div>
+                        </div>
+                    </div>
+                    <div class="stack-slot" data-slot="2">
+                        <div class="slot-placeholder">
+                            <div class="slot-placeholder-icon">🛒</div>
+                            <div class="slot-placeholder-text">Grocery Card</div>
+                        </div>
+                    </div>
+                    <div class="stack-slot" data-slot="3">
+                        <div class="slot-placeholder">
+                            <div class="slot-placeholder-icon">✈️</div>
+                            <div class="slot-placeholder-text">Travel Card</div>
+                        </div>
+                    </div>
+                    <div class="stack-slot" data-slot="4">
+                        <div class="slot-placeholder">
+                            <div class="slot-placeholder-icon">🏠</div>
+                            <div class="slot-placeholder-text">Rent Card</div>
+                        </div>
+                    </div>
+                    <div class="stack-slot" data-slot="5">
+                        <div class="slot-placeholder">
+                            <div class="slot-placeholder-icon">➕</div>
+                            <div class="slot-placeholder-text">Add Card</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Panel -->
+            <div class="stats-panel">
+                <div class="stats-header">
+                    <i data-lucide="bar-chart-2" class="icon icon--sm"></i>
+                    Stack Analysis
+                </div>
+                <div class="stats-content">
+                    <div class="stat-row">
+                        <span class="stat-label">Total Annual Fees</span>
+                        <span class="stat-value stat-value--blue" id="totalFees">$0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Est. Annual Points</span>
+                        <span class="stat-value stat-value--purple" id="totalPoints">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Est. Annual Value</span>
+                        <span class="stat-value stat-value--green" id="totalValue">$0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Net Value (After Fees)</span>
+                        <span class="stat-value stat-value--green" id="netValue">$0</span>
+                    </div>
+
+                    <div class="earnings-breakdown">
+                        <div class="breakdown-title">Earning by Category</div>
+                        <div class="breakdown-bar" id="earningsBar">
+                            <div class="breakdown-bar-segment" style="width: 25%; background: #EF4444;">Dining</div>
+                            <div class="breakdown-bar-segment" style="width: 30%; background: #F59E0B;">Travel</div>
+                            <div class="breakdown-bar-segment" style="width: 20%; background: #10B981;">Grocery</div>
+                            <div class="breakdown-bar-segment" style="width: 25%; background: #3B82F6;">Other</div>
+                        </div>
+                    </div>
+
+                    <button class="optimize-btn" onclick="optimize()">
+                        <i data-lucide="sparkles" class="icon icon--sm"></i>
+                        Optimize My Stack
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cards = {
+            'csp': { name: 'Sapphire Preferred', icon: '💎', fee: 95, benefits: ['3x Dining', '2x Travel'] },
+            'csr': { name: 'Sapphire Reserve', icon: '🌟', fee: 550, benefits: ['10x Dining', '3x Travel', 'Lounge'] },
+            'cff': { name: 'Freedom Flex', icon: '🔄', fee: 0, benefits: ['5x Rotating', '3x Dining'] },
+            'amex-gold': { name: 'Gold Card', icon: '🥇', fee: 250, benefits: ['4x Dining', '4x Grocery'] },
+            'amex-plat': { name: 'Platinum', icon: '⬛', fee: 695, benefits: ['5x Flights', 'Centurion'] },
+            'venture-x': { name: 'Venture X', icon: '✈️', fee: 395, benefits: ['2x Everything', 'Lounge'] },
+            'bilt': { name: 'Bilt', icon: '🏠', fee: 0, benefits: ['1x Rent', '3x Dining'] },
+            'woh': { name: 'World of Hyatt', icon: '🏨', fee: 95, benefits: ['5x Hyatt', 'Free Night'] }
+        };
+
+        let stack = [];
+
+        // Click to add to stack
+        document.querySelectorAll('.library-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const cardId = card.dataset.card;
+                addToStack(cardId);
+            });
+        });
+
+        function addToStack(cardId) {
+            if (stack.length >= 6) return;
+            if (stack.includes(cardId)) return;
+
+            stack.push(cardId);
+            renderStack();
+            updateStats();
+        }
+
+        function removeFromStack(index) {
+            stack.splice(index, 1);
+            renderStack();
+            updateStats();
+        }
+
+        function renderStack() {
+            const slots = document.querySelectorAll('.stack-slot');
+
+            slots.forEach((slot, index) => {
+                if (stack[index]) {
+                    const card = cards[stack[index]];
+                    slot.classList.add('stack-slot--filled');
+                    slot.innerHTML = `
+                        <button class="slot-remove" onclick="removeFromStack(${index})">×</button>
+                        <div class="slot-card">
+                            <div class="slot-card__image">${card.icon}</div>
+                            <div class="slot-card__name">${card.name}</div>
+                            <div class="slot-card__fee">$${card.fee}/year</div>
+                            <div class="slot-card__benefits">
+                                ${card.benefits.map(b => `<span class="slot-card__benefit">${b}</span>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    slot.classList.remove('stack-slot--filled');
+                    const placeholders = ['Primary Card', 'Dining Card', 'Grocery Card', 'Travel Card', 'Rent Card', 'Add Card'];
+                    const icons = ['💳', '🍽️', '🛒', '✈️', '🏠', '➕'];
+                    slot.innerHTML = `
+                        <div class="slot-placeholder">
+                            <div class="slot-placeholder-icon">${icons[index]}</div>
+                            <div class="slot-placeholder-text">${placeholders[index]}</div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        function updateStats() {
+            const totalFees = stack.reduce((sum, cardId) => sum + cards[cardId].fee, 0);
+
+            // Estimated points based on average spend
+            const avgSpend = 50000; // $50K annual spend
+            const pointsPerDollar = 2.5; // Average with a good stack
+            const totalPoints = stack.length * avgSpend * pointsPerDollar / stack.length || 0;
+
+            const cpp = 1.8; // Cents per point
+            const totalValue = Math.round(totalPoints * cpp / 100);
+            const netValue = totalValue - totalFees;
+
+            document.getElementById('totalFees').textContent = `$${totalFees}`;
+            document.getElementById('totalPoints').textContent = totalPoints.toLocaleString();
+            document.getElementById('totalValue').textContent = `$${totalValue.toLocaleString()}`;
+            document.getElementById('netValue').textContent = `$${netValue.toLocaleString()}`;
+            document.getElementById('netValue').className = `stat-value ${netValue >= 0 ? 'stat-value--green' : 'stat-value--red'}`;
+        }
+
+        function optimize() {
+            alert('AI Optimization would suggest the best card combination based on your spending patterns!');
+        }
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -10,9 +10,12 @@
       "expires_at": "2026-01-25T23:59:59Z",
       "expires_in_hours": 72,
       "priority": "high",
-      "image": "../images/travel/avianca-lifemiles.jpg",
+      "image": "../images/travel/aircraft-exterior.webp",
       "requirements": "Existing Amex MR cardholder",
-      "best_for": ["Star Alliance awards", "South America travel"],
+      "best_for": [
+        "Star Alliance awards",
+        "South America travel"
+      ],
       "cta_text": "Transfer Now",
       "cta_url": "#",
       "details": {
@@ -36,9 +39,13 @@
       "expires_at": "2026-02-15T23:59:59Z",
       "expires_in_hours": 456,
       "priority": "high",
-      "image": "../images/cards/chase-ink-preferred.png",
+      "image": "../images/cards/chase-ink-business.webp",
       "requirements": "Good credit (700+), business entity (sole proprietor OK)",
-      "best_for": ["Small business owners", "Freelancers", "Side hustlers"],
+      "best_for": [
+        "Small business owners",
+        "Freelancers",
+        "Side hustlers"
+      ],
       "cta_text": "Apply Now",
       "cta_url": "#",
       "details": {
@@ -64,18 +71,32 @@
       "expires_at": "2026-01-20T18:00:00Z",
       "expires_in_hours": 6,
       "priority": "urgent",
-      "image": "../images/travel/cabines-executiva-1.webp",
+      "image": "../images/travel/ana-first-class.webp",
       "requirements": "110K Virgin Atlantic miles + $86 taxes",
-      "best_for": ["Luxury travelers", "Honeymoons", "Special occasions"],
+      "best_for": [
+        "Luxury travelers",
+        "Honeymoons",
+        "Special occasions"
+      ],
       "cta_text": "Check Availability",
       "cta_url": "#",
       "details": {
         "route": "JFK → NRT",
         "airline": "ANA (All Nippon Airways)",
         "cabin": "First Class (The Suite)",
-        "dates_available": ["Mar 15", "Mar 17", "Mar 20", "Mar 22"],
+        "dates_available": [
+          "Mar 15",
+          "Mar 17",
+          "Mar 20",
+          "Mar 22"
+        ],
         "cpp_value": "16.3¢",
-        "amenities": ["Private suite", "Kaiseki dining", "Pajamas", "Amenity kit"]
+        "amenities": [
+          "Private suite",
+          "Kaiseki dining",
+          "Pajamas",
+          "Amenity kit"
+        ]
       },
       "created_at": "2026-01-14T12:00:00Z"
     },
@@ -89,9 +110,13 @@
       "expires_at": "2026-03-31T23:59:59Z",
       "expires_in_hours": 1368,
       "priority": "medium",
-      "image": "../images/hotels/hotel-modern.webp",
+      "image": "../images/hotels/hyatt-room.webp",
       "requirements": "World of Hyatt member (free to join)",
-      "best_for": ["Category 5-7 hotels", "Flexible booking", "Point stretching"],
+      "best_for": [
+        "Category 5-7 hotels",
+        "Flexible booking",
+        "Point stretching"
+      ],
       "cta_text": "Book Now",
       "cta_url": "#",
       "details": {
@@ -112,16 +137,21 @@
       "expires_at": "2026-01-14T18:00:00Z",
       "expires_in_hours": 2,
       "priority": "urgent",
-      "image": "../images/travel/mistake-fare.webp",
+      "image": "../images/travel/boeing-787-dreamliner.webp",
       "requirements": "None - cash fare, anyone can book",
-      "best_for": ["Flexible travelers", "Quick decision makers"],
+      "best_for": [
+        "Flexible travelers",
+        "Quick decision makers"
+      ],
       "cta_text": "Book Immediately",
       "cta_url": "#",
       "details": {
         "route": "LAX → DPS (via DOH)",
         "airline": "Qatar Airways",
         "cabin": "Economy",
-        "dates_available": ["Feb 15-Mar 15 departures"],
+        "dates_available": [
+          "Feb 15-Mar 15 departures"
+        ],
         "ticket_class": "Q class (earns miles)",
         "warning": "May not be honored - book at your own risk"
       },
@@ -137,7 +167,7 @@
       "expires_at": "2026-02-10T23:59:59Z",
       "expires_in_hours": 624,
       "priority": "high",
-      "image": "../images/travel/aeronaves-grande-porte-1.jpg",
+      "image": "../images/travel/airbus-a380.webp",
       "requirements": "Citi ThankYou Points holder",
       "best_for": [
         "Star Alliance Business",
@@ -166,7 +196,7 @@
       "expires_at": "2026-02-28T23:59:59Z",
       "expires_in_hours": 1056,
       "priority": "high",
-      "image": "../images/cards/capital-one-venture-x.avif",
+      "image": "../images/cards/capital-one-venture-x.webp",
       "requirements": "Excellent credit (740+), no 5/24 rule",
       "best_for": [
         "Flexible travelers",
@@ -201,7 +231,7 @@
       "expires_at": "2026-01-16T12:00:00Z",
       "expires_in_hours": 18,
       "priority": "urgent",
-      "image": "../images/travel/cabines-executiva-3.jpg",
+      "image": "../images/travel/singapore-suites.webp",
       "requirements": "86K Singapore KrisFlyer miles + ~$100 taxes",
       "best_for": [
         "Ultimate bucket list",
@@ -237,7 +267,7 @@
       "expires_at": "2026-02-20T23:59:59Z",
       "expires_in_hours": 864,
       "priority": "medium",
-      "image": "../images/hotels/hotel-cali-property.webp",
+      "image": "../images/hotels/marriott-resort.webp",
       "requirements": "Marriott Bonvoy member",
       "best_for": [
         "Topping off accounts",
@@ -266,7 +296,7 @@
       "expires_at": "2026-01-31T23:59:59Z",
       "expires_in_hours": 384,
       "priority": "high",
-      "image": "../images/travel/aeronaves-grande-porte-2.png",
+      "image": "../images/travel/boeing-787.webp",
       "requirements": "Chase Ultimate Rewards cardholder",
       "best_for": [
         "Europe travel",
@@ -295,7 +325,7 @@
       "expires_at": "2026-01-20T23:59:59Z",
       "expires_in_hours": 120,
       "priority": "urgent",
-      "image": "../images/cards/amex-platinum-sapphire.avif",
+      "image": "../images/cards/amex-gold.webp",
       "requirements": "No Amex welcome bonus in last 24 months",
       "best_for": [
         "Foodies",
@@ -331,7 +361,7 @@
       "expires_at": "2026-01-15T16:00:00Z",
       "expires_in_hours": 4,
       "priority": "urgent",
-      "image": "../images/hotels/destino-nyc-skyline.jpg",
+      "image": "../images/destinations/new-york-skyline.webp",
       "requirements": "None - cash fare",
       "best_for": [
         "Japan travelers",
@@ -361,7 +391,7 @@
       "expires_at": "2026-02-28T23:59:59Z",
       "expires_in_hours": 1056,
       "priority": "medium",
-      "image": "../images/travel/cabines-executiva-4.jpg",
+      "image": "../images/travel/emirates-first-shower.webp",
       "requirements": "136K Emirates Skywards or 85K Alaska miles",
       "best_for": [
         "UAE visitors",
@@ -396,7 +426,7 @@
       "expires_at": "2026-04-30T23:59:59Z",
       "expires_in_hours": 2544,
       "priority": "medium",
-      "image": "../images/hotels/hotel-mandarin.webp",
+      "image": "../images/hotels/luxury-hotel-lobby.webp",
       "requirements": "IHG One Rewards member (free)",
       "best_for": [
         "Frequent IHG stayers",
@@ -422,7 +452,7 @@
       "expires_at": "2026-01-31T23:59:59Z",
       "expires_in_hours": 384,
       "priority": "high",
-      "image": "../images/cards/bilt-mastercard.jpeg",
+      "image": "../images/cards/bilt-mastercard.webp",
       "requirements": "Bilt cardholder, pay rent through Bilt",
       "best_for": [
         "Renters",

@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miles Tracker - Real-Time Valuations</title>
+    <meta name="description"
+        content="Real-time points and miles valuations. Track program health, transfer bonuses, and market trends.">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="../css/camping-design-system.css">
+    <link rel="stylesheet" href="../css/camping-components.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* ===== White/Light Mode Override ===== */
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-orange: #DF5030;
+            --chart-gradient-1: #0BA457;
+            --chart-gradient-2: #10B981;
+            --chart-gradient-3: #34D399;
+            --chart-gradient-4: #6EE7B7;
+        }
+
+        body {
+            background: var(--page-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        body::before {
+            display: none;
+        }
+
+        .page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: #F2F4F7;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        /* Hero Section - Light Theme */
+        .tracker-hero {
+            position: relative;
+            padding: 48px;
+            background: linear-gradient(135deg, #0BA457 0%, #059669 100%);
+            border-radius: 24px;
+            color: white;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .tracker-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .tracker-hero__content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tracker-hero__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .tracker-hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .tracker-hero__title {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 12px 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tracker-hero__subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .tracker-hero__timeframe {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px;
+            border-radius: 12px;
+        }
+
+        .timeframe-btn {
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .timeframe-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeframe-btn--active {
+            color: #0BA457;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Market Summary Grid */
+        .market-summary {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .summary-chart {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            height: 280px;
+        }
+
+        .summary-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .summary-stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px 20px;
+            border-left: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .summary-stat__label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+
+        .summary-stat__value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--accent-green);
+        }
+
+        /* Transfer Bonuses Section */
+        .bonuses-section {
+            margin-bottom: 48px;
+        }
+
+        .bonuses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .bonus-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-green), #10B981);
+        }
+
+        .bonus-card:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 12px 40px rgba(11, 164, 87, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .bonus-card--critical::before {
+            background: linear-gradient(90deg, var(--accent-orange), #F59E0B);
+        }
+
+        .bonus-card--critical {
+            border-color: #FED7AA;
+            background: linear-gradient(180deg, #FFF7ED 0%, white 40%);
+        }
+
+        .bonus-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .bonus-card__percent {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--accent-green);
+            line-height: 1;
+        }
+
+        .bonus-card__percent-suffix {
+            font-size: 20px;
+        }
+
+        .bonus-card__route {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .bonus-card__route i {
+            color: var(--text-muted);
+        }
+
+        .bonus-card__description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .bonus-card__recommendation {
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: #F9FAFB;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .bonus-card__countdown {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #F2F4F7;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .bonus-card__countdown i {
+            color: var(--accent-green);
+        }
+
+        .bonus-card__countdown--urgent {
+            background: var(--accent-orange);
+            color: white;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .bonus-card__countdown--urgent i {
+            color: white;
+        }
+
+        /* Program Cards */
+        .programs-section {
+            margin-bottom: 48px;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 24px;
+        }
+
+        .program-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .program-card:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .program-card--hot {
+            border-color: #BBF7D0;
+            background: linear-gradient(180deg, #ECFDF5 0%, white 40%);
+        }
+
+        .program-card--caution {
+            border-color: #FED7AA;
+            background: linear-gradient(180deg, #FFF7ED 0%, white 40%);
+        }
+
+        .program-card--declining {
+            border-color: #FECACA;
+            background: linear-gradient(180deg, #FEF2F2 0%, white 40%);
+        }
+
+        .program-card__header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .program-card__logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            object-fit: cover;
+            background: #F2F4F7;
+            padding: 8px;
+        }
+
+        .program-card__info {
+            flex: 1;
+        }
+
+        .program-card__name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 4px;
+        }
+
+        .program-card__type {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .program-card__value-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .program-card__current-value {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card__value-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .program-card__value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .program-card__value-unit {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .program-card__change {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .program-card__change-value {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .program-card__change-value--up {
+            color: #059669;
+        }
+
+        .program-card__change-value--down {
+            color: #DC2626;
+        }
+
+        .program-card__change-value--stable {
+            color: var(--text-muted);
+        }
+
+        .program-card__chart {
+            height: 80px;
+            margin-bottom: 20px;
+            background: #F9FAFB;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .program-card__analysis {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .program-card__best-uses {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .program-card__use-tag {
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            background: #F2F4F7;
+            border-radius: 100px;
+            color: var(--text-secondary);
+        }
+
+        .program-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .program-card__rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .program-card__rating-stars {
+            color: #F59E0B;
+            font-size: 14px;
+        }
+
+        .program-card__rating-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Market Alerts */
+        .alerts-section {
+            margin-bottom: 48px;
+        }
+
+        .alerts-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .alert-card {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            border-left: 4px solid;
+        }
+
+        .alert-card--opportunity {
+            border-left-color: #059669;
+            background: linear-gradient(90deg, #ECFDF5 0%, white 15%);
+        }
+
+        .alert-card--warning {
+            border-left-color: #F59E0B;
+            background: linear-gradient(90deg, #FFF7ED 0%, white 15%);
+        }
+
+        .alert-card--insight {
+            border-left-color: #3B82F6;
+            background: linear-gradient(90deg, #EFF6FF 0%, white 15%);
+        }
+
+        .alert-card__icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .alert-card--opportunity .alert-card__icon {
+            background: #059669;
+            color: white;
+        }
+
+        .alert-card--warning .alert-card__icon {
+            background: #F59E0B;
+            color: white;
+        }
+
+        .alert-card--insight .alert-card__icon {
+            background: #3B82F6;
+            color: white;
+        }
+
+        .alert-card__content {
+            flex: 1;
+        }
+
+        .alert-card__title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .alert-card__message {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge--success {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .badge--warning {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .badge--danger {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .badge--info {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        .badge--teal {
+            background: #CCFBF1;
+            color: #0D9488;
+        }
+
+        .badge--outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn--primary {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .btn--primary:hover {
+            background: #099A4F;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(11, 164, 87, 0.3);
+        }
+
+        .btn--outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .btn--outline:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .btn--sm {
+            padding: 8px 14px;
+            font-size: 13px;
+        }
+
+        /* Icon sizing */
+        .icon--xs { width: 12px; height: 12px; }
+        .icon--sm { width: 16px; height: 16px; }
+        .icon--md { width: 20px; height: 20px; }
+        .icon--lg { width: 24px; height: 24px; }
+        .icon--xl { width: 32px; height: 32px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .market-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 16px;
+            }
+
+            .tracker-hero {
+                padding: 32px 24px;
+                border-radius: 20px;
+            }
+
+            .tracker-hero__header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .tracker-hero__title {
+                font-size: 28px;
+            }
+
+            .program-card__value {
+                font-size: 32px;
+            }
+
+            .bonuses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="../INDICE_COMPLETO.html" class="nav-back">
+                <i data-lucide="arrow-left" class="icon icon--sm"></i>
+                <span>Back to Home</span>
+            </a>
+            <span class="nav-meta">Miles Intelligence v4.0 • Live Data</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="tracker-hero">
+            <div class="tracker-hero__content">
+                <div class="tracker-hero__header">
+                    <div>
+                        <div class="tracker-hero__badge">
+                            <span class="pulse-dot"></span>
+                            <span>Live Market Data</span>
+                        </div>
+                        <h1 class="tracker-hero__title">
+                            <i data-lucide="bar-chart-2" class="icon icon--xl"></i>
+                            Miles Tracker
+                        </h1>
+                        <p class="tracker-hero__subtitle">
+                            Real-time valuations, transfer bonuses, and market intelligence for points currencies. Make informed decisions with live data.
+                        </p>
+                    </div>
+                    <div class="tracker-hero__timeframe">
+                        <button class="timeframe-btn" data-range="1d">1D</button>
+                        <button class="timeframe-btn" data-range="1w">1W</button>
+                        <button class="timeframe-btn timeframe-btn--active" data-range="1m">1M</button>
+                        <button class="timeframe-btn" data-range="6m">6M</button>
+                        <button class="timeframe-btn" data-range="1y">1Y</button>
+                    </div>
+                </div>
+
+                <div class="market-summary">
+                    <div class="summary-chart">
+                        <canvas id="overviewChart"></canvas>
+                    </div>
+                    <div class="summary-stats" id="summary-stats">
+                        <!-- Dynamic stats -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Active Transfer Bonuses -->
+        <section class="bonuses-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i data-lucide="gift" class="icon icon--lg"></i>
+                    Active Transfer Bonuses
+                </h2>
+                <span class="badge badge--success" id="bonus-count">5 Active</span>
+            </div>
+            <div class="bonuses-grid" id="bonuses-grid">
+                <!-- Dynamic bonuses -->
+            </div>
+        </section>
+
+        <!-- Program Valuations -->
+        <section class="programs-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i data-lucide="trending-up" class="icon icon--lg"></i>
+                    Program Valuations
+                </h2>
+            </div>
+            <div class="programs-grid" id="programs-grid">
+                <!-- Dynamic programs -->
+            </div>
+        </section>
+
+        <!-- Market Alerts -->
+        <section class="alerts-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i data-lucide="bell" class="icon icon--lg"></i>
+                    Market Intelligence
+                </h2>
+            </div>
+            <div class="alerts-grid" id="alerts-grid">
+                <!-- Dynamic alerts -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let trackerData = null;
+        let charts = {};
+
+        async function init() {
+            try {
+                const response = await fetch('../data/miles-tracker.json');
+                trackerData = await response.json();
+
+                renderSummaryStats();
+                renderOverviewChart();
+                renderBonuses();
+                renderPrograms();
+                renderAlerts();
+
+                lucide.createIcons();
+
+                // Update countdowns every second
+                setInterval(updateCountdowns, 1000);
+            } catch (error) {
+                console.error('Failed to load miles tracker:', error);
+                // Show fallback content
+                showFallbackData();
+            }
+        }
+
+        function showFallbackData() {
+            // Fallback when JSON not available
+            document.getElementById('summary-stats').innerHTML = `
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Top Gainer</div>
+                    <div class="summary-stat__value">Chase UR +8.2%</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Average CPP</div>
+                    <div class="summary-stat__value">1.72¢</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Active Bonuses</div>
+                    <div class="summary-stat__value">5</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Market Trend</div>
+                    <div class="summary-stat__value">BULLISH</div>
+                </div>
+            `;
+
+            document.getElementById('bonuses-grid').innerHTML = `
+                <div class="bonus-card bonus-card--critical">
+                    <div class="bonus-card__header">
+                        <div>
+                            <span class="badge badge--warning">Ending Soon</span>
+                        </div>
+                        <div class="bonus-card__percent">40<span class="bonus-card__percent-suffix">%</span></div>
+                    </div>
+                    <div class="bonus-card__route">
+                        <span>Amex MR</span>
+                        <i data-lucide="arrow-right" class="icon icon--sm"></i>
+                        <span>Virgin Atlantic</span>
+                    </div>
+                    <p class="bonus-card__description">Transfer 50K+ points and receive a 40% bonus. Perfect for booking ANA First Class to Japan.</p>
+                    <div class="bonus-card__recommendation">
+                        <strong>Best use:</strong> Book ANA First Class JFK-Tokyo for 110K miles after bonus.
+                    </div>
+                    <div class="bonus-card__countdown bonus-card__countdown--urgent">
+                        <i data-lucide="clock" class="icon icon--sm"></i>
+                        <span>2d 14h remaining</span>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-card__header">
+                        <div>
+                            <span class="badge badge--success">Active</span>
+                        </div>
+                        <div class="bonus-card__percent">30<span class="bonus-card__percent-suffix">%</span></div>
+                    </div>
+                    <div class="bonus-card__route">
+                        <span>Chase UR</span>
+                        <i data-lucide="arrow-right" class="icon icon--sm"></i>
+                        <span>Hyatt</span>
+                    </div>
+                    <p class="bonus-card__description">Quarterly promotion with no minimum transfer. Points transfer instantly.</p>
+                    <div class="bonus-card__recommendation">
+                        <strong>Best use:</strong> Cat 5-7 properties now have exceptional value at 1.9-2.4¢ per point.
+                    </div>
+                    <div class="bonus-card__countdown">
+                        <i data-lucide="clock" class="icon icon--sm"></i>
+                        <span>14d remaining</span>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-card__header">
+                        <div>
+                            <span class="badge badge--success">Active</span>
+                        </div>
+                        <div class="bonus-card__percent">25<span class="bonus-card__percent-suffix">%</span></div>
+                    </div>
+                    <div class="bonus-card__route">
+                        <span>Citi TYP</span>
+                        <i data-lucide="arrow-right" class="icon icon--sm"></i>
+                        <span>Avianca LifeMiles</span>
+                    </div>
+                    <p class="bonus-card__description">Great for Star Alliance redemptions. Book United or Lufthansa for less.</p>
+                    <div class="bonus-card__recommendation">
+                        <strong>Best use:</strong> Book Lufthansa First Class for 87K miles after bonus.
+                    </div>
+                    <div class="bonus-card__countdown">
+                        <i data-lucide="clock" class="icon icon--sm"></i>
+                        <span>21d remaining</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('programs-grid').innerHTML = `
+                <div class="program-card program-card--hot">
+                    <div class="program-card__header">
+                        <img src="../images/core/placeholder.jpg" alt="Chase" class="program-card__logo">
+                        <div class="program-card__info">
+                            <h3 class="program-card__name">Chase Ultimate Rewards</h3>
+                            <span class="program-card__type">Transferable Currency</span>
+                        </div>
+                        <span class="badge badge--success">Hot</span>
+                    </div>
+                    <div class="program-card__value-section">
+                        <div class="program-card__current-value">
+                            <span class="program-card__value-label">Current Value</span>
+                            <span class="program-card__value">2.1<span class="program-card__value-unit">¢/pt</span></span>
+                        </div>
+                        <div class="program-card__change">
+                            <span class="program-card__change-value program-card__change-value--up">
+                                <i data-lucide="trending-up" class="icon icon--sm"></i>
+                                +8.2%
+                            </span>
+                            <span style="font-size: 12px; color: var(--text-muted);">vs last month</span>
+                        </div>
+                    </div>
+                    <div class="program-card__chart">
+                        <canvas id="chart-chase"></canvas>
+                    </div>
+                    <p class="program-card__analysis">Strong transfer partner network with Hyatt and United bonuses driving value. Excellent for premium hotel redemptions.</p>
+                    <div class="program-card__best-uses">
+                        <span class="program-card__use-tag">Hyatt Hotels</span>
+                        <span class="program-card__use-tag">United Flights</span>
+                        <span class="program-card__use-tag">Southwest</span>
+                    </div>
+                    <div class="program-card__footer">
+                        <div class="program-card__rating">
+                            <span class="program-card__rating-stars">★★★★★</span>
+                            <span class="program-card__rating-value">9.2</span>
+                        </div>
+                        <a href="#" class="btn btn--outline btn--sm">View Details</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-card__header">
+                        <img src="../images/core/placeholder.jpg" alt="Amex" class="program-card__logo">
+                        <div class="program-card__info">
+                            <h3 class="program-card__name">Amex Membership Rewards</h3>
+                            <span class="program-card__type">Transferable Currency</span>
+                        </div>
+                        <span class="badge badge--teal">Healthy</span>
+                    </div>
+                    <div class="program-card__value-section">
+                        <div class="program-card__current-value">
+                            <span class="program-card__value-label">Current Value</span>
+                            <span class="program-card__value">1.8<span class="program-card__value-unit">¢/pt</span></span>
+                        </div>
+                        <div class="program-card__change">
+                            <span class="program-card__change-value program-card__change-value--up">
+                                <i data-lucide="trending-up" class="icon icon--sm"></i>
+                                +3.4%
+                            </span>
+                            <span style="font-size: 12px; color: var(--text-muted);">vs last month</span>
+                        </div>
+                    </div>
+                    <div class="program-card__chart">
+                        <canvas id="chart-amex"></canvas>
+                    </div>
+                    <p class="program-card__analysis">Best airline transfer options with frequent bonuses to partners like Virgin and British Airways.</p>
+                    <div class="program-card__best-uses">
+                        <span class="program-card__use-tag">ANA First Class</span>
+                        <span class="program-card__use-tag">Virgin Atlantic</span>
+                        <span class="program-card__use-tag">BA Avios</span>
+                    </div>
+                    <div class="program-card__footer">
+                        <div class="program-card__rating">
+                            <span class="program-card__rating-stars">★★★★★</span>
+                            <span class="program-card__rating-value">8.8</span>
+                        </div>
+                        <a href="#" class="btn btn--outline btn--sm">View Details</a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('alerts-grid').innerHTML = `
+                <div class="alert-card alert-card--opportunity">
+                    <div class="alert-card__icon">
+                        <i data-lucide="rocket" class="icon icon--md"></i>
+                    </div>
+                    <div class="alert-card__content">
+                        <h4 class="alert-card__title">ANA First Class Sweet Spot</h4>
+                        <p class="alert-card__message">With the current Amex 40% bonus to Virgin, you can book ANA First Class JFK-TYO for just 78K Amex MR. Best deal in months.</p>
+                    </div>
+                    <span class="badge badge--danger">Hot Deal</span>
+                </div>
+                <div class="alert-card alert-card--warning">
+                    <div class="alert-card__icon">
+                        <i data-lucide="alert-triangle" class="icon icon--md"></i>
+                    </div>
+                    <div class="alert-card__content">
+                        <h4 class="alert-card__title">Delta Devaluation Incoming</h4>
+                        <p class="alert-card__message">Rumored chart changes coming March 1st. Consider booking Delta partner awards now if you have SkyMiles.</p>
+                    </div>
+                    <span class="badge badge--warning">Action Needed</span>
+                </div>
+                <div class="alert-card alert-card--insight">
+                    <div class="alert-card__icon">
+                        <i data-lucide="lightbulb" class="icon icon--md"></i>
+                    </div>
+                    <div class="alert-card__content">
+                        <h4 class="alert-card__title">Hyatt Category Changes</h4>
+                        <p class="alert-card__message">15 properties moving up a category next month. Book popular Cat 4-5 properties before March 1 for current rates.</p>
+                    </div>
+                    <span class="badge badge--info">Insight</span>
+                </div>
+            `;
+
+            lucide.createIcons();
+        }
+
+        function renderSummaryStats() {
+            const container = document.getElementById('summary-stats');
+            const programs = trackerData.programs;
+
+            const topGainer = programs.reduce((max, p) => p.change_percent > max.change_percent ? p : max);
+            const avgValue = (programs.reduce((sum, p) => sum + p.current_value, 0) / programs.length).toFixed(2);
+
+            container.innerHTML = `
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Top Gainer</div>
+                    <div class="summary-stat__value">${topGainer.short_name} +${topGainer.change_percent}%</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Average CPP</div>
+                    <div class="summary-stat__value">${avgValue}¢</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Active Bonuses</div>
+                    <div class="summary-stat__value">${trackerData.active_bonuses.length}</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat__label">Market Trend</div>
+                    <div class="summary-stat__value">${trackerData.market_summary.overall_trend.toUpperCase()}</div>
+                </div>
+            `;
+        }
+
+        function renderOverviewChart() {
+            const ctx = document.getElementById('overviewChart').getContext('2d');
+            const programs = trackerData.programs.slice(0, 4);
+
+            const labels = programs[0].historical_data.map(d => d.date);
+            const datasets = programs.map((program, index) => ({
+                label: program.short_name,
+                data: program.historical_data.map(d => d.value),
+                borderColor: getChartColor(index),
+                backgroundColor: getChartColor(index, 0.1),
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: false,
+                pointRadius: 0,
+                pointHoverRadius: 6,
+                pointHoverBackgroundColor: getChartColor(index),
+                pointHoverBorderColor: 'white',
+                pointHoverBorderWidth: 2
+            }));
+
+            charts.overview = new Chart(ctx, {
+                type: 'line',
+                data: { labels, datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                color: 'rgba(255,255,255,0.9)',
+                                usePointStyle: true,
+                                pointStyle: 'circle',
+                                padding: 16,
+                                font: { size: 11, weight: '500' }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255,255,255,0.95)',
+                            titleColor: '#101828',
+                            bodyColor: '#344054',
+                            borderColor: '#E4E7EC',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            titleFont: { weight: '600' },
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}¢`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            grid: { color: 'rgba(255,255,255,0.1)', drawBorder: false },
+                            ticks: { color: 'rgba(255,255,255,0.6)', font: { size: 10 } }
+                        },
+                        y: {
+                            display: true,
+                            grid: { color: 'rgba(255,255,255,0.1)', drawBorder: false },
+                            ticks: {
+                                color: 'rgba(255,255,255,0.6)',
+                                font: { size: 10 },
+                                callback: value => value + '¢'
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        function getChartColor(index, alpha = 1) {
+            const colors = [
+                `rgba(255, 255, 255, ${alpha})`,      // White
+                `rgba(110, 231, 183, ${alpha})`,     // Green
+                `rgba(253, 224, 71, ${alpha})`,      // Yellow
+                `rgba(248, 113, 113, ${alpha})`      // Red
+            ];
+            return colors[index % colors.length];
+        }
+
+        function renderBonuses() {
+            const container = document.getElementById('bonuses-grid');
+            document.getElementById('bonus-count').textContent = `${trackerData.active_bonuses.length} Active`;
+
+            container.innerHTML = trackerData.active_bonuses.map(bonus => `
+                <div class="bonus-card ${bonus.impact === 'critical' ? 'bonus-card--critical' : ''}">
+                    <div class="bonus-card__header">
+                        <div>
+                            <span class="badge badge--${getImpactBadge(bonus.impact)}">${bonus.impact === 'critical' ? 'Ending Soon' : bonus.impact}</span>
+                        </div>
+                        <div class="bonus-card__percent">${bonus.bonus_percent}<span class="bonus-card__percent-suffix">%</span></div>
+                    </div>
+                    <div class="bonus-card__route">
+                        <span>${bonus.from_program}</span>
+                        <i data-lucide="arrow-right" class="icon icon--sm"></i>
+                        <span>${bonus.to_program}</span>
+                    </div>
+                    <p class="bonus-card__description">${bonus.description || 'Transfer bonus promotion active. Great opportunity to maximize your points value.'}</p>
+                    <div class="bonus-card__recommendation">${bonus.recommendation}</div>
+                    <div class="bonus-card__countdown ${isUrgent(bonus.expires_at) ? 'bonus-card__countdown--urgent' : ''}" data-expires="${bonus.expires_at}">
+                        <i data-lucide="clock" class="icon icon--sm"></i>
+                        <span class="countdown-value">Loading...</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPrograms() {
+            const container = document.getElementById('programs-grid');
+
+            container.innerHTML = trackerData.programs.map((program, index) => `
+                <div class="program-card program-card--${program.health_status}">
+                    <div class="program-card__header">
+                        <img src="${program.logo}" alt="${program.name}" class="program-card__logo"
+                             onerror="this.src='../images/core/placeholder.jpg'">
+                        <div class="program-card__info">
+                            <h3 class="program-card__name">${program.name}</h3>
+                            <span class="program-card__type">${program.currency_type} Currency</span>
+                        </div>
+                        <span class="badge badge--${getHealthBadge(program.health_status)}">${program.health_status}</span>
+                    </div>
+
+                    <div class="program-card__value-section">
+                        <div class="program-card__current-value">
+                            <span class="program-card__value-label">Current Value</span>
+                            <span class="program-card__value">${program.current_value}<span class="program-card__value-unit">¢/pt</span></span>
+                        </div>
+                        <div class="program-card__change">
+                            <span class="program-card__change-value program-card__change-value--${program.trend}">
+                                <i data-lucide="${getTrendIcon(program.trend)}" class="icon icon--sm"></i>
+                                ${program.change_percent > 0 ? '+' : ''}${program.change_percent}%
+                            </span>
+                            <span style="font-size: 12px; color: var(--text-muted);">vs last month</span>
+                        </div>
+                    </div>
+
+                    <div class="program-card__chart">
+                        <canvas id="chart-${program.id}"></canvas>
+                    </div>
+
+                    <p class="program-card__analysis">${program.analysis}</p>
+
+                    <div class="program-card__best-uses">
+                        ${program.best_uses.map(use => `<span class="program-card__use-tag">${use}</span>`).join('')}
+                    </div>
+
+                    <div class="program-card__footer">
+                        <div class="program-card__rating">
+                            <span class="program-card__rating-stars">★★★★★</span>
+                            <span class="program-card__rating-value">${program.health_rating}</span>
+                        </div>
+                        <a href="#" class="btn btn--outline btn--sm">View Details</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render mini charts for each program
+            setTimeout(() => {
+                trackerData.programs.forEach((program, index) => {
+                    renderMiniChart(program, index);
+                });
+            }, 100);
+        }
+
+        function renderMiniChart(program, index) {
+            const canvas = document.getElementById(`chart-${program.id}`);
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const data = program.historical_data.map(d => d.value);
+            const labels = program.historical_data.map(d => d.date);
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 60);
+            if (program.trend === 'up') {
+                gradient.addColorStop(0, 'rgba(16, 185, 129, 0.3)');
+                gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+            } else if (program.trend === 'down') {
+                gradient.addColorStop(0, 'rgba(239, 68, 68, 0.3)');
+                gradient.addColorStop(1, 'rgba(239, 68, 68, 0)');
+            } else {
+                gradient.addColorStop(0, 'rgba(107, 114, 128, 0.3)');
+                gradient.addColorStop(1, 'rgba(107, 114, 128, 0)');
+            }
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        data,
+                        borderColor: program.trend === 'up' ? '#10B981' : program.trend === 'down' ? '#EF4444' : '#6B7280',
+                        backgroundColor: gradient,
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    },
+                    elements: {
+                        line: { tension: 0.4 }
+                    }
+                }
+            });
+        }
+
+        function renderAlerts() {
+            const container = document.getElementById('alerts-grid');
+
+            container.innerHTML = trackerData.market_alerts.map(alert => `
+                <div class="alert-card alert-card--${alert.type}">
+                    <div class="alert-card__icon">
+                        <i data-lucide="${getAlertIcon(alert.type)}" class="icon icon--md"></i>
+                    </div>
+                    <div class="alert-card__content">
+                        <h4 class="alert-card__title">${alert.title}</h4>
+                        <p class="alert-card__message">${alert.message}</p>
+                    </div>
+                    <span class="badge badge--${getUrgencyBadge(alert.urgency)}">${alert.urgency}</span>
+                </div>
+            `).join('');
+        }
+
+        // Helper functions
+        function getImpactBadge(impact) {
+            const map = { critical: 'warning', high: 'warning', medium: 'info' };
+            return map[impact] || 'outline';
+        }
+
+        function getHealthBadge(status) {
+            const map = { hot: 'success', healthy: 'teal', stable: 'info', caution: 'warning', declining: 'danger' };
+            return map[status] || 'outline';
+        }
+
+        function getTrendIcon(trend) {
+            const map = { up: 'trending-up', down: 'trending-down', stable: 'minus' };
+            return map[trend] || 'minus';
+        }
+
+        function getAlertIcon(type) {
+            const map = { opportunity: 'rocket', warning: 'alert-triangle', insight: 'lightbulb' };
+            return map[type] || 'info';
+        }
+
+        function getUrgencyBadge(urgency) {
+            const map = { critical: 'danger', medium: 'warning', low: 'info' };
+            return map[urgency] || 'outline';
+        }
+
+        function isUrgent(dateString) {
+            const expires = new Date(dateString);
+            const now = new Date();
+            const hoursRemaining = (expires - now) / (1000 * 60 * 60);
+            return hoursRemaining < 48;
+        }
+
+        function updateCountdowns() {
+            document.querySelectorAll('[data-expires]').forEach(el => {
+                const expires = new Date(el.dataset.expires);
+                const now = new Date();
+                const diff = expires - now;
+
+                if (diff <= 0) {
+                    el.querySelector('.countdown-value').textContent = 'EXPIRED';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                if (days > 0) {
+                    el.querySelector('.countdown-value').textContent = `${days}d ${hours}h remaining`;
+                } else if (hours > 0) {
+                    el.querySelector('.countdown-value').textContent = `${hours}h ${minutes}m remaining`;
+                } else {
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    el.querySelector('.countdown-value').textContent = `${minutes}m ${seconds}s remaining`;
+                }
+            });
+        }
+
+        // Timeframe buttons
+        document.querySelectorAll('.timeframe-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.timeframe-btn').forEach(b => b.classList.remove('timeframe-btn--active'));
+                btn.classList.add('timeframe-btn--active');
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>

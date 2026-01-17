@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Class Roulette - Miles Intelligence</title>
+    <meta name="description"
+        content="Surprise yourself! Random luxury travel discovery. Spin the wheel of first class opportunities.">
+
+    <link rel="stylesheet" href="../css/camping-design-system.css">
+    <link rel="stylesheet" href="../css/camping-components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-orange: #DF5030;
+            --roulette-gold: #F59E0B;
+        }
+
+        body {
+            background: var(--page-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            display: none;
+        }
+
+        .roulette-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 32px;
+            text-align: center;
+        }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-green);
+        }
+
+        /* Header */
+        .roulette-header {
+            padding: 40px;
+            background: linear-gradient(135deg, #FEF3C7 0%, #FFF7ED 50%, #ECFDF5 100%);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .roulette-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .roulette-title {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--roulette-gold), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 8px;
+        }
+
+        .roulette-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Wheel Container */
+        .wheel-container {
+            position: relative;
+            width: 360px;
+            height: 360px;
+            margin: 48px auto;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            box-shadow:
+                0 0 0 6px var(--roulette-gold),
+                0 0 0 10px rgba(245, 158, 11, 0.2),
+                0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--roulette-gold), #F59E0B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+            z-index: 10;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 32px solid var(--roulette-gold);
+            z-index: 20;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Spin Button */
+        .spin-btn {
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-green), #059669);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(11, 164, 87, 0.3);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(11, 164, 87, 0.4);
+        }
+
+        .spin-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Options */
+        .options-section {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .option-group {
+            text-align: left;
+        }
+
+        .option-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .option-select {
+            padding: 12px 18px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 180px;
+            cursor: pointer;
+        }
+
+        .option-select:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .quick-stat {
+            text-align: center;
+        }
+
+        .quick-stat__value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .quick-stat__label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Result Modal */
+        .result-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(16, 24, 40, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .result-modal--visible {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .result-card {
+            max-width: 560px;
+            width: 90%;
+            padding: 40px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .result-destination {
+            font-size: 56px;
+            margin-bottom: 8px;
+        }
+
+        .result-route {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .result-airline {
+            color: var(--roulette-gold);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: var(--page-bg);
+            border-radius: 16px;
+        }
+
+        .result-detail {
+            text-align: center;
+        }
+
+        .result-detail__value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .result-detail__label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .result-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .result-btn {
+            padding: 14px 28px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-btn--primary {
+            background: var(--accent-green);
+            color: white;
+            border: none;
+        }
+
+        .result-btn--primary:hover {
+            background: #099A4F;
+        }
+
+        .result-btn--secondary {
+            background: white;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .result-btn--secondary:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover {
+            background: var(--page-bg);
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .roulette-container {
+                padding: 16px;
+            }
+
+            .roulette-header {
+                padding: 28px 20px;
+            }
+
+            .roulette-title {
+                font-size: 28px;
+            }
+
+            .wheel-container {
+                width: 280px;
+                height: 280px;
+            }
+
+            .options-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quick-stats {
+                gap: 24px;
+            }
+
+            .quick-stat__value {
+                font-size: 24px;
+            }
+
+            .result-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="roulette-container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="../INDICE_COMPLETO.html" class="nav-back">
+                <i data-lucide="arrow-left" class="icon icon--sm"></i>
+                <span>Back to Home</span>
+            </a>
+        </nav>
+
+        <!-- Header -->
+        <header class="roulette-header">
+            <div class="roulette-icon">🎰</div>
+            <h1 class="roulette-title">First Class Roulette</h1>
+            <p class="roulette-subtitle">
+                Feeling adventurous? Let fate decide your next luxury getaway.
+                Spin to discover available first class opportunities.
+            </p>
+        </header>
+
+        <!-- Wheel -->
+        <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <div class="wheel" id="wheel">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="#F9FAFB" stroke="#E4E7EC" stroke-width="1" />
+
+                    <!-- 6 segments with light colors -->
+                    <path d="M50,50 L50,2 A48,48 0 0,1 91.6,26 Z" fill="#FEE2E2" stroke="#FECACA" stroke-width="0.5" />
+                    <path d="M50,50 L91.6,26 A48,48 0 0,1 91.6,74 Z" fill="#FEF3C7" stroke="#FDE68A" stroke-width="0.5" />
+                    <path d="M50,50 L91.6,74 A48,48 0 0,1 50,98 Z" fill="#D1FAE5" stroke="#A7F3D0" stroke-width="0.5" />
+                    <path d="M50,50 L50,98 A48,48 0 0,1 8.4,74 Z" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="0.5" />
+                    <path d="M50,50 L8.4,74 A48,48 0 0,1 8.4,26 Z" fill="#EDE9FE" stroke="#DDD6FE" stroke-width="0.5" />
+                    <path d="M50,50 L8.4,26 A48,48 0 0,1 50,2 Z" fill="#FCE7F3" stroke="#FBCFE8" stroke-width="0.5" />
+
+                    <!-- Labels -->
+                    <text x="68" y="18" fill="#101828" font-size="8" font-weight="bold">🇯🇵</text>
+                    <text x="82" y="50" fill="#101828" font-size="8" font-weight="bold">🇦🇪</text>
+                    <text x="68" y="82" fill="#101828" font-size="8" font-weight="bold">🇫🇷</text>
+                    <text x="32" y="82" fill="#101828" font-size="8" font-weight="bold">🇸🇬</text>
+                    <text x="18" y="50" fill="#101828" font-size="8" font-weight="bold">🇶🇦</text>
+                    <text x="32" y="18" fill="#101828" font-size="8" font-weight="bold">🇨🇭</text>
+                </svg>
+            </div>
+            <div class="wheel-center">🎲</div>
+        </div>
+
+        <!-- Spin Button -->
+        <button class="spin-btn" id="spinBtn" onclick="spin()">
+            <i data-lucide="sparkles" class="icon icon--md"></i>
+            Spin The Wheel
+        </button>
+
+        <!-- Options -->
+        <div class="options-section">
+            <div class="option-group">
+                <div class="option-label">Origin</div>
+                <select class="option-select" id="origin">
+                    <option value="jfk">New York (JFK)</option>
+                    <option value="lax">Los Angeles (LAX)</option>
+                    <option value="ord">Chicago (ORD)</option>
+                    <option value="sfo">San Francisco (SFO)</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <div class="option-label">Cabin</div>
+                <select class="option-select" id="cabin">
+                    <option value="first">First Class Only</option>
+                    <option value="business">Business Class</option>
+                    <option value="any">Any Premium</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <div class="option-label">Flexibility</div>
+                <select class="option-select" id="flexibility">
+                    <option value="30">Within 30 days</option>
+                    <option value="60">Within 60 days</option>
+                    <option value="90">Within 90 days</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="quick-stats">
+            <div class="quick-stat">
+                <div class="quick-stat__value">847</div>
+                <div class="quick-stat__label">Spins Today</div>
+            </div>
+            <div class="quick-stat">
+                <div class="quick-stat__value">23</div>
+                <div class="quick-stat__label">Trips Booked</div>
+            </div>
+            <div class="quick-stat">
+                <div class="quick-stat__value">$1.2M</div>
+                <div class="quick-stat__label">Value Discovered</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="result-modal" id="resultModal">
+        <div class="result-card">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div class="result-content" id="resultContent">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const destinations = [
+            {
+                flag: '🇯🇵',
+                city: 'TOKYO',
+                route: 'JFK → NRT',
+                airline: 'ANA First Class',
+                points: '120,000',
+                program: 'Virgin Atlantic',
+                value: '$25,000',
+                description: 'Experience the legendary ANA "The Suite" with a 23-inch wide seat that converts to a fully flat bed, multi-course kaiseki cuisine, and Japanese hospitality at its finest.'
+            },
+            {
+                flag: '🇦🇪',
+                city: 'DUBAI',
+                route: 'JFK → DXB',
+                airline: 'Emirates First Class',
+                points: '136,000',
+                program: 'Emirates',
+                value: '$22,000',
+                description: 'Private suites with floor-to-ceiling sliding doors, onboard shower spa, and Dom Pérignon on demand. The A380 experience like no other.'
+            },
+            {
+                flag: '🇫🇷',
+                city: 'PARIS',
+                route: 'JFK → CDG',
+                airline: 'Air France La Première',
+                points: '100,000',
+                program: 'Flying Blue',
+                value: '$12,000',
+                description: 'The pinnacle of French elegance. Private suite, Alain Ducasse cuisine, and exclusive lounge access at CDG Terminal 2E.'
+            },
+            {
+                flag: '🇸🇬',
+                city: 'SINGAPORE',
+                route: 'JFK → SIN',
+                airline: 'Singapore Suites',
+                points: '92,000',
+                program: 'KrisFlyer',
+                value: '$18,000',
+                description: 'The iconic Singapore Suites with double beds, Givenchy amenities, and Book the Cook dining. The gold standard of first class.'
+            },
+            {
+                flag: '🇶🇦',
+                city: 'DOHA',
+                route: 'JFK → DOH',
+                airline: 'Qatar QSuite',
+                points: '70,000',
+                program: 'AAdvantage',
+                value: '$8,500',
+                description: 'The world\'s best business class with private doors, turndown service, and the ability to create a double bed with your companion.'
+            },
+            {
+                flag: '🇨🇭',
+                city: 'ZURICH',
+                route: 'JFK → ZRH',
+                airline: 'SWISS First Class',
+                points: '110,000',
+                program: 'Aeroplan',
+                value: '$14,000',
+                description: 'Swiss precision meets luxury. Acclaimed cuisine, caviar service, and the famous Swiss chocolate dessert cart.'
+            }
+        ];
+
+        let isSpinning = false;
+
+        function spin() {
+            if (isSpinning) return;
+            isSpinning = true;
+
+            const btn = document.getElementById('spinBtn');
+            const wheel = document.getElementById('wheel');
+            btn.disabled = true;
+
+            // Random rotation (3-5 full spins + random segment)
+            const spins = 3 + Math.random() * 2;
+            const extraDegrees = Math.floor(Math.random() * 360);
+            const totalDegrees = spins * 360 + extraDegrees;
+
+            wheel.style.transform = `rotate(${totalDegrees}deg)`;
+
+            // After spin completes
+            setTimeout(() => {
+                // Determine which segment
+                const normalizedDegrees = extraDegrees % 360;
+                const segmentIndex = Math.floor(normalizedDegrees / 60) % destinations.length;
+                showResult(destinations[segmentIndex]);
+
+                isSpinning = false;
+                btn.disabled = false;
+            }, 4000);
+        }
+
+        function showResult(dest) {
+            const modal = document.getElementById('resultModal');
+            const content = document.getElementById('resultContent');
+
+            content.innerHTML = `
+                <div class="result-destination">${dest.flag}</div>
+                <div class="result-route">${dest.city}</div>
+                <div class="result-airline">${dest.airline}</div>
+
+                <div class="result-details">
+                    <div class="result-detail">
+                        <div class="result-detail__value">${dest.points}</div>
+                        <div class="result-detail__label">Points</div>
+                    </div>
+                    <div class="result-detail">
+                        <div class="result-detail__value">${dest.value}</div>
+                        <div class="result-detail__label">Cash Value</div>
+                    </div>
+                    <div class="result-detail">
+                        <div class="result-detail__value">${dest.program}</div>
+                        <div class="result-detail__label">Program</div>
+                    </div>
+                </div>
+
+                <p class="result-description">${dest.description}</p>
+
+                <div class="result-actions">
+                    <button class="result-btn result-btn--primary" onclick="closeModal()">
+                        🔍 Check Availability
+                    </button>
+                    <button class="result-btn result-btn--secondary" onclick="closeModal(); spin();">
+                        🎰 Spin Again
+                    </button>
+                </div>
+            `;
+
+            modal.classList.add('result-modal--visible');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.remove('result-modal--visible');
+        }
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

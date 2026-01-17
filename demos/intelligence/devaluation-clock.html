@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devaluation Clock - Miles Intelligence</title>
+    <meta name="description"
+        content="The doomsday clock for loyalty programs. Track devaluations, predict changes, protect your points.">
+
+    <link rel="stylesheet" href="../css/camping-design-system.css">
+    <link rel="stylesheet" href="../css/camping-components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --deval-red: #DC2626;
+            --deval-amber: #F59E0B;
+            --deval-green: #10B981;
+            --deval-blue: #3B82F6;
+            --accent-green: #0BA457;
+        }
+
+        body {
+            background: var(--page-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        body::before {
+            display: none;
+        }
+
+        .deval-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-green);
+        }
+
+        /* Header */
+        .deval-header {
+            text-align: center;
+            padding: 48px 0;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #FEF2F2 0%, #FFF7ED 50%, #ECFDF5 100%);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .deval-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .deval-title {
+            font-size: 40px;
+            font-weight: 800;
+            margin: 0 0 8px;
+            background: linear-gradient(135deg, var(--deval-red), var(--deval-amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .deval-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Master Clock */
+        .master-clock {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 48px;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 24px;
+            border: 2px solid var(--deval-red);
+            box-shadow: 0 8px 32px rgba(220, 38, 38, 0.1);
+        }
+
+        .clock-segment {
+            text-align: center;
+        }
+
+        .clock-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--deval-red);
+            line-height: 1;
+        }
+
+        .clock-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        .clock-separator {
+            font-size: 48px;
+            color: var(--deval-red);
+            opacity: 0.3;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+        }
+
+        .clock-target {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .clock-target strong {
+            color: var(--deval-red);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--deval-amber);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--deval-red), var(--deval-amber), var(--deval-green));
+        }
+
+        .timeline-event {
+            position: relative;
+            padding: 24px;
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .timeline-event:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateX(4px);
+        }
+
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 28px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--border-color);
+        }
+
+        .timeline-event--imminent::before {
+            background: var(--deval-red);
+            box-shadow: 0 0 0 2px var(--deval-red), 0 0 12px rgba(220, 38, 38, 0.4);
+        }
+
+        .timeline-event--upcoming::before {
+            background: var(--deval-amber);
+            box-shadow: 0 0 0 2px var(--deval-amber);
+        }
+
+        .timeline-event--distant::before {
+            background: var(--deval-green);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .event-program {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .event-countdown {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .event-countdown--imminent {
+            background: var(--deval-red);
+            color: white;
+        }
+
+        .event-countdown--upcoming {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .event-countdown--distant {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .event-type {
+            font-size: 13px;
+            color: var(--deval-amber);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .event-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .event-impact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: #FEF2F2;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--deval-red);
+        }
+
+        .event-action {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        /* History Grid */
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .history-card {
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .history-card:hover {
+            border-color: var(--deval-amber);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .history-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .history-program {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .history-change {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .history-impact {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--deval-red);
+        }
+
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .tip-card {
+            padding: 28px;
+            background: linear-gradient(135deg, #ECFDF5 0%, white 100%);
+            border: 1px solid #A7F3D0;
+            border-radius: 20px;
+        }
+
+        .tip-number {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-green);
+            color: white;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+
+        .tip-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .tip-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .master-clock {
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 32px;
+            }
+
+            .clock-value {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .deval-container {
+                padding: 16px;
+            }
+
+            .deval-header {
+                padding: 32px 20px;
+            }
+
+            .deval-title {
+                font-size: 28px;
+            }
+
+            .clock-value {
+                font-size: 36px;
+            }
+
+            .clock-separator {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="deval-container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="../INDICE_COMPLETO.html" class="nav-back">
+                <i data-lucide="arrow-left" class="icon icon--sm"></i>
+                <span>Back to Home</span>
+            </a>
+        </nav>
+
+        <!-- Header -->
+        <header class="deval-header">
+            <div class="deval-icon">⏰</div>
+            <h1 class="deval-title">DEVALUATION CLOCK</h1>
+            <p class="deval-subtitle">
+                The doomsday countdown for loyalty programs. Know when to burn, when to hold, when to run.
+            </p>
+        </header>
+
+        <!-- Master Clock -->
+        <div class="master-clock">
+            <div class="clock-segment">
+                <div class="clock-value" id="days">--</div>
+                <div class="clock-label">Days</div>
+            </div>
+            <div class="clock-separator">:</div>
+            <div class="clock-segment">
+                <div class="clock-value" id="hours">--</div>
+                <div class="clock-label">Hours</div>
+            </div>
+            <div class="clock-separator">:</div>
+            <div class="clock-segment">
+                <div class="clock-value" id="minutes">--</div>
+                <div class="clock-label">Minutes</div>
+            </div>
+            <div class="clock-separator">:</div>
+            <div class="clock-segment">
+                <div class="clock-value" id="seconds">--</div>
+                <div class="clock-label">Seconds</div>
+            </div>
+        </div>
+        <p class="clock-target">
+            Until <strong>Marriott Category Inflation</strong> takes effect
+        </p>
+
+        <!-- Timeline -->
+        <section class="section">
+            <h2 class="section-title">
+                <i data-lucide="alert-triangle" class="icon icon--lg"></i>
+                Upcoming Devaluations
+            </h2>
+            <div class="timeline">
+                <div class="timeline-event timeline-event--imminent">
+                    <div class="event-header">
+                        <span class="event-program">Marriott Bonvoy</span>
+                        <span class="event-countdown event-countdown--imminent">30 DAYS</span>
+                    </div>
+                    <div class="event-type">CATEGORY INFLATION</div>
+                    <p class="event-description">
+                        ~15% of properties moving up one category. Peak redemptions for Cat 5-7 properties will increase
+                        by 10-25K points/night.
+                    </p>
+                    <div class="event-impact">
+                        <i data-lucide="trending-down" class="icon icon--xs"></i>
+                        <span>Estimated -18% value loss</span>
+                    </div>
+                    <div class="event-action">
+                        <i data-lucide="shield" class="icon icon--xs"></i>
+                        <span>Defense: Book Cat 5-7 now before March 1st</span>
+                    </div>
+                </div>
+
+                <div class="timeline-event timeline-event--upcoming">
+                    <div class="event-header">
+                        <span class="event-program">Delta SkyMiles</span>
+                        <span class="event-countdown event-countdown--upcoming">60 DAYS</span>
+                    </div>
+                    <div class="event-type">DYNAMIC PRICING EXPANSION</div>
+                    <p class="event-description">
+                        Domestic routes rumored to expand dynamic pricing. Award availability for 5K routes expected to
+                        vanish.
+                    </p>
+                    <div class="event-impact">
+                        <i data-lucide="trending-down" class="icon icon--xs"></i>
+                        <span>Estimated -25% value loss on domestic</span>
+                    </div>
+                    <div class="event-action">
+                        <i data-lucide="shield" class="icon icon--xs"></i>
+                        <span>Defense: Book domestic awards before Mar 15</span>
+                    </div>
+                </div>
+
+                <div class="timeline-event timeline-event--upcoming">
+                    <div class="event-header">
+                        <span class="event-program">Hilton Honors</span>
+                        <span class="event-countdown event-countdown--upcoming">90 DAYS</span>
+                    </div>
+                    <div class="event-type">AWARD CHART RESTRUCTURE</div>
+                    <p class="event-description">
+                        Leaked internal memo suggests elimination of 5th night free on standard awards. Premium room
+                        redemptions may increase 30%.
+                    </p>
+                    <div class="event-impact">
+                        <i data-lucide="trending-down" class="icon icon--xs"></i>
+                        <span>Estimated -15% value loss</span>
+                    </div>
+                    <div class="event-action">
+                        <i data-lucide="shield" class="icon icon--xs"></i>
+                        <span>Defense: Book 5+ night stays now</span>
+                    </div>
+                </div>
+
+                <div class="timeline-event timeline-event--distant">
+                    <div class="event-header">
+                        <span class="event-program">United MileagePlus</span>
+                        <span class="event-countdown event-countdown--distant">6+ MONTHS</span>
+                    </div>
+                    <div class="event-type">SAVER AVAILABILITY REDUCTION</div>
+                    <p class="event-description">
+                        Pattern analysis suggests gradual reduction of Saver international business seats. Currently at
+                        -12% YoY.
+                    </p>
+                    <div class="event-impact">
+                        <i data-lucide="trending-down" class="icon icon--xs"></i>
+                        <span>Gradual erosion in progress</span>
+                    </div>
+                    <div class="event-action">
+                        <i data-lucide="shield" class="icon icon--xs"></i>
+                        <span>Defense: Flexible dates essential</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">
+                <i data-lucide="history" class="icon icon--lg" style="color: var(--text-muted);"></i>
+                Devaluation History (Learn From The Past)
+            </h2>
+            <div class="history-grid">
+                <div class="history-card">
+                    <div class="history-date">March 2024</div>
+                    <div class="history-program">Marriott Bonvoy</div>
+                    <div class="history-change">Peak/Off-Peak pricing introduced. 40% of redemptions increased.</div>
+                    <div class="history-impact">-22% Avg Value</div>
+                </div>
+                <div class="history-card">
+                    <div class="history-date">January 2024</div>
+                    <div class="history-program">Delta SkyMiles</div>
+                    <div class="history-change">Partner award pricing went fully dynamic. AA/UA alternatives destroyed.</div>
+                    <div class="history-impact">-35% on Partners</div>
+                </div>
+                <div class="history-card">
+                    <div class="history-date">November 2023</div>
+                    <div class="history-program">Amex MR</div>
+                    <div class="history-change">Schwab cash-out reduced from 1.25¢ to 1.1¢. Floor value dropped.</div>
+                    <div class="history-impact">-12% Floor Value</div>
+                </div>
+                <div class="history-card">
+                    <div class="history-date">August 2023</div>
+                    <div class="history-program">Southwest Rapid Rewards</div>
+                    <div class="history-change">Companion Pass earning threshold increased 25%.</div>
+                    <div class="history-impact">+25% More Spend</div>
+                </div>
+                <div class="history-card">
+                    <div class="history-date">March 2023</div>
+                    <div class="history-program">Hyatt World of Hyatt</div>
+                    <div class="history-change">Category 8 eliminated, merged into 7. Minor impact on flagship.</div>
+                    <div class="history-impact">-5% Avg Value</div>
+                </div>
+                <div class="history-card">
+                    <div class="history-date">September 2022</div>
+                    <div class="history-program">British Airways Avios</div>
+                    <div class="history-change">Peak/Off-Peak introduced. Transatlantic awards up 30%.</div>
+                    <div class="history-impact">-18% Transatlantic</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips -->
+        <section class="section">
+            <h2 class="section-title">
+                <i data-lucide="shield-check" class="icon icon--lg" style="color: var(--accent-green);"></i>
+                Devaluation Defense Strategies
+            </h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">1</div>
+                    <h3 class="tip-title">Never Stockpile Indefinitely</h3>
+                    <p class="tip-description">
+                        Points are a depreciating asset. The average program devalues 10-15% annually.
+                        Earn-and-burn cycles of 12-18 months maximize value.
+                    </p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">2</div>
+                    <h3 class="tip-title">Diversify Your Portfolio</h3>
+                    <p class="tip-description">
+                        Don't put all eggs in one basket. Spread across Chase UR, Amex MR, and Capital One
+                        for maximum flexibility when one program devalues.
+                    </p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">3</div>
+                    <h3 class="tip-title">Book Speculatively</h3>
+                    <p class="tip-description">
+                        Free cancellation is your friend. When devaluation rumors hit, book now and decide
+                        later. Prices only go up.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Countdown to next devaluation (Marriott - Feb 15, 2026)
+        const targetDate = new Date('2026-02-15T00:00:00Z');
+
+        function updateClock() {
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

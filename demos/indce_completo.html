@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MilesAI - Índice Organizado</title>
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      background: var(--color-bg-canvas);
+      padding: var(--space-8);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: var(--color-secondary);
+      color: white;
+      padding: var(--space-12);
+      border-radius: var(--radius-2xl);
+      margin-bottom: var(--space-8);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-primary);
+    }
+
+    .header h1 {
+      font-size: var(--text-h1);
+      font-weight: var(--font-black);
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .header p {
+      font-size: var(--text-lg);
+      opacity: 0.9;
+    }
+
+    .section {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      margin-bottom: var(--space-8);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .section h2 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+      color: var(--color-secondary);
+      margin-bottom: var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-divider);
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .page-card {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      transition: all var(--transition-normal);
+      text-decoration: none;
+      display: block;
+    }
+
+    .page-card:hover {
+      border-color: var(--color-primary);
+      background: white;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .page-card__title {
+      font-size: var(--text-base);
+      font-weight: var(--font-bold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .page-card__path {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    .excluir-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      margin-top: var(--space-12);
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .excluir-link:hover {
+      opacity: 1;
+      color: var(--color-error);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>
+      <i data-lucide="layout" class="icon icon--xl"></i>
+      <span>MilesAI - Explorador do Projeto</span>
+    </h1>
+    <p>Projeto organizado e limpo conforme os módulos principais.</p>
+  </header>
+
+  <!-- CONTENT -->
+  <section class="section">
+    <h2>
+      <i data-lucide="book-open" class="icon icon--md"></i>
+      <span>Conteúdo (Content)</span>
+    </h2>
+    <div class="page-grid">
+      <a href="evergreen/hacks-library.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="library" class="icon icon--sm"></i>
+          <span>Hacks Library</span>
+        </div>
+        <div class="page-card__path">evergreen/hacks-library.html</div>
+      </a>
+      <a href="evergreen/quick-guides.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="file-text" class="icon icon--sm"></i>
+          <span>Quick Guides</span>
+        </div>
+        <div class="page-card__path">evergreen/quick-guides.html</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- UPDATES -->
+  <section class="section">
+    <h2>
+      <i data-lucide="refresh-cw" class="icon icon--md"></i>
+      <span>Atualizações (Updates)</span>
+    </h2>
+    <div class="page-grid">
+      <a href="feeds/deal-alerts.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="bell" class="icon icon--sm"></i>
+          <span>Deal Alerts</span>
+        </div>
+        <div class="page-card__path">feeds/deal-alerts.html</div>
+      </a>
+      <a href="feeds/live-ticker.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="activity" class="icon icon--sm"></i>
+          <span>Live Ticker</span>
+        </div>
+        <div class="page-card__path">feeds/live-ticker.html</div>
+      </a>
+      <a href="feeds/program-updates.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="info" class="icon icon--sm"></i>
+          <span>Program Updates</span>
+        </div>
+        <div class="page-card__path">feeds/program-updates.html</div>
+      </a>
+      <a href="feeds/success-stories.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="award" class="icon icon--sm"></i>
+          <span>Success Stories</span>
+        </div>
+        <div class="page-card__path">feeds/success-stories.html</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section class="section">
+    <h2>
+      <i data-lucide="newspaper" class="icon icon--md"></i>
+      <span>Notícias (News)</span>
+    </h2>
+    <div class="page-grid">
+      <a href="news/hot-deals-flash.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="zap" class="icon icon--sm"></i>
+          <span>Hot Deals Flash</span>
+        </div>
+        <div class="page-card__path">news/hot-deals-flash.html</div>
+      </a>
+      <a href="news/community-wins.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="users" class="icon icon--sm"></i>
+          <span>Community Wins</span>
+        </div>
+        <div class="page-card__path">news/community-wins.html</div>
+      </a>
+      <a href="news/market-pulse-weekly.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="trending-up" class="icon icon--sm"></i>
+          <span>Market Pulse Weekly</span>
+        </div>
+        <div class="page-card__path">news/market-pulse-weekly.html</div>
+      </a>
+      <a href="news/card-universe-feed.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="credit-card" class="icon icon--sm"></i>
+          <span>Card Universe Feed</span>
+        </div>
+        <div class="page-card__path">news/card-universe-feed.html</div>
+      </a>
+      <a href="news/transfer-bonus-tracker.html" class="page-card">
+        <div class="page-card__title">
+          <i data-lucide="gift" class="icon icon--sm"></i>
+          <span>Transfer Bonus Tracker</span>
+        </div>
+        <div class="page-card__path">news/transfer-bonus-tracker.html</div>
+      </a>
+    </div>
+  </section>
+
+  <a href="../excluir/" class="excluir-link">
+    <i data-lucide="trash-2" class="icon icon--xs"></i>
+    <span>Ver arquivos movidos para exclusão</span>
+  </a>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+
+</html>

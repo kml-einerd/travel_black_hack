@@ -1,67 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Market Pulse Weekly - MilesAI</title>
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
-  <style>
-  <script>
-    lucide.createIcons();
-  </script>
   <script src="https://unpkg.com/lucide@latest"></script>
-    body { padding: var(--space-8); background: var(--color-bg-canvas); }
-    .newsletter-container { max-width: 900px; margin: 0 auto; }
+  <style>
+    body {
+      padding: var(--space-8);
+      background: var(--color-bg-canvas);
+    }
+
+    .newsletter-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-4) 0;
+      margin-bottom: var(--space-4);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .btn-back:hover {
+      color: var(--color-primary);
+    }
 
     .newsletter-header {
-      background: var(--color-secondary);
+      background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-hover) 100%);
       color: white;
-      padding: var(--space-10) var(--space-6);
+      padding: var(--space-12) var(--space-6);
       position: relative;
       border-radius: var(--radius-2xl);
       text-align: center;
       margin-bottom: var(--space-8);
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
     }
 
     .newsletter-header__badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       padding: var(--space-2) var(--space-4);
       border-radius: var(--radius-full);
-      font-size: var(--text-sm);
-      font-weight: var(--font-semibold);
-      margin-bottom: var(--space-3);
-      backdrop-filter: blur(10px);
+      font-size: var(--text-xs);
+      font-weight: var(--font-bold);
+      margin-bottom: var(--space-4);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
     }
 
     .newsletter-header__title {
-      font-size: var(--text-4xl);
-      font-weight: var(--font-bold);
+      font-size: var(--text-h1);
+      font-weight: var(--font-black);
       margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
     }
 
     .newsletter-header__date {
-      font-size: var(--text-lg);
-      opacity: 0.9;
-      margin-bottom: var(--space-4);
+      font-size: var(--text-sm);
+      opacity: 0.8;
+      margin-bottom: var(--space-6);
+      font-family: var(--font-mono);
     }
 
     .newsletter-header__headline {
       font-size: var(--text-xl);
-      line-height: var(--leading-relaxed);
-      opacity: 0.95;
+      line-height: var(--leading-tight);
+      font-weight: var(--font-bold);
       max-width: 700px;
       margin: 0 auto;
+      color: white;
+    }
+
+    .newsletter-header__description {
+      font-size: var(--text-base);
+      line-height: var(--leading-relaxed);
+      opacity: 0.9;
+      max-width: 650px;
+      margin: var(--space-4) auto 0;
     }
 
     .section {
       background: white;
-      border-radius: var(--radius-2xl);
-      padding: var(--space-6);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
       margin-bottom: var(--space-6);
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
     }
 
     .section__header {
@@ -91,7 +139,9 @@
       margin-bottom: var(--space-4);
     }
 
-    .story-card:last-child { margin-bottom: 0; }
+    .story-card:last-child {
+      margin-bottom: 0;
+    }
 
     .story-card--breaking {
       border-color: var(--color-danger);
@@ -237,14 +287,18 @@
       margin-bottom: var(--space-3);
     }
 
-    .trend-item:last-child { margin-bottom: 0; }
+    .trend-item:last-child {
+      margin-bottom: 0;
+    }
 
     .trend-item__indicator {
       font-size: var(--text-2xl);
       flex-shrink: 0;
     }
 
-    .trend-item__content { flex: 1; }
+    .trend-item__content {
+      flex: 1;
+    }
 
     .trend-item__title {
       font-size: var(--text-base);
@@ -273,7 +327,9 @@
       border-bottom: 1px solid var(--color-divider);
     }
 
-    .program-item:last-child { border-bottom: none; }
+    .program-item:last-child {
+      border-bottom: none;
+    }
 
     .program-item__name {
       font-weight: var(--font-semibold);
@@ -369,7 +425,9 @@
       border-bottom: 1px solid var(--color-divider);
     }
 
-    .lookahead-list li:last-child { border-bottom: none; }
+    .lookahead-list li:last-child {
+      border-bottom: none;
+    }
 
     .lookahead-list li::before {
       content: '→';
@@ -413,15 +471,37 @@
     }
 
     @media (max-width: 768px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .program-item { flex-wrap: wrap; }
-      .program-item__note { flex: 100%; margin-top: var(--space-2); }
-      .community-highlight { flex-direction: column; align-items: flex-start; }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .program-item {
+        flex-wrap: wrap;
+      }
+
+      .program-item__note {
+        flex: 100%;
+        margin-top: var(--space-2);
+      }
+
+      .community-highlight {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="newsletter-container">
+    <nav class="nav-bar">
+      <a href="../index.html" class="btn-back">
+        <i data-lucide="arrow-left" class="icon icon--sm"></i>
+        <span>Back to Home</span>
+      </a>
+      <div class="text-muted text-xs font-mono">MilesAI Market Intelligence v3.0</div>
+    </nav>
+
     <header class="newsletter-header" id="newsletter-header">
       <!-- Loaded dynamically -->
     </header>
@@ -451,9 +531,13 @@
       const header = document.getElementById('newsletter-header');
       header.innerHTML = `
         <div class="newsletter-header__badge">Week ${week.week_number} • ${week.year}</div>
-        <h1 class="newsletter-header__title"><i data-lucide="trending-up" class="icon icon--lg"></i><span>Market Pulse Weekly</span></h1>
+        <h1 class="newsletter-header__title">
+          <i data-lucide="trending-up" class="icon icon--lg"></i>
+          <span>Market Pulse Weekly</span>
+        </h1>
         <div class="newsletter-header__date">${week.date_range}</div>
-        <p class="newsletter-header__headline">${week.summary}</p>
+        <div class="newsletter-header__headline">${week.headline}</div>
+        <p class="newsletter-header__description">${week.summary}</p>
       `;
       lucide.createIcons();
     }
@@ -611,9 +695,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadNewsletter);
-  <script>
-    lucide.createIcons();
-  </script>
   </script>
 </body>
+
 </html>

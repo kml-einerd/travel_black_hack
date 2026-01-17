@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Spot Explorer - Miles Intelligence</title>
+    <meta name="description"
+        content="Interactive world map to discover the best redemption sweet spots for any destination.">
+
+    <link rel="stylesheet" href="../css/camping-design-system.css">
+    <link rel="stylesheet" href="../css/camping-components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-orange: #DF5030;
+            --route-gold: #F59E0B;
+            --route-teal: #14B8A6;
+            --map-land: #E7E5E4;
+            --map-land-hover: #D6D3D1;
+        }
+
+        body {
+            background: var(--page-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            display: none;
+        }
+
+        .explorer-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Header */
+        .explorer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-green);
+        }
+
+        .explorer-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .explorer-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .explorer-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn--primary {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .btn--primary:hover {
+            background: #099A4F;
+        }
+
+        .btn--outline {
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .btn--outline:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .btn--sm {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+
+        /* Main Layout */
+        .explorer-main {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 24px;
+            min-height: calc(100vh - 140px);
+        }
+
+        /* Map Container */
+        .map-container {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* SVG World Map */
+        .world-map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .continent {
+            fill: var(--map-land);
+            stroke: #D6D3D1;
+            stroke-width: 0.5;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .continent:hover {
+            fill: var(--map-land-hover);
+        }
+
+        .destination-dot {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .destination-dot:hover {
+            transform: scale(1.5);
+        }
+
+        .destination-dot--active {
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .route-line {
+            stroke: var(--accent-green);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 10 5;
+            animation: dash 20s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Origin Selector */
+        .origin-selector {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .origin-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .origin-select {
+            padding: 8px 14px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .origin-select:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        /* Map Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 14px 18px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .legend-dot--insane { background: #EF4444; }
+        .legend-dot--excellent { background: #F59E0B; }
+        .legend-dot--good { background: #10B981; }
+        .legend-dot--fair { background: #3B82F6; }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        .sidebar-panel {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--page-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .panel-content {
+            padding: 16px 20px;
+        }
+
+        /* Sweet Spot Cards */
+        .sweet-spot-card {
+            padding: 16px;
+            background: var(--page-bg);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .sweet-spot-card:hover {
+            background: white;
+            border-color: var(--accent-green);
+            box-shadow: 0 4px 16px rgba(11, 164, 87, 0.12);
+        }
+
+        .sweet-spot-card--selected {
+            border-color: var(--route-gold);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+        }
+
+        .ss-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .ss-route {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .ss-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .ss-value--insane { color: #EF4444; }
+        .ss-value--excellent { color: #F59E0B; }
+        .ss-value--good { color: #10B981; }
+
+        .ss-details {
+            display: flex;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .ss-program {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* Destination Info */
+        .destination-info {
+            padding: 20px;
+        }
+
+        .dest-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .dest-region {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .dest-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .dest-stat {
+            padding: 14px;
+            background: var(--page-bg);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .dest-stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .dest-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Filter Pills */
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px 20px;
+        }
+
+        .filter-pill {
+            padding: 8px 14px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .filter-pill--active {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .explorer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .explorer-container {
+                padding: 16px;
+            }
+
+            .explorer-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .map-legend {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="explorer-container">
+        <!-- Header -->
+        <header class="explorer-header">
+            <div class="explorer-title">
+                <a href="../INDICE_COMPLETO.html" class="nav-back">
+                    <i data-lucide="arrow-left" class="icon icon--sm"></i>
+                </a>
+                <i data-lucide="map" class="icon icon--xl" style="color: var(--accent-green);"></i>
+                <h1>Sweet Spot Explorer</h1>
+            </div>
+            <div class="explorer-controls">
+                <button class="btn btn--outline btn--sm">
+                    <i data-lucide="filter" class="icon icon--sm"></i>
+                    Filters
+                </button>
+                <button class="btn btn--primary btn--sm">
+                    <i data-lucide="download" class="icon icon--sm"></i>
+                    Export
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="explorer-main">
+            <!-- Map -->
+            <div class="map-container">
+                <svg class="world-map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+                    <!-- Simplified World Map -->
+                    <defs>
+                        <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#0BA457;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Background -->
+                    <rect width="1000" height="500" fill="#F9FAFB"/>
+
+                    <!-- Continents (simplified) -->
+                    <path class="continent" d="M150,120 L280,100 L320,150 L300,200 L250,220 L180,200 L140,160 Z" />
+                    <!-- North America -->
+                    <path class="continent" d="M220,250 L280,240 L290,320 L250,380 L200,350 L190,280 Z" />
+                    <!-- South America -->
+                    <path class="continent" d="M420,100 L580,90 L600,180 L520,200 L440,160 Z" /> <!-- Europe -->
+                    <path class="continent" d="M550,200 L680,180 L720,280 L680,350 L580,320 L520,260 Z" />
+                    <!-- Africa -->
+                    <path class="continent" d="M620,100 L800,80 L900,150 L880,250 L780,280 L680,200 Z" /> <!-- Asia -->
+                    <path class="continent" d="M800,320 L880,300 L920,360 L880,420 L800,400 Z" /> <!-- Australia -->
+
+                    <!-- Routes from NYC -->
+                    <path class="route-line" d="M230,140 Q400,50 480,120" /> <!-- NYC to Europe -->
+                    <path class="route-line" d="M230,140 Q500,100 650,120" /> <!-- NYC to Asia -->
+                    <path class="route-line" d="M230,140 Q280,200 250,280" /> <!-- NYC to South America -->
+                    <path class="route-line" d="M230,140 Q450,250 850,360" /> <!-- NYC to Australia -->
+
+                    <!-- Destination Dots -->
+                    <circle class="destination-dot" cx="230" cy="140" r="8" fill="#0BA457" /> <!-- NYC Origin -->
+
+                    <!-- Europe -->
+                    <circle class="destination-dot destination-dot--active" cx="480" cy="120" r="6" fill="#EF4444"
+                        onclick="selectDestination('paris')" /> <!-- Paris -->
+                    <circle class="destination-dot" cx="510" cy="110" r="5" fill="#F59E0B"
+                        onclick="selectDestination('london')" /> <!-- London -->
+                    <circle class="destination-dot" cx="560" cy="140" r="5" fill="#10B981"
+                        onclick="selectDestination('rome')" /> <!-- Rome -->
+
+                    <!-- Asia -->
+                    <circle class="destination-dot" cx="850" cy="130" r="6" fill="#EF4444"
+                        onclick="selectDestination('tokyo')" /> <!-- Tokyo -->
+                    <circle class="destination-dot" cx="780" cy="180" r="5" fill="#F59E0B"
+                        onclick="selectDestination('singapore')" /> <!-- Singapore -->
+                    <circle class="destination-dot" cx="720" cy="150" r="5" fill="#F59E0B"
+                        onclick="selectDestination('dubai')" /> <!-- Dubai -->
+
+                    <!-- South America -->
+                    <circle class="destination-dot" cx="260" cy="320" r="5" fill="#10B981"
+                        onclick="selectDestination('rio')" /> <!-- Rio -->
+
+                    <!-- Australia -->
+                    <circle class="destination-dot" cx="860" cy="360" r="5" fill="#3B82F6"
+                        onclick="selectDestination('sydney')" /> <!-- Sydney -->
+                </svg>
+
+                <!-- Origin Selector -->
+                <div class="origin-selector">
+                    <span class="origin-label">Flying from:</span>
+                    <select class="origin-select" id="origin-select">
+                        <option value="jfk">New York (JFK)</option>
+                        <option value="lax">Los Angeles (LAX)</option>
+                        <option value="ord">Chicago (ORD)</option>
+                        <option value="mia">Miami (MIA)</option>
+                        <option value="sfo">San Francisco (SFO)</option>
+                    </select>
+                </div>
+
+                <!-- Legend -->
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-dot legend-dot--insane"></span>
+                        <span>Insane (5¢+)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot legend-dot--excellent"></span>
+                        <span>Excellent (3-5¢)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot legend-dot--good"></span>
+                        <span>Good (2-3¢)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot legend-dot--fair"></span>
+                        <span>Fair (1-2¢)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Filters -->
+                <div class="sidebar-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">
+                            <i data-lucide="sliders" class="icon icon--sm"></i>
+                            Filters
+                        </span>
+                    </div>
+                    <div class="filter-pills">
+                        <button class="filter-pill filter-pill--active">All Cabins</button>
+                        <button class="filter-pill">First Class</button>
+                        <button class="filter-pill">Business</button>
+                        <button class="filter-pill">Economy</button>
+                    </div>
+                    <div class="filter-pills">
+                        <button class="filter-pill filter-pill--active">All Programs</button>
+                        <button class="filter-pill">Chase UR</button>
+                        <button class="filter-pill">Amex MR</button>
+                        <button class="filter-pill">Aeroplan</button>
+                        <button class="filter-pill">ANA</button>
+                    </div>
+                </div>
+
+                <!-- Selected Destination -->
+                <div class="sidebar-panel" id="destination-panel" style="display: none;">
+                    <div class="panel-header">
+                        <span class="panel-title">
+                            <i data-lucide="map-pin" class="icon icon--sm"></i>
+                            Destination
+                        </span>
+                    </div>
+                    <div class="destination-info" id="destination-info">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+
+                <!-- Top Sweet Spots -->
+                <div class="sidebar-panel" style="flex: 1;">
+                    <div class="panel-header">
+                        <span class="panel-title">
+                            <i data-lucide="star" class="icon icon--sm" style="color: var(--route-gold);"></i>
+                            Top Sweet Spots
+                        </span>
+                    </div>
+                    <div class="panel-content">
+                        <div class="sweet-spot-card" onclick="selectDestination('tokyo')">
+                            <div class="ss-header">
+                                <span class="ss-route">JFK → TYO</span>
+                                <span class="ss-value ss-value--insane">6.5¢</span>
+                            </div>
+                            <div class="ss-details">
+                                <span>ANA First Class</span>
+                                <span>•</span>
+                                <span>120K pts</span>
+                            </div>
+                            <div class="ss-program">
+                                <span>Virgin Atlantic</span>
+                                <span>via Amex MR</span>
+                            </div>
+                        </div>
+
+                        <div class="sweet-spot-card" onclick="selectDestination('paris')">
+                            <div class="ss-header">
+                                <span class="ss-route">JFK → CDG</span>
+                                <span class="ss-value ss-value--insane">5.8¢</span>
+                            </div>
+                            <div class="ss-details">
+                                <span>Air France Business</span>
+                                <span>•</span>
+                                <span>55K pts</span>
+                            </div>
+                            <div class="ss-program">
+                                <span>Flying Blue</span>
+                                <span>via Chase UR</span>
+                            </div>
+                        </div>
+
+                        <div class="sweet-spot-card" onclick="selectDestination('maldives')">
+                            <div class="ss-header">
+                                <span class="ss-route">JFK → MLE</span>
+                                <span class="ss-value ss-value--excellent">4.2¢</span>
+                            </div>
+                            <div class="ss-details">
+                                <span>Qatar QSuite</span>
+                                <span>•</span>
+                                <span>70K pts</span>
+                            </div>
+                            <div class="ss-program">
+                                <span>AAdvantage</span>
+                                <span>via Miles Purchase</span>
+                            </div>
+                        </div>
+
+                        <div class="sweet-spot-card" onclick="selectDestination('singapore')">
+                            <div class="ss-header">
+                                <span class="ss-route">JFK → SIN</span>
+                                <span class="ss-value ss-value--excellent">3.8¢</span>
+                            </div>
+                            <div class="ss-details">
+                                <span>Singapore Business</span>
+                                <span>•</span>
+                                <span>86K pts</span>
+                            </div>
+                            <div class="ss-program">
+                                <span>Aeroplan</span>
+                                <span>via Amex MR</span>
+                            </div>
+                        </div>
+
+                        <div class="sweet-spot-card" onclick="selectDestination('rio')">
+                            <div class="ss-header">
+                                <span class="ss-route">JFK → GIG</span>
+                                <span class="ss-value ss-value--good">2.8¢</span>
+                            </div>
+                            <div class="ss-details">
+                                <span>LATAM Business</span>
+                                <span>•</span>
+                                <span>50K pts</span>
+                            </div>
+                            <div class="ss-program">
+                                <span>Avianca</span>
+                                <span>via Capital One</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const destinations = {
+            paris: {
+                name: 'Paris',
+                code: 'CDG',
+                region: 'Europe',
+                bestValue: '5.8¢',
+                avgCash: '$4,500',
+                bestProgram: 'Flying Blue',
+                sweetSpots: 4
+            },
+            tokyo: {
+                name: 'Tokyo',
+                code: 'NRT/HND',
+                region: 'Asia',
+                bestValue: '6.5¢',
+                avgCash: '$18,000',
+                bestProgram: 'Virgin Atlantic',
+                sweetSpots: 6
+            },
+            singapore: {
+                name: 'Singapore',
+                code: 'SIN',
+                region: 'Asia',
+                bestValue: '3.8¢',
+                avgCash: '$8,500',
+                bestProgram: 'Aeroplan',
+                sweetSpots: 5
+            },
+            dubai: {
+                name: 'Dubai',
+                code: 'DXB',
+                region: 'Middle East',
+                bestValue: '4.5¢',
+                avgCash: '$12,000',
+                bestProgram: 'Emirates',
+                sweetSpots: 3
+            },
+            rio: {
+                name: 'Rio de Janeiro',
+                code: 'GIG',
+                region: 'South America',
+                bestValue: '2.8¢',
+                avgCash: '$4,000',
+                bestProgram: 'Avianca',
+                sweetSpots: 3
+            },
+            sydney: {
+                name: 'Sydney',
+                code: 'SYD',
+                region: 'Australia',
+                bestValue: '3.2¢',
+                avgCash: '$9,500',
+                bestProgram: 'Qantas',
+                sweetSpots: 4
+            }
+        };
+
+        function selectDestination(destId) {
+            const dest = destinations[destId];
+            if (!dest) return;
+
+            const panel = document.getElementById('destination-panel');
+            const info = document.getElementById('destination-info');
+
+            panel.style.display = 'block';
+            info.innerHTML = `
+                <div class="dest-name">${dest.name}</div>
+                <div class="dest-region">${dest.region} • ${dest.code}</div>
+                <div class="dest-stats">
+                    <div class="dest-stat">
+                        <div class="dest-stat-value">${dest.bestValue}</div>
+                        <div class="dest-stat-label">Best CPP</div>
+                    </div>
+                    <div class="dest-stat">
+                        <div class="dest-stat-value">${dest.avgCash}</div>
+                        <div class="dest-stat-label">Cash Price</div>
+                    </div>
+                    <div class="dest-stat">
+                        <div class="dest-stat-value">${dest.sweetSpots}</div>
+                        <div class="dest-stat-label">Sweet Spots</div>
+                    </div>
+                    <div class="dest-stat">
+                        <div class="dest-stat-value">${dest.bestProgram}</div>
+                        <div class="dest-stat-label">Best Via</div>
+                    </div>
+                </div>
+            `;
+
+            // Highlight corresponding card
+            document.querySelectorAll('.sweet-spot-card').forEach(card => {
+                card.classList.remove('sweet-spot-card--selected');
+            });
+        }
+
+        // Filter pills toggle
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                pill.classList.toggle('filter-pill--active');
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Pulse - Miles Intelligence</title>
+    <meta name="description"
+        content="Real-time community intelligence. See what the community is booking, winning, and discovering.">
+
+    <link rel="stylesheet" href="../css/camping-design-system.css">
+    <link rel="stylesheet" href="../css/camping-components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-orange: #DF5030;
+            --pulse-blue: #3B82F6;
+            --pulse-green: #22C55E;
+            --pulse-purple: #A855F7;
+            --pulse-pink: #EC4899;
+        }
+
+        body {
+            background: var(--page-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        body::before {
+            display: none;
+        }
+
+        .pulse-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* Header */
+        .pulse-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-green);
+        }
+
+        .pulse-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pulse-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #ECFDF5;
+            border: 1px solid #A7F3D0;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #059669;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--pulse-green);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .stat-value--blue { color: var(--pulse-blue); }
+        .stat-value--green { color: var(--pulse-green); }
+        .stat-value--purple { color: var(--pulse-purple); }
+        .stat-value--pink { color: var(--pulse-pink); }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Main Grid */
+        .pulse-main {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+        }
+
+        /* Compose Box */
+        .compose-box {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .compose-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .compose-type-btn {
+            flex: 1;
+            padding: 10px 16px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .compose-type-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .compose-type-btn--active {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+
+        .compose-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 14px;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-primary);
+            resize: none;
+            margin-bottom: 16px;
+        }
+
+        .compose-textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .compose-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .compose-options {
+            display: flex;
+            gap: 8px;
+        }
+
+        .compose-option {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--page-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .compose-option:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .compose-submit {
+            padding: 10px 24px;
+            background: var(--accent-green);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .compose-submit:hover {
+            background: #099A4F;
+        }
+
+        /* Feed */
+        .feed-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feed-tabs {
+            display: flex;
+            gap: 4px;
+            padding: 4px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .feed-tab {
+            flex: 1;
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .feed-tab:hover {
+            background: var(--page-bg);
+        }
+
+        .feed-tab--active {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .feed-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feed-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: all 0.2s;
+        }
+
+        .feed-item:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 4px 16px rgba(11, 164, 87, 0.08);
+        }
+
+        .feed-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #DBEAFE, #EDE9FE);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .feed-content {
+            flex: 1;
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .feed-user {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .feed-time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .feed-type {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .feed-type--win {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .feed-type--booking {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        .feed-type--tip {
+            background: #EDE9FE;
+            color: #7C3AED;
+        }
+
+        .feed-type--alert {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .feed-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .feed-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .feed-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .feed-stat:hover {
+            color: var(--accent-green);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sidebar-panel {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 16px 20px;
+            background: var(--page-bg);
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .panel-content {
+            padding: 16px 20px;
+        }
+
+        /* Trending */
+        .trending-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+
+        .trending-topic {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .trending-count {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .trending-change {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--pulse-green);
+        }
+
+        /* Leaderboard */
+        .leader-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .leader-item:last-child {
+            border-bottom: none;
+        }
+
+        .leader-rank {
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 50%;
+            background: var(--page-bg);
+            color: var(--text-secondary);
+        }
+
+        .leader-rank--1 { background: #FEF3C7; color: #92400E; }
+        .leader-rank--2 { background: #F3F4F6; color: #4B5563; }
+        .leader-rank--3 { background: #FED7AA; color: #9A3412; }
+
+        .leader-avatar {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #DBEAFE, #EDE9FE);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .leader-info {
+            flex: 1;
+        }
+
+        .leader-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .leader-value {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Hot Routes */
+        .route-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .route-item:last-child {
+            border-bottom: none;
+        }
+
+        .route-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .route-airline {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .route-count {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pulse-main {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pulse-container {
+                padding: 16px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .compose-header {
+                flex-wrap: wrap;
+            }
+
+            .compose-type-btn {
+                flex: 1 1 45%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pulse-container">
+        <!-- Header -->
+        <header class="pulse-header">
+            <div class="pulse-title">
+                <a href="../INDICE_COMPLETO.html" class="nav-back">
+                    <i data-lucide="arrow-left" class="icon icon--sm"></i>
+                </a>
+                <i data-lucide="activity" class="icon icon--xl" style="color: var(--accent-green);"></i>
+                <h1>Community Pulse</h1>
+            </div>
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span>LIVE</span>
+            </div>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-value stat-value--blue" id="onlineCount">2,847</div>
+                <div class="stat-label">Online Now</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value stat-value--green">156</div>
+                <div class="stat-label">Bookings Today</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value stat-value--purple">$847K</div>
+                <div class="stat-label">Value Redeemed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value stat-value--pink">23</div>
+                <div class="stat-label">Tips Shared</div>
+            </div>
+        </div>
+
+        <!-- Main -->
+        <div class="pulse-main">
+            <!-- Feed Section -->
+            <div class="feed-section">
+                <!-- Compose Box -->
+                <div class="compose-box">
+                    <div class="compose-header">
+                        <button class="compose-type-btn compose-type-btn--active" data-type="win">
+                            🏆 Share Win
+                        </button>
+                        <button class="compose-type-btn" data-type="booking">
+                            ✈️ Booking
+                        </button>
+                        <button class="compose-type-btn" data-type="tip">
+                            💡 Tip
+                        </button>
+                        <button class="compose-type-btn" data-type="comment">
+                            💬 Comment
+                        </button>
+                    </div>
+                    <textarea class="compose-textarea" placeholder="Share your win, booking, tip, or comment with the community..."></textarea>
+                    <div class="compose-footer">
+                        <div class="compose-options">
+                            <button class="compose-option" title="Add image">
+                                <i data-lucide="image" class="icon icon--sm"></i>
+                            </button>
+                            <button class="compose-option" title="Add route">
+                                <i data-lucide="plane" class="icon icon--sm"></i>
+                            </button>
+                            <button class="compose-option" title="Add points value">
+                                <i data-lucide="coins" class="icon icon--sm"></i>
+                            </button>
+                        </div>
+                        <button class="compose-submit" onclick="submitPost()">
+                            <i data-lucide="send" class="icon icon--sm"></i>
+                            Post
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed Tabs -->
+                <div class="feed-tabs">
+                    <button class="feed-tab feed-tab--active">All</button>
+                    <button class="feed-tab">Wins 🏆</button>
+                    <button class="feed-tab">Bookings ✈️</button>
+                    <button class="feed-tab">Tips 💡</button>
+                </div>
+
+                <!-- Feed Items -->
+                <div class="feed-items" id="feedItems">
+                    <div class="feed-item">
+                        <div class="feed-avatar">🎉</div>
+                        <div class="feed-content">
+                            <div class="feed-header">
+                                <span class="feed-user">MilesHunter_NYC</span>
+                                <span class="feed-time">2 min ago</span>
+                            </div>
+                            <span class="feed-type feed-type--win">WIN</span>
+                            <p class="feed-text">
+                                Just booked ANA First Class to Tokyo using only 110K Virgin Atlantic points!
+                                Cash price was $24,000. That's 21.8¢ per point! 🇯🇵✈️
+                            </p>
+                            <div class="feed-stats">
+                                <span class="feed-stat"><i data-lucide="heart" class="icon icon--xs"></i> 247</span>
+                                <span class="feed-stat"><i data-lucide="message-circle" class="icon icon--xs"></i> 34</span>
+                                <span class="feed-stat"><i data-lucide="share" class="icon icon--xs"></i> Share</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-avatar">💡</div>
+                        <div class="feed-content">
+                            <div class="feed-header">
+                                <span class="feed-user">PointsProf</span>
+                                <span class="feed-time">15 min ago</span>
+                            </div>
+                            <span class="feed-type feed-type--tip">TIP</span>
+                            <p class="feed-text">
+                                PSA: Qatar QSuite availability just opened up for JFK-DOH in March!
+                                Go book now before it's gone. AA charging only 70K each way.
+                            </p>
+                            <div class="feed-stats">
+                                <span class="feed-stat"><i data-lucide="heart" class="icon icon--xs"></i> 189</span>
+                                <span class="feed-stat"><i data-lucide="message-circle" class="icon icon--xs"></i> 22</span>
+                                <span class="feed-stat"><i data-lucide="share" class="icon icon--xs"></i> Share</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-avatar">✈️</div>
+                        <div class="feed-content">
+                            <div class="feed-header">
+                                <span class="feed-user">SarahTravels</span>
+                                <span class="feed-time">28 min ago</span>
+                            </div>
+                            <span class="feed-type feed-type--booking">BOOKING</span>
+                            <p class="feed-text">
+                                Honeymoon trip locked in! 🏝️ Park Hyatt Maldives for 5 nights using
+                                150K Hyatt points transferred from Chase UR. Can't believe we're doing this!
+                            </p>
+                            <div class="feed-stats">
+                                <span class="feed-stat"><i data-lucide="heart" class="icon icon--xs"></i> 412</span>
+                                <span class="feed-stat"><i data-lucide="message-circle" class="icon icon--xs"></i> 67</span>
+                                <span class="feed-stat"><i data-lucide="share" class="icon icon--xs"></i> Share</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-avatar">⚠️</div>
+                        <div class="feed-content">
+                            <div class="feed-header">
+                                <span class="feed-user">DevalWatch</span>
+                                <span class="feed-time">45 min ago</span>
+                            </div>
+                            <span class="feed-type feed-type--alert">ALERT</span>
+                            <p class="feed-text">
+                                BREAKING: Marriott category changes going live March 1st.
+                                Burn your Cat 5-7 points NOW before it's too late. Full list in comments.
+                            </p>
+                            <div class="feed-stats">
+                                <span class="feed-stat"><i data-lucide="heart" class="icon icon--xs"></i> 534</span>
+                                <span class="feed-stat"><i data-lucide="message-circle" class="icon icon--xs"></i> 128</span>
+                                <span class="feed-stat"><i data-lucide="share" class="icon icon--xs"></i> Share</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-avatar">🎰</div>
+                        <div class="feed-content">
+                            <div class="feed-header">
+                                <span class="feed-user">LuckyMiles</span>
+                                <span class="feed-time">1 hr ago</span>
+                            </div>
+                            <span class="feed-type feed-type--win">WIN</span>
+                            <p class="feed-text">
+                                Used the First Class Roulette and it gave me Singapore Suites!
+                                Found availability next month. This is insane. Thank you Miles Intelligence!
+                            </p>
+                            <div class="feed-stats">
+                                <span class="feed-stat"><i data-lucide="heart" class="icon icon--xs"></i> 298</span>
+                                <span class="feed-stat"><i data-lucide="message-circle" class="icon icon--xs"></i> 45</span>
+                                <span class="feed-stat"><i data-lucide="share" class="icon icon--xs"></i> Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Trending -->
+                <div class="sidebar-panel">
+                    <div class="panel-header">
+                        <i data-lucide="trending-up" class="icon icon--sm" style="color: var(--pulse-green);"></i>
+                        Trending Topics
+                    </div>
+                    <div class="panel-content">
+                        <div class="trending-item">
+                            <div>
+                                <div class="trending-topic">#AviancaBonus</div>
+                                <div class="trending-count">847 mentions</div>
+                            </div>
+                            <span class="trending-change">+245%</span>
+                        </div>
+                        <div class="trending-item">
+                            <div>
+                                <div class="trending-topic">#MarriottDevaluation</div>
+                                <div class="trending-count">562 mentions</div>
+                            </div>
+                            <span class="trending-change">+180%</span>
+                        </div>
+                        <div class="trending-item">
+                            <div>
+                                <div class="trending-topic">#ANAFirstClass</div>
+                                <div class="trending-count">423 mentions</div>
+                            </div>
+                            <span class="trending-change">+120%</span>
+                        </div>
+                        <div class="trending-item">
+                            <div>
+                                <div class="trending-topic">#QSuiteAvailability</div>
+                                <div class="trending-count">318 mentions</div>
+                            </div>
+                            <span class="trending-change">+95%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div class="sidebar-panel">
+                    <div class="panel-header">
+                        <i data-lucide="trophy" class="icon icon--sm" style="color: #F59E0B;"></i>
+                        Top Contributors
+                    </div>
+                    <div class="panel-content">
+                        <div class="leader-item">
+                            <div class="leader-rank leader-rank--1">1</div>
+                            <div class="leader-avatar">👑</div>
+                            <div class="leader-info">
+                                <div class="leader-name">PointsProf</div>
+                                <div class="leader-value">2,847 helpful votes</div>
+                            </div>
+                        </div>
+                        <div class="leader-item">
+                            <div class="leader-rank leader-rank--2">2</div>
+                            <div class="leader-avatar">⭐</div>
+                            <div class="leader-info">
+                                <div class="leader-name">MilesHunter_NYC</div>
+                                <div class="leader-value">2,234 helpful votes</div>
+                            </div>
+                        </div>
+                        <div class="leader-item">
+                            <div class="leader-rank leader-rank--3">3</div>
+                            <div class="leader-avatar">🔥</div>
+                            <div class="leader-info">
+                                <div class="leader-name">DevalWatch</div>
+                                <div class="leader-value">1,987 helpful votes</div>
+                            </div>
+                        </div>
+                        <div class="leader-item">
+                            <div class="leader-rank">4</div>
+                            <div class="leader-avatar">✈️</div>
+                            <div class="leader-info">
+                                <div class="leader-name">SarahTravels</div>
+                                <div class="leader-value">1,654 helpful votes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Routes -->
+                <div class="sidebar-panel">
+                    <div class="panel-header">
+                        <i data-lucide="plane" class="icon icon--sm" style="color: var(--pulse-blue);"></i>
+                        Hot Routes Today
+                    </div>
+                    <div class="panel-content">
+                        <div class="route-item">
+                            <div>
+                                <div class="route-name">JFK → NRT</div>
+                                <div class="route-airline">ANA First Class</div>
+                            </div>
+                            <span class="route-count">23 bookings</span>
+                        </div>
+                        <div class="route-item">
+                            <div>
+                                <div class="route-name">JFK → DOH</div>
+                                <div class="route-airline">Qatar QSuite</div>
+                            </div>
+                            <span class="route-count">18 bookings</span>
+                        </div>
+                        <div class="route-item">
+                            <div>
+                                <div class="route-name">LAX → SIN</div>
+                                <div class="route-airline">Singapore Suites</div>
+                            </div>
+                            <span class="route-count">12 bookings</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate live updates
+        function updateOnlineCount() {
+            const count = document.getElementById('onlineCount');
+            const base = 2847;
+            const variation = Math.floor(Math.random() * 100) - 50;
+            count.textContent = (base + variation).toLocaleString();
+        }
+
+        setInterval(updateOnlineCount, 5000);
+
+        // Tab switching
+        document.querySelectorAll('.feed-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.feed-tab').forEach(t => t.classList.remove('feed-tab--active'));
+                tab.classList.add('feed-tab--active');
+            });
+        });
+
+        // Compose type buttons
+        document.querySelectorAll('.compose-type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.compose-type-btn').forEach(b => b.classList.remove('compose-type-btn--active'));
+                btn.classList.add('compose-type-btn--active');
+
+                const type = btn.dataset.type;
+                const placeholders = {
+                    win: "Share your redemption win! Tell us about your incredible booking...",
+                    booking: "Just booked something? Share the details...",
+                    tip: "Got a hot tip? Help the community out...",
+                    comment: "What's on your mind?"
+                };
+                document.querySelector('.compose-textarea').placeholder = placeholders[type];
+            });
+        });
+
+        function submitPost() {
+            const textarea = document.querySelector('.compose-textarea');
+            const text = textarea.value.trim();
+
+            if (!text) {
+                alert('Please enter some content to post');
+                return;
+            }
+
+            const activeType = document.querySelector('.compose-type-btn--active').dataset.type;
+            const typeLabels = { win: 'WIN', booking: 'BOOKING', tip: 'TIP', comment: 'COMMENT' };
+            const typeClasses = { win: 'feed-type--win', booking: 'feed-type--booking', tip: 'feed-type--tip', comment: 'feed-type--alert' };
+            const avatars = { win: '🎉', booking: '✈️', tip: '💡', comment: '💬' };
+
+            const newPost = document.createElement('div');
+            newPost.className = 'feed-item';
+            newPost.style.animation = 'slideIn 0.5s ease';
+            newPost.innerHTML = `
+                <div class="feed-avatar">${avatars[activeType]}</div>
+                <div class="feed-content">
+                    <div class="feed-header">
+                        <span class="feed-user">You</span>
+                        <span class="feed-time">Just now</span>
+                    </div>
+                    <span class="feed-type ${typeClasses[activeType]}">${typeLabels[activeType]}</span>
+                    <p class="feed-text">${text}</p>
+                    <div class="feed-stats">
+                        <span class="feed-stat"><i data-lucide="heart" class="icon icon--xs"></i> 0</span>
+                        <span class="feed-stat"><i data-lucide="message-circle" class="icon icon--xs"></i> 0</span>
+                        <span class="feed-stat"><i data-lucide="share" class="icon icon--xs"></i> Share</span>
+                    </div>
+                </div>
+            `;
+
+            const feedItems = document.getElementById('feedItems');
+            feedItems.insertBefore(newPost, feedItems.firstChild);
+
+            textarea.value = '';
+            lucide.createIcons();
+        }
+
+        // Add slide in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

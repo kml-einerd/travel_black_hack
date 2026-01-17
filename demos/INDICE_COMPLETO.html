@@ -1,512 +1,821 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MilesAI v3.0.0 - Índice Completo</title>
-  <link rel="stylesheet" href="css/design-system.css">
-  <link rel="stylesheet" href="css/components.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    body {
-      background: var(--color-bg-canvas);
-      padding: var(--space-8);
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camping Adventure - Discover Your Perfect Campsite</title>
+    <meta name="description"
+        content="Find your ideal campsite. Explore nearby, lakeside, or riverside camping spots and start your adventure today.">
 
-    .header {
-      background: var(--color-secondary);
-      color: white;
-      padding: var(--space-12);
-      border-radius: var(--radius-2xl);
-      margin-bottom: var(--space-12);
-      position: relative;
-      overflow: hidden;
-    }
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/camping-design-system.css">
+    <link rel="stylesheet" href="css/camping-components.css">
 
-    .header::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--color-primary);
-    }
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    .header h1 {
-      font-size: var(--text-5xl);
-      font-weight: var(--font-black);
-      margin-bottom: var(--space-4);
-      display: flex;
-      align-items: center;
-      gap: var(--space-4);
-    }
+    <style>
+        /* Page-specific styles */
+        .hero-image-wrapper {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
 
-    .header p {
-      font-size: var(--text-xl);
-      opacity: 0.9;
-    }
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(13, 59, 40, 0.85) 0%, rgba(7, 42, 28, 0.75) 50%, rgba(13, 59, 40, 0.9) 100%);
+        }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      background: var(--color-accent);
-      color: white;
-      padding: var(--space-2) var(--space-4);
-      border-radius: var(--radius-full);
-      font-size: var(--text-sm);
-      font-weight: var(--font-bold);
-      margin-top: var(--space-4);
-    }
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
 
-    .section {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: var(--space-8);
-      margin-bottom: var(--space-8);
-      box-shadow: var(--shadow-card);
-    }
+        /* Search Bar Enhanced */
+        .search-section {
+            margin-top: var(--space-8);
+        }
 
-    .section h2 {
-      font-size: var(--text-3xl);
-      font-weight: var(--font-bold);
-      color: var(--color-primary);
-      margin-bottom: var(--space-6);
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      padding-bottom: var(--space-4);
-      border-bottom: 2px solid var(--color-border);
-    }
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            background: white;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            max-width: 600px;
+        }
 
-    .page-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: var(--space-4);
-    }
+        .search-field {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-4);
+            background: var(--neutral-50);
+            border-radius: var(--radius-xl);
+            color: var(--color-charcoal);
+        }
 
-    .page-card {
-      background: var(--color-bg-secondary);
-      border: 2px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-      transition: all var(--transition-normal);
-      text-decoration: none;
-      display: block;
-    }
+        .search-field__icon {
+            color: var(--neutral-400);
+        }
 
-    .page-card:hover {
-      border-color: var(--color-secondary);
-      box-shadow: var(--shadow-elevated);
-      transform: translateY(-4px);
-    }
+        .search-field__input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: var(--text-small);
+            color: var(--color-charcoal);
+            outline: none;
+        }
 
-    .page-card__title {
-      font-size: var(--text-lg);
-      font-weight: var(--font-bold);
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-2);
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-    }
+        .search-field__input::placeholder {
+            color: var(--neutral-400);
+        }
 
-    .page-card__path {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--color-text-secondary);
-    }
+        .date-field {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-4);
+            background: var(--neutral-50);
+            border-radius: var(--radius-xl);
+            color: var(--color-charcoal);
+            font-size: var(--text-small);
+            cursor: pointer;
+        }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-6);
-      margin-top: var(--space-8);
-    }
+        .date-field__icon {
+            color: var(--neutral-400);
+        }
 
-    .stat-card {
-      background: var(--color-bg-tertiary);
-      padding: var(--space-6);
-      border-radius: var(--radius-lg);
-      text-align: center;
-    }
+        .search-btn {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary);
+            border: none;
+            border-radius: var(--radius-full);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
 
-    .stat-card__value {
-      font-size: var(--text-4xl);
-      font-weight: var(--font-black);
-      color: var(--color-secondary);
-      font-variant-numeric: tabular-nums;
-    }
+        .search-btn:hover {
+            background: var(--color-primary-hover);
+            transform: scale(1.05);
+            box-shadow: var(--glow-primary);
+        }
 
-    .stat-card__label {
-      font-size: var(--text-sm);
-      color: var(--color-text-secondary);
-      margin-top: var(--space-2);
-    }
+        /* Category Pills */
+        .categories-section {
+            margin-top: var(--space-6);
+        }
 
-    .priority-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: var(--radius-sm);
-      font-size: var(--text-xs);
-      font-weight: var(--font-bold);
-      margin-left: var(--space-2);
-    }
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
 
-    .priority-high {
-      background: #fee2e2;
-      color: #991b1b;
-    }
+        .category-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            color: white;
+            font-size: var(--text-small);
+            font-weight: var(--font-medium);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
 
-    .priority-medium {
-      background: #fef3c7;
-      color: #92400e;
-    }
-  </style>
+        .category-pill:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .category-pill--active {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        /* Featured Section with Images */
+        .feature-card-image {
+            position: relative;
+            height: 180px;
+            margin: calc(-1 * var(--space-6));
+            margin-bottom: var(--space-5);
+            overflow: hidden;
+            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+        }
+
+        .feature-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        }
+
+        /* Intelligence Cards with special styling */
+        .intelligence-card {
+            background: linear-gradient(135deg, #0a1f15 0%, #0d3b28 100%);
+            border: 1px solid rgba(11, 164, 87, 0.2);
+        }
+
+        .intelligence-card::before {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        }
+
+        .intelligence-card .featured-card__icon {
+            background: rgba(11, 164, 87, 0.2);
+        }
+
+        .intelligence-card .featured-card__title,
+        .intelligence-card .featured-card__description {
+            color: white;
+        }
+
+        .intelligence-card .featured-card__description {
+            color: var(--color-text-on-dark-muted);
+        }
+
+        .intelligence-card .featured-card__stat {
+            background: rgba(11, 164, 87, 0.2);
+        }
+
+        .intelligence-card .featured-card__stat-value {
+            color: var(--color-primary);
+        }
+
+        /* War Room special card */
+        .war-room-card {
+            background: linear-gradient(135deg, #0a0e14 0%, #102a1a 100%);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+        }
+
+        .war-room-card::before {
+            background: linear-gradient(90deg, #00ff41, var(--color-primary));
+        }
+
+        .war-room-card .featured-card__icon {
+            background: rgba(0, 255, 65, 0.15);
+            color: #00ff41;
+        }
+
+        .war-room-card .featured-card__stat {
+            background: rgba(0, 255, 65, 0.15);
+        }
+
+        .war-room-card .featured-card__stat-value {
+            color: #00ff41;
+        }
+
+        /* Floating badges */
+        .floating-badge {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-accent);
+            color: white;
+            font-size: var(--text-xs);
+            font-weight: var(--font-bold);
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        /* Grid adjustments */
+        .grid-2-col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-field,
+            .date-field {
+                width: 100%;
+            }
+        }
+
+        /* Version badge */
+        .version-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-1) var(--space-3);
+            background: rgba(11, 164, 87, 0.2);
+            border: 1px solid var(--color-primary);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: var(--font-bold);
+            color: var(--color-primary);
+            margin-left: var(--space-3);
+        }
+    </style>
 </head>
+
 <body>
+    <div class="page">
+        <div class="page__container">
+            <!-- Navigation Header -->
+            <nav class="nav-header">
+                <a href="#" class="nav-header__brand">
+                    <div class="nav-header__logo">
+                        <i data-lucide="tent" class="icon icon--lg"></i>
+                    </div>
+                    <span class="nav-header__title">Camping Adventure</span>
+                </a>
+                <div class="nav-header__actions">
+                    <button class="btn btn--ghost btn--sm">
+                        <i data-lucide="map-pin" class="icon icon--sm"></i>
+                        Nearby
+                    </button>
+                    <button class="btn btn--primary btn--sm">
+                        <i data-lucide="compass" class="icon icon--sm"></i>
+                        Explore
+                    </button>
+                </div>
+            </nav>
 
-  <div class="header">
-    <h1>
-      <i data-lucide="folder-open" class="icon icon--2xl"></i>
-      <span>MilesAI v3.0.0 - Índice Completo</span>
-    </h1>
-    <p>28 páginas refatoradas • Design System v3.0.0 • Zero AI Slop</p>
-    <div class="status-badge">
-      <i data-lucide="check-circle" class="icon icon--xs"></i>
-      <span>PRODUÇÃO PRONTA</span>
+            <!-- Hero Section -->
+            <header class="hero-card">
+                <div class="hero-image-wrapper">
+                    <img src="images/destinations/sunset-tent.webp" alt="Forest camping" class="hero-image"
+                        onerror="this.style.display='none'">
+                </div>
+                <div class="hero-card__content">
+                    <div class="hero-card__badge">
+                        <span class="hero-card__badge-dot"></span>
+                        <span>Camping Starts Here</span>
+                    </div>
+                    <h1 class="hero-card__title">Find Your Perfect<br>Campsite</h1>
+                    <p class="hero-card__subtitle">
+                        Discover your ideal campsite - nearby, lakeside, or riverside. Start your adventure today!
+                    </p>
+
+                    <!-- Search Bar -->
+                    <div class="search-section">
+                        <div class="search-container">
+                            <div class="search-field">
+                                <i data-lucide="search" class="icon icon--sm search-field__icon"></i>
+                                <input type="text" class="search-field__input" placeholder="Search destinations...">
+                            </div>
+                            <div class="date-field">
+                                <i data-lucide="calendar" class="icon icon--sm date-field__icon"></i>
+                                <span>01-15 Nov 24</span>
+                            </div>
+                            <button class="search-btn">
+                                <i data-lucide="sliders-horizontal" class="icon icon--md"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Pills -->
+                    <div class="categories-section">
+                        <div class="category-pills">
+                            <button class="category-pill category-pill--active">
+                                <i data-lucide="map-pin" class="icon icon--sm"></i>
+                                Nearby
+                            </button>
+                            <button class="category-pill">
+                                <i data-lucide="waves" class="icon icon--sm"></i>
+                                Lakes
+                            </button>
+                            <button class="category-pill">
+                                <i data-lucide="wind" class="icon icon--sm"></i>
+                                Rivers
+                            </button>
+                            <button class="category-pill">
+                                <i data-lucide="mountain" class="icon icon--sm"></i>
+                                Mountains
+                            </button>
+                            <button class="category-pill">
+                                <i data-lucide="trees" class="icon icon--sm"></i>
+                                Forest
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="hero-card__stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat__value">7</div>
+                            <div class="hero-stat__label">Active Deals</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat__value">12</div>
+                            <div class="hero-stat__label">Hot Spots</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat__value">8</div>
+                            <div class="hero-stat__label">Guides</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat__value">5</div>
+                            <div class="hero-stat__label">New Locations</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Alert Ticker -->
+            <div class="alert-ticker">
+                <span class="alert-ticker__label">
+                    <i data-lucide="zap" class="icon icon--xs"></i>
+                    HOT
+                </span>
+                <span class="alert-ticker__content">
+                    Crystal Lake Campsite - Limited spots available! Book now for the best lakeside experience.
+                </span>
+                <a href="news/news-portal.html" class="alert-ticker__cta">View Details</a>
+            </div>
+
+            <!-- Featured Destinations -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title__icon">
+                            <i data-lucide="flame" class="icon icon--md"></i>
+                        </span>
+                        Featured Destinations
+                    </h2>
+                    <a href="#" class="section-link">
+                        See all
+                        <i data-lucide="chevron-right" class="icon icon--sm"></i>
+                    </a>
+                </div>
+                <div class="featured-grid">
+                    <a href="news/news-portal.html" class="featured-card">
+                        <div class="featured-card__icon">
+                            <i data-lucide="newspaper" class="icon icon--xl"></i>
+                        </div>
+                        <h3 class="featured-card__title">The Briefing Room</h3>
+                        <p class="featured-card__description">
+                            Breaking news on campsites, trail conditions, and weather updates for your adventures.
+                        </p>
+                        <div class="featured-card__stat">
+                            <span class="featured-card__stat-value">17</span>
+                            <span>updates</span>
+                        </div>
+                    </a>
+
+                    <a href="tools/miles-tracker.html" class="featured-card">
+                        <div class="featured-card__icon">
+                            <i data-lucide="map" class="icon icon--xl"></i>
+                        </div>
+                        <h3 class="featured-card__title">Trail Tracker</h3>
+                        <p class="featured-card__description">
+                            Real-time trail conditions, distance tracking, and campsite availability for all regions.
+                        </p>
+                        <div class="featured-card__stat">
+                            <span class="featured-card__stat-value">7</span>
+                            <span>regions tracked</span>
+                        </div>
+                    </a>
+
+                    <a href="news/hot-deals-flash.html" class="featured-card">
+                        <div class="featured-card__icon">
+                            <i data-lucide="tent" class="icon icon--xl"></i>
+                        </div>
+                        <h3 class="featured-card__title">Hot Campsites</h3>
+                        <p class="featured-card__description">
+                            Last-minute availability, seasonal deals, and premium camping spots with special rates.
+                        </p>
+                        <div class="featured-card__stat">
+                            <span class="featured-card__stat-value">12</span>
+                            <span>active deals</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Intelligence Lab - Adventure Tools -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title__icon">
+                            <i data-lucide="compass" class="icon icon--md"></i>
+                        </span>
+                        Adventure Tools
+                        <span class="version-badge">NEW</span>
+                    </h2>
+                </div>
+
+                <div class="featured-grid grid-2-col" style="margin-bottom: var(--space-6);">
+                    <a href="intelligence/war-room.html" class="featured-card war-room-card">
+                        <div class="featured-card__icon">
+                            <i data-lucide="shield-alert" class="icon icon--xl"></i>
+                        </div>
+                        <h3 class="featured-card__title">Command Center</h3>
+                        <p class="featured-card__description">
+                            Real-time weather alerts, trail conditions, and emergency notifications for your safety.
+                        </p>
+                        <div class="featured-card__stat">
+                            <span class="featured-card__stat-value">LIVE</span>
+                            <span>monitoring</span>
+                        </div>
+                    </a>
+
+                    <a href="intelligence/arbitrage-matrix.html" class="featured-card intelligence-card">
+                        <div class="featured-card__icon">
+                            <i data-lucide="git-branch" class="icon icon--xl"></i>
+                        </div>
+                        <h3 class="featured-card__title">Route Planner</h3>
+                        <p class="featured-card__description">
+                            Find the best routes between campsites. Compare distances, terrain difficulty, and scenic
+                            views.
+                        </p>
+                        <div class="featured-card__stat">
+                            <span class="featured-card__stat-value">+120</span>
+                            <span>routes available</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="resources-grid">
+                    <a href="intelligence/devaluation-clock.html" class="resource-card resource-card--accent">
+                        <div class="resource-card__icon" style="background: rgba(223, 80, 48, 0.1); color: #DF5030;">
+                            <i data-lucide="clock" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Weather Countdown</div>
+                            <div class="resource-card__path">Track storm fronts and weather windows</div>
+                        </div>
+                        <span class="resource-card__badge" style="background: #DF5030;">ALERT</span>
+                    </a>
+
+                    <a href="intelligence/sweet-spot-explorer.html" class="resource-card"
+                        style="border-left: 3px solid #F59E0B;">
+                        <div class="resource-card__icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;">
+                            <i data-lucide="map-pin" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Sweet Spot Finder</div>
+                            <div class="resource-card__path">Discover hidden camping gems</div>
+                        </div>
+                    </a>
+
+                    <a href="intelligence/velocity-engine.html" class="resource-card"
+                        style="border-left: 3px solid #8B5CF6;">
+                        <div class="resource-card__icon" style="background: rgba(139, 92, 246, 0.1); color: #8B5CF6;">
+                            <i data-lucide="zap" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Activity Tracker</div>
+                            <div class="resource-card__path">Log hikes, distances, and achievements</div>
+                        </div>
+                    </a>
+
+                    <a href="intelligence/first-class-roulette.html" class="resource-card"
+                        style="border-left: 3px solid #FBBF24;">
+                        <div class="resource-card__icon" style="background: rgba(251, 191, 36, 0.1); color: #FBBF24;">
+                            <i data-lucide="sparkles" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Campsite Roulette</div>
+                            <div class="resource-card__path">Spin to discover new destinations</div>
+                        </div>
+                        <span class="resource-card__badge" style="background: #EC4899;">FUN</span>
+                    </a>
+
+                    <a href="intelligence/burn-or-bank.html" class="resource-card"
+                        style="border-left: 3px solid #10B981;">
+                        <div class="resource-card__icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;">
+                            <i data-lucide="brain" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Pack Advisor</div>
+                            <div class="resource-card__path">AI-powered gear recommendations</div>
+                        </div>
+                    </a>
+
+                    <a href="intelligence/card-stacking-wizard.html" class="resource-card"
+                        style="border-left: 3px solid #3B82F6;">
+                        <div class="resource-card__icon" style="background: rgba(59, 130, 246, 0.1); color: #3B82F6;">
+                            <i data-lucide="layers" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Gear Organizer</div>
+                            <div class="resource-card__path">Build your optimal camping kit</div>
+                        </div>
+                    </a>
+
+                    <a href="intelligence/redemption-simulator.html" class="resource-card"
+                        style="border-left: 3px solid #06B6D4;">
+                        <div class="resource-card__icon" style="background: rgba(6, 182, 212, 0.1); color: #06B6D4;">
+                            <i data-lucide="target" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Trip Simulator</div>
+                            <div class="resource-card__path">Plan multi-day camping adventures</div>
+                        </div>
+                    </a>
+
+                    <a href="intelligence/community-pulse.html" class="resource-card"
+                        style="border-left: 3px solid #A855F7;">
+                        <div class="resource-card__icon" style="background: rgba(168, 85, 247, 0.1); color: #A855F7;">
+                            <i data-lucide="activity" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Community Pulse</div>
+                            <div class="resource-card__path">Real-time camper reviews & tips</div>
+                        </div>
+                        <span class="resource-card__badge" style="background: #22C55E;">LIVE</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Content Section -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title__icon">
+                            <i data-lucide="book-open" class="icon icon--md"></i>
+                        </span>
+                        Guides & Resources
+                    </h2>
+                </div>
+                <div class="resources-grid">
+                    <a href="evergreen/hacks-library.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="wrench" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Camping Hacks</div>
+                            <div class="resource-card__path">Tips & tricks for outdoor adventures</div>
+                        </div>
+                    </a>
+                    <a href="evergreen/quick-guides.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="book-open" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Quick Guides</div>
+                            <div class="resource-card__path">Essential camping knowledge</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Updates Section -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title__icon">
+                            <i data-lucide="refresh-cw" class="icon icon--md"></i>
+                        </span>
+                        Live Updates
+                    </h2>
+                </div>
+                <div class="resources-grid">
+                    <a href="feeds/deal-alerts.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="bell" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Availability Alerts</div>
+                            <div class="resource-card__path">Real-time campsite notifications</div>
+                        </div>
+                    </a>
+                    <a href="feeds/live-ticker.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="activity" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Live Ticker</div>
+                            <div class="resource-card__path">Real-time trail conditions</div>
+                        </div>
+                    </a>
+                    <a href="feeds/program-updates.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="info" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Park Updates</div>
+                            <div class="resource-card__path">Official announcements & closures</div>
+                        </div>
+                    </a>
+                    <a href="feeds/success-stories.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="award" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Adventure Stories</div>
+                            <div class="resource-card__path">Camper experiences & photos</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title__icon">
+                            <i data-lucide="newspaper" class="icon icon--md"></i>
+                        </span>
+                        News & Updates
+                    </h2>
+                </div>
+                <div class="resources-grid">
+                    <a href="news/news-portal.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="newspaper" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">News Portal</div>
+                            <div class="resource-card__path">Latest camping news</div>
+                        </div>
+                        <span class="resource-card__badge">NEW</span>
+                    </a>
+                    <a href="news/hot-deals-flash.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="zap" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Flash Deals</div>
+                            <div class="resource-card__path">Limited-time camping offers</div>
+                        </div>
+                    </a>
+                    <a href="news/community-wins.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="users" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Community Wins</div>
+                            <div class="resource-card__path">Camper achievements</div>
+                        </div>
+                    </a>
+                    <a href="news/market-pulse-weekly.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="trending-up" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Weekly Pulse</div>
+                            <div class="resource-card__path">Camping trends & insights</div>
+                        </div>
+                    </a>
+                    <a href="news/card-universe-feed.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="credit-card" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Gear Universe</div>
+                            <div class="resource-card__path">Equipment reviews & deals</div>
+                        </div>
+                    </a>
+                    <a href="news/transfer-bonus-tracker.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="gift" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Rewards Tracker</div>
+                            <div class="resource-card__path">Loyalty program bonuses</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Tools Section -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title__icon">
+                            <i data-lucide="wrench" class="icon icon--md"></i>
+                        </span>
+                        Tools
+                    </h2>
+                </div>
+                <div class="resources-grid">
+                    <a href="tools/miles-tracker.html" class="resource-card">
+                        <div class="resource-card__icon">
+                            <i data-lucide="bar-chart-2" class="icon icon--md"></i>
+                        </div>
+                        <div class="resource-card__content">
+                            <div class="resource-card__title">Trail Tracker</div>
+                            <div class="resource-card__path">Distance & activity logging</div>
+                        </div>
+                        <span class="resource-card__badge">NEW</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Virtual Tour Card -->
+            <section style="margin-top: var(--space-10);">
+                <a href="#" class="virtual-tour" style="text-decoration: none;">
+                    <div class="virtual-tour__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                            <path d="M2 12h20" />
+                        </svg>
+                    </div>
+                    <div class="virtual-tour__content">
+                        <h3 class="virtual-tour__title">Virtual Tour</h3>
+                        <p class="virtual-tour__description">
+                            Explore campsites in 360° before you arrive. Get a full experience of the campsite!
+                        </p>
+                    </div>
+                    <div class="virtual-tour__preview">
+                        <img src="images/destinations/alpine-meadow.webp" alt="Campsite preview"
+                            onerror="this.parentElement.style.background='var(--color-primary)'">
+                    </div>
+                </a>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer__brand">
+                    <i data-lucide="tent" class="icon icon--md" style="color: var(--color-primary);"></i>
+                    <span>Camping Adventure v1.0 - January 2026</span>
+                </div>
+                <div class="footer__links">
+                    <a href="../excluir/" class="footer__link">
+                        <i data-lucide="archive" class="icon icon--xs"></i>
+                        <span>Archive</span>
+                    </a>
+                </div>
+            </footer>
+        </div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2>
-      <i data-lucide="star" class="icon icon--lg"></i>
-      <span>Páginas Principais</span>
-      <span class="priority-badge priority-high">PRIORIDADE ALTA</span>
-    </h2>
-    <div class="page-grid">
-      <a href="index.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="home" class="icon icon--sm"></i>
-          <span>Landing Page</span>
-        </div>
-        <div class="page-card__path">index.html</div>
-      </a>
-      <a href="dashboard/index.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="layout-dashboard" class="icon icon--sm"></i>
-          <span>Dashboard</span>
-        </div>
-        <div class="page-card__path">dashboard/index.html</div>
-      </a>
-      <a href="calculators/cash-vs-points.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="calculator" class="icon icon--sm"></i>
-          <span>Cash vs Points Calculator</span>
-        </div>
-        <div class="page-card__path">calculators/cash-vs-points.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="book-open" class="icon icon--lg"></i>
-      <span>Ebooks (5 produtos)</span>
-    </h2>
-    <div class="page-grid">
-      <a href="ebooks/award-flight-mastery.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="plane" class="icon icon--sm"></i>
-          <span>Award Flight Mastery</span>
-        </div>
-        <div class="page-card__path">ebooks/award-flight-mastery.html</div>
-      </a>
-      <a href="ebooks/credit-card-optimization.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="credit-card" class="icon icon--sm"></i>
-          <span>Credit Card Optimization</span>
-        </div>
-        <div class="page-card__path">ebooks/credit-card-optimization.html</div>
-      </a>
-      <a href="ebooks/hotel-status-shortcut.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="building" class="icon icon--sm"></i>
-          <span>Hotel Status Shortcut</span>
-        </div>
-        <div class="page-card__path">ebooks/hotel-status-shortcut.html</div>
-      </a>
-      <a href="ebooks/manufactured-spending-blueprint.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="wallet" class="icon icon--sm"></i>
-          <span>Manufactured Spending Blueprint</span>
-        </div>
-        <div class="page-card__path">ebooks/manufactured-spending-blueprint.html</div>
-      </a>
-      <a href="ebooks/ultimate-points-maximizer.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="zap" class="icon icon--sm"></i>
-          <span>Ultimate Points Maximizer</span>
-        </div>
-        <div class="page-card__path">ebooks/ultimate-points-maximizer.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="video" class="icon icon--lg"></i>
-      <span>Cursos (3 produtos)</span>
-    </h2>
-    <div class="page-grid">
-      <a href="courses/award-booking-bootcamp.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="graduation-cap" class="icon icon--sm"></i>
-          <span>Award Booking Bootcamp</span>
-        </div>
-        <div class="page-card__path">courses/award-booking-bootcamp.html</div>
-      </a>
-      <a href="courses/advanced-churning-masterclass.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="trophy" class="icon icon--sm"></i>
-          <span>Advanced Churning Masterclass</span>
-        </div>
-        <div class="page-card__path">courses/advanced-churning-masterclass.html</div>
-      </a>
-      <a href="courses/zero-to-500k-course.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="trending-up" class="icon icon--sm"></i>
-          <span>Zero to 500K Course</span>
-        </div>
-        <div class="page-card__path">courses/zero-to-500k-course.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="wrench" class="icon icon--lg"></i>
-      <span>Ferramentas (7 calculadoras)</span>
-    </h2>
-    <div class="page-grid">
-      <a href="tools/award-availability-checker.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="search" class="icon icon--sm"></i>
-          <span>Award Availability Checker</span>
-        </div>
-        <div class="page-card__path">tools/award-availability-checker.html</div>
-      </a>
-      <a href="tools/card-portfolio-optimizer.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="briefcase" class="icon icon--sm"></i>
-          <span>Card Portfolio Optimizer</span>
-        </div>
-        <div class="page-card__path">tools/card-portfolio-optimizer.html</div>
-      </a>
-      <a href="tools/cpp-calculator.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="percent" class="icon icon--sm"></i>
-          <span>CPP Calculator</span>
-        </div>
-        <div class="page-card__path">tools/cpp-calculator.html</div>
-      </a>
-      <a href="tools/ms-roi-calculator.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="dollar-sign" class="icon icon--sm"></i>
-          <span>MS ROI Calculator</span>
-        </div>
-        <div class="page-card__path">tools/ms-roi-calculator.html</div>
-      </a>
-      <a href="tools/spending-tracker.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="receipt" class="icon icon--sm"></i>
-          <span>Spending Tracker</span>
-        </div>
-        <div class="page-card__path">tools/spending-tracker.html</div>
-      </a>
-      <a href="tools/status-matcher.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="check-square" class="icon icon--sm"></i>
-          <span>Status Matcher</span>
-        </div>
-        <div class="page-card__path">tools/status-matcher.html</div>
-      </a>
-      <a href="tools/transfer-bonus-calculator.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="repeat" class="icon icon--sm"></i>
-          <span>Transfer Bonus Calculator</span>
-        </div>
-        <div class="page-card__path">tools/transfer-bonus-calculator.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="clock" class="icon icon--lg"></i>
-      <span>Conteúdo Evergreen (3 páginas)</span>
-    </h2>
-    <div class="page-grid">
-      <a href="evergreen/daily-tip-widget.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="lightbulb" class="icon icon--sm"></i>
-          <span>Daily Tip Widget</span>
-        </div>
-        <div class="page-card__path">evergreen/daily-tip-widget.html</div>
-      </a>
-      <a href="evergreen/hacks-library.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="book" class="icon icon--sm"></i>
-          <span>Hacks Library</span>
-        </div>
-        <div class="page-card__path">evergreen/hacks-library.html</div>
-      </a>
-      <a href="evergreen/quick-guides.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="file-text" class="icon icon--sm"></i>
-          <span>Quick Guides</span>
-        </div>
-        <div class="page-card__path">evergreen/quick-guides.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="newspaper" class="icon icon--lg"></i>
-      <span>Notícias (5 páginas)</span>
-    </h2>
-    <div class="page-grid">
-      <a href="news/hot-deals-flash.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="zap" class="icon icon--sm"></i>
-          <span>Hot Deals Flash</span>
-        </div>
-        <div class="page-card__path">news/hot-deals-flash.html</div>
-      </a>
-      <a href="news/card-universe-feed.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="credit-card" class="icon icon--sm"></i>
-          <span>Card Universe Feed</span>
-        </div>
-        <div class="page-card__path">news/card-universe-feed.html</div>
-      </a>
-      <a href="news/transfer-bonus-tracker.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="gift" class="icon icon--sm"></i>
-          <span>Transfer Bonus Tracker</span>
-        </div>
-        <div class="page-card__path">news/transfer-bonus-tracker.html</div>
-      </a>
-      <a href="news/community-wins.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="users" class="icon icon--sm"></i>
-          <span>Community Wins</span>
-        </div>
-        <div class="page-card__path">news/community-wins.html</div>
-      </a>
-      <a href="news/market-pulse-weekly.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="activity" class="icon icon--sm"></i>
-          <span>Market Pulse Weekly</span>
-        </div>
-        <div class="page-card__path">news/market-pulse-weekly.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="rss" class="icon icon--lg"></i>
-      <span>Feeds (4 páginas)</span>
-    </h2>
-    <div class="page-grid">
-      <a href="feeds/deal-alerts.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="bell" class="icon icon--sm"></i>
-          <span>Deal Alerts</span>
-        </div>
-        <div class="page-card__path">feeds/deal-alerts.html</div>
-      </a>
-      <a href="feeds/live-ticker.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="radio" class="icon icon--sm"></i>
-          <span>Live Ticker</span>
-        </div>
-        <div class="page-card__path">feeds/live-ticker.html</div>
-      </a>
-      <a href="feeds/program-updates.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="bar-chart-3" class="icon icon--sm"></i>
-          <span>Program Updates</span>
-        </div>
-        <div class="page-card__path">feeds/program-updates.html</div>
-      </a>
-      <a href="feeds/success-stories.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="award" class="icon icon--sm"></i>
-          <span>Success Stories</span>
-        </div>
-        <div class="page-card__path">feeds/success-stories.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="layers" class="icon icon--lg"></i>
-      <span>Componentes</span>
-    </h2>
-    <div class="page-grid">
-      <a href="components/credit-card.html" class="page-card">
-        <div class="page-card__title">
-          <i data-lucide="square" class="icon icon--sm"></i>
-          <span>Credit Card Component</span>
-        </div>
-        <div class="page-card__path">components/credit-card.html</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>
-      <i data-lucide="bar-chart" class="icon icon--lg"></i>
-      <span>Estatísticas do Projeto</span>
-    </h2>
-    <div class="stats">
-      <div class="stat-card">
-        <div class="stat-card__value">28</div>
-        <div class="stat-card__label">Páginas Refatoradas</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">100%</div>
-        <div class="stat-card__label">Design Compliance</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">0</div>
-        <div class="stat-card__label">Violações</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">13</div>
-        <div class="stat-card__label">Imagens Reais</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">17</div>
-        <div class="stat-card__label">Commits Git</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">v3.0</div>
-        <div class="stat-card__label">Versão</div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    lucide.createIcons();
-  </script>
-
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
+
 </html>

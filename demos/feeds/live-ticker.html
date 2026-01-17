@@ -1,139 +1,794 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Ticker - MilesAI</title>
-  <link rel="stylesheet" href="../css/design-system.css">
-  <link rel="stylesheet" href="../css/components.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    body { padding: 2rem; background: var(--color-bg-canvas); }
-    .container { max-width: 900px; margin: 0 auto; }
-    .header { text-align: center; margin-bottom: 3rem; }
-    .ticker-container { background: white; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
-    .ticker-header { background: var(--color-danger); color: white; padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
-    .live-badge { background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem; }
-    .pulse { width: 8px; height: 8px; background: #fef2f2; border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-    .ticker-item { padding: 1.5rem; border-bottom: 1px solid #e5e7eb; transition: background 0.2s; }
-    .ticker-item:hover { background: #f8fafc; }
-    .ticker-item:last-child { border-bottom: none; }
-    .ticker-time { font-size: 0.875rem; color: #64748b; margin-bottom: 0.5rem; }
-    .ticker-content { font-size: 1rem; color: #1e293b; line-height: 1.6; }
-    .ticker-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; margin-left: 0.5rem; }
-    .ticker-badge--bonus { background: #dcfce7; color: #166534; }
-    .ticker-badge--alert { background: #fee2e2; color: #991b1b; }
-    .ticker-badge--news { background: #dbeafe; color: #1e40af; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Ticker - MilesAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --page-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #101828;
+            --text-secondary: #344054;
+            --text-muted: #667085;
+            --border-color: #E4E7EC;
+            --accent-green: #0BA457;
+            --accent-green-light: #ECFDF3;
+            --accent-orange: #DF5030;
+            --accent-orange-light: #FFF4ED;
+            --accent-red: #F04438;
+            --accent-red-light: #FEF3F2;
+            --accent-yellow: #F79009;
+            --accent-yellow-light: #FFFAEB;
+            --accent-blue: #1570EF;
+            --accent-blue-light: #EFF8FF;
+            --accent-purple: #7A5AF8;
+            --accent-purple-light: #F4F3FF;
+            --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+            --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+            --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--page-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before { display: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-purple-light) 0%, #FAF5FF 50%, var(--accent-blue-light) 100%);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .hero__content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-red);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .hero__badge-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .hero__title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .hero__subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .hero__stats {
+            display: flex;
+            gap: 24px;
+        }
+
+        .hero__stat {
+            text-align: center;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: var(--radius-lg);
+        }
+
+        .hero__stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-purple);
+        }
+
+        .hero__stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+        }
+
+        /* Ticker Container */
+        .ticker-container {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .ticker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #9333EA 100%);
+            color: white;
+        }
+
+        .ticker-header__title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .ticker-header__live {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .ticker-header__live-dot {
+            width: 8px;
+            height: 8px;
+            background: #FEF2F2;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Ticker Filters */
+        .ticker-filters {
+            display: flex;
+            gap: 8px;
+            padding: 16px 24px;
+            background: var(--page-bg);
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .ticker-filter {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .ticker-filter:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .ticker-filter--active {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: white;
+        }
+
+        /* Ticker Feed */
+        .ticker-feed {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .ticker-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .ticker-item:hover {
+            background: var(--page-bg);
+        }
+
+        .ticker-item:last-child {
+            border-bottom: none;
+        }
+
+        .ticker-item--new {
+            animation: highlight 2s ease-out;
+        }
+
+        @keyframes highlight {
+            0% { background: var(--accent-purple-light); }
+            100% { background: transparent; }
+        }
+
+        .ticker-item__icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ticker-item__icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .ticker-item__icon--bonus {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+        }
+
+        .ticker-item__icon--alert {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .ticker-item__icon--news {
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+        }
+
+        .ticker-item__icon--update {
+            background: var(--accent-orange-light);
+            color: var(--accent-orange);
+        }
+
+        .ticker-item__content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ticker-item__time {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .ticker-item__text {
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .ticker-item__text strong {
+            color: var(--text-primary);
+        }
+
+        .ticker-item__badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        .ticker-item__badge--bonus {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+        }
+
+        .ticker-item__badge--alert {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .ticker-item__badge--news {
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card__title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-card__title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-purple);
+        }
+
+        /* Trending Topics */
+        .trending-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .trending-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .trending-item:hover {
+            background: var(--accent-purple-light);
+        }
+
+        .trending-item__rank {
+            width: 24px;
+            height: 24px;
+            background: var(--accent-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .trending-item__text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .trending-item__count {
+            margin-left: auto;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .quick-stat {
+            background: var(--page-bg);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .quick-stat__value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-purple);
+        }
+
+        .quick-stat__label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Programs Status */
+        .program-status {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .program-item:last-child {
+            border-bottom: none;
+        }
+
+        .program-item__name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .program-item__status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .program-item__status--up {
+            color: var(--accent-green);
+        }
+
+        .program-item__status--down {
+            color: var(--accent-red);
+        }
+
+        .program-item__status--neutral {
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero__stats {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .hero {
+                padding: 32px 24px;
+            }
+
+            .hero__title {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;"><i data-lucide="radio" class="icon icon--lg"></i> <span>Live Ticker</span></h1>
-      <p style="color: #64748b;">Real-time updates on bonuses, deals, and breaking news</p>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero__content">
+                <span class="hero__badge">
+                    <span class="hero__badge-dot"></span>
+                    Live Updates
+                </span>
+                <h1 class="hero__title">Live Ticker</h1>
+                <p class="hero__subtitle">
+                    Real-time updates on bonuses, deals, award space, and breaking travel news.
+                </p>
+            </div>
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <div class="hero__stat-value" id="updates-today">24</div>
+                    <div class="hero__stat-label">Updates Today</div>
+                </div>
+                <div class="hero__stat">
+                    <div class="hero__stat-value" id="active-bonuses">8</div>
+                    <div class="hero__stat-label">Active Bonuses</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Ticker Container -->
+            <div class="ticker-container">
+                <div class="ticker-header">
+                    <h2 class="ticker-header__title">Latest Updates</h2>
+                    <div class="ticker-header__live">
+                        <span class="ticker-header__live-dot"></span>
+                        LIVE
+                    </div>
+                </div>
+
+                <div class="ticker-filters">
+                    <button class="ticker-filter ticker-filter--active" data-filter="all">All</button>
+                    <button class="ticker-filter" data-filter="bonus">Bonuses</button>
+                    <button class="ticker-filter" data-filter="alert">Alerts</button>
+                    <button class="ticker-filter" data-filter="news">News</button>
+                    <button class="ticker-filter" data-filter="update">Updates</button>
+                </div>
+
+                <div class="ticker-feed" id="ticker-feed">
+                    <div class="ticker-item" data-type="bonus">
+                        <div class="ticker-item__icon ticker-item__icon--bonus">
+                            <i data-lucide="gift"></i>
+                        </div>
+                        <div class="ticker-item__content">
+                            <div class="ticker-item__time">2 minutes ago</div>
+                            <div class="ticker-item__text">
+                                <strong>New Transfer Bonus:</strong> Capital One 40% to Avianca LifeMiles extended through Jan 31st
+                                <span class="ticker-item__badge ticker-item__badge--bonus">BONUS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item" data-type="alert">
+                        <div class="ticker-item__icon ticker-item__icon--alert">
+                            <i data-lucide="alert-circle"></i>
+                        </div>
+                        <div class="ticker-item__content">
+                            <div class="ticker-item__time">15 minutes ago</div>
+                            <div class="ticker-item__text">
+                                <strong>Award Space Alert:</strong> ANA First Class availability SFO-NRT opens up for March 15-22
+                                <span class="ticker-item__badge ticker-item__badge--alert">ALERT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item" data-type="news">
+                        <div class="ticker-item__icon ticker-item__icon--news">
+                            <i data-lucide="newspaper"></i>
+                        </div>
+                        <div class="ticker-item__content">
+                            <div class="ticker-item__time">1 hour ago</div>
+                            <div class="ticker-item__text">
+                                <strong>Breaking:</strong> Chase Sapphire Preferred SUB increased to 80K points (in-branch only)
+                                <span class="ticker-item__badge ticker-item__badge--news">NEWS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item" data-type="alert">
+                        <div class="ticker-item__icon ticker-item__icon--alert">
+                            <i data-lucide="alert-triangle"></i>
+                        </div>
+                        <div class="ticker-item__content">
+                            <div class="ticker-item__time">2 hours ago</div>
+                            <div class="ticker-item__text">
+                                <strong>Devaluation Warning:</strong> United MileagePlus removing Saver awards to Europe starting Feb 1st
+                                <span class="ticker-item__badge ticker-item__badge--alert">ALERT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item" data-type="bonus">
+                        <div class="ticker-item__icon ticker-item__icon--bonus">
+                            <i data-lucide="percent"></i>
+                        </div>
+                        <div class="ticker-item__content">
+                            <div class="ticker-item__time">3 hours ago</div>
+                            <div class="ticker-item__text">
+                                <strong>Hotel Promo:</strong> Hilton 2X points on all stays through February
+                                <span class="ticker-item__badge ticker-item__badge--bonus">BONUS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item" data-type="news">
+                        <div class="ticker-item__icon ticker-item__icon--news">
+                            <i data-lucide="credit-card"></i>
+                        </div>
+                        <div class="ticker-item__content">
+                            <div class="ticker-item__time">4 hours ago</div>
+                            <div class="ticker-item__text">
+                                <strong>Card Launch:</strong> Capital One Venture X Business now available for applications
+                                <span class="ticker-item__badge ticker-item__badge--news">NEWS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Quick Stats -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="activity"></i>
+                        Today's Activity
+                    </h3>
+                    <div class="quick-stats">
+                        <div class="quick-stat">
+                            <div class="quick-stat__value">5</div>
+                            <div class="quick-stat__label">Bonuses</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value">3</div>
+                            <div class="quick-stat__label">Alerts</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value">8</div>
+                            <div class="quick-stat__label">News</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat__value">12</div>
+                            <div class="quick-stat__label">Updates</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Topics -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="trending-up"></i>
+                        Trending Now
+                    </h3>
+                    <div class="trending-list">
+                        <div class="trending-item">
+                            <span class="trending-item__rank">1</span>
+                            <span class="trending-item__text">Amex Gold 90K</span>
+                            <span class="trending-item__count">142</span>
+                        </div>
+                        <div class="trending-item">
+                            <span class="trending-item__rank">2</span>
+                            <span class="trending-item__text">ANA First Class</span>
+                            <span class="trending-item__count">98</span>
+                        </div>
+                        <div class="trending-item">
+                            <span class="trending-item__rank">3</span>
+                            <span class="trending-item__text">Europe Error Fare</span>
+                            <span class="trending-item__count">76</span>
+                        </div>
+                        <div class="trending-item">
+                            <span class="trending-item__rank">4</span>
+                            <span class="trending-item__text">United Devaluation</span>
+                            <span class="trending-item__count">54</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Status -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card__title">
+                        <i data-lucide="gauge"></i>
+                        Program Status
+                    </h3>
+                    <div class="program-status">
+                        <div class="program-item">
+                            <span class="program-item__name">Chase UR</span>
+                            <span class="program-item__status program-item__status--up">
+                                <i data-lucide="trending-up"></i> Stable
+                            </span>
+                        </div>
+                        <div class="program-item">
+                            <span class="program-item__name">Amex MR</span>
+                            <span class="program-item__status program-item__status--up">
+                                <i data-lucide="trending-up"></i> Strong
+                            </span>
+                        </div>
+                        <div class="program-item">
+                            <span class="program-item__name">United</span>
+                            <span class="program-item__status program-item__status--down">
+                                <i data-lucide="trending-down"></i> Devaluing
+                            </span>
+                        </div>
+                        <div class="program-item">
+                            <span class="program-item__name">Hyatt</span>
+                            <span class="program-item__status program-item__status--up">
+                                <i data-lucide="trending-up"></i> Best Value
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
 
-    <div class="ticker-container">
-      <div class="ticker-header">
-        <h2 style="font-size: 1.5rem; font-weight: 700; margin: 0;">Latest Updates</h2>
-        <div class="live-badge">
-          <div class="pulse"></div>
-          <span>LIVE</span>
-        </div>
-      </div>
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.ticker-filter').forEach(filter => {
+            filter.addEventListener('click', () => {
+                document.querySelectorAll('.ticker-filter').forEach(f => f.classList.remove('ticker-filter--active'));
+                filter.classList.add('ticker-filter--active');
 
-      <div id="ticker-feed">
-        <div class="ticker-item">
-          <div class="ticker-time">2 minutes ago</div>
-          <div class="ticker-content">
-            <strong>New Transfer Bonus:</strong> Capital One 40% to Avianca LifeMiles extended through Jan 31st
-            <span class="ticker-badge ticker-badge--bonus">BONUS</span>
-          </div>
-        </div>
+                const filterType = filter.dataset.filter;
+                document.querySelectorAll('.ticker-item').forEach(item => {
+                    if (filterType === 'all' || item.dataset.type === filterType) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
 
-        <div class="ticker-item">
-          <div class="ticker-time">15 minutes ago</div>
-          <div class="ticker-content">
-            <strong>Award Space Alert:</strong> ANA First Class availability SFO-NRT opens up for March 15-22
-            <span class="ticker-badge ticker-badge--alert">ALERT</span>
-          </div>
-        </div>
+        // Simulate live updates
+        const updates = [
+            {type: 'bonus', icon: 'gift', text: '<strong>Amex offers 25% transfer bonus to British Airways Avios</strong> - limited time'},
+            {type: 'alert', icon: 'alert-circle', text: '<strong>Emirates First Class</strong> space opening on popular routes'},
+            {type: 'news', icon: 'newspaper', text: '<strong>Marriott announces</strong> new elite night credit promotion'},
+            {type: 'bonus', icon: 'percent', text: '<strong>Southwest Companion Pass</strong> bonus: 30K qualifying points promotion'}
+        ];
 
-        <div class="ticker-item">
-          <div class="ticker-time">1 hour ago</div>
-          <div class="ticker-content">
-            <strong>Breaking:</strong> Chase Sapphire Preferred SUB increased to 80K points (in-branch only)
-            <span class="ticker-badge ticker-badge--news">NEWS</span>
-          </div>
-        </div>
+        function addUpdate() {
+            const feed = document.getElementById('ticker-feed');
+            const random = updates[Math.floor(Math.random() * updates.length)];
 
-        <div class="ticker-item">
-          <div class="ticker-time">2 hours ago</div>
-          <div class="ticker-content">
-            <strong>Devaluation Warning:</strong> United MileagePlus removing Saver awards to Europe starting Feb 1st
-            <span class="ticker-badge ticker-badge--alert">ALERT</span>
-          </div>
-        </div>
+            const newItem = document.createElement('div');
+            newItem.className = 'ticker-item ticker-item--new';
+            newItem.dataset.type = random.type;
+            newItem.innerHTML = `
+                <div class="ticker-item__icon ticker-item__icon--${random.type}">
+                    <i data-lucide="${random.icon}"></i>
+                </div>
+                <div class="ticker-item__content">
+                    <div class="ticker-item__time">Just now</div>
+                    <div class="ticker-item__text">
+                        ${random.text}
+                        <span class="ticker-item__badge ticker-item__badge--${random.type}">${random.type.toUpperCase()}</span>
+                    </div>
+                </div>
+            `;
 
-        <div class="ticker-item">
-          <div class="ticker-time">3 hours ago</div>
-          <div class="ticker-content">
-            <strong>Hotel Promo:</strong> Hilton 2X points on all stays through February
-            <span class="ticker-badge ticker-badge--bonus">BONUS</span>
-          </div>
-        </div>
+            feed.insertBefore(newItem, feed.firstChild);
+            lucide.createIcons();
 
-        <div class="ticker-item">
-          <div class="ticker-time">4 hours ago</div>
-          <div class="ticker-content">
-            <strong>Card Launch:</strong> Capital One Venture X Business now available for applications
-            <span class="ticker-badge ticker-badge--news">NEWS</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            if (feed.children.length > 15) {
+                feed.removeChild(feed.lastChild);
+            }
 
-  <script>
-    // Simulate live updates
-    function addUpdate() {
-      const updates = [
-        {type: 'bonus', text: 'Amex offers 25% transfer bonus to British Airways Avios - limited time'},
-        {type: 'alert', text: 'Emirates First Class space opening on popular routes'},
-        {type: 'news', text: 'Marriott announces new elite night credit promotion'},
-        {type: 'bonus', text: 'Southwest Companion Pass bonus: 30K qualifying points promotion'}
-      ];
+            // Update counter
+            const counter = document.getElementById('updates-today');
+            counter.textContent = parseInt(counter.textContent) + 1;
+        }
 
-      const feed = document.getElementById('ticker-feed');
-      const random = updates[Math.floor(Math.random() * updates.length)];
-      const badgeClass = random.type === 'bonus' ? 'ticker-badge--bonus' : 
-                        random.type === 'alert' ? 'ticker-badge--alert' : 'ticker-badge--news';
-      const badgeText = random.type.toUpperCase();
-
-      const newItem = document.createElement('div');
-      newItem.className = 'ticker-item';
-      newItem.innerHTML = `
-        <div class="ticker-time">Just now</div>
-        <div class="ticker-content">
-          ${random.text}
-          <span class="ticker-badge ${badgeClass}">${badgeText}</span>
-        </div>
-      `;
-
-      feed.insertBefore(newItem, feed.firstChild);
-      
-      // Remove oldest if more than 10
-      if (feed.children.length > 10) {
-        feed.removeChild(feed.lastChild);
-      }
-    }
-
-    // Add new update every 30 seconds
-    setInterval(addUpdate, 30000);
-  </script>
-  <script>
-    lucide.createIcons();
-  </script>
+        setInterval(addUpdate, 30000);
+        lucide.createIcons();
+    </script>
 </body>
 </html>
