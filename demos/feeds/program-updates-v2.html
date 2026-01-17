@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trail Condition Changes - Program Updates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root{--forest-green:#0BA457;--forest-darker:#072A1C;--accent-fire:#DF5030;--white:#FFF;--glass-bg:rgba(255,255,255,0.15);--glass-border:rgba(255,255,255,0.2);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--forest-darker);color:var(--white);padding:32px;}
+    .container{max-width:1000px;margin:0 auto;}
+    .nav-back{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.8);text-decoration:none;font-weight:600;padding:10px 16px;border-radius:999px;background:var(--glass-bg);border:1px solid var(--glass-border);margin-bottom:32px;}
+    .title{font-size:42px;font-weight:800;text-align:center;background:linear-gradient(135deg,var(--forest-green),#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:48px;}
+    .timeline{position:relative;padding-left:40px;}
+    .timeline::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--accent-fire),var(--forest-green));border-radius:999px;}
+    .update{position:relative;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:16px;padding:24px;margin-bottom:20px;}
+    .update::before{content:'';position:absolute;left:-30px;top:24px;width:16px;height:16px;border-radius:50%;background:var(--forest-green);border:4px solid var(--forest-darker);}
+    .update-header{display:flex;justify-content:space-between;margin-bottom:12px;}
+    .program-name{font-size:20px;font-weight:700;display:flex;align-items:center;gap:8px;}
+    .date{font-size:13px;color:rgba(255,255,255,0.6);}
+    .change-type{display:inline-block;padding:4px 12px;background:rgba(11,164,87,0.2);color:var(--forest-green);border-radius:999px;font-size:11px;font-weight:600;margin-bottom:12px;}
+    .change-type--negative{background:rgba(223,80,48,0.2);color:var(--accent-fire);}
+    .description{color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:16px;}
+    .comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:rgba(0,0,0,0.2);padding:16px;border-radius:12px;}
+    .comp-label{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:6px;}
+    .comp-value{font-size:20px;font-weight:700;}
+    .negative{color:var(--accent-fire);}
+    .positive{color:var(--forest-green);}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="nav-back">
+      <i data-lucide="tent" width="18"></i>Back to Base Camp
+    </a>
+    <h1 class="title">🌦️ Trail Condition Changes</h1>
+    <div class="timeline">
+      <div class="update">
+        <div class="update-header">
+          <div class="program-name"><i data-lucide="plane" width="24"></i>United MileagePlus</div>
+          <div class="date">Feb 1, 2026</div>
+        </div>
+        <span class="change-type change-type--negative">Devaluation</span>
+        <div class="description">
+          Business class to Europe increasing significantly. Saver awards now harder to find with reduced availability windows.
+        </div>
+        <div class="comparison">
+          <div><div class="comp-label">Before</div><div class="comp-value">60,000 mi</div></div>
+          <div><div class="comp-label">After</div><div class="comp-value negative">77,000 mi</div></div>
+        </div>
+      </div>
+      <div class="update">
+        <div class="update-header">
+          <div class="program-name"><i data-lucide="hotel" width="24"></i>Marriott Bonvoy</div>
+          <div class="date">Jan 28, 2026</div>
+        </div>
+        <span class="change-type">Improvement</span>
+        <div class="description">
+          Off-peak pricing introduced for 500+ properties. Weekday stays at Category 5 hotels now 30% cheaper.
+        </div>
+        <div class="comparison">
+          <div><div class="comp-label">Standard</div><div class="comp-value">35,000 pts</div></div>
+          <div><div class="comp-label">Off-Peak</div><div class="comp-value positive">25,000 pts</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

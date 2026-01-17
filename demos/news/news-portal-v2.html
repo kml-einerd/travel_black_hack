@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adventure Gazette - Latest Trail Reports</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      /* Colors */
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --charcoal: #101828;
+      --charcoal-light: #1F2937;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+
+      /* Shadows */
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+
+      /* Typography */
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Border Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .hero__background {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero__background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(7, 42, 28, 0.7) 0%,
+        rgba(7, 42, 28, 0.95) 100%);
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-xl);
+    }
+
+    .hero__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: var(--space-lg);
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero__logo i {
+      color: var(--accent-fire);
+    }
+
+    .hero__tagline {
+      font-size: 20px;
+      color: var(--white-muted);
+      font-weight: 500;
+      max-width: 600px;
+      margin-bottom: var(--space-2xl);
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+    }
+
+    .hero__date {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 12px 24px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      animation: fadeInUp 0.8s ease 0.4s backwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    /* Category Filters */
+    .filters {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-2xl);
+      justify-content: center;
+    }
+
+    .filter-pill {
+      padding: 12px 24px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .filter-pill:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .filter-pill--active {
+      background: var(--forest-green);
+      border-color: var(--forest-green);
+      box-shadow: var(--glow-green);
+    }
+
+    /* Featured Story */
+    .featured-story {
+      position: relative;
+      height: 500px;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      margin-bottom: var(--space-2xl);
+      cursor: pointer;
+      transition: transform 0.4s;
+    }
+
+    .featured-story:hover {
+      transform: translateY(-8px);
+    }
+
+    .featured-story__image {
+      position: absolute;
+      inset: 0;
+    }
+
+    .featured-story__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+
+    .featured-story:hover .featured-story__image img {
+      transform: scale(1.05);
+    }
+
+    .featured-story__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(7, 42, 28, 0.95) 100%);
+    }
+
+    .featured-story__content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-2xl);
+      z-index: 1;
+    }
+
+    .featured-story__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 8px 16px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-md);
+      animation: pulse-fire 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-fire {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(223, 80, 48, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(223, 80, 48, 0); }
+    }
+
+    .featured-story__title {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .featured-story__excerpt {
+      font-size: 18px;
+      color: var(--white-muted);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+      max-width: 800px;
+    }
+
+    .featured-story__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      font-size: 14px;
+      color: var(--white-muted);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* News Grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .article-card {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+
+    .article-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--forest-green);
+      box-shadow: var(--shadow-xl), var(--glow-green);
+    }
+
+    .article-card__image {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .article-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+
+    .article-card:hover .article-card__image img {
+      transform: scale(1.1);
+    }
+
+    .article-card__category {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .category--deal {
+      background: var(--accent-fire);
+      color: white;
+    }
+
+    .category--update {
+      background: var(--forest-green);
+      color: white;
+    }
+
+    .category--alert {
+      background: var(--accent-warm);
+      color: white;
+    }
+
+    .category--community {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+    }
+
+    .article-card__content {
+      padding: var(--space-lg);
+    }
+
+    .article-card__title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: var(--space-md);
+      color: var(--white);
+    }
+
+    .article-card__excerpt {
+      font-size: 15px;
+      color: var(--white-muted);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+
+    .article-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .article-card__date {
+      font-size: 13px;
+      color: var(--white-muted);
+      font-family: var(--font-mono);
+    }
+
+    .article-card__link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--forest-green);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .article-card:hover .article-card__link {
+      gap: var(--space-md);
+      color: var(--accent-fire);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        height: 400px;
+      }
+
+      .hero__logo {
+        font-size: 36px;
+      }
+
+      .hero__tagline {
+        font-size: 16px;
+      }
+
+      .featured-story {
+        height: 400px;
+      }
+
+      .featured-story__title {
+        font-size: 28px;
+      }
+
+      .featured-story__excerpt {
+        font-size: 16px;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: var(--space-sm);
+      }
+
+      .filter-pill {
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__background">
+      <img src="../images/travel/mountain-landscape.webp" alt="Trail Background"
+        onerror="this.style.background='linear-gradient(135deg, #0D3B28, #0BA457)';">
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__logo">
+        <i data-lucide="book-open" style="width: 48px; height: 48px;"></i>
+        Adventure Gazette
+      </h1>
+      <p class="hero__tagline">
+        Your trusted source for the latest trail reports, camping deals, and outdoor discoveries
+      </p>
+      <div class="hero__date">
+        <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+        January 17, 2026
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Category Filters -->
+    <div class="filters">
+      <button class="filter-pill filter-pill--active">
+        <i data-lucide="grid-2x2" style="width: 16px; height: 16px;"></i>
+        All Stories
+      </button>
+      <button class="filter-pill">
+        <i data-lucide="flame" style="width: 16px; height: 16px;"></i>
+        Hot Deals
+      </button>
+      <button class="filter-pill">
+        <i data-lucide="bell" style="width: 16px; height: 16px;"></i>
+        Updates
+      </button>
+      <button class="filter-pill">
+        <i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i>
+        Alerts
+      </button>
+      <button class="filter-pill">
+        <i data-lucide="users" style="width: 16px; height: 16px;"></i>
+        Community
+      </button>
+    </div>
+
+    <!-- Featured Story -->
+    <article class="featured-story">
+      <div class="featured-story__image">
+        <img src="../images/travel/tokyo-skyline.webp" alt="Featured Story"
+          onerror="this.style.background='linear-gradient(135deg, #1E40AF, #3B82F6)';">
+      </div>
+      <div class="featured-story__overlay"></div>
+      <div class="featured-story__content">
+        <span class="featured-story__badge">
+          <i data-lucide="flame" style="width: 12px; height: 12px;"></i>
+          Breaking Trail
+        </span>
+        <h2 class="featured-story__title">
+          Historic ANA First Class Availability Opens to Tokyo
+        </h2>
+        <p class="featured-story__excerpt">
+          In an unprecedented move, ANA has released massive award space in their coveted First Class cabin.
+          Multiple routes from North America to Tokyo now showing availability for the next 3 months.
+          This is your chance to experience one of the world's best First Class products.
+        </p>
+        <div class="featured-story__meta">
+          <div class="meta-item">
+            <i data-lucide="user" style="width: 16px; height: 16px;"></i>
+            Trail Reporter
+          </div>
+          <div class="meta-item">
+            <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
+            2 hours ago
+          </div>
+          <div class="meta-item">
+            <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
+            5 min read
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- News Grid -->
+    <div class="news-grid">
+      <!-- Article 1 -->
+      <article class="article-card" data-category="deal">
+        <div class="article-card__image">
+          <img src="../images/travel/maldives-resort.webp" alt="Maldives"
+            onerror="this.style.background='linear-gradient(135deg, #0D9488, #14B8A6)';">
+          <span class="article-card__category category--deal">Hot Deal</span>
+        </div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">
+            Maldives Overwater Villas at Record Low Points
+          </h3>
+          <p class="article-card__excerpt">
+            Marriott Bonvoy has slashed point requirements for premium properties in the Maldives.
+            Overwater villas now bookable for 60K points per night.
+          </p>
+          <div class="article-card__footer">
+            <span class="article-card__date">4 hours ago</span>
+            <a href="#" class="article-card__link">
+              Read More
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="article-card" data-category="update">
+        <div class="article-card__image">
+          <img src="../images/cards/amex-platinum.webp" alt="Credit Cards"
+            onerror="this.style.background='linear-gradient(135deg, #B45309, #EA580C)';">
+          <span class="article-card__category category--update">Update</span>
+        </div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">
+            Chase Ultimate Rewards Adds 3 New Transfer Partners
+          </h3>
+          <p class="article-card__excerpt">
+            Chase expands its transfer ecosystem with three international airlines,
+            opening new redemption opportunities for savvy points collectors.
+          </p>
+          <div class="article-card__footer">
+            <span class="article-card__date">6 hours ago</span>
+            <a href="#" class="article-card__link">
+              Read More
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="article-card" data-category="alert">
+        <div class="article-card__image">
+          <img src="../images/travel/mountain-landscape.webp" alt="Alert"
+            onerror="this.style.background='linear-gradient(135deg, #DC2626, #EF4444)';">
+          <span class="article-card__category category--alert">Alert</span>
+        </div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">
+            Delta SkyMiles Devaluation Coming February 1st
+          </h3>
+          <p class="article-card__excerpt">
+            Delta announces changes to its award chart. Premium cabin awards to Europe
+            seeing significant increases. Book now before the changes take effect.
+          </p>
+          <div class="article-card__footer">
+            <span class="article-card__date">1 day ago</span>
+            <a href="#" class="article-card__link">
+              Read More
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="article-card" data-category="community">
+        <div class="article-card__image">
+          <img src="../images/travel/tokyo-skyline.webp" alt="Community"
+            onerror="this.style.background='linear-gradient(135deg, #1E40AF, #3B82F6)';">
+          <span class="article-card__category category--community">Community</span>
+        </div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">
+            How Sarah Used 150K Points for a 3-Week Asia Adventure
+          </h3>
+          <p class="article-card__excerpt">
+            Community member shares detailed trip report covering Tokyo, Bangkok, and Singapore,
+            all booked using transferable points and smart routing.
+          </p>
+          <div class="article-card__footer">
+            <span class="article-card__date">2 days ago</span>
+            <a href="#" class="article-card__link">
+              Read More
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="article-card" data-category="deal">
+        <div class="article-card__image">
+          <img src="../images/travel/maldives-resort.webp" alt="Hotel Deal"
+            onerror="this.style.background='linear-gradient(135deg, #0D9488, #14B8A6)';">
+          <span class="article-card__category category--deal">Hot Deal</span>
+        </div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">
+            Hyatt Buy Points Promo: 50% Bonus Through Month End
+          </h3>
+          <p class="article-card__excerpt">
+            Limited-time offer from World of Hyatt. Purchase points with a 50% bonus,
+            bringing the effective cost down to just 1.67 cents per point.
+          </p>
+          <div class="article-card__footer">
+            <span class="article-card__date">3 days ago</span>
+            <a href="#" class="article-card__link">
+              Read More
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 6 -->
+      <article class="article-card" data-category="update">
+        <div class="article-card__image">
+          <img src="../images/cards/amex-platinum.webp" alt="Card Update"
+            onerror="this.style.background='linear-gradient(135deg, #B45309, #EA580C)';">
+          <span class="article-card__category category--update">Update</span>
+        </div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">
+            Amex Platinum Adds $200 Annual Hotel Credit
+          </h3>
+          <p class="article-card__excerpt">
+            American Express enhances The Platinum Card with new benefits.
+            Cardholders now receive $200 in annual hotel statement credits.
+          </p>
+          <div class="article-card__footer">
+            <span class="article-card__date">4 days ago</span>
+            <a href="#" class="article-card__link">
+              Read More
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Filter functionality
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const articleCards = document.querySelectorAll('.article-card');
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', function() {
+        // Update active state
+        filterPills.forEach(p => p.classList.remove('filter-pill--active'));
+        this.classList.add('filter-pill--active');
+
+        // Get filter text
+        const filterText = this.textContent.trim().toLowerCase();
+
+        // Filter articles
+        articleCards.forEach(card => {
+          if (filterText === 'all stories') {
+            card.style.display = 'block';
+            setTimeout(() => card.style.opacity = '1', 10);
+          } else {
+            const category = card.dataset.category;
+            if (filterText.includes(category)) {
+              card.style.display = 'block';
+              setTimeout(() => card.style.opacity = '1', 10);
+            } else {
+              card.style.opacity = '0';
+              setTimeout(() => card.style.display = 'none', 300);
+            }
+          }
+        });
+      });
+    });
+
+    // Article click
+    document.querySelectorAll('.article-card, .featured-story').forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (!e.target.closest('a')) {
+          console.log('Opening article...');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

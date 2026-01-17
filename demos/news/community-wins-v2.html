@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campfire Stories - Community Adventures</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      /* Colors */
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --charcoal: #101828;
+      --charcoal-light: #1F2937;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+
+      /* Shadows */
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+
+      /* Typography */
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Border Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero with Animated Campfire */
+    .hero {
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    .hero__background {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--forest-darker) 0%, #0D1F17 50%, var(--forest-dark) 100%);
+    }
+
+    .campfire {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+    }
+
+    .campfire__wood {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 60px;
+      background: linear-gradient(135deg, #4A2511, #6B3410);
+      border-radius: 10px;
+      z-index: 1;
+    }
+
+    .campfire__wood::before,
+    .campfire__wood::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 40px;
+      background: linear-gradient(135deg, #3D1F0F, #5A2D0F);
+      border-radius: 8px;
+    }
+
+    .campfire__wood::before {
+      top: -20px;
+      left: -10px;
+      transform: rotate(-25deg);
+    }
+
+    .campfire__wood::after {
+      top: -20px;
+      right: -10px;
+      transform: rotate(25deg);
+    }
+
+    .flame {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      width: 40px;
+      height: 80px;
+      background: linear-gradient(180deg, #DF5030 0%, #F59E0B 50%, #FCD34D 100%);
+      border-radius: 50% 50% 20% 20%;
+      transform: translateX(-50%);
+      animation: flicker 1.5s ease-in-out infinite;
+      box-shadow: 0 0 40px rgba(223, 80, 48, 0.6);
+    }
+
+    .flame:nth-child(2) {
+      width: 50px;
+      height: 100px;
+      left: 45%;
+      animation-delay: 0.3s;
+      opacity: 0.9;
+    }
+
+    .flame:nth-child(3) {
+      width: 45px;
+      height: 90px;
+      left: 55%;
+      animation-delay: 0.6s;
+      opacity: 0.85;
+    }
+
+    @keyframes flicker {
+      0%, 100% {
+        transform: translateX(-50%) scaleY(1) scaleX(1);
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(-50%) scaleY(1.1) scaleX(0.95);
+        opacity: 0.9;
+      }
+      50% {
+        transform: translateX(-50%) scaleY(0.95) scaleX(1.05);
+        opacity: 0.95;
+      }
+      75% {
+        transform: translateX(-50%) scaleY(1.05) scaleX(0.9);
+        opacity: 0.92;
+      }
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: var(--space-2xl) var(--space-lg);
+      padding-top: 100px;
+    }
+
+    .hero__title {
+      font-size: 64px;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero__subtitle {
+      font-size: 22px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-xl);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-2xl);
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 12px 24px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn--active {
+      background: var(--forest-green);
+      border-color: var(--forest-green);
+      box-shadow: var(--glow-green);
+    }
+
+    /* Masonry Grid */
+    .stories-masonry {
+      column-count: 3;
+      column-gap: var(--space-lg);
+    }
+
+    .story-card {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      break-inside: avoid;
+      transition: all 0.4s;
+      cursor: pointer;
+      animation: fadeIn 0.6s ease backwards;
+    }
+
+    .story-card:nth-child(1) { animation-delay: 0.1s; }
+    .story-card:nth-child(2) { animation-delay: 0.2s; }
+    .story-card:nth-child(3) { animation-delay: 0.3s; }
+    .story-card:nth-child(4) { animation-delay: 0.4s; }
+    .story-card:nth-child(5) { animation-delay: 0.5s; }
+    .story-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .story-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--forest-green);
+      box-shadow: var(--shadow-xl), var(--glow-green);
+    }
+
+    .story-card__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .story-card__avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--forest-green), var(--accent-fire));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .story-card__user {
+      flex: 1;
+    }
+
+    .story-card__name {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .story-card__date {
+      font-size: 13px;
+      color: var(--white-muted);
+      font-family: var(--font-mono);
+    }
+
+    .story-card__image {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+      overflow: hidden;
+    }
+
+    .story-card__image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s;
+    }
+
+    .story-card:hover .story-card__image img {
+      transform: scale(1.05);
+    }
+
+    .story-card__destination {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--forest-green);
+      margin-bottom: var(--space-md);
+    }
+
+    .story-card__points {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 8px 16px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-md);
+    }
+
+    .story-card__text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--white-muted);
+      margin-bottom: var(--space-md);
+    }
+
+    .story-card__reactions {
+      display: flex;
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .reaction-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 8px 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .reaction-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    .reaction-btn--active {
+      background: var(--accent-fire);
+      border-color: var(--accent-fire);
+    }
+
+    /* FAB Button */
+    .fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 64px;
+      height: 64px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-xl), var(--glow-fire);
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+
+    .fab:hover {
+      transform: scale(1.1) rotate(90deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stories-masonry {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 500px;
+      }
+
+      .hero__title {
+        font-size: 42px;
+      }
+
+      .hero__subtitle {
+        font-size: 18px;
+      }
+
+      .stories-masonry {
+        column-count: 1;
+      }
+
+      .filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: var(--space-sm);
+      }
+
+      .filter-btn {
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero with Campfire -->
+  <section class="hero">
+    <div class="hero__background"></div>
+    <div class="campfire">
+      <div class="flame"></div>
+      <div class="flame"></div>
+      <div class="flame"></div>
+      <div class="campfire__wood"></div>
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__title">Campfire Stories</h1>
+      <p class="hero__subtitle">
+        Gather 'round and hear tales of epic adventures, incredible savings, and unforgettable journeys
+        from our community of explorers
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Filters -->
+    <div class="filters">
+      <button class="filter-btn filter-btn--active">
+        <i data-lucide="grid-2x2" style="width: 16px; height: 16px;"></i>
+        All Stories
+      </button>
+      <button class="filter-btn">
+        <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+        By Destination
+      </button>
+      <button class="filter-btn">
+        <i data-lucide="coins" style="width: 16px; height: 16px;"></i>
+        By Points Value
+      </button>
+      <button class="filter-btn">
+        <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+        Recent
+      </button>
+    </div>
+
+    <!-- Masonry Grid -->
+    <div class="stories-masonry">
+      <!-- Story 1 -->
+      <article class="story-card">
+        <div class="story-card__header">
+          <div class="story-card__avatar">SM</div>
+          <div class="story-card__user">
+            <div class="story-card__name">Sarah Martinez</div>
+            <div class="story-card__date">2 days ago</div>
+          </div>
+        </div>
+        <div class="story-card__image">
+          <img src="../images/travel/tokyo-skyline.webp" alt="Tokyo"
+            onerror="this.style.background='linear-gradient(135deg, #1E40AF, #3B82F6)'; this.style.height='200px';">
+        </div>
+        <div class="story-card__destination">
+          <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+          Tokyo, Japan
+        </div>
+        <div class="story-card__points">
+          <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+          Saved 150K points
+        </div>
+        <p class="story-card__text">
+          Just completed our dream 3-week Asia trip for a family of 4! Tokyo, Bangkok, and Singapore -
+          all in business class using transferable points. Total out of pocket was just taxes and fees.
+          The key was booking 11 months out and being flexible with dates.
+        </p>
+        <div class="story-card__reactions">
+          <button class="reaction-btn reaction-btn--active">
+            <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+            42
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="trophy" style="width: 14px; height: 14px;"></i>
+            28
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="heart" style="width: 14px; height: 14px;"></i>
+            67
+          </button>
+        </div>
+      </article>
+
+      <!-- Story 2 -->
+      <article class="story-card">
+        <div class="story-card__header">
+          <div class="story-card__avatar">JD</div>
+          <div class="story-card__user">
+            <div class="story-card__name">James Davis</div>
+            <div class="story-card__date">3 days ago</div>
+          </div>
+        </div>
+        <div class="story-card__destination">
+          <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+          Maldives
+        </div>
+        <div class="story-card__points">
+          <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+          Saved 85K points
+        </div>
+        <p class="story-card__text">
+          Honeymoon in the Maldives at St. Regis! Used the Marriott flash sale to book 5 nights
+          in an overwater villa for 60K points per night. Would have been $3,200 per night in cash.
+          Best decision ever!
+        </p>
+        <div class="story-card__reactions">
+          <button class="reaction-btn">
+            <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+            35
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="trophy" style="width: 14px; height: 14px;"></i>
+            21
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="heart" style="width: 14px; height: 14px;"></i>
+            89
+          </button>
+        </div>
+      </article>
+
+      <!-- Story 3 -->
+      <article class="story-card">
+        <div class="story-card__header">
+          <div class="story-card__avatar">EW</div>
+          <div class="story-card__user">
+            <div class="story-card__name">Emily Wilson</div>
+            <div class="story-card__date">5 days ago</div>
+          </div>
+        </div>
+        <div class="story-card__image">
+          <img src="../images/travel/maldives-resort.webp" alt="Maldives"
+            onerror="this.style.background='linear-gradient(135deg, #0D9488, #14B8A6)'; this.style.height='200px';">
+        </div>
+        <div class="story-card__destination">
+          <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+          Paris, France
+        </div>
+        <div class="story-card__points">
+          <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+          Saved 45K points
+        </div>
+        <p class="story-card__text">
+          Solo trip to Paris using Chase points transferred to Air France. Business class on the way there,
+          economy on the way back. Park Hyatt Paris for 5 nights using free night certificates.
+          Total points spent: 70K. Cash value: over $6,000!
+        </p>
+        <div class="story-card__reactions">
+          <button class="reaction-btn">
+            <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+            29
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="trophy" style="width: 14px; height: 14px;"></i>
+            18
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="heart" style="width: 14px; height: 14px;"></i>
+            54
+          </button>
+        </div>
+      </article>
+
+      <!-- Story 4 -->
+      <article class="story-card">
+        <div class="story-card__header">
+          <div class="story-card__avatar">MK</div>
+          <div class="story-card__user">
+            <div class="story-card__name">Michael Kim</div>
+            <div class="story-card__date">1 week ago</div>
+          </div>
+        </div>
+        <div class="story-card__destination">
+          <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+          Dubai, UAE
+        </div>
+        <div class="story-card__points">
+          <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+          Saved 120K points
+        </div>
+        <p class="story-card__text">
+          Emirates First Class from LAX to Dubai! Used Alaska miles during their 40% transfer bonus.
+          The suite, the shower spa, the onboard bar - absolutely incredible experience.
+          Only 77K Alaska miles one-way.
+        </p>
+        <div class="story-card__reactions">
+          <button class="reaction-btn">
+            <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+            56
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="trophy" style="width: 14px; height: 14px;"></i>
+            34
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="heart" style="width: 14px; height: 14px;"></i>
+            78
+          </button>
+        </div>
+      </article>
+
+      <!-- Story 5 -->
+      <article class="story-card">
+        <div class="story-card__header">
+          <div class="story-card__avatar">AL</div>
+          <div class="story-card__user">
+            <div class="story-card__name">Anna Lopez</div>
+            <div class="story-card__date">1 week ago</div>
+          </div>
+        </div>
+        <div class="story-card__image">
+          <img src="../images/travel/mountain-landscape.webp" alt="Switzerland"
+            onerror="this.style.background='linear-gradient(135deg, #059669, #10B981)'; this.style.height='200px';">
+        </div>
+        <div class="story-card__destination">
+          <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+          Swiss Alps
+        </div>
+        <div class="story-card__points">
+          <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+          Saved 95K points
+        </div>
+        <p class="story-card__text">
+          Winter wonderland in the Swiss Alps! Used Hyatt points for 7 nights at luxury mountain resort.
+          Took advantage of their 50% buy points promo to top up my account. Total cost was 1/3 of cash price.
+          Skiing, hot chocolate, and stunning views every day!
+        </p>
+        <div class="story-card__reactions">
+          <button class="reaction-btn">
+            <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+            38
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="trophy" style="width: 14px; height: 14px;"></i>
+            25
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="heart" style="width: 14px; height: 14px;"></i>
+            61
+          </button>
+        </div>
+      </article>
+
+      <!-- Story 6 -->
+      <article class="story-card">
+        <div class="story-card__header">
+          <div class="story-card__avatar">RP</div>
+          <div class="story-card__user">
+            <div class="story-card__name">Robert Patel</div>
+            <div class="story-card__date">2 weeks ago</div>
+          </div>
+        </div>
+        <div class="story-card__destination">
+          <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+          Bora Bora
+        </div>
+        <div class="story-card__points">
+          <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+          Saved 110K points
+        </div>
+        <p class="story-card__text">
+          Anniversary trip to Bora Bora! Conrad overwater bungalow using Hilton points during their
+          seasonal sale. Paid for flights with Chase UR transferred to United. Everything was covered
+          with points - no regrets, just memories!
+        </p>
+        <div class="story-card__reactions">
+          <button class="reaction-btn">
+            <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+            44
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="trophy" style="width: 14px; height: 14px;"></i>
+            31
+          </button>
+          <button class="reaction-btn">
+            <i data-lucide="heart" style="width: 14px; height: 14px;"></i>
+            72
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- FAB Button -->
+  <div class="fab" onclick="alert('Share your adventure story!')">
+    <i data-lucide="plus" style="width: 28px; height: 28px; color: white;"></i>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+        this.classList.add('filter-btn--active');
+      });
+    });
+
+    // Reaction buttons
+    document.querySelectorAll('.reaction-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('reaction-btn--active');
+        const count = parseInt(this.textContent.trim());
+        this.innerHTML = this.innerHTML.replace(/\d+/, this.classList.contains('reaction-btn--active') ? count + 1 : count - 1);
+        lucide.createIcons();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seasonal Opportunities - Transfer Bonus Tracker</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      /* Colors */
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --charcoal: #101828;
+      --charcoal-light: #1F2937;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+
+      /* Shadows */
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+
+      /* Typography */
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Border Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* Hero with Seasonal Calendar */
+    .hero {
+      position: relative;
+      padding: var(--space-2xl) var(--space-lg);
+      background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-darker) 100%);
+      overflow: hidden;
+    }
+
+    .hero__seasons {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 600px;
+      height: 100%;
+      opacity: 0.1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+
+    .season {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .season:nth-child(1) { animation-delay: 0s; }
+    .season:nth-child(2) { animation-delay: 1.5s; }
+    .season:nth-child(3) { animation-delay: 3s; }
+    .season:nth-child(4) { animation-delay: 4.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero__content {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__title {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      animation: slideInLeft 0.6s ease;
+    }
+
+    .hero__subtitle {
+      font-size: 20px;
+      color: var(--white-muted);
+      max-width: 700px;
+      margin-bottom: var(--space-xl);
+      animation: slideInLeft 0.6s ease 0.2s backwards;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    /* Active Bonuses Timeline */
+    .bonuses-timeline {
+      position: relative;
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-lg) 0;
+    }
+
+    .timeline-scroll {
+      display: flex;
+      gap: var(--space-lg);
+      overflow-x: auto;
+      padding-bottom: var(--space-md);
+      scroll-behavior: smooth;
+    }
+
+    .timeline-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .timeline-scroll::-webkit-scrollbar-track {
+      background: var(--glass-bg-dark);
+      border-radius: var(--radius-full);
+    }
+
+    .timeline-scroll::-webkit-scrollbar-thumb {
+      background: var(--forest-green);
+      border-radius: var(--radius-full);
+    }
+
+    .bonus-card {
+      flex: 0 0 350px;
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 2px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+
+    .bonus-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--forest-green);
+      box-shadow: var(--shadow-xl), var(--glow-green);
+    }
+
+    .bonus-card__status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 6px 12px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-md);
+      animation: pulse-fire 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-fire {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(223, 80, 48, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(223, 80, 48, 0); }
+    }
+
+    .bonus-card__program {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: var(--space-sm);
+    }
+
+    .bonus-card__bonus {
+      font-size: 36px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--forest-green);
+      margin-bottom: var(--space-md);
+    }
+
+    .bonus-card__dates {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 14px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+
+    .bonus-card__countdown {
+      padding: 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .countdown__label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--white-muted);
+      margin-bottom: 4px;
+    }
+
+    .countdown__value {
+      font-size: 18px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--accent-fire);
+    }
+
+    /* Historical Chart */
+    .chart-container {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .chart-title {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: var(--space-lg);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-md);
+      height: 300px;
+      padding: var(--space-lg) 0;
+    }
+
+    .bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .bar {
+      width: 100%;
+      background: linear-gradient(180deg, var(--forest-green), var(--accent-fire));
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .bar:hover {
+      opacity: 0.8;
+      transform: scaleY(1.05);
+    }
+
+    .bar__label {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .bar-month {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Program Cards */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .program-card {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      transition: all 0.4s;
+    }
+
+    .program-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--forest-green);
+      box-shadow: var(--shadow-xl), var(--glow-green);
+    }
+
+    .program-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-lg);
+    }
+
+    .program-card__name {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .notify-toggle {
+      position: relative;
+      width: 50px;
+      height: 28px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .notify-toggle::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .notify-toggle--active {
+      background: var(--forest-green);
+      border-color: var(--forest-green);
+    }
+
+    .notify-toggle--active::before {
+      transform: translateX(22px);
+    }
+
+    .program-card__history {
+      margin-bottom: var(--space-lg);
+    }
+
+    .history-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .history-value {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--white);
+    }
+
+    .program-card__pattern {
+      font-size: 14px;
+      color: var(--white-muted);
+      line-height: 1.6;
+      padding: var(--space-md);
+      background: var(--glass-bg);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .program-card__recommendation {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 12px 16px;
+      background: linear-gradient(135deg, rgba(11, 164, 87, 0.2), rgba(223, 80, 48, 0.2));
+      border: 1px solid var(--forest-green);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--forest-green);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero__title {
+        font-size: 36px;
+      }
+
+      .hero__subtitle {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .bonus-card {
+        flex: 0 0 280px;
+      }
+
+      .chart-bars {
+        height: 200px;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__seasons">
+      <div class="season">🌸</div>
+      <div class="season">☀️</div>
+      <div class="season">🍂</div>
+      <div class="season">❄️</div>
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__title">Seasonal Opportunities</h1>
+      <p class="hero__subtitle">
+        Track transfer bonuses and seasonal opportunities across all major loyalty programs.
+        Never miss the perfect time to transfer your points.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Active Bonuses -->
+    <h2 class="section-title">
+      <i data-lucide="zap" style="width: 32px; height: 32px; color: var(--accent-fire);"></i>
+      Active Bonuses
+    </h2>
+
+    <div class="bonuses-timeline">
+      <div class="timeline-scroll">
+        <!-- Bonus 1 -->
+        <article class="bonus-card">
+          <span class="bonus-card__status">
+            <i data-lucide="flame" style="width: 10px; height: 10px;"></i>
+            Active Now
+          </span>
+          <h3 class="bonus-card__program">World of Hyatt</h3>
+          <div class="bonus-card__bonus">+40%</div>
+          <div class="bonus-card__dates">
+            <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+            Jan 10 - Jan 31, 2026
+          </div>
+          <div class="bonus-card__countdown">
+            <div class="countdown__label">Ends in</div>
+            <div class="countdown__value">14 Days</div>
+          </div>
+        </article>
+
+        <!-- Bonus 2 -->
+        <article class="bonus-card">
+          <span class="bonus-card__status">
+            <i data-lucide="flame" style="width: 10px; height: 10px;"></i>
+            Active Now
+          </span>
+          <h3 class="bonus-card__program">Virgin Atlantic</h3>
+          <div class="bonus-card__bonus">+30%</div>
+          <div class="bonus-card__dates">
+            <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+            Jan 5 - Feb 15, 2026
+          </div>
+          <div class="bonus-card__countdown">
+            <div class="countdown__label">Ends in</div>
+            <div class="countdown__value">29 Days</div>
+          </div>
+        </article>
+
+        <!-- Bonus 3 -->
+        <article class="bonus-card">
+          <span class="bonus-card__status">
+            <i data-lucide="flame" style="width: 10px; height: 10px;"></i>
+            Active Now
+          </span>
+          <h3 class="bonus-card__program">Air France KLM</h3>
+          <div class="bonus-card__bonus">+25%</div>
+          <div class="bonus-card__dates">
+            <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+            Jan 1 - Jan 20, 2026
+          </div>
+          <div class="bonus-card__countdown">
+            <div class="countdown__label">Ends in</div>
+            <div class="countdown__value">3 Days</div>
+          </div>
+        </article>
+
+        <!-- Bonus 4 -->
+        <article class="bonus-card">
+          <span class="bonus-card__status">
+            <i data-lucide="flame" style="width: 10px; height: 10px;"></i>
+            Active Now
+          </span>
+          <h3 class="bonus-card__program">Marriott Bonvoy</h3>
+          <div class="bonus-card__bonus">+35%</div>
+          <div class="bonus-card__dates">
+            <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+            Dec 15 - Feb 28, 2026
+          </div>
+          <div class="bonus-card__countdown">
+            <div class="countdown__label">Ends in</div>
+            <div class="countdown__value">42 Days</div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Historical Chart -->
+    <h2 class="section-title">
+      <i data-lucide="trending-up" style="width: 32px; height: 32px; color: var(--forest-green);"></i>
+      Bonus Frequency Over Time
+    </h2>
+
+    <div class="chart-container">
+      <div class="chart-header">
+        <div class="chart-title">Transfer Bonus Activity (Last 12 Months)</div>
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--forest-green);"></div>
+            Number of Active Bonuses
+          </div>
+        </div>
+      </div>
+      <div class="chart-bars">
+        <div class="bar-group">
+          <div class="bar" style="height: 40%;">
+            <div class="bar__label">8</div>
+          </div>
+          <div class="bar-month">Feb</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 55%;">
+            <div class="bar__label">11</div>
+          </div>
+          <div class="bar-month">Mar</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 45%;">
+            <div class="bar__label">9</div>
+          </div>
+          <div class="bar-month">Apr</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 60%;">
+            <div class="bar__label">12</div>
+          </div>
+          <div class="bar-month">May</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 35%;">
+            <div class="bar__label">7</div>
+          </div>
+          <div class="bar-month">Jun</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 30%;">
+            <div class="bar__label">6</div>
+          </div>
+          <div class="bar-month">Jul</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 25%;">
+            <div class="bar__label">5</div>
+          </div>
+          <div class="bar-month">Aug</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 50%;">
+            <div class="bar__label">10</div>
+          </div>
+          <div class="bar-month">Sep</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 70%;">
+            <div class="bar__label">14</div>
+          </div>
+          <div class="bar-month">Oct</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 80%;">
+            <div class="bar__label">16</div>
+          </div>
+          <div class="bar-month">Nov</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 75%;">
+            <div class="bar__label">15</div>
+          </div>
+          <div class="bar-month">Dec</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 65%;">
+            <div class="bar__label">13</div>
+          </div>
+          <div class="bar-month">Jan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Program Cards -->
+    <h2 class="section-title">
+      <i data-lucide="bell" style="width: 32px; height: 32px; color: var(--accent-warm);"></i>
+      Program Tracking
+    </h2>
+
+    <div class="programs-grid">
+      <!-- Program 1 -->
+      <article class="program-card">
+        <div class="program-card__header">
+          <h3 class="program-card__name">World of Hyatt</h3>
+          <div class="notify-toggle notify-toggle--active" onclick="this.classList.toggle('notify-toggle--active')"></div>
+        </div>
+        <div class="program-card__history">
+          <div class="history-label">Last 12 Months</div>
+          <div class="history-value">4 Bonuses (Avg: +38%)</div>
+        </div>
+        <div class="program-card__pattern">
+          Typical pattern: Bonuses every quarter, usually 30-40%. Peak season is Q4 (Oct-Dec).
+        </div>
+        <div class="program-card__recommendation">
+          <i data-lucide="lightbulb" style="width: 16px; height: 16px;"></i>
+          Best time: October-December
+        </div>
+      </article>
+
+      <!-- Program 2 -->
+      <article class="program-card">
+        <div class="program-card__header">
+          <h3 class="program-card__name">Virgin Atlantic</h3>
+          <div class="notify-toggle" onclick="this.classList.toggle('notify-toggle--active')"></div>
+        </div>
+        <div class="program-card__history">
+          <div class="history-label">Last 12 Months</div>
+          <div class="history-value">6 Bonuses (Avg: +28%)</div>
+        </div>
+        <div class="program-card__pattern">
+          Frequent promotions year-round. Bonuses range from 25-35%, with higher bonuses in summer.
+        </div>
+        <div class="program-card__recommendation">
+          <i data-lucide="lightbulb" style="width: 16px; height: 16px;"></i>
+          Best time: June-August
+        </div>
+      </article>
+
+      <!-- Program 3 -->
+      <article class="program-card">
+        <div class="program-card__header">
+          <h3 class="program-card__name">Air France KLM</h3>
+          <div class="notify-toggle notify-toggle--active" onclick="this.classList.toggle('notify-toggle--active')"></div>
+        </div>
+        <div class="program-card__history">
+          <div class="history-label">Last 12 Months</div>
+          <div class="history-value">3 Bonuses (Avg: +32%)</div>
+        </div>
+        <div class="program-card__pattern">
+          Less frequent but generous. Bonuses typically coincide with European travel seasons.
+        </div>
+        <div class="program-card__recommendation">
+          <i data-lucide="lightbulb" style="width: 16px; height: 16px;"></i>
+          Best time: April-June
+        </div>
+      </article>
+
+      <!-- Program 4 -->
+      <article class="program-card">
+        <div class="program-card__header">
+          <h3 class="program-card__name">Marriott Bonvoy</h3>
+          <div class="notify-toggle" onclick="this.classList.toggle('notify-toggle--active')"></div>
+        </div>
+        <div class="program-card__history">
+          <div class="history-label">Last 12 Months</div>
+          <div class="history-value">5 Bonuses (Avg: +35%)</div>
+        </div>
+        <div class="program-card__pattern">
+          Regular quarterly bonuses with occasional flash promotions. Holiday season sees highest bonuses.
+        </div>
+        <div class="program-card__recommendation">
+          <i data-lucide="lightbulb" style="width: 16px; height: 16px;"></i>
+          Best time: November-January
+        </div>
+      </article>
+
+      <!-- Program 5 -->
+      <article class="program-card">
+        <div class="program-card__header">
+          <h3 class="program-card__name">Singapore Airlines</h3>
+          <div class="notify-toggle notify-toggle--active" onclick="this.classList.toggle('notify-toggle--active')"></div>
+        </div>
+        <div class="program-card__history">
+          <div class="history-label">Last 12 Months</div>
+          <div class="history-value">2 Bonuses (Avg: +25%)</div>
+        </div>
+        <div class="program-card__pattern">
+          Rare but valuable. Bonuses appear around major Asian holidays and travel periods.
+        </div>
+        <div class="program-card__recommendation">
+          <i data-lucide="lightbulb" style="width: 16px; height: 16px;"></i>
+          Best time: February-March, September-October
+        </div>
+      </article>
+
+      <!-- Program 6 -->
+      <article class="program-card">
+        <div class="program-card__header">
+          <h3 class="program-card__name">Avianca LifeMiles</h3>
+          <div class="notify-toggle" onclick="this.classList.toggle('notify-toggle--active')"></div>
+        </div>
+        <div class="program-card__history">
+          <div class="history-label">Last 12 Months</div>
+          <div class="history-value">8 Bonuses (Avg: +40%)</div>
+        </div>
+        <div class="program-card__pattern">
+          Most frequent promotions of all partners. Monthly buy miles bonuses, often 100-150%.
+        </div>
+        <div class="program-card__recommendation">
+          <i data-lucide="lightbulb" style="width: 16px; height: 16px;"></i>
+          Best time: Any major holiday
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Animate chart bars on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.bar').forEach((bar, index) => {
+        const height = bar.style.height;
+        bar.style.height = '0';
+        setTimeout(() => {
+          bar.style.transition = 'height 0.8s ease';
+          bar.style.height = height;
+        }, index * 100);
+      });
+    });
+  </script>
+</body>
+</html>

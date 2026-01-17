@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Expedition Report #42</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      /* Colors */
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --charcoal: #101828;
+      --charcoal-light: #1F2937;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+
+      /* Shadows */
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+
+      /* Typography */
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Border Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      position: relative;
+      padding: var(--space-2xl) var(--space-lg);
+      background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-darker) 100%);
+      border-bottom: 3px solid var(--forest-green);
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(11, 164, 87, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.3; }
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .expedition-number {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 8px 16px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-md);
+      animation: slideInLeft 0.6s ease;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      animation: slideInLeft 0.6s ease 0.1s backwards;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-xl);
+      max-width: 700px;
+      animation: slideInLeft 0.6s ease 0.2s backwards;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: var(--space-2xl);
+      flex-wrap: wrap;
+      animation: slideInLeft 0.6s ease 0.3s backwards;
+    }
+
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--white-muted);
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--forest-green);
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    /* Section Header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--glow-fire);
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    /* Highlight Cards Grid */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .highlight-card {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 2px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--forest-green);
+      box-shadow: var(--shadow-xl), var(--glow-green);
+    }
+
+    .highlight-card__icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--forest-green), var(--accent-fire));
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .highlight-card__title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .highlight-card__value {
+      font-size: 36px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--white);
+      margin-bottom: var(--space-md);
+    }
+
+    .highlight-card__description {
+      font-size: 15px;
+      color: var(--white-muted);
+      line-height: 1.6;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto var(--space-2xl);
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--forest-green), var(--accent-fire));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 80px;
+      margin-bottom: var(--space-2xl);
+      animation: fadeInUp 0.6s ease backwards;
+    }
+
+    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 60px;
+      height: 60px;
+      background: var(--forest-dark);
+      border: 3px solid var(--forest-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--glow-green);
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--forest-green);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .timeline-content {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      transition: all 0.3s;
+    }
+
+    .timeline-content:hover {
+      border-color: var(--forest-green);
+      transform: translateX(8px);
+    }
+
+    .timeline-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .timeline-description {
+      font-size: 15px;
+      color: var(--white-muted);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+    }
+
+    .timeline-tags {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 4px 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Newsletter Section */
+    .newsletter-section {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 2px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-2xl);
+      text-align: center;
+      margin-top: var(--space-2xl);
+    }
+
+    .newsletter-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-lg);
+      box-shadow: var(--glow-fire);
+    }
+
+    .newsletter-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+    }
+
+    .newsletter-description {
+      font-size: 16px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-xl);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: var(--space-md);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 16px 24px;
+      background: var(--glass-bg-dark);
+      border: 2px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--white);
+      transition: all 0.3s;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--forest-green);
+      box-shadow: var(--glow-green);
+    }
+
+    .newsletter-button {
+      padding: 16px 32px;
+      background: var(--accent-fire);
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: var(--glow-fire);
+    }
+
+    .newsletter-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(223, 80, 48, 0.7);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .hero-stats {
+        gap: var(--space-lg);
+      }
+
+      .stat-value {
+        font-size: 24px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        padding-left: 60px;
+      }
+
+      .timeline-marker {
+        width: 40px;
+        height: 40px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div class="expedition-number">
+        <i data-lucide="compass" style="width: 14px; height: 14px;"></i>
+        Expedition #42
+      </div>
+      <h1 class="hero-title">Weekly Expedition Report</h1>
+      <p class="hero-subtitle">
+        Your weekly briefing on the best deals, trail conditions, and community victories from the field
+      </p>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-label">New Discoveries</div>
+          <div class="stat-value">23</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Hot Deals</div>
+          <div class="stat-value">12</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Camper Wins</div>
+          <div class="stat-value">47</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Total Points Saved</div>
+          <div class="stat-value">2.3M</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Highlight Cards -->
+    <div class="section-header">
+      <div class="section-icon">
+        <i data-lucide="trophy" style="width: 24px; height: 24px; color: white;"></i>
+      </div>
+      <h2 class="section-title">Week's Highlights</h2>
+    </div>
+
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-card__icon">
+          <i data-lucide="flame" style="width: 28px; height: 28px; color: white;"></i>
+        </div>
+        <div class="highlight-card__title">Best Deal of the Week</div>
+        <div class="highlight-card__value">77K pts</div>
+        <div class="highlight-card__description">
+          ANA First Class to Tokyo - an unprecedented 65% savings vs. typical award pricing
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-card__icon">
+          <i data-lucide="trending-up" style="width: 28px; height: 28px; color: white;"></i>
+        </div>
+        <div class="highlight-card__title">Biggest Change</div>
+        <div class="highlight-card__value">+40%</div>
+        <div class="highlight-card__description">
+          Hyatt transfer bonus - highest bonus rate we've seen in 18 months
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-card__icon">
+          <i data-lucide="users" style="width: 28px; height: 28px; color: white;"></i>
+        </div>
+        <div class="highlight-card__title">Community Champion</div>
+        <div class="highlight-card__value">Sarah M.</div>
+        <div class="highlight-card__description">
+          Booked 3-week Asia trip for family of 4 using just 150K points total
+        </div>
+      </div>
+    </div>
+
+    <!-- This Week's Discoveries -->
+    <div class="section-header">
+      <div class="section-icon">
+        <i data-lucide="map" style="width: 24px; height: 24px; color: white;"></i>
+      </div>
+      <h2 class="section-title">This Week's Discoveries</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <i data-lucide="calendar" style="width: 24px; height: 24px; color: var(--forest-green);"></i>
+        </div>
+        <div class="timeline-date">Monday, Jan 13</div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">ANA First Class Award Space Opens</h3>
+          <p class="timeline-description">
+            Historic release of First Class award availability on multiple North America to Tokyo routes.
+            Multiple departure dates available through April.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Award Flight</span>
+            <span class="tag">First Class</span>
+            <span class="tag">Asia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <i data-lucide="calendar" style="width: 24px; height: 24px; color: var(--forest-green);"></i>
+        </div>
+        <div class="timeline-date">Wednesday, Jan 15</div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Marriott Bonvoy Maldives Flash Sale</h3>
+          <p class="timeline-description">
+            Category 7 and 8 properties in the Maldives reduced to 60K points per night.
+            Overwater villas at St. Regis and W Hotels included.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Hotel</span>
+            <span class="tag">Luxury</span>
+            <span class="tag">Limited Time</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <i data-lucide="calendar" style="width: 24px; height: 24px; color: var(--forest-green);"></i>
+        </div>
+        <div class="timeline-date">Thursday, Jan 16</div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Chase Adds New Transfer Partners</h3>
+          <p class="timeline-description">
+            Ultimate Rewards program expands with three international carriers:
+            Air France-KLM, TAP Air Portugal, and Emirates.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Transfer Partner</span>
+            <span class="tag">Program Update</span>
+            <span class="tag">Chase</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <i data-lucide="calendar" style="width: 24px; height: 24px; color: var(--forest-green);"></i>
+        </div>
+        <div class="timeline-date">Friday, Jan 17</div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Hyatt 50% Buy Points Bonus</h3>
+          <p class="timeline-description">
+            World of Hyatt launches limited-time promotion offering 50% bonus on purchased points.
+            Effective cost drops to just 1.67 cents per point.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Buy Points</span>
+            <span class="tag">Hyatt</span>
+            <span class="tag">Promo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-section">
+      <div class="newsletter-icon">
+        <i data-lucide="mail" style="width: 36px; height: 36px; color: white;"></i>
+      </div>
+      <h2 class="newsletter-title">Get Reports in Your Pack</h2>
+      <p class="newsletter-description">
+        Never miss a discovery. Get the Weekly Expedition Report delivered straight to your inbox
+        every Monday morning with curated deals and insights.
+      </p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Signed up for Weekly Reports!');">
+        <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+        <button type="submit" class="newsletter-button">
+          Subscribe
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Highlight card animations
+    document.querySelectorAll('.highlight-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.background = 'rgba(11, 164, 87, 0.1)';
+      });
+      card.addEventListener('mouseleave', function() {
+        this.style.background = 'var(--glass-bg-dark)';
+      });
+    });
+  </script>
+</body>
+</html>

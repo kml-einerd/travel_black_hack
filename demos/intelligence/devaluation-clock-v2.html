@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storm Warning System - Track Program Changes</title>
+  <meta name="description" content="Monitor loyalty program changes and devaluations. Get alerts before the storm hits your points.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ===== STORM WARNING SYSTEM - CAMPING THEME ===== */
+    :root {
+      /* Colors - UI_ref Camping Palette */
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --charcoal: #101828;
+      --charcoal-light: #1F2937;
+
+      /* Alert Levels */
+      --alert-safe: #0BA457;
+      --alert-caution: #F59E0B;
+      --alert-warning: #FB923C;
+      --alert-danger: #DF5030;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+
+      /* Shadows & Glows */
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+
+      /* Typography */
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Border Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO STORM SECTION ===== */
+    .hero-storm {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-2xl) var(--space-lg);
+      background: linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-darker) 100%);
+      overflow: hidden;
+    }
+
+    .hero-storm::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 30% 40%, rgba(223, 80, 48, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(251, 146, 60, 0.1) 0%, transparent 50%);
+      animation: storm-pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes storm-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .hero-storm::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(7, 42, 28, 0.3) 0%,
+        rgba(7, 42, 28, 0.7) 100%);
+    }
+
+    .storm-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    /* Top Navigation */
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--white-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 10px 16px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      transition: all 0.3s;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .nav-back:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateX(-4px);
+    }
+
+    .storm-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .storm-title {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, var(--white) 0%, var(--accent-fire) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .storm-subtitle {
+      font-size: 20px;
+      color: var(--white-muted);
+    }
+
+    /* ===== STORM RADAR ===== */
+    .radar-container {
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .radar-circle {
+      width: 400px;
+      height: 400px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(11, 164, 87, 0.1) 0%,
+        rgba(223, 80, 48, 0.1) 100%);
+      border: 2px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar-rings {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+    }
+
+    .radar-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .radar-ring:nth-child(1) {
+      inset: 10%;
+    }
+
+    .radar-ring:nth-child(2) {
+      inset: 25%;
+    }
+
+    .radar-ring:nth-child(3) {
+      inset: 40%;
+    }
+
+    .radar-sweep {
+      position: absolute;
+      width: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent-fire) 100%);
+      transform-origin: right center;
+      left: 50%;
+      top: 50%;
+      transform: translateY(-50%) rotate(0deg);
+      animation: sweep-rotate 4s linear infinite;
+    }
+
+    @keyframes sweep-rotate {
+      from { transform: translateY(-50%) rotate(0deg); }
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    .radar-center {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-fire);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--glow-fire);
+      z-index: 2;
+      position: relative;
+    }
+
+    .radar-blips {
+      position: absolute;
+      inset: 0;
+    }
+
+    .radar-blip {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      animation: blip-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes blip-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+    }
+
+    .radar-blip--danger {
+      background: var(--alert-danger);
+      box-shadow: 0 0 20px var(--alert-danger);
+      top: 20%;
+      right: 25%;
+    }
+
+    .radar-blip--warning {
+      background: var(--alert-warning);
+      box-shadow: 0 0 20px var(--alert-warning);
+      bottom: 30%;
+      left: 20%;
+    }
+
+    .radar-blip--caution {
+      background: var(--alert-caution);
+      box-shadow: 0 0 20px var(--alert-caution);
+      top: 40%;
+      left: 15%;
+    }
+
+    .radar-blip--safe {
+      background: var(--alert-safe);
+      box-shadow: 0 0 20px var(--alert-safe);
+      bottom: 20%;
+      right: 30%;
+    }
+
+    /* ===== ALERT LEGEND ===== */
+    .alert-legend {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 12px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .legend-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    /* Timeline */
+    .timeline-section {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .timeline-container {
+      position: relative;
+      padding: var(--space-xl);
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      overflow-x: auto;
+    }
+
+    .timeline {
+      display: flex;
+      gap: var(--space-xl);
+      min-width: 1000px;
+      position: relative;
+      padding: var(--space-lg) 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        var(--alert-safe) 0%,
+        var(--alert-caution) 40%,
+        var(--alert-warning) 70%,
+        var(--alert-danger) 100%);
+    }
+
+    .timeline-item {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin: 0 auto var(--space-sm);
+      border: 3px solid var(--forest-darker);
+      box-shadow: 0 0 20px currentColor;
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white-muted);
+      margin-bottom: 4px;
+    }
+
+    .timeline-event {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-program {
+      font-size: 12px;
+      color: var(--white-muted);
+    }
+
+    /* ===== PROGRAM CARDS ===== */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .program-card {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-left: 4px solid;
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .program-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .program-card--danger {
+      border-left-color: var(--alert-danger);
+    }
+
+    .program-card--warning {
+      border-left-color: var(--alert-warning);
+    }
+
+    .program-card--caution {
+      border-left-color: var(--alert-caution);
+    }
+
+    .program-card--safe {
+      border-left-color: var(--alert-safe);
+    }
+
+    .program-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-lg);
+    }
+
+    .program-name {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .risk-badge {
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: white;
+    }
+
+    .risk-badge--danger {
+      background: var(--alert-danger);
+      animation: pulse-danger 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-danger {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(223, 80, 48, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(223, 80, 48, 0); }
+    }
+
+    .risk-badge--warning {
+      background: var(--alert-warning);
+    }
+
+    .risk-badge--caution {
+      background: var(--alert-caution);
+    }
+
+    .risk-badge--safe {
+      background: var(--alert-safe);
+    }
+
+    .program-change {
+      font-size: 16px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .trend-indicator {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .trend-arrow {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .trend-arrow--down {
+      color: var(--alert-danger);
+    }
+
+    .trend-arrow--up {
+      color: var(--alert-safe);
+    }
+
+    .trend-text {
+      flex: 1;
+    }
+
+    .trend-label {
+      font-size: 12px;
+      color: var(--white-muted);
+      margin-bottom: 4px;
+    }
+
+    .trend-value {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .program-recommendation {
+      background: rgba(11, 164, 87, 0.15);
+      border-left: 3px solid var(--forest-green);
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+
+    .program-recommendation strong {
+      color: var(--forest-green);
+    }
+
+    .program-countdown {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-md);
+      background: rgba(223, 80, 48, 0.15);
+      border-radius: var(--radius-md);
+    }
+
+    .countdown-text {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .countdown-text i {
+      color: var(--accent-fire);
+    }
+
+    /* ===== EVACUATION PLAN ===== */
+    .evacuation-section {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 2px solid var(--accent-fire);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-2xl);
+      margin-top: var(--space-2xl);
+    }
+
+    .evacuation-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .evacuation-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent-fire);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+    }
+
+    .evacuation-desc {
+      font-size: 16px;
+      color: var(--white-muted);
+    }
+
+    .evacuation-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .evacuation-step {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      transition: all 0.3s;
+    }
+
+    .evacuation-step:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--white-muted);
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .storm-title {
+        font-size: 36px;
+      }
+
+      .storm-subtitle {
+        font-size: 16px;
+      }
+
+      .radar-circle {
+        width: 300px;
+        height: 300px;
+      }
+
+      .alert-legend {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .timeline {
+        flex-direction: column;
+        min-width: auto;
+      }
+
+      .timeline-line {
+        width: 2px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        background: linear-gradient(180deg,
+          var(--alert-safe) 0%,
+          var(--alert-caution) 40%,
+          var(--alert-warning) 70%,
+          var(--alert-danger) 100%);
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero Storm Section -->
+  <section class="hero-storm">
+    <div class="storm-content">
+      <a href="../INDICE_COMPLETO.html" class="nav-back">
+        <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+        Back to Base Camp
+      </a>
+
+      <div class="storm-header">
+        <h1 class="storm-title">Storm Warning System</h1>
+        <p class="storm-subtitle">Track program changes before the storm hits your points</p>
+      </div>
+
+      <!-- Storm Radar -->
+      <div class="radar-container">
+        <div class="radar-circle">
+          <div class="radar-rings">
+            <div class="radar-ring"></div>
+            <div class="radar-ring"></div>
+            <div class="radar-ring"></div>
+          </div>
+          <div class="radar-sweep"></div>
+          <div class="radar-blips">
+            <div class="radar-blip radar-blip--danger"></div>
+            <div class="radar-blip radar-blip--warning"></div>
+            <div class="radar-blip radar-blip--caution"></div>
+            <div class="radar-blip radar-blip--safe"></div>
+          </div>
+          <div class="radar-center">
+            <i data-lucide="cloud-lightning" style="width: 32px; height: 32px; color: white;"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert Legend -->
+      <div class="alert-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--alert-danger);"></div>
+          <span class="legend-label">Danger - Act Now</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--alert-warning);"></div>
+          <span class="legend-label">Warning - Plan Ahead</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--alert-caution);"></div>
+          <span class="legend-label">Caution - Monitor</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--alert-safe);"></div>
+          <span class="legend-label">Safe - All Clear</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Timeline -->
+    <section class="timeline-section">
+      <h2 class="section-title">
+        <i data-lucide="calendar" style="width: 28px; height: 28px; color: var(--accent-fire);"></i>
+        Storm Timeline
+      </h2>
+      <div class="timeline-container">
+        <div class="timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--alert-safe);"></div>
+            <div class="timeline-date">Today</div>
+            <div class="timeline-event">Current Status</div>
+            <div class="timeline-program">All programs stable</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--alert-caution);"></div>
+            <div class="timeline-date">Feb 15</div>
+            <div class="timeline-event">Rumors Begin</div>
+            <div class="timeline-program">Marriott Bonvoy</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--alert-warning);"></div>
+            <div class="timeline-date">Mar 1</div>
+            <div class="timeline-event">Official Notice</div>
+            <div class="timeline-program">Delta SkyMiles</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--alert-danger);"></div>
+            <div class="timeline-date">Mar 15</div>
+            <div class="timeline-event">Storm Hits</div>
+            <div class="timeline-program">Changes Take Effect</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Cards -->
+    <section>
+      <h2 class="section-title">
+        <i data-lucide="cloud-lightning" style="width: 28px; height: 28px; color: var(--accent-fire);"></i>
+        Programs at Risk
+      </h2>
+      <div class="programs-grid">
+        <!-- Program Card 1 - Danger -->
+        <article class="program-card program-card--danger">
+          <div class="program-header">
+            <h3 class="program-name">Delta SkyMiles</h3>
+            <span class="risk-badge risk-badge--danger">
+              <i data-lucide="alert-triangle" style="width: 12px; height: 12px;"></i>
+              Danger
+            </span>
+          </div>
+
+          <p class="program-change">
+            Major devaluation announced: Award pricing increasing by 30-50% on all international routes starting March 15.
+          </p>
+
+          <div class="trend-indicator">
+            <div class="trend-arrow trend-arrow--down">↓</div>
+            <div class="trend-text">
+              <div class="trend-label">Value Change</div>
+              <div class="trend-value" style="color: var(--alert-danger);">-40%</div>
+            </div>
+          </div>
+
+          <div class="program-recommendation">
+            <strong>⚠️ Evacuation Plan:</strong> Book all planned international redemptions before March 15. Consider transferring points to partner programs like Virgin Atlantic or Air France.
+          </div>
+
+          <div class="program-countdown">
+            <span class="countdown-text">
+              <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
+              28 days until changes
+            </span>
+          </div>
+        </article>
+
+        <!-- Program Card 2 - Warning -->
+        <article class="program-card program-card--warning">
+          <div class="program-header">
+            <h3 class="program-name">Marriott Bonvoy</h3>
+            <span class="risk-badge risk-badge--warning">
+              <i data-lucide="alert-circle" style="width: 12px; height: 12px;"></i>
+              Warning
+            </span>
+          </div>
+
+          <p class="program-change">
+            Rumors of category changes for top-tier properties. Several luxury hotels expected to move from Cat 7 to Cat 8.
+          </p>
+
+          <div class="trend-indicator">
+            <div class="trend-arrow trend-arrow--down">↓</div>
+            <div class="trend-text">
+              <div class="trend-label">Expected Change</div>
+              <div class="trend-value" style="color: var(--alert-warning);">-25%</div>
+            </div>
+          </div>
+
+          <div class="program-recommendation">
+            <strong>💡 Action Plan:</strong> Book luxury properties now before potential category increases. Focus on Maldives and Caribbean resorts.
+          </div>
+
+          <div class="program-countdown">
+            <span class="countdown-text">
+              <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
+              45 days (estimated)
+            </span>
+          </div>
+        </article>
+
+        <!-- Program Card 3 - Caution -->
+        <article class="program-card program-card--caution">
+          <div class="program-header">
+            <h3 class="program-name">United MileagePlus</h3>
+            <span class="risk-badge risk-badge--caution">
+              <i data-lucide="eye" style="width: 12px; height: 12px;"></i>
+              Caution
+            </span>
+          </div>
+
+          <p class="program-change">
+            Monitoring for potential changes. Historical pattern suggests devaluation every 18-24 months. Last change was 16 months ago.
+          </p>
+
+          <div class="trend-indicator">
+            <div class="trend-arrow" style="color: var(--alert-caution);">→</div>
+            <div class="trend-text">
+              <div class="trend-label">Risk Level</div>
+              <div class="trend-value" style="color: var(--alert-caution);">Medium</div>
+            </div>
+          </div>
+
+          <div class="program-recommendation">
+            <strong>👀 Watch List:</strong> Monitor for announcements. Consider booking high-value redemptions like Polaris business class to Asia.
+          </div>
+
+          <div class="program-countdown">
+            <span class="countdown-text">
+              <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+              Monitoring closely
+            </span>
+          </div>
+        </article>
+
+        <!-- Program Card 4 - Safe -->
+        <article class="program-card program-card--safe">
+          <div class="program-header">
+            <h3 class="program-name">Chase Ultimate Rewards</h3>
+            <span class="risk-badge risk-badge--safe">
+              <i data-lucide="shield-check" style="width: 12px; height: 12px;"></i>
+              Safe
+            </span>
+          </div>
+
+          <p class="program-change">
+            No changes expected. Transfer ratios remain 1:1 to all partners. Recent bonus offers indicate strong program health.
+          </p>
+
+          <div class="trend-indicator">
+            <div class="trend-arrow trend-arrow--up">↑</div>
+            <div class="trend-text">
+              <div class="trend-label">Program Health</div>
+              <div class="trend-value" style="color: var(--alert-safe);">Excellent</div>
+            </div>
+          </div>
+
+          <div class="program-recommendation">
+            <strong>✅ All Clear:</strong> Safe to transfer points. Consider taking advantage of current transfer bonuses to Hyatt and Virgin Atlantic.
+          </div>
+
+          <div class="program-countdown">
+            <span class="countdown-text" style="color: var(--alert-safe);">
+              <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+              No action needed
+            </span>
+          </div>
+        </article>
+
+        <!-- Program Card 5 - Warning -->
+        <article class="program-card program-card--warning">
+          <div class="program-header">
+            <h3 class="program-name">Hilton Honors</h3>
+            <span class="risk-badge risk-badge--warning">
+              <i data-lucide="alert-circle" style="width: 12px; height: 12px;"></i>
+              Warning
+            </span>
+          </div>
+
+          <p class="program-change">
+            Standard room awards increasing by 15% at premium properties. Executive lounge access being removed from standard awards.
+          </p>
+
+          <div class="trend-indicator">
+            <div class="trend-arrow trend-arrow--down">↓</div>
+            <div class="trend-text">
+              <div class="trend-label">Value Change</div>
+              <div class="trend-value" style="color: var(--alert-warning);">-20%</div>
+            </div>
+          </div>
+
+          <div class="program-recommendation">
+            <strong>💡 Action Plan:</strong> Book premium properties before April 1. Consider Conrad and Waldorf Astoria properties while lounge access is still included.
+          </div>
+
+          <div class="program-countdown">
+            <span class="countdown-text">
+              <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
+              60 days until changes
+            </span>
+          </div>
+        </article>
+
+        <!-- Program Card 6 - Caution -->
+        <article class="program-card program-card--caution">
+          <div class="program-header">
+            <h3 class="program-name">American AAdvantage</h3>
+            <span class="risk-badge risk-badge--caution">
+              <i data-lucide="eye" style="width: 12px; height: 12px;"></i>
+              Caution
+            </span>
+          </div>
+
+          <p class="program-change">
+            Web specials becoming less frequent. Saver award availability decreasing on popular routes. Possible changes coming.
+          </p>
+
+          <div class="trend-indicator">
+            <div class="trend-arrow" style="color: var(--alert-caution);">↘</div>
+            <div class="trend-text">
+              <div class="trend-label">Availability Trend</div>
+              <div class="trend-value" style="color: var(--alert-caution);">Declining</div>
+            </div>
+          </div>
+
+          <div class="program-recommendation">
+            <strong>👀 Watch List:</strong> Book known travel plans now. Watch for official announcements in coming weeks.
+          </div>
+
+          <div class="program-countdown">
+            <span class="countdown-text">
+              <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+              Under observation
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Evacuation Plan -->
+    <section class="evacuation-section">
+      <div class="evacuation-header">
+        <h2 class="evacuation-title">
+          <i data-lucide="shield-alert" style="width: 32px; height: 32px;"></i>
+          Evacuation Plan
+        </h2>
+        <p class="evacuation-desc">What to do when a devaluation storm is approaching</p>
+      </div>
+
+      <div class="evacuation-steps">
+        <div class="evacuation-step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Assess Your Position</h3>
+          <p class="step-desc">Review your points balance and planned redemptions. Prioritize high-value bookings that will be most affected.</p>
+        </div>
+
+        <div class="evacuation-step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Book Known Travel</h3>
+          <p class="step-desc">Immediately book any trips you have planned for the next 12 months before prices increase.</p>
+        </div>
+
+        <div class="evacuation-step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Transfer Points</h3>
+          <p class="step-desc">Consider transferring flexible points to partner programs that aren't affected by the changes.</p>
+        </div>
+
+        <div class="evacuation-step">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Monitor Alternatives</h3>
+          <p class="step-desc">Research alternative programs and routes that offer better value after the devaluation.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    // Radar blips random animation delays
+    document.querySelectorAll('.radar-blip').forEach((blip, index) => {
+      blip.style.animationDelay = `${index * 0.5}s`;
+    });
+
+    // Program cards interaction
+    document.querySelectorAll('.program-card').forEach(card => {
+      card.addEventListener('click', function() {
+        console.log('Program details');
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gear Catalog - Latest Equipment</title>
+  <meta name="description" content="Discover the latest camping gear and equipment. Reviews, comparisons, and recommendations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root{--forest-green:#0BA457;--forest-darker:#072A1C;--accent-fire:#DF5030;--white:#FFF;--white-muted:rgba(255,255,255,0.85);--glass-bg:rgba(255,255,255,0.15);--glass-border:rgba(255,255,255,0.2);--glass-blur:blur(20px);--radius-xl:20px;--font-main:'Plus Jakarta Sans',sans-serif;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:var(--font-main);background:var(--forest-darker);color:var(--white);min-height:100vh;padding:32px;}
+    .container{max-width:1200px;margin:0 auto;}
+    .nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--white-muted);text-decoration:none;font-weight:600;padding:10px 16px;border-radius:999px;background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);margin-bottom:32px;}
+    .title{font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--forest-green),#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:32px;text-align:center;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+    .gear-card{background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-xl);overflow:hidden;transition:transform 0.3s;}
+    .gear-card:hover{transform:translateY(-8px);}
+    .gear-image{height:200px;background:linear-gradient(135deg,#0D3B28,var(--forest-green));display:flex;align-items:center;justify-content:center;font-size:56px;}
+    .gear-content{padding:20px;}
+    .gear-name{font-size:20px;font-weight:700;margin-bottom:8px;}
+    .gear-desc{color:var(--white-muted);font-size:14px;margin-bottom:16px;}
+    .gear-stats{display:flex;gap:12px;font-size:12px;}
+    .stat{background:rgba(11,164,87,0.2);padding:6px 12px;border-radius:999px;color:var(--forest-green);font-weight:600;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="nav-back">
+      <i data-lucide="tent" width="18"></i>Back to Base Camp
+    </a>
+    <h1 class="title">🎒 Gear Catalog</h1>
+    <div class="grid">
+      <div class="gear-card">
+        <div class="gear-image">⛺</div>
+        <div class="gear-content">
+          <div class="gear-name">Ultralight 2-Person Tent</div>
+          <div class="gear-desc">Premium ultralight tent with 3-season protection. Perfect weight-to-durability ratio.</div>
+          <div class="gear-stats">
+            <span class="stat">3.2 lbs</span>
+            <span class="stat">$349</span>
+          </div>
+        </div>
+      </div>
+      <div class="gear-card">
+        <div class="gear-image">🎒</div>
+        <div class="gear-content">
+          <div class="gear-name">60L Expedition Pack</div>
+          <div class="gear-desc">Ergonomic backpack with adjustable suspension system. Multi-day capacity.</div>
+          <div class="gear-stats">
+            <span class="stat">4.1 lbs</span>
+            <span class="stat">$280</span>
+          </div>
+        </div>
+      </div>
+      <div class="gear-card">
+        <div class="gear-image">💤</div>
+        <div class="gear-content">
+          <div class="gear-name">Down Sleeping Bag 15°F</div>
+          <div class="gear-desc">Premium 800-fill down insulation. Compressible and ultralight for cold weather.</div>
+          <div class="gear-stats">
+            <span class="stat">2.4 lbs</span>
+            <span class="stat">$425</span>
+          </div>
+        </div>
+      </div>
+      <div class="gear-card">
+        <div class="gear-image">🔥</div>
+        <div class="gear-content">
+          <div class="gear-name">Compact Camp Stove</div>
+          <div class="gear-desc">Ultralight canister stove with piezo ignition. Boils water in under 3 minutes.</div>
+          <div class="gear-stats">
+            <span class="stat">0.3 lbs</span>
+            <span class="stat">$65</span>
+          </div>
+        </div>
+      </div>
+      <div class="gear-card">
+        <div class="gear-image">🧭</div>
+        <div class="gear-content">
+          <div class="gear-name">GPS Navigation Device</div>
+          <div class="gear-desc">Waterproof GPS with preloaded topo maps. 20-hour battery life.</div>
+          <div class="gear-stats">
+            <span class="stat">0.5 lbs</span>
+            <span class="stat">$299</span>
+          </div>
+        </div>
+      </div>
+      <div class="gear-card">
+        <div class="gear-image">💧</div>
+        <div class="gear-content">
+          <div class="gear-name">Water Filtration System</div>
+          <div class="gear-desc">Squeeze filter removes 99.9% bacteria and protozoa. 100,000 gallon lifespan.</div>
+          <div class="gear-stats">
+            <span class="stat">0.2 lbs</span>
+            <span class="stat">$45</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

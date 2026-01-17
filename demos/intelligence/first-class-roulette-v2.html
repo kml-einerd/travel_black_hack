@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adventure Lottery - Trail Intelligence</title>
+  <meta name="description" content="Spin the wheel for random premium camping destinations. Discover unexpected lakeside adventures.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: radial-gradient(ellipse at 50% 50%, rgba(11, 164, 87, 0.1) 0%, transparent 50%);
+    }
+    .lottery-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: var(--radius-full);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+      margin-bottom: 32px;
+      display: inline-flex;
+    }
+    .nav-back:hover {
+      color: var(--forest-green);
+      transform: translateX(-4px);
+    }
+    .lottery-hero {
+      text-align: center;
+      padding: 48px 24px;
+      margin-bottom: 48px;
+    }
+    .lottery-title {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--forest-green), var(--accent-warm));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    .lottery-subtitle {
+      font-size: 18px;
+      color: var(--white-muted);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    .wheel-section {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .wheel-container {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      padding: 48px;
+      text-align: center;
+    }
+    .wheel {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 32px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--forest-green) 0deg 60deg,
+        var(--accent-fire) 60deg 120deg,
+        var(--accent-warm) 120deg 180deg,
+        var(--forest-green) 180deg 240deg,
+        var(--accent-fire) 240deg 300deg,
+        var(--accent-warm) 300deg 360deg
+      );
+      position: relative;
+      box-shadow: 0 0 0 20px var(--glass-bg-dark), var(--shadow-lg);
+      transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .wheel::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: var(--forest-darker);
+      border-radius: 50%;
+      box-shadow: var(--glow-green);
+    }
+    .wheel-pointer {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 30px solid var(--accent-fire);
+      filter: drop-shadow(var(--glow-fire));
+    }
+    .spin-button {
+      padding: 16px 48px;
+      font-size: 18px;
+      font-weight: 700;
+      background: var(--forest-green);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-green);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .spin-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(11, 164, 87, 0.8);
+    }
+    .result-panel {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      padding: 32px;
+    }
+    .result-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .result-card {
+      background: var(--glass-bg-dark);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .result-destination {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--forest-green);
+      margin-bottom: 8px;
+    }
+    .result-description {
+      color: var(--white-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .result-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .result-stat {
+      background: rgba(11, 164, 87, 0.1);
+      padding: 12px;
+      border-radius: var(--radius-lg);
+    }
+    .result-stat-label {
+      font-size: 11px;
+      color: var(--white-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .result-stat-value {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--forest-green);
+    }
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .destination-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .destination-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .destination-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, var(--forest-dark), var(--forest-green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+    .destination-content {
+      padding: 20px;
+    }
+    .destination-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .destination-location {
+      font-size: 13px;
+      color: var(--white-muted);
+      margin-bottom: 12px;
+    }
+    .destination-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(11, 164, 87, 0.2);
+      color: var(--forest-green);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    @media (max-width: 992px) {
+      .wheel-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lottery-container">
+    <a href="../../index.html" class="nav-back">
+      <i data-lucide="tent" width="18" height="18"></i>
+      Back to Base Camp
+    </a>
+
+    <div class="lottery-hero">
+      <h1 class="lottery-title">🎰 Adventure Lottery</h1>
+      <p class="lottery-subtitle">
+        Feeling adventurous? Spin the wheel to discover a random premium lakeside camping spot.
+        Let chance decide your next outdoor escape.
+      </p>
+    </div>
+
+    <div class="wheel-section">
+      <div class="wheel-container">
+        <div style="position: relative; max-width: 300px; margin: 0 auto;">
+          <div class="wheel-pointer"></div>
+          <div class="wheel" id="roulette-wheel"></div>
+        </div>
+        <button class="spin-button" onclick="spinWheel()">
+          <i data-lucide="rotate-cw" width="24" height="24"></i>
+          Spin the Wheel
+        </button>
+      </div>
+
+      <div class="result-panel">
+        <div class="result-title">
+          <i data-lucide="trophy" width="24" height="24"></i>
+          Your Lucky Draw
+        </div>
+        <div class="result-card" id="result-display">
+          <div class="result-destination">Spin to Discover!</div>
+          <div class="result-description">
+            Click "Spin the Wheel" to randomly select a premium camping destination.
+            Each spin reveals a new lakeside adventure opportunity.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 24px; color: var(--white);">
+        Premium Destinations in the Lottery
+      </h2>
+      <div class="destinations-grid">
+        <div class="destination-card">
+          <div class="destination-image">🏔️</div>
+          <div class="destination-content">
+            <div class="destination-name">Alpine Lake Vista</div>
+            <div class="destination-location">Rocky Mountains, Colorado</div>
+            <span class="destination-badge">Premium</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-image">🌲</div>
+          <div class="destination-content">
+            <div class="destination-name">Forest Pond Retreat</div>
+            <div class="destination-location">Adirondacks, New York</div>
+            <span class="destination-badge">Secluded</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-image">🏝️</div>
+          <div class="destination-content">
+            <div class="destination-name">Island Cove Camp</div>
+            <div class="destination-location">Lake Tahoe, California</div>
+            <span class="destination-badge">Waterfront</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-image">⛰️</div>
+          <div class="destination-content">
+            <div class="destination-name">Mountain Peak Base</div>
+            <div class="destination-location">Glacier National Park, Montana</div>
+            <span class="destination-badge">Adventure</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-image">🌊</div>
+          <div class="destination-content">
+            <div class="destination-name">Coastal Bluff Site</div>
+            <div class="destination-location">Big Sur, California</div>
+            <span class="destination-badge">Scenic</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-image">🌄</div>
+          <div class="destination-content">
+            <div class="destination-name">Sunrise Valley Camp</div>
+            <div class="destination-location">Yosemite, California</div>
+            <span class="destination-badge">Iconic</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const destinations = [
+      { name: 'Alpine Lake Vista', location: 'Rocky Mountains, CO', emoji: '🏔️' },
+      { name: 'Forest Pond Retreat', location: 'Adirondacks, NY', emoji: '🌲' },
+      { name: 'Island Cove Camp', location: 'Lake Tahoe, CA', emoji: '🏝️' },
+      { name: 'Mountain Peak Base', location: 'Glacier NP, MT', emoji: '⛰️' },
+      { name: 'Coastal Bluff Site', location: 'Big Sur, CA', emoji: '🌊' },
+      { name: 'Sunrise Valley Camp', location: 'Yosemite, CA', emoji: '🌄' }
+    ];
+
+    function spinWheel() {
+      const wheel = document.getElementById('roulette-wheel');
+      const randomDegrees = Math.floor(Math.random() * 360) + 1440; // At least 4 full spins
+      wheel.style.transform = `rotate(${randomDegrees}deg)`;
+
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * destinations.length);
+        const dest = destinations[randomIndex];
+        document.getElementById('result-display').innerHTML = `
+          <div class="result-destination">${dest.emoji} ${dest.name}</div>
+          <div class="result-description">
+            Congratulations! You've won a trip to ${dest.name} in ${dest.location}.
+            This premium lakeside camping spot offers breathtaking views and exclusive access.
+          </div>
+          <div class="result-stats">
+            <div class="result-stat">
+              <div class="result-stat-label">Points Needed</div>
+              <div class="result-stat-value">${Math.floor(Math.random() * 30000 + 20000).toLocaleString()}</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-label">Cash Value</div>
+              <div class="result-stat-value">$${Math.floor(Math.random() * 400 + 300)}</div>
+            </div>
+          </div>
+        `;
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

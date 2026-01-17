@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epic Adventures Gallery - Success Stories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root{--forest-green:#0BA457;--forest-darker:#072A1C;--white:#FFF;--glass-bg:rgba(255,255,255,0.15);--glass-border:rgba(255,255,255,0.2);--glass-blur:blur(20px);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--forest-darker);color:var(--white);padding:32px;}
+    .container{max-width:1400px;margin:0 auto;}
+    .nav-back{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.8);text-decoration:none;font-weight:600;padding:10px 16px;border-radius:999px;background:var(--glass-bg);border:1px solid var(--glass-border);margin-bottom:32px;}
+    .title{font-size:42px;font-weight:800;text-align:center;background:linear-gradient(135deg,var(--forest-green),#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:48px;}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:24px;}
+    .story{background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:20px;overflow:hidden;transition:transform 0.3s;}
+    .story:hover{transform:translateY(-8px);}
+    .story-image{height:240px;background:linear-gradient(135deg,#0D3B28,var(--forest-green));display:flex;align-items:center;justify-content:center;font-size:64px;}
+    .story-content{padding:24px;}
+    .story-author{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+    .avatar{width:40px;height:40px;border-radius:50%;background:var(--forest-green);display:flex;align-items:center;justify-content:center;font-weight:700;}
+    .author-name{font-weight:700;}
+    .story-title{font-size:20px;font-weight:700;margin-bottom:12px;}
+    .story-text{color:rgba(255,255,255,0.8);line-height:1.6;font-size:14px;margin-bottom:16px;}
+    .story-stats{display:flex;gap:16px;font-size:13px;color:rgba(255,255,255,0.6);}
+    .stat{display:flex;align-items:center;gap:6px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="nav-back">
+      <i data-lucide="tent" width="18"></i>Back to Base Camp
+    </a>
+    <h1 class="title">🏆 Epic Adventures Gallery</h1>
+    <div class="gallery">
+      <div class="story">
+        <div class="story-image">🏔️</div>
+        <div class="story-content">
+          <div class="story-author">
+            <div class="avatar">MR</div>
+            <div class="author-name">Maria Rodriguez</div>
+          </div>
+          <div class="story-title">Swiss Alps Adventure for 85K Points</div>
+          <div class="story-text">
+            Booked 7 nights in Zermatt using Bonvoy points during off-peak. Hotels were charging $450/night cash. Got insane 2.8 CPP value!
+          </div>
+          <div class="story-stats">
+            <span class="stat"><i data-lucide="map-pin" width="14"></i>Switzerland</span>
+            <span class="stat"><i data-lucide="star" width="14"></i>85K points</span>
+          </div>
+        </div>
+      </div>
+      <div class="story">
+        <div class="story-image">🏝️</div>
+        <div class="story-content">
+          <div class="story-author">
+            <div class="avatar" style="background:#F59E0B">DK</div>
+            <div class="author-name">David Kim</div>
+          </div>
+          <div class="story-title">Maldives Overwater Villa - Points Only</div>
+          <div class="story-text">
+            Used Hilton points for 5 nights at Conrad Maldives. Would've been $8,500 cash. Transferred from Amex during 100% bonus. Best redemption ever!
+          </div>
+          <div class="story-stats">
+            <span class="stat"><i data-lucide="map-pin" width="14"></i>Maldives</span>
+            <span class="stat"><i data-lucide="star" width="14"></i>190K points</span>
+          </div>
+        </div>
+      </div>
+      <div class="story">
+        <div class="story-image">✈️</div>
+        <div class="story-content">
+          <div class="story-author">
+            <div class="avatar" style="background:#DF5030">JL</div>
+            <div class="author-name">Jessica Lee</div>
+          </div>
+          <div class="story-title">Business Class to Tokyo - 60K Miles</div>
+          <div class="story-text">
+            Snagged ANA business class using Virgin Atlantic miles. Booked 11 months out. Cash price was $5,200. Got 8.6 cents per mile!
+          </div>
+          <div class="story-stats">
+            <span class="stat"><i data-lucide="map-pin" width="14"></i>Tokyo</span>
+            <span class="stat"><i data-lucide="star" width="14"></i>60K miles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

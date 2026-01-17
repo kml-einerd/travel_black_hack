@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Tips Library - Travel Black Hack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-green: #0BA457;
+            --accent-fire: #DF5030;
+            --forest-dark: #0D3B28;
+            --bg-dark: #0a0e0d;
+            --glass-bg: rgba(13, 59, 40, 0.3);
+            --glass-border: rgba(11, 164, 87, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #0a0e0d 0%, #0D3B28 100%);
+            color: #fff;
+            min-height: 100vh;
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(11, 164, 87, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(223, 80, 48, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--forest-green);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(11, 164, 87, 0.2);
+            border-color: var(--forest-green);
+            transform: translateX(-5px);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🎒🔥⛺🧭🏕️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent-fire), #8b2817);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(223, 80, 48, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--accent-fire));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-section {
+            margin-bottom: 3rem;
+        }
+
+        .search-bar {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.25rem 3.5rem 1.25rem 3.5rem;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 60px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--forest-green);
+            box-shadow: 0 0 0 4px rgba(11, 164, 87, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--forest-green);
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            display: none;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .clear-search:hover {
+            color: var(--accent-fire);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            background: var(--glass-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background: var(--forest-green);
+            border-color: var(--forest-green);
+            color: #fff;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--forest-green), var(--accent-fire));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--forest-green);
+            box-shadow: 0 15px 40px rgba(11, 164, 87, 0.2);
+        }
+
+        .tip-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tip-card.bookmarked {
+            border-color: var(--accent-fire);
+        }
+
+        .tip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .tip-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+
+        .cat-points { background: rgba(11, 164, 87, 0.2); color: var(--forest-green); border: 1px solid var(--forest-green); }
+        .cat-status { background: rgba(255, 193, 7, 0.2); color: #FFC107; border: 1px solid #FFC107; }
+        .cat-booking { background: rgba(33, 150, 243, 0.2); color: #2196F3; border: 1px solid #2196F3; }
+        .cat-credit { background: rgba(156, 39, 176, 0.2); color: #9C27B0; border: 1px solid #9C27B0; }
+        .cat-travel { background: rgba(0, 188, 212, 0.2); color: #00BCD4; border: 1px solid #00BCD4; }
+
+        .impact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+
+        .impact-high {
+            background: rgba(223, 80, 48, 0.2);
+            color: var(--accent-fire);
+            border: 1px solid var(--accent-fire);
+        }
+
+        .impact-medium {
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFC107;
+            border: 1px solid #FFC107;
+        }
+
+        .impact-low {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+
+        .bookmark-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .bookmark-btn:hover,
+        .tip-card.bookmarked .bookmark-btn {
+            color: var(--accent-fire);
+            transform: scale(1.2);
+        }
+
+        .tip-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .tip-preview {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .tip-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .tip-expanded {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .tip-card.expanded .tip-expanded {
+            max-height: 500px;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tip-content {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .popular-tip {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .popular-tip:hover {
+            background: rgba(11, 164, 87, 0.1);
+            transform: translateX(5px);
+        }
+
+        .popular-rank {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-fire);
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-right: 0.75rem;
+        }
+
+        .popular-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .popular-views {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--forest-green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 0.5rem;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Base Camp
+        </a>
+
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                        <circle cx="12" cy="12" r="4"/>
+                    </svg>
+                </div>
+                <h1>Survival Tips Library</h1>
+                <p class="hero-subtitle">Your complete wilderness guide - practical tips and hacks for navigating the points and miles terrain</p>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-bar">
+                <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search survival tips..." id="searchInput">
+                <button class="clear-search" id="clearSearch">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <span class="filter-label">Category:</span>
+                    <button class="filter-btn active" data-filter="category" data-value="all">All</button>
+                    <button class="filter-btn" data-filter="category" data-value="points">Points</button>
+                    <button class="filter-btn" data-filter="category" data-value="status">Status</button>
+                    <button class="filter-btn" data-filter="category" data-value="booking">Booking</button>
+                    <button class="filter-btn" data-filter="category" data-value="credit">Credit</button>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Impact:</span>
+                    <button class="filter-btn active" data-filter="impact" data-value="all">All</button>
+                    <button class="filter-btn" data-filter="impact" data-value="high">High</button>
+                    <button class="filter-btn" data-filter="impact" data-value="medium">Medium</button>
+                    <button class="filter-btn" data-filter="impact" data-value="low">Low</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="tips-grid" id="tipsGrid">
+                <!-- Tips will be inserted here by JavaScript -->
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                        Most Popular
+                    </h3>
+                    <div id="popularTips">
+                        <!-- Popular tips will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Library Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">87</div>
+                            <div class="stat-label">Total Tips</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="bookmarkedCount">0</div>
+                            <div class="stat-label">Bookmarked</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        const tips = [
+            {
+                id: 1,
+                title: "Transfer Points During Bonuses",
+                category: "points",
+                impact: "high",
+                preview: "Always wait for transfer bonuses before moving points to airline partners.",
+                content: "Credit card points transfer bonuses can add 25-50% extra value to your redemptions. Set up alerts for your favorite programs and only transfer when there's a promotion. This single strategy can save thousands of points on premium cabin bookings.",
+                views: 2847
+            },
+            {
+                id: 2,
+                title: "Pool Points with Family",
+                category: "points",
+                impact: "medium",
+                preview: "Combine points across household members for faster award bookings.",
+                content: "Most programs allow point pooling with family members at the same address. This accelerates your earning and gives you more redemption flexibility. Particularly useful for expensive first-class or business-class awards that require high point balances.",
+                views: 2103
+            },
+            {
+                id: 3,
+                title: "Status Match Opportunities",
+                category: "status",
+                impact: "high",
+                preview: "Leverage one elite status to fast-track status with competing programs.",
+                content: "Many airlines and hotels offer status matches or challenges. If you have elite status with one brand, you can often get matched to similar tier with competitors. This is especially valuable when you're new to a program or want to diversify your elite benefits.",
+                views: 3421
+            },
+            {
+                id: 4,
+                title: "Book One-Way Awards",
+                category: "booking",
+                impact: "medium",
+                preview: "Mix and match airlines for better availability and pricing.",
+                content: "One-way award bookings give you incredible flexibility. You can fly one airline outbound and another on return, often finding better availability and value. This also allows you to take advantage of different programs' sweet spots for each direction.",
+                views: 1876
+            },
+            {
+                id: 5,
+                title: "Hidden City Ticketing Risks",
+                category: "booking",
+                impact: "high",
+                preview: "Understand the consequences before using this controversial tactic.",
+                content: "While hidden city ticketing can save money, it violates airline terms of service. You can't check bags, must be flexible if routes change, and risk losing frequent flyer status. Use only as a last resort and understand the potential consequences.",
+                views: 2654
+            },
+            {
+                id: 6,
+                title: "Credit Card Downgrade Strategy",
+                category: "credit",
+                impact: "medium",
+                preview: "Keep your account history while avoiding annual fees.",
+                content: "Instead of canceling credit cards, downgrade to no-annual-fee versions. This preserves your credit history length and keeps accounts open, both beneficial for your credit score. You can always upgrade again when there's a good bonus offer.",
+                views: 1923
+            },
+            {
+                id: 7,
+                title: "Set Award Alert Searches",
+                category: "booking",
+                impact: "low",
+                preview: "Automate your award search for hard-to-find availability.",
+                content: "Use tools like ExpertFlyer or AwardHacker to set alerts for specific routes and dates. You'll be notified immediately when award space opens up, giving you first chance at snagging difficult redemptions before they disappear.",
+                views: 1567
+            },
+            {
+                id: 8,
+                title: "Stopover Hack for Free Nights",
+                category: "booking",
+                impact: "high",
+                preview: "Add free extra destinations to your award flights.",
+                content: "Some airlines allow free stopovers on award tickets. For example, you can fly NYC to Paris to Cairo for the same points as NYC to Cairo direct. This gives you two trips for the price of one and is one of the best-kept secrets in award travel.",
+                views: 3102
+            },
+            {
+                id: 9,
+                title: "Use Shopping Portals",
+                category: "points",
+                impact: "medium",
+                preview: "Earn bonus points on purchases you're already making.",
+                content: "Always check shopping portals before making online purchases. You can earn 2-20x extra points on regular shopping at major retailers. Install a browser extension to automatically alert you when portals are available for the site you're visiting.",
+                views: 1789
+            },
+            {
+                id: 10,
+                title: "Call Reconsideration Line",
+                category: "credit",
+                impact: "high",
+                preview: "Turn credit card rejections into approvals with one phone call.",
+                content: "If you're denied for a credit card, call the reconsideration line immediately. Many denials are reversed when you explain your situation to a real person. Have your income, credit score, and reasoning ready before calling.",
+                views: 2456
+            },
+            {
+                id: 11,
+                title: "Book Refundable When Possible",
+                category: "booking",
+                impact: "low",
+                preview: "Lock in rates while continuing to search for better deals.",
+                content: "Book refundable hotel rates or airline tickets when prices are good, but continue searching. If you find something better, cancel and rebook. This strategy works great during sales or when award availability is unpredictable.",
+                views: 1432
+            },
+            {
+                id: 12,
+                title: "Leverage Elite Benefits Beyond Travel",
+                category: "status",
+                impact: "medium",
+                preview: "Use your status for everyday perks like lounge access and upgrades.",
+                content: "Elite status provides benefits beyond flights: priority security, lounge access, free breakfast at hotels, late checkout, and room upgrades. These perks can be worth hundreds or thousands annually, even if you don't travel frequently.",
+                views: 1876
+            }
+        ];
+
+        let activeFilters = {
+            category: 'all',
+            impact: 'all'
+        };
+
+        let bookmarkedTips = new Set();
+
+        function renderTips(tipsToRender = tips) {
+            const grid = document.getElementById('tipsGrid');
+
+            if (tipsToRender.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>No tips found</h3>
+                        <p>Try adjusting your filters or search terms</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = tipsToRender.map(tip => `
+                <div class="tip-card ${bookmarkedTips.has(tip.id) ? 'bookmarked' : ''}" data-tip-id="${tip.id}">
+                    <div class="tip-header">
+                        <div class="tip-badges">
+                            <span class="category-badge cat-${tip.category}">${tip.category}</span>
+                            <span class="impact-badge impact-${tip.impact}">
+                                ${tip.impact === 'high' ? '🔥' : tip.impact === 'medium' ? '⚡' : '💡'} ${tip.impact} impact
+                            </span>
+                        </div>
+                        <button class="bookmark-btn" onclick="toggleBookmark(${tip.id}, event)">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="${bookmarkedTips.has(tip.id) ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <h3 class="tip-title">${tip.title}</h3>
+                    <p class="tip-preview">${tip.preview}</p>
+                    <div class="tip-meta">
+                        <span>${tip.views.toLocaleString()} views</span>
+                        <span style="color: var(--forest-green); font-weight: 600;">Click to expand</span>
+                    </div>
+                    <div class="tip-expanded">
+                        <div class="tip-content">${tip.content}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            document.querySelectorAll('.tip-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.closest('.bookmark-btn')) {
+                        card.classList.toggle('expanded');
+                    }
+                });
+            });
+        }
+
+        function renderPopularTips() {
+            const popular = [...tips]
+                .sort((a, b) => b.views - a.views)
+                .slice(0, 5);
+
+            document.getElementById('popularTips').innerHTML = popular.map((tip, index) => `
+                <div class="popular-tip" onclick="scrollToTip(${tip.id})">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="popular-rank">${index + 1}</span>
+                        <div style="flex: 1;">
+                            <div class="popular-title">${tip.title}</div>
+                            <div class="popular-views">${tip.views.toLocaleString()} views</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterTips() {
+            let filtered = tips;
+
+            // Search filter
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                filtered = filtered.filter(tip =>
+                    tip.title.toLowerCase().includes(searchTerm) ||
+                    tip.preview.toLowerCase().includes(searchTerm) ||
+                    tip.content.toLowerCase().includes(searchTerm)
+                );
+                document.getElementById('clearSearch').style.display = 'block';
+            } else {
+                document.getElementById('clearSearch').style.display = 'none';
+            }
+
+            // Category filter
+            if (activeFilters.category !== 'all') {
+                filtered = filtered.filter(tip => tip.category === activeFilters.category);
+            }
+
+            // Impact filter
+            if (activeFilters.impact !== 'all') {
+                filtered = filtered.filter(tip => tip.impact === activeFilters.impact);
+            }
+
+            renderTips(filtered);
+        }
+
+        function toggleBookmark(tipId, event) {
+            event.stopPropagation();
+            if (bookmarkedTips.has(tipId)) {
+                bookmarkedTips.delete(tipId);
+            } else {
+                bookmarkedTips.add(tipId);
+            }
+            document.getElementById('bookmarkedCount').textContent = bookmarkedTips.size;
+            filterTips(); // Re-render to update bookmark state
+        }
+
+        function scrollToTip(tipId) {
+            const card = document.querySelector(`[data-tip-id="${tipId}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.add('expanded');
+                setTimeout(() => {
+                    card.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 300);
+                }, 500);
+            }
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterTips);
+
+        document.getElementById('clearSearch').addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            filterTips();
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filterType = btn.dataset.filter;
+                const filterValue = btn.dataset.value;
+
+                // Update active state
+                document.querySelectorAll(`[data-filter="${filterType}"]`).forEach(b => {
+                    b.classList.remove('active');
+                });
+                btn.classList.add('active');
+
+                // Update filter
+                activeFilters[filterType] = filterValue;
+                filterTips();
+            });
+        });
+
+        // Initial render
+        renderTips();
+        renderPopularTips();
+    </script>
+</body>
+</html>

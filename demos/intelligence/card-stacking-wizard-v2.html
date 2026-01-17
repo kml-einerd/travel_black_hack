@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gear Optimizer - Trail Intelligence</title>
+  <meta name="description" content="Build your optimal camping gear loadout. Stack equipment for maximum value per weight.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --charcoal: #101828;
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .gear-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+    .nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: var(--radius-full);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+    .nav-back:hover {
+      color: var(--forest-green);
+      transform: translateX(-4px);
+      box-shadow: var(--glow-green);
+    }
+    .gear-title {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--forest-green), var(--accent-warm));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .gear-subtitle {
+      color: var(--white-muted);
+      font-size: 16px;
+    }
+    .wizard-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr 320px;
+      gap: 24px;
+      min-height: 600px;
+    }
+    .gear-library {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: fit-content;
+    }
+    .library-header {
+      padding: 16px 20px;
+      background: rgba(11, 164, 87, 0.1);
+      border-bottom: 1px solid var(--glass-border);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--forest-green);
+    }
+    .library-items {
+      padding: 16px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .gear-item {
+      background: var(--glass-bg-dark);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      margin-bottom: 12px;
+      cursor: move;
+      transition: all 0.3s ease;
+    }
+    .gear-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--forest-green);
+    }
+    .gear-item-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: var(--white);
+    }
+    .gear-item-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--white-muted);
+    }
+    .gear-item-stat {
+      font-family: var(--font-mono);
+    }
+    .loadout-workspace {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 2px dashed var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      min-height: 600px;
+    }
+    .workspace-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .workspace-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .workspace-subtitle {
+      color: var(--white-muted);
+      font-size: 14px;
+    }
+    .loadout-slots {
+      display: grid;
+      gap: 16px;
+    }
+    .loadout-slot {
+      background: var(--glass-bg-dark);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      min-height: 80px;
+      transition: all 0.3s ease;
+    }
+    .loadout-slot--empty {
+      border-style: dashed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-muted);
+      font-size: 14px;
+    }
+    .loadout-slot--filled {
+      border-color: var(--forest-green);
+      box-shadow: var(--glow-green);
+    }
+    .results-panel {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      height: fit-content;
+    }
+    .results-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .result-stat {
+      background: var(--glass-bg-dark);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .result-stat-label {
+      font-size: 12px;
+      color: var(--white-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .result-stat-value {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--forest-green);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--forest-green);
+      color: var(--white);
+      box-shadow: var(--glow-green);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(11, 164, 87, 0.8);
+    }
+    @media (max-width: 1200px) {
+      .wizard-layout {
+        grid-template-columns: 1fr;
+      }
+      .gear-library, .results-panel {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gear-container">
+    <nav class="nav-header">
+      <a href="../../index.html" class="nav-back">
+        <i data-lucide="tent" width="18" height="18"></i>
+        Back to Base Camp
+      </a>
+      <button class="btn btn-primary" onclick="optimizeLoadout()">
+        <i data-lucide="zap" width="18" height="18"></i>
+        Optimize Loadout
+      </button>
+    </nav>
+
+    <div style="margin-bottom: 32px;">
+      <h1 class="gear-title">⚡ Gear Optimizer</h1>
+      <p class="gear-subtitle">Build your optimal camping gear loadout. Stack equipment for maximum value per weight ratio.</p>
+    </div>
+
+    <div class="wizard-layout">
+      <!-- Gear Library -->
+      <div class="gear-library">
+        <div class="library-header">
+          <i data-lucide="package" width="18" height="18"></i>
+          Available Gear
+        </div>
+        <div class="library-items">
+          <div class="gear-item" draggable="true">
+            <div class="gear-item-name">🎒 Ultralight Pack</div>
+            <div class="gear-item-stats">
+              <span class="gear-item-stat">2.1 lbs</span>
+              <span class="gear-item-stat">$180</span>
+            </div>
+          </div>
+          <div class="gear-item" draggable="true">
+            <div class="gear-item-name">⛺ 2-Person Tent</div>
+            <div class="gear-item-stats">
+              <span class="gear-item-stat">3.8 lbs</span>
+              <span class="gear-item-stat">$320</span>
+            </div>
+          </div>
+          <div class="gear-item" draggable="true">
+            <div class="gear-item-name">🔥 Camp Stove</div>
+            <div class="gear-item-stats">
+              <span class="gear-item-stat">0.8 lbs</span>
+              <span class="gear-item-stat">$95</span>
+            </div>
+          </div>
+          <div class="gear-item" draggable="true">
+            <div class="gear-item-name">💤 Sleeping Bag</div>
+            <div class="gear-item-stats">
+              <span class="gear-item-stat">2.4 lbs</span>
+              <span class="gear-item-stat">$250</span>
+            </div>
+          </div>
+          <div class="gear-item" draggable="true">
+            <div class="gear-item-name">🧊 Water Filter</div>
+            <div class="gear-item-stats">
+              <span class="gear-item-stat">0.3 lbs</span>
+              <span class="gear-item-stat">$40</span>
+            </div>
+          </div>
+          <div class="gear-item" draggable="true">
+            <div class="gear-item-name">🔦 Headlamp</div>
+            <div class="gear-item-stats">
+              <span class="gear-item-stat">0.2 lbs</span>
+              <span class="gear-item-stat">$55</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loadout Workspace -->
+      <div class="loadout-workspace">
+        <div class="workspace-header">
+          <div class="workspace-title">Your Loadout</div>
+          <div class="workspace-subtitle">Drag gear items here to build your optimal camping setup</div>
+        </div>
+        <div class="loadout-slots">
+          <div class="loadout-slot loadout-slot--empty">
+            <i data-lucide="plus-circle" width="20" height="20"></i>
+            Drop gear here
+          </div>
+          <div class="loadout-slot loadout-slot--empty">
+            <i data-lucide="plus-circle" width="20" height="20"></i>
+            Drop gear here
+          </div>
+          <div class="loadout-slot loadout-slot--empty">
+            <i data-lucide="plus-circle" width="20" height="20"></i>
+            Drop gear here
+          </div>
+          <div class="loadout-slot loadout-slot--empty">
+            <i data-lucide="plus-circle" width="20" height="20"></i>
+            Drop gear here
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div class="results-panel">
+        <div class="results-title">
+          <i data-lucide="bar-chart" width="20" height="20"></i>
+          Loadout Stats
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-label">Total Weight</div>
+          <div class="result-stat-value">0.0 lbs</div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-label">Total Cost</div>
+          <div class="result-stat-value">$0</div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-label">Value/Weight</div>
+          <div class="result-stat-value">-</div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-label">Efficiency Score</div>
+          <div class="result-stat-value">0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    function optimizeLoadout() {
+      alert('Optimization algorithm: Analyzing gear combos for maximum value per weight...');
+    }
+  </script>
+</body>
+</html>

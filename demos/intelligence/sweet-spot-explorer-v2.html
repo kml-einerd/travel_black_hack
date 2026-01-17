@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trail Finder - Discover Secret Trails</title>
+  <meta name="description" content="Discover hidden trails with the best views. Find your perfect outdoor adventure spot.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ===== TRAIL FINDER - CAMPING THEME ===== */
+    :root {
+      /* Colors - UI_ref Camping Palette */
+      --forest-green: #0BA457;
+      --forest-dark: #0D3B28;
+      --forest-darker: #072A1C;
+      --accent-fire: #DF5030;
+      --accent-warm: #F59E0B;
+      --white: #FFFFFF;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --charcoal: #101828;
+      --charcoal-light: #1F2937;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-dark: rgba(16, 24, 40, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+
+      /* Shadows & Glows */
+      --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --glow-green: 0 0 30px rgba(11, 164, 87, 0.5);
+      --glow-fire: 0 0 30px rgba(223, 80, 48, 0.5);
+
+      /* Typography */
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Border Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--forest-darker);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero-trail {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-2xl) var(--space-lg);
+      background: var(--forest-dark);
+      overflow: hidden;
+    }
+
+    .hero-trail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300" fill="none" stroke="rgba(11,164,87,0.1)" stroke-width="2"/><path d="M0,350 Q300,250 600,350 T1200,350" fill="none" stroke="rgba(11,164,87,0.08)" stroke-width="2"/></svg>');
+      background-size: cover;
+      opacity: 0.5;
+    }
+
+    .hero-trail::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(7, 42, 28, 0.4) 0%,
+        rgba(7, 42, 28, 0.8) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    /* Top Navigation */
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--white-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 10px 16px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      transition: all 0.3s;
+      margin-bottom: var(--space-xl);
+    }
+
+    .nav-back:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateX(-4px);
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, var(--white) 0%, var(--forest-green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      text-align: center;
+      color: var(--white-muted);
+      margin-bottom: var(--space-2xl);
+    }
+
+    /* Search Box */
+    .search-hero {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-hero__input {
+      width: 100%;
+      padding: 20px 60px 20px 24px;
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 2px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+      transition: all 0.3s;
+    }
+
+    .search-hero__input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .search-hero__input:focus {
+      outline: none;
+      border-color: var(--forest-green);
+      box-shadow: var(--glow-green);
+      background: rgba(16, 24, 40, 0.7);
+    }
+
+    .search-hero__btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: var(--forest-green);
+      border: none;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: var(--glow-green);
+    }
+
+    .search-hero__btn:hover {
+      transform: translateY(-50%) scale(1.1);
+      background: #099A4F;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: var(--space-xl);
+    }
+
+    /* ===== SIDEBAR FILTERS ===== */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .filter-section {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+    }
+
+    .filter-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .filter-title i {
+      color: var(--forest-green);
+    }
+
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .filter-option {
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .filter-option:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--glass-border);
+    }
+
+    .filter-option--active {
+      background: var(--forest-green);
+      border-color: var(--forest-green);
+      box-shadow: var(--glow-green);
+    }
+
+    /* Range Inputs */
+    .range-input {
+      margin-top: var(--space-md);
+    }
+
+    .range-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .range-slider {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-full);
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--forest-green);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--glow-green);
+    }
+
+    .range-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: var(--forest-green);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--glow-green);
+      border: none;
+    }
+
+    /* Map Visualization */
+    .map-container {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-xl);
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(11, 164, 87, 0.1) 0%, rgba(13, 59, 40, 0.1) 100%);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: var(--forest-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--glow-green);
+      cursor: pointer;
+      animation: pulse-pin 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-pin {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .map-pin:nth-child(1) { top: 30%; left: 20%; }
+    .map-pin:nth-child(2) { top: 45%; left: 50%; }
+    .map-pin:nth-child(3) { top: 60%; left: 75%; }
+    .map-pin:nth-child(4) { top: 25%; left: 60%; }
+    .map-pin:nth-child(5) { top: 70%; left: 30%; }
+
+    /* Results Header */
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .results-title {
+      font-size: 24px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .results-count {
+      padding: 8px 16px;
+      background: var(--forest-green);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .sort-select {
+      padding: 10px 16px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .sort-select:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ===== TRAIL CARDS GRID ===== */
+    .trails-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .trail-card {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .trail-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--forest-green);
+      box-shadow: var(--shadow-xl), var(--glow-green);
+    }
+
+    .trail-card__image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .trail-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .trail-card:hover .trail-card__image img {
+      transform: scale(1.1);
+    }
+
+    .trail-card__badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 6px 12px;
+      background: var(--accent-fire);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trail-card__content {
+      padding: var(--space-lg);
+    }
+
+    .trail-card__title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: var(--space-sm);
+    }
+
+    .trail-card__route {
+      font-size: 14px;
+      color: var(--white-muted);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .trail-card__metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .metric-box {
+      text-align: center;
+    }
+
+    .metric-box__label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 4px;
+    }
+
+    .metric-box__value {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--forest-green);
+    }
+
+    .trail-card__cta {
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .trail-card:hover .trail-card__cta {
+      background: var(--forest-green);
+      border-color: var(--forest-green);
+      box-shadow: var(--glow-green);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .trails-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section class="hero-trail">
+    <div class="hero-content">
+      <a href="../INDICE_COMPLETO.html" class="nav-back">
+        <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+        Back to Base Camp
+      </a>
+
+      <h1 class="hero-title">Find Your Secret Trail</h1>
+      <p class="hero-subtitle">Discover hidden outdoor spots with the best views and experiences</p>
+
+      <div class="search-hero">
+        <input type="text" class="search-hero__input" placeholder="Search destination, mountain, lake...">
+        <button class="search-hero__btn">
+          <i data-lucide="search" style="width: 20px; height: 20px; color: white;"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="content-grid">
+      <!-- Sidebar Filters -->
+      <aside class="sidebar">
+        <!-- Destination Type -->
+        <div class="filter-section">
+          <h3 class="filter-title">
+            <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+            Trail Type
+          </h3>
+          <div class="filter-options">
+            <button class="filter-option filter-option--active">
+              <i data-lucide="mountain" style="width: 16px; height: 16px;"></i>
+              Mountain Trails
+            </button>
+            <button class="filter-option">
+              <i data-lucide="droplets" style="width: 16px; height: 16px;"></i>
+              Lake Views
+            </button>
+            <button class="filter-option">
+              <i data-lucide="waves" style="width: 16px; height: 16px;"></i>
+              Beach Spots
+            </button>
+            <button class="filter-option">
+              <i data-lucide="tree-pine" style="width: 16px; height: 16px;"></i>
+              Forest Paths
+            </button>
+          </div>
+        </div>
+
+        <!-- Points Range -->
+        <div class="filter-section">
+          <h3 class="filter-title">
+            <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
+            Difficulty Level
+          </h3>
+          <div class="range-input">
+            <div class="range-label">
+              <span>Easy</span>
+              <span id="difficulty-value">Medium</span>
+            </div>
+            <input type="range" class="range-slider" min="1" max="5" value="3" id="difficulty-range">
+          </div>
+        </div>
+
+        <!-- CPP Threshold -->
+        <div class="filter-section">
+          <h3 class="filter-title">
+            <i data-lucide="star" style="width: 16px; height: 16px;"></i>
+            Experience Score
+          </h3>
+          <div class="range-input">
+            <div class="range-label">
+              <span>Min Score</span>
+              <span id="score-value">8.5</span>
+            </div>
+            <input type="range" class="range-slider" min="5" max="10" step="0.5" value="8.5" id="score-range">
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Results -->
+      <div class="results-area">
+        <!-- Interactive Map -->
+        <div class="map-container">
+          <div class="map-placeholder">
+            <div class="map-pin">
+              <i data-lucide="map-pin" style="width: 16px; height: 16px; color: white;"></i>
+            </div>
+            <div class="map-pin">
+              <i data-lucide="map-pin" style="width: 16px; height: 16px; color: white;"></i>
+            </div>
+            <div class="map-pin">
+              <i data-lucide="map-pin" style="width: 16px; height: 16px; color: white;"></i>
+            </div>
+            <div class="map-pin">
+              <i data-lucide="map-pin" style="width: 16px; height: 16px; color: white;"></i>
+            </div>
+            <div class="map-pin">
+              <i data-lucide="map-pin" style="width: 16px; height: 16px; color: white;"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Header -->
+        <div class="results-header">
+          <div>
+            <h2 class="results-title">
+              <i data-lucide="compass" style="width: 24px; height: 24px; color: var(--forest-green);"></i>
+              Secret Trails Found
+            </h2>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <span class="results-count">12 Trails</span>
+            <select class="sort-select">
+              <option>Best Score</option>
+              <option>Closest First</option>
+              <option>Easiest First</option>
+              <option>Most Popular</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Trail Cards Grid -->
+        <div class="trails-grid">
+          <!-- Trail Card 1 -->
+          <article class="trail-card">
+            <div class="trail-card__image">
+              <img src="../images/travel/mountain-landscape.webp" alt="Mountain Trail"
+                onerror="this.style.background='linear-gradient(135deg, #1E40AF, #3B82F6)';">
+              <span class="trail-card__badge">
+                <i data-lucide="star" style="width: 10px; height: 10px;"></i>
+                Top Rated
+              </span>
+            </div>
+            <div class="trail-card__content">
+              <h3 class="trail-card__title">Mount Rainier Summit Trail</h3>
+              <div class="trail-card__route">
+                <i data-lucide="route" style="width: 14px; height: 14px;"></i>
+                Paradise → Summit → Camp Muir
+              </div>
+              <div class="trail-card__metrics">
+                <div class="metric-box">
+                  <div class="metric-box__label">Distance</div>
+                  <div class="metric-box__value">14mi</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Elevation</div>
+                  <div class="metric-box__value">9.2K ft</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Score</div>
+                  <div class="metric-box__value">9.4</div>
+                </div>
+              </div>
+              <button class="trail-card__cta">
+                <span>Explore This Trail</span>
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Trail Card 2 -->
+          <article class="trail-card">
+            <div class="trail-card__image">
+              <img src="../images/travel/lake-view.webp" alt="Lake Trail"
+                onerror="this.style.background='linear-gradient(135deg, #0D9488, #14B8A6)';">
+              <span class="trail-card__badge" style="background: var(--forest-green);">
+                <i data-lucide="droplets" style="width: 10px; height: 10px;"></i>
+                Lake View
+              </span>
+            </div>
+            <div class="trail-card__content">
+              <h3 class="trail-card__title">Crater Lake Rim Trail</h3>
+              <div class="trail-card__route">
+                <i data-lucide="route" style="width: 14px; height: 14px;"></i>
+                Rim Village → Watchman Peak
+              </div>
+              <div class="trail-card__metrics">
+                <div class="metric-box">
+                  <div class="metric-box__label">Distance</div>
+                  <div class="metric-box__value">8.5mi</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Elevation</div>
+                  <div class="metric-box__value">3.5K ft</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Score</div>
+                  <div class="metric-box__value">9.1</div>
+                </div>
+              </div>
+              <button class="trail-card__cta">
+                <span>Explore This Trail</span>
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Trail Card 3 -->
+          <article class="trail-card">
+            <div class="trail-card__image">
+              <img src="../images/travel/coastal-trail.webp" alt="Coastal Trail"
+                onerror="this.style.background='linear-gradient(135deg, #DC2626, #EF4444)';">
+              <span class="trail-card__badge" style="background: var(--accent-warm);">
+                <i data-lucide="sun" style="width: 10px; height: 10px;"></i>
+                Sunset View
+              </span>
+            </div>
+            <div class="trail-card__content">
+              <h3 class="trail-card__title">Big Sur Coastal Path</h3>
+              <div class="trail-card__route">
+                <i data-lucide="route" style="width: 14px; height: 14px;"></i>
+                McWay Falls → Pfeiffer Beach
+              </div>
+              <div class="trail-card__metrics">
+                <div class="metric-box">
+                  <div class="metric-box__label">Distance</div>
+                  <div class="metric-box__value">6.2mi</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Elevation</div>
+                  <div class="metric-box__value">1.8K ft</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Score</div>
+                  <div class="metric-box__value">8.9</div>
+                </div>
+              </div>
+              <button class="trail-card__cta">
+                <span>Explore This Trail</span>
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Trail Card 4 -->
+          <article class="trail-card">
+            <div class="trail-card__image">
+              <img src="../images/travel/forest-path.webp" alt="Forest Trail"
+                onerror="this.style.background='linear-gradient(135deg, #047857, #10B981)';">
+            </div>
+            <div class="trail-card__content">
+              <h3 class="trail-card__title">Redwood Cathedral Trail</h3>
+              <div class="trail-card__route">
+                <i data-lucide="route" style="width: 14px; height: 14px;"></i>
+                Fern Canyon → Lady Bird Grove
+              </div>
+              <div class="trail-card__metrics">
+                <div class="metric-box">
+                  <div class="metric-box__label">Distance</div>
+                  <div class="metric-box__value">4.7mi</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Elevation</div>
+                  <div class="metric-box__value">800 ft</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Score</div>
+                  <div class="metric-box__value">9.3</div>
+                </div>
+              </div>
+              <button class="trail-card__cta">
+                <span>Explore This Trail</span>
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Trail Card 5 -->
+          <article class="trail-card">
+            <div class="trail-card__image">
+              <img src="../images/travel/desert-trail.webp" alt="Desert Trail"
+                onerror="this.style.background='linear-gradient(135deg, #B45309, #EA580C)';">
+              <span class="trail-card__badge">
+                <i data-lucide="star" style="width: 10px; height: 10px;"></i>
+                Hidden Gem
+              </span>
+            </div>
+            <div class="trail-card__content">
+              <h3 class="trail-card__title">Antelope Canyon Secret</h3>
+              <div class="trail-card__route">
+                <i data-lucide="route" style="width: 14px; height: 14px;"></i>
+                Lower Canyon → Upper Vista
+              </div>
+              <div class="trail-card__metrics">
+                <div class="metric-box">
+                  <div class="metric-box__label">Distance</div>
+                  <div class="metric-box__value">3.2mi</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Elevation</div>
+                  <div class="metric-box__value">500 ft</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Score</div>
+                  <div class="metric-box__value">9.6</div>
+                </div>
+              </div>
+              <button class="trail-card__cta">
+                <span>Explore This Trail</span>
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Trail Card 6 -->
+          <article class="trail-card">
+            <div class="trail-card__image">
+              <img src="../images/travel/alpine-lake.webp" alt="Alpine Lake"
+                onerror="this.style.background='linear-gradient(135deg, #4338CA, #6366F1)';">
+              <span class="trail-card__badge" style="background: var(--forest-green);">
+                <i data-lucide="droplets" style="width: 10px; height: 10px;"></i>
+                Alpine Lake
+              </span>
+            </div>
+            <div class="trail-card__content">
+              <h3 class="trail-card__title">Colchuck Lake Trail</h3>
+              <div class="trail-card__route">
+                <i data-lucide="route" style="width: 14px; height: 14px;"></i>
+                Trailhead → Colchuck Lake
+              </div>
+              <div class="trail-card__metrics">
+                <div class="metric-box">
+                  <div class="metric-box__label">Distance</div>
+                  <div class="metric-box__value">8.0mi</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Elevation</div>
+                  <div class="metric-box__value">2.3K ft</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box__label">Score</div>
+                  <div class="metric-box__value">9.5</div>
+                </div>
+              </div>
+              <button class="trail-card__cta">
+                <span>Explore This Trail</span>
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    // Filter options interaction
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        parent.querySelectorAll('.filter-option').forEach(opt => opt.classList.remove('filter-option--active'));
+        this.classList.add('filter-option--active');
+      });
+    });
+
+    // Range sliders
+    const difficultyRange = document.getElementById('difficulty-range');
+    const difficultyValue = document.getElementById('difficulty-value');
+    const difficultyLabels = ['Easy', 'Easy-Medium', 'Medium', 'Medium-Hard', 'Hard'];
+
+    difficultyRange.addEventListener('input', function() {
+      difficultyValue.textContent = difficultyLabels[this.value - 1];
+    });
+
+    const scoreRange = document.getElementById('score-range');
+    const scoreValue = document.getElementById('score-value');
+
+    scoreRange.addEventListener('input', function() {
+      scoreValue.textContent = this.value;
+    });
+
+    // Trail card click
+    document.querySelectorAll('.trail-card').forEach(card => {
+      card.addEventListener('click', function() {
+        console.log('Trail selected');
+      });
+    });
+
+    // Map pins interaction
+    document.querySelectorAll('.map-pin').forEach(pin => {
+      pin.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.style.background = 'var(--accent-fire)';
+        setTimeout(() => {
+          this.style.background = 'var(--forest-green)';
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+
+</html>

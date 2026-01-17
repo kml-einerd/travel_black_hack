@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Trail Updates - Real-Time Feed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root{--forest-green:#0BA457;--forest-darker:#072A1C;--accent-fire:#DF5030;--accent-warm:#F59E0B;--white:#FFF;--glass-bg:rgba(255,255,255,0.15);--glass-border:rgba(255,255,255,0.2);--glass-blur:blur(20px);--font-main:'Plus Jakarta Sans',sans-serif;--font-mono:'JetBrains Mono',monospace;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:var(--font-main);background:var(--forest-darker);color:var(--white);min-height:100vh;padding:32px;}
+    .container{max-width:900px;margin:0 auto;}
+    .nav-back{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.8);text-decoration:none;font-weight:600;padding:10px 16px;border-radius:999px;background:var(--glass-bg);border:1px solid var(--glass-border);margin-bottom:32px;}
+    .header{text-align:center;margin-bottom:40px;}
+    .title{font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--forest-green),var(--accent-warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px;}
+    .live-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(223,80,48,0.2);border:1px solid var(--accent-fire);border-radius:999px;color:var(--accent-fire);font-weight:600;font-size:14px;}
+    .live-dot{width:8px;height:8px;background:var(--accent-fire);border-radius:50%;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.2);}}
+    .feed{display:grid;gap:12px;}
+    .update{background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:16px;padding:20px;transition:transform 0.2s;}
+    .update:hover{transform:translateX(4px);}
+    .update-header{display:flex;gap:12px;margin-bottom:12px;}
+    .update-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;}
+    .icon-deal{background:rgba(11,164,87,0.2);color:var(--forest-green);}
+    .icon-alert{background:rgba(223,80,48,0.2);color:var(--accent-fire);}
+    .icon-news{background:rgba(59,130,246,0.2);color:#60A5FA;}
+    .icon-change{background:rgba(245,158,11,0.2);color:var(--accent-warm);}
+    .update-meta{flex:1;}
+    .update-type{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+    .type-deal{color:var(--forest-green);}
+    .type-alert{color:var(--accent-fire);}
+    .type-news{color:#60A5FA;}
+    .type-change{color:var(--accent-warm);}
+    .update-time{font-size:12px;color:rgba(255,255,255,0.5);font-family:var(--font-mono);}
+    .update-content{color:rgba(255,255,255,0.9);line-height:1.6;margin-bottom:8px;}
+    .update-source{font-size:12px;color:rgba(255,255,255,0.6);}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="nav-back">
+      <i data-lucide="tent" width="18"></i>Back to Base Camp
+    </a>
+    <div class="header">
+      <h1 class="title">📡 Live Trail Updates</h1>
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        LIVE - Auto-updating every 30s
+      </div>
+    </div>
+    <div class="feed">
+      <div class="update">
+        <div class="update-header">
+          <div class="update-icon icon-deal"><i data-lucide="trending-up" width="20"></i></div>
+          <div class="update-meta">
+            <div class="update-type type-deal">Hot Deal</div>
+            <div class="update-time">2 min ago</div>
+          </div>
+        </div>
+        <div class="update-content">
+          United releases massive saver space to Hawaii. One-ways starting at 12.5K miles. Over 200 flights available for next 3 months.
+        </div>
+        <div class="update-source">Source: United Award Search</div>
+      </div>
+      <div class="update">
+        <div class="update-header">
+          <div class="update-icon icon-alert"><i data-lucide="alert-triangle" width="20"></i></div>
+          <div class="update-meta">
+            <div class="update-type type-alert">Alert</div>
+            <div class="update-time">15 min ago</div>
+          </div>
+        </div>
+        <div class="update-content">
+          Chase transfer bonus to Hyatt ending in 48 hours. Current 30% bonus drops to standard 1:1 rate. Transfer now if planning hotel stays.
+        </div>
+        <div class="update-source">Source: Chase Ultimate Rewards</div>
+      </div>
+      <div class="update">
+        <div class="update-header">
+          <div class="update-icon icon-change"><i data-lucide="refresh-cw" width="20"></i></div>
+          <div class="update-meta">
+            <div class="update-type type-change">Program Change</div>
+            <div class="update-time">1 hour ago</div>
+          </div>
+        </div>
+        <div class="update-content">
+          Marriott announces off-peak pricing for 500+ properties. Category 5 hotels now bookable for 25K points (down from 35K) on weekdays.
+        </div>
+        <div class="update-source">Source: Marriott Bonvoy</div>
+      </div>
+      <div class="update">
+        <div class="update-header">
+          <div class="update-icon icon-news"><i data-lucide="newspaper" width="20"></i></div>
+          <div class="update-meta">
+            <div class="update-type type-news">News</div>
+            <div class="update-time">2 hours ago</div>
+          </div>
+        </div>
+        <div class="update-content">
+          Delta announces Q2 SkyMiles flash sale. Domestic one-ways from 5K miles. International from 20K. Book by end of week.
+        </div>
+        <div class="update-source">Source: Delta SkyMiles</div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
